@@ -1,0 +1,775 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MagicUpdaterModelStoreContainer" CdmEntityContainer="MagicUpdaterEntities">
+    <FunctionImportMapping FunctionImportName="AddOperState" FunctionName="MagicUpdaterModel.Store.AddOperState" />
+    <FunctionImportMapping FunctionImportName="ChangeComputerParams" FunctionName="MagicUpdaterModel.Store.ChangeComputerParams" />
+    <FunctionImportMapping FunctionImportName="ChangeComputerParams_Servece" FunctionName="MagicUpdaterModel.Store.ChangeComputerParams_Servece" />
+    <FunctionImportMapping FunctionImportName="ChengeShopForComputer" FunctionName="MagicUpdaterModel.Store.ChengeShopForComputer" />
+    <FunctionImportMapping FunctionImportName="ComputerResponse" FunctionName="MagicUpdaterModel.Store.ComputerResponse" />
+    <FunctionImportMapping FunctionImportName="GetComputerSettings" FunctionName="MagicUpdaterModel.Store.GetComputerSettings">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MagicUpdaterModel.GetComputerSettings_Result">
+          <ScalarProperty Name="Computerid" ColumnName="Computerid" />
+          <ScalarProperty Name="ShopId" ColumnName="ShopId" />
+          <ScalarProperty Name="Is1CServer" ColumnName="Is1CServer" />
+          <ScalarProperty Name="IsMainCashbox" ColumnName="IsMainCashbox" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetComputerSettingsViaMac" FunctionName="MagicUpdaterModel.Store.GetComputerSettingsViaMac">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MagicUpdaterModel.GetComputerSettingsViaMac_Result">
+          <ScalarProperty Name="Computerid" ColumnName="Computerid" />
+          <ScalarProperty Name="ShopId" ColumnName="ShopId" />
+          <ScalarProperty Name="Is1CServer" ColumnName="Is1CServer" />
+          <ScalarProperty Name="IsMainCashbox" ColumnName="IsMainCashbox" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetComputersList" FunctionName="MagicUpdaterModel.Store.GetComputersList">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MagicUpdaterModel.GetComputersList_Result">
+          <ScalarProperty Name="ComputerId" ColumnName="ComputerId" />
+          <ScalarProperty Name="ShopId" ColumnName="ShopId" />
+          <ScalarProperty Name="ComputerName" ColumnName="ComputerName" />
+          <ScalarProperty Name="ComputerAddress" ColumnName="ComputerAddress" />
+          <ScalarProperty Name="is1CServer" ColumnName="is1CServer" />
+          <ScalarProperty Name="isMainCashbox" ColumnName="isMainCashbox" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="LogError" FunctionName="MagicUpdaterModel.Store.LogError" />
+    <FunctionImportMapping FunctionImportName="RegisterComputer" FunctionName="MagicUpdaterModel.Store.RegisterComputer">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MagicUpdaterModel.RegisterComputer_Result">
+          <ScalarProperty Name="ComputerId" ColumnName="ComputerId" />
+          <ScalarProperty Name="isNew" ColumnName="isNew" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="RegisterComputer_Service" FunctionName="MagicUpdaterModel.Store.RegisterComputer_Service">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MagicUpdaterModel.RegisterComputer_Service_Result">
+          <ScalarProperty Name="ComputerId" ColumnName="ComputerId" />
+          <ScalarProperty Name="isNew" ColumnName="isNew" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SelectComputersByShop" FunctionName="MagicUpdaterModel.Store.SelectComputersByShop">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MagicUpdaterModel.SelectComputersByShop_Result">
+          <ScalarProperty Name="ComputerId" ColumnName="ComputerId" />
+          <ScalarProperty Name="ShopId" ColumnName="ShopId" />
+          <ScalarProperty Name="ComputerName" ColumnName="ComputerName" />
+          <ScalarProperty Name="ComputerAddress" ColumnName="ComputerAddress" />
+          <ScalarProperty Name="Is1CServer" ColumnName="Is1CServer" />
+          <ScalarProperty Name="IsMainCashbox" ColumnName="IsMainCashbox" />
+          <ScalarProperty Name="LastUpdateTime" ColumnName="LastUpdateTime" />
+          <ScalarProperty Name="ComputerHash" ColumnName="ComputerHash" />
+          <ScalarProperty Name="Mac" ColumnName="Mac" />
+          <ScalarProperty Name="MagicUpdaterVersion" ColumnName="MagicUpdaterVersion" />
+          <ScalarProperty Name="External_IP" ColumnName="External_IP" />
+          <ScalarProperty Name="IsTaskerAlive" ColumnName="IsTaskerAlive" />
+          <ScalarProperty Name="IsON" ColumnName="IsON" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SelectOperationsList" FunctionName="MagicUpdaterModel.Store.SelectOperationsList">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MagicUpdaterModel.SelectOperationsList_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="OperationType" ColumnName="OperationType" />
+          <ScalarProperty Name="Attributes" ColumnName="Attributes" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SelectRestartOperation" FunctionName="MagicUpdaterModel.Store.SelectRestartOperation">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MagicUpdaterModel.SelectRestartOperation_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="OperationType" ColumnName="OperationType" />
+          <ScalarProperty Name="Attributes" ColumnName="Attributes" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SelectShopsList" FunctionName="MagicUpdaterModel.Store.SelectShopsList">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MagicUpdaterModel.SelectShopsList_Result">
+          <ScalarProperty Name="ShopId" ColumnName="ShopId" />
+          <ScalarProperty Name="ShopName" ColumnName="ShopName" />
+          <ScalarProperty Name="ShopRegion" ColumnName="ShopRegion" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SendLog1C" FunctionName="MagicUpdaterModel.Store.SendLog1C" />
+    <FunctionImportMapping FunctionImportName="SendOperationReport" FunctionName="MagicUpdaterModel.Store.SendOperationReport" />
+    <FunctionImportMapping FunctionImportName="SetActionReport" FunctionName="MagicUpdaterModel.Store.SetActionReport" />
+    <FunctionImportMapping FunctionImportName="SetExternalIp_Service" FunctionName="MagicUpdaterModel.Store.SetExternalIp_Service" />
+    <FunctionImportMapping FunctionImportName="SetMacAddress_Service" FunctionName="MagicUpdaterModel.Store.SetMacAddress_Service" />
+    <FunctionImportMapping FunctionImportName="SetOperationIsReaded" FunctionName="MagicUpdaterModel.Store.SetOperationIsReaded" />
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="MagicUpdaterModel.Store.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="MagicUpdaterModel.Store.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="MagicUpdaterModel.Store.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_GetTableData" FunctionName="MagicUpdaterModel.Store.sp_GetTableData" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="MagicUpdaterModel.Store.sp_helpdiagramdefinition">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MagicUpdaterModel.sp_helpdiagramdefinition_Result">
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="MagicUpdaterModel.Store.sp_helpdiagrams">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MagicUpdaterModel.sp_helpdiagrams_Result">
+          <ScalarProperty Name="Database" ColumnName="Database" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="MagicUpdaterModel.Store.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="MagicUpdaterModel.Store.sp_upgraddiagrams" />
+    <FunctionImportMapping FunctionImportName="UpdateVersion" FunctionName="MagicUpdaterModel.Store.UpdateVersion" />
+    <EntitySetMapping Name="ActionsReports">
+      <EntityTypeMapping TypeName="MagicUpdaterModel.ActionsReport">
+        <MappingFragment StoreEntitySet="ActionsReports">
+          <ScalarProperty Name="Result" ColumnName="Result" />
+          <ScalarProperty Name="DateCompleteOrError" ColumnName="DateCompleteOrError" />
+          <ScalarProperty Name="IsCompleted" ColumnName="IsCompleted" />
+          <ScalarProperty Name="IsFromLan" ColumnName="IsFromLan" />
+          <ScalarProperty Name="ActionName" ColumnName="ActionName" />
+          <ScalarProperty Name="ComputerId" ColumnName="ComputerId" />
+          <ScalarProperty Name="OperationId" ColumnName="OperationId" />
+          <ScalarProperty Name="ReportId" ColumnName="ReportId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CommonGlobalSettings">
+      <EntityTypeMapping TypeName="MagicUpdaterModel.CommonGlobalSetting">
+        <MappingFragment StoreEntitySet="CommonGlobalSettings">
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ComputerErrorsLogs">
+      <EntityTypeMapping TypeName="MagicUpdaterModel.ComputerErrorsLog">
+        <MappingFragment StoreEntitySet="ComputerErrorsLog">
+          <ScalarProperty Name="ErrorDate" ColumnName="ErrorDate" />
+          <ScalarProperty Name="ErrorMessage" ColumnName="ErrorMessage" />
+          <ScalarProperty Name="ComputerId" ColumnName="ComputerId" />
+          <ScalarProperty Name="ErrorId" ColumnName="ErrorId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LocalSettings">
+      <EntityTypeMapping TypeName="MagicUpdaterModel.LocalSetting">
+        <MappingFragment StoreEntitySet="LocalSettings">
+          <ScalarProperty Name="Value" ColumnName="Value" />
+          <ScalarProperty Name="SettingId" ColumnName="SettingId" />
+          <ScalarProperty Name="ComputerId" ColumnName="ComputerId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LocalSettingsDictionaries">
+      <EntityTypeMapping TypeName="MagicUpdaterModel.LocalSettingsDictionary">
+        <MappingFragment StoreEntitySet="LocalSettingsDictionary">
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="SettingId" ColumnName="SettingId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Logs1C">
+      <EntityTypeMapping TypeName="MagicUpdaterModel.Logs1C">
+        <MappingFragment StoreEntitySet="Logs1C">
+          <ScalarProperty Name="LogDate" ColumnName="LogDate" />
+          <ScalarProperty Name="LogMessage" ColumnName="LogMessage" />
+          <ScalarProperty Name="IsError" ColumnName="IsError" />
+          <ScalarProperty Name="OperationId" ColumnName="OperationId" />
+          <ScalarProperty Name="ComputerId" ColumnName="ComputerId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OperationGroups">
+      <EntityTypeMapping TypeName="MagicUpdaterModel.OperationGroup">
+        <MappingFragment StoreEntitySet="OperationGroups">
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Operations">
+      <EntityTypeMapping TypeName="MagicUpdaterModel.Operation">
+        <MappingFragment StoreEntitySet="Operations">
+          <ScalarProperty Name="IsFromSheduler" ColumnName="IsFromSheduler" />
+          <ScalarProperty Name="GroupGUID" ColumnName="GroupGUID" />
+          <ScalarProperty Name="PoolDate" ColumnName="PoolDate" />
+          <ScalarProperty Name="CreatedUser" ColumnName="CreatedUser" />
+          <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+          <ScalarProperty Name="Attributes" ColumnName="Attributes" />
+          <ScalarProperty Name="OperationType" ColumnName="OperationType" />
+          <ScalarProperty Name="ComputerId" ColumnName="ComputerId" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OperationsReports">
+      <EntityTypeMapping TypeName="MagicUpdaterModel.OperationsReport">
+        <MappingFragment StoreEntitySet="OperationsReports">
+          <ScalarProperty Name="DateCompleteOrError" ColumnName="DateCompleteOrError" />
+          <ScalarProperty Name="DateRead" ColumnName="DateRead" />
+          <ScalarProperty Name="Result" ColumnName="Result" />
+          <ScalarProperty Name="IsCompleted" ColumnName="IsCompleted" />
+          <ScalarProperty Name="IsRead" ColumnName="IsRead" />
+          <ScalarProperty Name="OperationId" ColumnName="OperationId" />
+          <ScalarProperty Name="ReportId" ColumnName="ReportId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OperationsStates">
+      <EntityTypeMapping TypeName="MagicUpdaterModel.OperationsState">
+        <MappingFragment StoreEntitySet="OperationsStates">
+          <ScalarProperty Name="StateDate" ColumnName="StateDate" />
+          <ScalarProperty Name="OperStateId" ColumnName="OperStateId" />
+          <ScalarProperty Name="OperationId" ColumnName="OperationId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OperationStatesVocs">
+      <EntityTypeMapping TypeName="MagicUpdaterModel.OperationStatesVoc">
+        <MappingFragment StoreEntitySet="OperationStatesVoc">
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OperationTypeAttributes">
+      <EntityTypeMapping TypeName="MagicUpdaterModel.OperationTypeAttribute">
+        <MappingFragment StoreEntitySet="OperationTypeAttributes">
+          <ScalarProperty Name="Attributes" ColumnName="Attributes" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="OperationTypeId" ColumnName="OperationTypeId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OperationTypes">
+      <EntityTypeMapping TypeName="MagicUpdaterModel.OperationType">
+        <MappingFragment StoreEntitySet="OperationTypes">
+          <ScalarProperty Name="Visible" ColumnName="Visible" />
+          <ScalarProperty Name="GUID" ColumnName="GUID" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="FileMD5" ColumnName="FileMD5" />
+          <ScalarProperty Name="LastModifiedDate" ColumnName="LastModifiedDate" />
+          <ScalarProperty Name="FileName" ColumnName="FileName" />
+          <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+          <ScalarProperty Name="NameRus" ColumnName="NameRus" />
+          <ScalarProperty Name="SavedAttributes" ColumnName="SavedAttributes" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ShedulerPluginTasks">
+      <EntityTypeMapping TypeName="MagicUpdaterModel.ShedulerPluginTask">
+        <MappingFragment StoreEntitySet="ShedulerPluginTasks">
+          <ScalarProperty Name="RepeatValue" ColumnName="RepeatValue" />
+          <ScalarProperty Name="PluginFileName" ColumnName="PluginFileName" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="LastEndTime" ColumnName="LastEndTime" />
+          <ScalarProperty Name="LastStartTime" ColumnName="LastStartTime" />
+          <ScalarProperty Name="NextStartTime" ColumnName="NextStartTime" />
+          <ScalarProperty Name="Mode" ColumnName="Mode" />
+          <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ShedulerSteps">
+      <EntityTypeMapping TypeName="MagicUpdaterModel.ShedulerStep">
+        <MappingFragment StoreEntitySet="ShedulerSteps">
+          <ScalarProperty Name="OperationAttributes" ColumnName="OperationAttributes" />
+          <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+          <ScalarProperty Name="OnOperationErrorStep" ColumnName="OnOperationErrorStep" />
+          <ScalarProperty Name="OnOperationCompleteStep" ColumnName="OnOperationCompleteStep" />
+          <ScalarProperty Name="OperationCheckIntervalMs" ColumnName="OperationCheckIntervalMs" />
+          <ScalarProperty Name="RepeatTimeout" ColumnName="RepeatTimeout" />
+          <ScalarProperty Name="RepeatCount" ColumnName="RepeatCount" />
+          <ScalarProperty Name="OperationType" ColumnName="OperationType" />
+          <ScalarProperty Name="TaskId" ColumnName="TaskId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ShedulerStepsUserHistories">
+      <EntityTypeMapping TypeName="MagicUpdaterModel.ShedulerStepsUserHistory">
+        <MappingFragment StoreEntitySet="ShedulerStepsUserHistory">
+          <ScalarProperty Name="ActionType" ColumnName="ActionType" />
+          <ScalarProperty Name="UserLogin" ColumnName="UserLogin" />
+          <ScalarProperty Name="ChangeUserDateUtc" ColumnName="ChangeUserDateUtc" />
+          <ScalarProperty Name="HisId" ColumnName="HisId" />
+          <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+          <ScalarProperty Name="OnOperationErrorStep" ColumnName="OnOperationErrorStep" />
+          <ScalarProperty Name="OnOperationCompleteStep" ColumnName="OnOperationCompleteStep" />
+          <ScalarProperty Name="OperationCheckIntervalMs" ColumnName="OperationCheckIntervalMs" />
+          <ScalarProperty Name="RepeatTimeout" ColumnName="RepeatTimeout" />
+          <ScalarProperty Name="RepeatCount" ColumnName="RepeatCount" />
+          <ScalarProperty Name="OperationType" ColumnName="OperationType" />
+          <ScalarProperty Name="TaskId" ColumnName="TaskId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ShedulerTaskHistories">
+      <EntityTypeMapping TypeName="MagicUpdaterModel.ShedulerTaskHistory">
+        <MappingFragment StoreEntitySet="ShedulerTaskHistory">
+          <ScalarProperty Name="Message" ColumnName="Message" />
+          <ScalarProperty Name="IsComplete" ColumnName="IsComplete" />
+          <ScalarProperty Name="ComputerId" ColumnName="ComputerId" />
+          <ScalarProperty Name="StepId" ColumnName="StepId" />
+          <ScalarProperty Name="TaskId" ColumnName="TaskId" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ShedulerTasks">
+      <EntityTypeMapping TypeName="MagicUpdaterModel.ShedulerTask">
+        <MappingFragment StoreEntitySet="ShedulerTasks">
+          <ScalarProperty Name="RepeatValue" ColumnName="RepeatValue" />
+          <ScalarProperty Name="CreatedUserLogin" ColumnName="CreatedUserLogin" />
+          <ScalarProperty Name="CreationDateUtc" ColumnName="CreationDateUtc" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="LastEndTime" ColumnName="LastEndTime" />
+          <ScalarProperty Name="LastStartTime" ColumnName="LastStartTime" />
+          <ScalarProperty Name="NextStartTime" ColumnName="NextStartTime" />
+          <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+          <ScalarProperty Name="Mode" ColumnName="Mode" />
+          <ScalarProperty Name="FirstStepId" ColumnName="FirstStepId" />
+          <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ShedulerTasksComputersLists">
+      <EntityTypeMapping TypeName="MagicUpdaterModel.ShedulerTasksComputersList">
+        <MappingFragment StoreEntitySet="ShedulerTasksComputersList">
+          <ScalarProperty Name="ComputerId" ColumnName="ComputerId" />
+          <ScalarProperty Name="TaskId" ColumnName="TaskId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ShedulerTasksUserHistories">
+      <EntityTypeMapping TypeName="MagicUpdaterModel.ShedulerTasksUserHistory">
+        <MappingFragment StoreEntitySet="ShedulerTasksUserHistory">
+          <ScalarProperty Name="ActionType" ColumnName="ActionType" />
+          <ScalarProperty Name="ComputersList" ColumnName="ComputersList" />
+          <ScalarProperty Name="UserLogin" ColumnName="UserLogin" />
+          <ScalarProperty Name="ChangeUserDateUtc" ColumnName="ChangeUserDateUtc" />
+          <ScalarProperty Name="HisId" ColumnName="HisId" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="LastEndTime" ColumnName="LastEndTime" />
+          <ScalarProperty Name="LastStartTime" ColumnName="LastStartTime" />
+          <ScalarProperty Name="NextStartTime" ColumnName="NextStartTime" />
+          <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+          <ScalarProperty Name="Mode" ColumnName="Mode" />
+          <ScalarProperty Name="FirstStepId" ColumnName="FirstStepId" />
+          <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ShopComputers">
+      <EntityTypeMapping TypeName="MagicUpdaterModel.ShopComputer">
+        <MappingFragment StoreEntitySet="ShopComputers">
+          <ScalarProperty Name="IsAgentSettingsReaded" ColumnName="IsAgentSettingsReaded" />
+          <ScalarProperty Name="LastError" ColumnName="LastError" />
+          <ScalarProperty Name="IsON" ColumnName="IsON" />
+          <ScalarProperty Name="IsSettingsRead" ColumnName="IsSettingsRead" />
+          <ScalarProperty Name="IsTaskerAlive" ColumnName="IsTaskerAlive" />
+          <ScalarProperty Name="External_IP" ColumnName="External_IP" />
+          <ScalarProperty Name="MagicUpdaterVersion" ColumnName="MagicUpdaterVersion" />
+          <ScalarProperty Name="Mac" ColumnName="Mac" />
+          <ScalarProperty Name="ComputerHash" ColumnName="ComputerHash" />
+          <ScalarProperty Name="LastUpdateTime" ColumnName="LastUpdateTime" />
+          <ScalarProperty Name="IsMainCashbox" ColumnName="IsMainCashbox" />
+          <ScalarProperty Name="Is1CServer" ColumnName="Is1CServer" />
+          <ScalarProperty Name="ComputerAddress" ColumnName="ComputerAddress" />
+          <ScalarProperty Name="ComputerName" ColumnName="ComputerName" />
+          <ScalarProperty Name="ShopId" ColumnName="ShopId" />
+          <ScalarProperty Name="ComputerId" ColumnName="ComputerId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Shops">
+      <EntityTypeMapping TypeName="MagicUpdaterModel.Shop">
+        <MappingFragment StoreEntitySet="Shops">
+          <ScalarProperty Name="VersionConfig1C" ColumnName="VersionConfig1C" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="IsClosed" ColumnName="IsClosed" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="AddressToConnect" ColumnName="AddressToConnect" />
+          <ScalarProperty Name="LastSuccessfulReceive" ColumnName="LastSuccessfulReceive" />
+          <ScalarProperty Name="LastSuccessfulUpload" ColumnName="LastSuccessfulUpload" />
+          <ScalarProperty Name="ExchangeError" ColumnName="ExchangeError" />
+          <ScalarProperty Name="ShopRegion" ColumnName="ShopRegion" />
+          <ScalarProperty Name="ShopName" ColumnName="ShopName" />
+          <ScalarProperty Name="ShopId" ColumnName="ShopId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="MagicUpdaterModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="definition" ColumnName="definition" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="MagicUpdaterModel.User">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="UserLogin" ColumnName="UserLogin" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ComputerErrorsLogViews">
+      <EntityTypeMapping TypeName="MagicUpdaterModel.ComputerErrorsLogView">
+        <MappingFragment StoreEntitySet="ComputerErrorsLogView">
+          <ScalarProperty Name="Mac" ColumnName="Mac" />
+          <ScalarProperty Name="ErrorDate" ColumnName="ErrorDate" />
+          <ScalarProperty Name="ErrorMessage" ColumnName="ErrorMessage" />
+          <ScalarProperty Name="ComputerName" ColumnName="ComputerName" />
+          <ScalarProperty Name="ComputerId" ColumnName="ComputerId" />
+          <ScalarProperty Name="ShopId" ColumnName="ShopId" />
+          <ScalarProperty Name="ErrorId" ColumnName="ErrorId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LocalSettingsViews">
+      <EntityTypeMapping TypeName="MagicUpdaterModel.LocalSettingsView">
+        <MappingFragment StoreEntitySet="LocalSettingsView">
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="SettingId" ColumnName="SettingId" />
+          <ScalarProperty Name="ComputerId" ColumnName="ComputerId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ViewComputerErrorsLogs">
+      <EntityTypeMapping TypeName="MagicUpdaterModel.ViewComputerErrorsLog">
+        <MappingFragment StoreEntitySet="ViewComputerErrorsLog">
+          <ScalarProperty Name="ErrorDate" ColumnName="ErrorDate" />
+          <ScalarProperty Name="ErrorMessage" ColumnName="ErrorMessage" />
+          <ScalarProperty Name="IsON" ColumnName="IsON" />
+          <ScalarProperty Name="IsTaskerAlive" ColumnName="IsTaskerAlive" />
+          <ScalarProperty Name="IsMainCashbox" ColumnName="IsMainCashbox" />
+          <ScalarProperty Name="Is1CServer" ColumnName="Is1CServer" />
+          <ScalarProperty Name="External_IP" ColumnName="External_IP" />
+          <ScalarProperty Name="ComputerName" ColumnName="ComputerName" />
+          <ScalarProperty Name="ComputerId" ColumnName="ComputerId" />
+          <ScalarProperty Name="ErrorId" ColumnName="ErrorId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ViewOperations">
+      <EntityTypeMapping TypeName="MagicUpdaterModel.ViewOperation">
+        <MappingFragment StoreEntitySet="ViewOperations">
+          <ScalarProperty Name="GroupGUID" ColumnName="GroupGUID" />
+          <ScalarProperty Name="PoolDate" ColumnName="PoolDate" />
+          <ScalarProperty Name="IsFromSheduler" ColumnName="IsFromSheduler" />
+          <ScalarProperty Name="IsActionError" ColumnName="IsActionError" />
+          <ScalarProperty Name="Is1CError" ColumnName="Is1CError" />
+          <ScalarProperty Name="LogMessage1C" ColumnName="LogMessage1C" />
+          <ScalarProperty Name="LogDate1C" ColumnName="LogDate1C" />
+          <ScalarProperty Name="Result" ColumnName="Result" />
+          <ScalarProperty Name="DateCompleteOrError" ColumnName="DateCompleteOrError" />
+          <ScalarProperty Name="IsCompleted" ColumnName="IsCompleted" />
+          <ScalarProperty Name="OperState" ColumnName="OperState" />
+          <ScalarProperty Name="OperStateId" ColumnName="OperStateId" />
+          <ScalarProperty Name="DateRead" ColumnName="DateRead" />
+          <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+          <ScalarProperty Name="IsRead" ColumnName="IsRead" />
+          <ScalarProperty Name="Attributes" ColumnName="Attributes" />
+          <ScalarProperty Name="ShopId" ColumnName="ShopId" />
+          <ScalarProperty Name="ComputerName" ColumnName="ComputerName" />
+          <ScalarProperty Name="ComputerId" ColumnName="ComputerId" />
+          <ScalarProperty Name="CreatedUser" ColumnName="CreatedUser" />
+          <ScalarProperty Name="OperationTypeRu" ColumnName="OperationTypeRu" />
+          <ScalarProperty Name="OperationTypeEn" ColumnName="OperationTypeEn" />
+          <ScalarProperty Name="OperationType" ColumnName="OperationType" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ViewOperationsForExecutes">
+      <EntityTypeMapping TypeName="MagicUpdaterModel.ViewOperationsForExecute">
+        <MappingFragment StoreEntitySet="ViewOperationsForExecute">
+          <ScalarProperty Name="Attributes" ColumnName="Attributes" />
+          <ScalarProperty Name="OperationType" ColumnName="OperationType" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ViewOperationsLights">
+      <EntityTypeMapping TypeName="MagicUpdaterModel.ViewOperationsLight">
+        <MappingFragment StoreEntitySet="ViewOperationsLight">
+          <ScalarProperty Name="Is1CError" ColumnName="Is1CError" />
+          <ScalarProperty Name="OperState" ColumnName="OperState" />
+          <ScalarProperty Name="OperStateId" ColumnName="OperStateId" />
+          <ScalarProperty Name="IsCompleted" ColumnName="IsCompleted" />
+          <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+          <ScalarProperty Name="ComputerId" ColumnName="ComputerId" />
+          <ScalarProperty Name="OperationTypeRu" ColumnName="OperationTypeRu" />
+          <ScalarProperty Name="OperationTypeEn" ColumnName="OperationTypeEn" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ViewOperationsTop1000">
+      <EntityTypeMapping TypeName="MagicUpdaterModel.ViewOperationsTop1000">
+        <MappingFragment StoreEntitySet="ViewOperationsTop1000">
+          <ScalarProperty Name="GroupGUID" ColumnName="GroupGUID" />
+          <ScalarProperty Name="PoolDate" ColumnName="PoolDate" />
+          <ScalarProperty Name="IsFromSheduler" ColumnName="IsFromSheduler" />
+          <ScalarProperty Name="IsActionError" ColumnName="IsActionError" />
+          <ScalarProperty Name="Is1CError" ColumnName="Is1CError" />
+          <ScalarProperty Name="LogMessage1C" ColumnName="LogMessage1C" />
+          <ScalarProperty Name="LogDate1C" ColumnName="LogDate1C" />
+          <ScalarProperty Name="Result" ColumnName="Result" />
+          <ScalarProperty Name="DateCompleteOrError" ColumnName="DateCompleteOrError" />
+          <ScalarProperty Name="IsCompleted" ColumnName="IsCompleted" />
+          <ScalarProperty Name="OperState" ColumnName="OperState" />
+          <ScalarProperty Name="OperStateId" ColumnName="OperStateId" />
+          <ScalarProperty Name="DateRead" ColumnName="DateRead" />
+          <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+          <ScalarProperty Name="IsRead" ColumnName="IsRead" />
+          <ScalarProperty Name="Attributes" ColumnName="Attributes" />
+          <ScalarProperty Name="ShopId" ColumnName="ShopId" />
+          <ScalarProperty Name="ComputerName" ColumnName="ComputerName" />
+          <ScalarProperty Name="ComputerId" ColumnName="ComputerId" />
+          <ScalarProperty Name="CreatedUser" ColumnName="CreatedUser" />
+          <ScalarProperty Name="OperationTypeRu" ColumnName="OperationTypeRu" />
+          <ScalarProperty Name="OperationTypeEn" ColumnName="OperationTypeEn" />
+          <ScalarProperty Name="OperationType" ColumnName="OperationType" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ViewOperationsTop1000_New">
+      <EntityTypeMapping TypeName="MagicUpdaterModel.ViewOperationsTop1000_New">
+        <MappingFragment StoreEntitySet="ViewOperationsTop1000_New">
+          <ScalarProperty Name="GroupGUID" ColumnName="GroupGUID" />
+          <ScalarProperty Name="PoolDate" ColumnName="PoolDate" />
+          <ScalarProperty Name="IsFromSheduler" ColumnName="IsFromSheduler" />
+          <ScalarProperty Name="IsActionError" ColumnName="IsActionError" />
+          <ScalarProperty Name="Is1CError" ColumnName="Is1CError" />
+          <ScalarProperty Name="LogMessage1C" ColumnName="LogMessage1C" />
+          <ScalarProperty Name="LogDate1C" ColumnName="LogDate1C" />
+          <ScalarProperty Name="Result" ColumnName="Result" />
+          <ScalarProperty Name="DateCompleteOrError" ColumnName="DateCompleteOrError" />
+          <ScalarProperty Name="IsCompleted" ColumnName="IsCompleted" />
+          <ScalarProperty Name="OperState" ColumnName="OperState" />
+          <ScalarProperty Name="OperStateId" ColumnName="OperStateId" />
+          <ScalarProperty Name="DateRead" ColumnName="DateRead" />
+          <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+          <ScalarProperty Name="IsRead" ColumnName="IsRead" />
+          <ScalarProperty Name="Attributes" ColumnName="Attributes" />
+          <ScalarProperty Name="ShopId" ColumnName="ShopId" />
+          <ScalarProperty Name="ComputerName" ColumnName="ComputerName" />
+          <ScalarProperty Name="ComputerId" ColumnName="ComputerId" />
+          <ScalarProperty Name="CreatedUser" ColumnName="CreatedUser" />
+          <ScalarProperty Name="OperationTypeRu" ColumnName="OperationTypeRu" />
+          <ScalarProperty Name="OperationTypeEn" ColumnName="OperationTypeEn" />
+          <ScalarProperty Name="OperationType" ColumnName="OperationType" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ViewOperationsTop5000">
+      <EntityTypeMapping TypeName="MagicUpdaterModel.ViewOperationsTop5000">
+        <MappingFragment StoreEntitySet="ViewOperationsTop5000">
+          <ScalarProperty Name="GroupGUID" ColumnName="GroupGUID" />
+          <ScalarProperty Name="PoolDate" ColumnName="PoolDate" />
+          <ScalarProperty Name="IsFromSheduler" ColumnName="IsFromSheduler" />
+          <ScalarProperty Name="IsActionError" ColumnName="IsActionError" />
+          <ScalarProperty Name="Is1CError" ColumnName="Is1CError" />
+          <ScalarProperty Name="LogMessage1C" ColumnName="LogMessage1C" />
+          <ScalarProperty Name="LogDate1C" ColumnName="LogDate1C" />
+          <ScalarProperty Name="Result" ColumnName="Result" />
+          <ScalarProperty Name="DateCompleteOrError" ColumnName="DateCompleteOrError" />
+          <ScalarProperty Name="IsCompleted" ColumnName="IsCompleted" />
+          <ScalarProperty Name="OperState" ColumnName="OperState" />
+          <ScalarProperty Name="OperStateId" ColumnName="OperStateId" />
+          <ScalarProperty Name="DateRead" ColumnName="DateRead" />
+          <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+          <ScalarProperty Name="IsRead" ColumnName="IsRead" />
+          <ScalarProperty Name="Attributes" ColumnName="Attributes" />
+          <ScalarProperty Name="ShopId" ColumnName="ShopId" />
+          <ScalarProperty Name="ComputerName" ColumnName="ComputerName" />
+          <ScalarProperty Name="ComputerId" ColumnName="ComputerId" />
+          <ScalarProperty Name="CreatedUser" ColumnName="CreatedUser" />
+          <ScalarProperty Name="OperationTypeRu" ColumnName="OperationTypeRu" />
+          <ScalarProperty Name="OperationTypeEn" ColumnName="OperationTypeEn" />
+          <ScalarProperty Name="OperationType" ColumnName="OperationType" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ViewOperStates">
+      <EntityTypeMapping TypeName="MagicUpdaterModel.ViewOperState">
+        <MappingFragment StoreEntitySet="ViewOperStates">
+          <ScalarProperty Name="StateDate" ColumnName="StateDate" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="OperStateId" ColumnName="OperStateId" />
+          <ScalarProperty Name="ComputerName" ColumnName="ComputerName" />
+          <ScalarProperty Name="ShopId" ColumnName="ShopId" />
+          <ScalarProperty Name="OperationType" ColumnName="OperationType" />
+          <ScalarProperty Name="OperationId" ColumnName="OperationId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ViewShedulerSteps">
+      <EntityTypeMapping TypeName="MagicUpdaterModel.ViewShedulerStep">
+        <MappingFragment StoreEntitySet="ViewShedulerSteps">
+          <ScalarProperty Name="IsChildPositiveBranch" ColumnName="IsChildPositiveBranch" />
+          <ScalarProperty Name="ChildId" ColumnName="ChildId" />
+          <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+          <ScalarProperty Name="taskId" ColumnName="taskId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ViewShopComputersServers">
+      <EntityTypeMapping TypeName="MagicUpdaterModel.ViewShopComputersServer">
+        <MappingFragment StoreEntitySet="ViewShopComputersServer">
+          <ScalarProperty Name="LastError" ColumnName="LastError" />
+          <ScalarProperty Name="OperState" ColumnName="OperState" />
+          <ScalarProperty Name="OperationCreationDate" ColumnName="OperationCreationDate" />
+          <ScalarProperty Name="OperationTypeRu" ColumnName="OperationTypeRu" />
+          <ScalarProperty Name="IsON" ColumnName="IsON" />
+          <ScalarProperty Name="IsTaskerAlive" ColumnName="IsTaskerAlive" />
+          <ScalarProperty Name="External_IP" ColumnName="External_IP" />
+          <ScalarProperty Name="MagicUpdaterVersion" ColumnName="MagicUpdaterVersion" />
+          <ScalarProperty Name="Mac" ColumnName="Mac" />
+          <ScalarProperty Name="ComputerHash" ColumnName="ComputerHash" />
+          <ScalarProperty Name="LastUpdateTime" ColumnName="LastUpdateTime" />
+          <ScalarProperty Name="IsMainCashbox" ColumnName="IsMainCashbox" />
+          <ScalarProperty Name="Is1CServer" ColumnName="Is1CServer" />
+          <ScalarProperty Name="ComputerAddress" ColumnName="ComputerAddress" />
+          <ScalarProperty Name="ComputerName" ColumnName="ComputerName" />
+          <ScalarProperty Name="LastSuccessfulReceive" ColumnName="LastSuccessfulReceive" />
+          <ScalarProperty Name="LastSuccessfulUpload" ColumnName="LastSuccessfulUpload" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="IsClosed" ColumnName="IsClosed" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="AddressToConnect" ColumnName="AddressToConnect" />
+          <ScalarProperty Name="ExchangeError" ColumnName="ExchangeError" />
+          <ScalarProperty Name="ShopRegion" ColumnName="ShopRegion" />
+          <ScalarProperty Name="ShopName" ColumnName="ShopName" />
+          <ScalarProperty Name="ShopId" ColumnName="ShopId" />
+          <ScalarProperty Name="ComputerId" ColumnName="ComputerId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ViewShopComputersServerFulls">
+      <EntityTypeMapping TypeName="MagicUpdaterModel.ViewShopComputersServerFull">
+        <MappingFragment StoreEntitySet="ViewShopComputersServerFull">
+          <ScalarProperty Name="LastError" ColumnName="LastError" />
+          <ScalarProperty Name="OperState" ColumnName="OperState" />
+          <ScalarProperty Name="OperationCreationDate" ColumnName="OperationCreationDate" />
+          <ScalarProperty Name="OperationTypeRu" ColumnName="OperationTypeRu" />
+          <ScalarProperty Name="IsON" ColumnName="IsON" />
+          <ScalarProperty Name="IsTaskerAlive" ColumnName="IsTaskerAlive" />
+          <ScalarProperty Name="External_IP" ColumnName="External_IP" />
+          <ScalarProperty Name="MagicUpdaterVersion" ColumnName="MagicUpdaterVersion" />
+          <ScalarProperty Name="Mac" ColumnName="Mac" />
+          <ScalarProperty Name="ComputerHash" ColumnName="ComputerHash" />
+          <ScalarProperty Name="LastUpdateTime" ColumnName="LastUpdateTime" />
+          <ScalarProperty Name="IsMainCashbox" ColumnName="IsMainCashbox" />
+          <ScalarProperty Name="Is1CServer" ColumnName="Is1CServer" />
+          <ScalarProperty Name="ComputerAddress" ColumnName="ComputerAddress" />
+          <ScalarProperty Name="ComputerName" ColumnName="ComputerName" />
+          <ScalarProperty Name="LastSuccessfulReceive" ColumnName="LastSuccessfulReceive" />
+          <ScalarProperty Name="LastSuccessfulUpload" ColumnName="LastSuccessfulUpload" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="IsClosed" ColumnName="IsClosed" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="AddressToConnect" ColumnName="AddressToConnect" />
+          <ScalarProperty Name="ExchangeError" ColumnName="ExchangeError" />
+          <ScalarProperty Name="ShopRegion" ColumnName="ShopRegion" />
+          <ScalarProperty Name="ShopName" ColumnName="ShopName" />
+          <ScalarProperty Name="ShopId" ColumnName="ShopId" />
+          <ScalarProperty Name="ComputerId" ColumnName="ComputerId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ShedulerStatuses">
+      <EntityTypeMapping TypeName="MagicUpdaterModel.ShedulerStatus">
+        <MappingFragment StoreEntitySet="ShedulerStatuses">
+          <ScalarProperty Name="NameRus" ColumnName="NameRus" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ShedulerTaskModes">
+      <EntityTypeMapping TypeName="MagicUpdaterModel.ShedulerTaskMode">
+        <MappingFragment StoreEntitySet="ShedulerTaskModes">
+          <ScalarProperty Name="NameRus" ColumnName="NameRus" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ViewShedulerStepsVis">
+      <EntityTypeMapping TypeName="MagicUpdaterModel.ViewShedulerStepsVi">
+        <MappingFragment StoreEntitySet="ViewShedulerStepsVis">
+          <ScalarProperty Name="OperationAttributes" ColumnName="OperationAttributes" />
+          <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+          <ScalarProperty Name="nameVisCountErrorStep" ColumnName="nameVisCountErrorStep" />
+          <ScalarProperty Name="nameVisErrorStep" ColumnName="nameVisErrorStep" />
+          <ScalarProperty Name="NameRusErrorStep" ColumnName="NameRusErrorStep" />
+          <ScalarProperty Name="NameErrorStep" ColumnName="NameErrorStep" />
+          <ScalarProperty Name="OnOperationErrorStep" ColumnName="OnOperationErrorStep" />
+          <ScalarProperty Name="nameVisCountCompleteStep" ColumnName="nameVisCountCompleteStep" />
+          <ScalarProperty Name="nameVisCompleteStep" ColumnName="nameVisCompleteStep" />
+          <ScalarProperty Name="NameRusCompleteStep" ColumnName="NameRusCompleteStep" />
+          <ScalarProperty Name="NameCompleteStep" ColumnName="NameCompleteStep" />
+          <ScalarProperty Name="OnOperationCompleteStep" ColumnName="OnOperationCompleteStep" />
+          <ScalarProperty Name="OperationCheckIntervalMs" ColumnName="OperationCheckIntervalMs" />
+          <ScalarProperty Name="RepeatTimeout" ColumnName="RepeatTimeout" />
+          <ScalarProperty Name="RepeatCount" ColumnName="RepeatCount" />
+          <ScalarProperty Name="nameVisCount" ColumnName="nameVisCount" />
+          <ScalarProperty Name="nameVis" ColumnName="nameVis" />
+          <ScalarProperty Name="NameRus" ColumnName="NameRus" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="OperationType" ColumnName="OperationType" />
+          <ScalarProperty Name="TaskId" ColumnName="TaskId" />
+          <ScalarProperty Name="Step" ColumnName="Step" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,1317 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MagicUpdaterModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="MagicUpdaterEntities" annotation:LazyLoadingEnabled="true">
+    <FunctionImport Name="AddOperState">
+      <Parameter Name="OperationId" Mode="In" Type="Int32" />
+      <Parameter Name="OperStateId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="ChangeComputerParams" ReturnType="Collection(Int32)">
+      <Parameter Name="pComputerId" Mode="In" Type="Int32" />
+      <Parameter Name="pShopId" Mode="In" Type="String" />
+      <Parameter Name="ComputerName" Mode="In" Type="String" />
+      <Parameter Name="ComputerAddress" Mode="In" Type="String" />
+      <Parameter Name="pIs1CServer" Mode="In" Type="Boolean" />
+      <Parameter Name="pIsMainCashbox" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="ChangeComputerParams_Servece" ReturnType="Collection(Int32)">
+      <Parameter Name="pComputerId" Mode="In" Type="Int32" />
+      <Parameter Name="pShopId" Mode="In" Type="String" />
+      <Parameter Name="ComputerName" Mode="In" Type="String" />
+      <Parameter Name="ComputerAddress" Mode="In" Type="String" />
+      <Parameter Name="pIs1CServer" Mode="In" Type="Boolean" />
+      <Parameter Name="pIsMainCashbox" Mode="In" Type="Boolean" />
+      <Parameter Name="pMagicUpdaterVersion" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="ChengeShopForComputer">
+      <Parameter Name="pComputerId" Mode="In" Type="Int32" />
+      <Parameter Name="pShopId" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="ComputerResponse">
+      <Parameter Name="pComputerId" Mode="In" Type="Int32" />
+      <Parameter Name="ComputerName" Mode="In" Type="String" />
+      <Parameter Name="ComputerAddress" Mode="In" Type="String" />
+      <Parameter Name="isTaskerAlive" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="GetComputerSettings" ReturnType="Collection(MagicUpdaterModel.GetComputerSettings_Result)">
+      <Parameter Name="pComputerHash" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetComputerSettingsViaMac" ReturnType="Collection(MagicUpdaterModel.GetComputerSettingsViaMac_Result)">
+      <Parameter Name="pMac" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetComputersList" ReturnType="Collection(MagicUpdaterModel.GetComputersList_Result)">
+      <Parameter Name="ComputerId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="LogError">
+      <Parameter Name="ComputerId" Mode="In" Type="Int32" />
+      <Parameter Name="ErrorMessage" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="RegisterComputer" ReturnType="Collection(MagicUpdaterModel.RegisterComputer_Result)">
+      <Parameter Name="pShopId" Mode="In" Type="String" />
+      <Parameter Name="pComputerName" Mode="In" Type="String" />
+      <Parameter Name="pComputerAddress" Mode="In" Type="String" />
+      <Parameter Name="pIs1CServer" Mode="In" Type="Boolean" />
+      <Parameter Name="pIsMainCashbox" Mode="In" Type="Boolean" />
+      <Parameter Name="pMac" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="RegisterComputer_Service" ReturnType="Collection(MagicUpdaterModel.RegisterComputer_Service_Result)">
+      <Parameter Name="pShopId" Mode="In" Type="String" />
+      <Parameter Name="pComputerName" Mode="In" Type="String" />
+      <Parameter Name="pComputerAddress" Mode="In" Type="String" />
+      <Parameter Name="pIs1CServer" Mode="In" Type="Boolean" />
+      <Parameter Name="pIsMainCashbox" Mode="In" Type="Boolean" />
+      <Parameter Name="pMac" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SelectComputersByShop" ReturnType="Collection(MagicUpdaterModel.SelectComputersByShop_Result)">
+      <Parameter Name="pComputerID" Mode="In" Type="Int32" />
+      <Parameter Name="pShopId" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SelectOperationsList" ReturnType="Collection(MagicUpdaterModel.SelectOperationsList_Result)">
+      <Parameter Name="pComputerID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SelectRestartOperation" ReturnType="Collection(MagicUpdaterModel.SelectRestartOperation_Result)">
+      <Parameter Name="pComputerID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SelectShopsList" ReturnType="Collection(MagicUpdaterModel.SelectShopsList_Result)" />
+    <FunctionImport Name="SendLog1C">
+      <Parameter Name="ComputerId" Mode="In" Type="Int32" />
+      <Parameter Name="IsError" Mode="In" Type="Boolean" />
+      <Parameter Name="LogMessage" Mode="In" Type="String" />
+      <Parameter Name="OperationId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SendOperationReport">
+      <Parameter Name="pOperationID" Mode="In" Type="Int32" />
+      <Parameter Name="pIsCompleted" Mode="In" Type="Boolean" />
+      <Parameter Name="pResult" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SetActionReport">
+      <Parameter Name="pOperationId" Mode="In" Type="Int32" />
+      <Parameter Name="pComputerId" Mode="In" Type="Int32" />
+      <Parameter Name="pActionName" Mode="In" Type="String" />
+      <Parameter Name="pIsFromLan" Mode="In" Type="Boolean" />
+      <Parameter Name="pIsCompleted" Mode="In" Type="Boolean" />
+      <Parameter Name="pResult" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SetExternalIp_Service">
+      <Parameter Name="pComputerId" Mode="In" Type="Int32" />
+      <Parameter Name="pExternalAddress" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SetMacAddress_Service" ReturnType="Collection(Int32)">
+      <Parameter Name="pComputerId" Mode="In" Type="Int32" />
+      <Parameter Name="pShopId" Mode="In" Type="String" />
+      <Parameter Name="ComputerName" Mode="In" Type="String" />
+      <Parameter Name="ComputerAddress" Mode="In" Type="String" />
+      <Parameter Name="pIs1CServer" Mode="In" Type="Boolean" />
+      <Parameter Name="pIsMainCashbox" Mode="In" Type="Boolean" />
+      <Parameter Name="pMac" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SetOperationIsReaded" ReturnType="Collection(Int32)">
+      <Parameter Name="pOperationID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_GetTableData">
+      <Parameter Name="TableName" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(MagicUpdaterModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(MagicUpdaterModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+    <FunctionImport Name="UpdateVersion" ReturnType="Collection(Int32)">
+      <Parameter Name="pComputerId" Mode="In" Type="Int32" />
+      <Parameter Name="pVersion" Mode="In" Type="String" />
+    </FunctionImport>
+    <EntitySet Name="ActionsReports" EntityType="MagicUpdaterModel.ActionsReport" />
+    <EntitySet Name="CommonGlobalSettings" EntityType="MagicUpdaterModel.CommonGlobalSetting" />
+    <EntitySet Name="ComputerErrorsLogs" EntityType="MagicUpdaterModel.ComputerErrorsLog" />
+    <EntitySet Name="LocalSettings" EntityType="MagicUpdaterModel.LocalSetting" />
+    <EntitySet Name="LocalSettingsDictionaries" EntityType="MagicUpdaterModel.LocalSettingsDictionary" />
+    <EntitySet Name="Logs1C" EntityType="MagicUpdaterModel.Logs1C" />
+    <EntitySet Name="OperationGroups" EntityType="MagicUpdaterModel.OperationGroup" />
+    <EntitySet Name="Operations" EntityType="MagicUpdaterModel.Operation" />
+    <EntitySet Name="OperationsReports" EntityType="MagicUpdaterModel.OperationsReport" />
+    <EntitySet Name="OperationsStates" EntityType="MagicUpdaterModel.OperationsState" />
+    <EntitySet Name="OperationStatesVocs" EntityType="MagicUpdaterModel.OperationStatesVoc" />
+    <EntitySet Name="OperationTypeAttributes" EntityType="MagicUpdaterModel.OperationTypeAttribute" />
+    <EntitySet Name="OperationTypes" EntityType="MagicUpdaterModel.OperationType" />
+    <EntitySet Name="ShedulerPluginTasks" EntityType="MagicUpdaterModel.ShedulerPluginTask" />
+    <EntitySet Name="ShedulerSteps" EntityType="MagicUpdaterModel.ShedulerStep" />
+    <EntitySet Name="ShedulerStepsUserHistories" EntityType="MagicUpdaterModel.ShedulerStepsUserHistory" />
+    <EntitySet Name="ShedulerTaskHistories" EntityType="MagicUpdaterModel.ShedulerTaskHistory" />
+    <EntitySet Name="ShedulerTasks" EntityType="MagicUpdaterModel.ShedulerTask" />
+    <EntitySet Name="ShedulerTasksComputersLists" EntityType="MagicUpdaterModel.ShedulerTasksComputersList" />
+    <EntitySet Name="ShedulerTasksUserHistories" EntityType="MagicUpdaterModel.ShedulerTasksUserHistory" />
+    <EntitySet Name="ShopComputers" EntityType="MagicUpdaterModel.ShopComputer" />
+    <EntitySet Name="Shops" EntityType="MagicUpdaterModel.Shop" />
+    <EntitySet Name="sysdiagrams" EntityType="MagicUpdaterModel.sysdiagram" />
+    <EntitySet Name="Users" EntityType="MagicUpdaterModel.User" />
+    <EntitySet Name="ComputerErrorsLogViews" EntityType="MagicUpdaterModel.ComputerErrorsLogView" />
+    <EntitySet Name="LocalSettingsViews" EntityType="MagicUpdaterModel.LocalSettingsView" />
+    <EntitySet Name="ViewComputerErrorsLogs" EntityType="MagicUpdaterModel.ViewComputerErrorsLog" />
+    <EntitySet Name="ViewOperations" EntityType="MagicUpdaterModel.ViewOperation" />
+    <EntitySet Name="ViewOperationsForExecutes" EntityType="MagicUpdaterModel.ViewOperationsForExecute" />
+    <EntitySet Name="ViewOperationsLights" EntityType="MagicUpdaterModel.ViewOperationsLight" />
+    <EntitySet Name="ViewOperationsTop1000" EntityType="MagicUpdaterModel.ViewOperationsTop1000" />
+    <EntitySet Name="ViewOperationsTop1000_New" EntityType="MagicUpdaterModel.ViewOperationsTop1000_New" />
+    <EntitySet Name="ViewOperationsTop5000" EntityType="MagicUpdaterModel.ViewOperationsTop5000" />
+    <EntitySet Name="ViewOperStates" EntityType="MagicUpdaterModel.ViewOperState" />
+    <EntitySet Name="ViewShedulerSteps" EntityType="MagicUpdaterModel.ViewShedulerStep" />
+    <EntitySet Name="ViewShopComputersServers" EntityType="MagicUpdaterModel.ViewShopComputersServer" />
+    <EntitySet Name="ViewShopComputersServerFulls" EntityType="MagicUpdaterModel.ViewShopComputersServerFull" />
+    <AssociationSet Name="FK_ActionsReports_Operations" Association="MagicUpdaterModel.FK_ActionsReports_Operations">
+      <End Role="Operation" EntitySet="Operations" />
+      <End Role="ActionsReport" EntitySet="ActionsReports" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ActionsReports_ShopComputers" Association="MagicUpdaterModel.FK_ActionsReports_ShopComputers">
+      <End Role="ShopComputer" EntitySet="ShopComputers" />
+      <End Role="ActionsReport" EntitySet="ActionsReports" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ComputerErrorsLog_ShopComputers" Association="MagicUpdaterModel.FK_ComputerErrorsLog_ShopComputers">
+      <End Role="ShopComputer" EntitySet="ShopComputers" />
+      <End Role="ComputerErrorsLog" EntitySet="ComputerErrorsLogs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LocalSettings_LocalSettingsDictionary" Association="MagicUpdaterModel.FK_LocalSettings_LocalSettingsDictionary">
+      <End Role="LocalSettingsDictionary" EntitySet="LocalSettingsDictionaries" />
+      <End Role="LocalSetting" EntitySet="LocalSettings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LocalSettings_ShopComputers" Association="MagicUpdaterModel.FK_LocalSettings_ShopComputers">
+      <End Role="ShopComputer" EntitySet="ShopComputers" />
+      <End Role="LocalSetting" EntitySet="LocalSettings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Logs1C_ShopComputers" Association="MagicUpdaterModel.FK_Logs1C_ShopComputers">
+      <End Role="ShopComputer" EntitySet="ShopComputers" />
+      <End Role="Logs1C" EntitySet="Logs1C" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OperationTypes_OperationGroups" Association="MagicUpdaterModel.FK_OperationTypes_OperationGroups">
+      <End Role="OperationGroup" EntitySet="OperationGroups" />
+      <End Role="OperationType" EntitySet="OperationTypes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Operations_OperationTypes" Association="MagicUpdaterModel.FK_Operations_OperationTypes">
+      <End Role="OperationType" EntitySet="OperationTypes" />
+      <End Role="Operation" EntitySet="Operations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Operations_ShopComputers" Association="MagicUpdaterModel.FK_Operations_ShopComputers">
+      <End Role="ShopComputer" EntitySet="ShopComputers" />
+      <End Role="Operation" EntitySet="Operations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OperationsReports_Operations" Association="MagicUpdaterModel.FK_OperationsReports_Operations">
+      <End Role="Operation" EntitySet="Operations" />
+      <End Role="OperationsReport" EntitySet="OperationsReports" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OperationsStates_Operations" Association="MagicUpdaterModel.FK_OperationsStates_Operations">
+      <End Role="Operation" EntitySet="Operations" />
+      <End Role="OperationsState" EntitySet="OperationsStates" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OperationsStates_OperationStatesVoc" Association="MagicUpdaterModel.FK_OperationsStates_OperationStatesVoc">
+      <End Role="OperationStatesVoc" EntitySet="OperationStatesVocs" />
+      <End Role="OperationsState" EntitySet="OperationsStates" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OperationTypeAttributes_OperationTypes" Association="MagicUpdaterModel.FK_OperationTypeAttributes_OperationTypes">
+      <End Role="OperationType" EntitySet="OperationTypes" />
+      <End Role="OperationTypeAttribute" EntitySet="OperationTypeAttributes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OperationTypeAttributes_Users" Association="MagicUpdaterModel.FK_OperationTypeAttributes_Users">
+      <End Role="User" EntitySet="Users" />
+      <End Role="OperationTypeAttribute" EntitySet="OperationTypeAttributes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ShedulerSteps_ShedulerTasks" Association="MagicUpdaterModel.FK_ShedulerSteps_ShedulerTasks">
+      <End Role="ShedulerTask" EntitySet="ShedulerTasks" />
+      <End Role="ShedulerStep" EntitySet="ShedulerSteps" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ShedulerTaskHistory_ShedulerSteps" Association="MagicUpdaterModel.FK_ShedulerTaskHistory_ShedulerSteps">
+      <End Role="ShedulerStep" EntitySet="ShedulerSteps" />
+      <End Role="ShedulerTaskHistory" EntitySet="ShedulerTaskHistories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ShedulerTasks_ShedulerSteps" Association="MagicUpdaterModel.FK_ShedulerTasks_ShedulerSteps">
+      <End Role="ShedulerStep" EntitySet="ShedulerSteps" />
+      <End Role="ShedulerTask" EntitySet="ShedulerTasks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ShedulerTaskHistory_ShedulerTasks" Association="MagicUpdaterModel.FK_ShedulerTaskHistory_ShedulerTasks">
+      <End Role="ShedulerTask" EntitySet="ShedulerTasks" />
+      <End Role="ShedulerTaskHistory" EntitySet="ShedulerTaskHistories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ShedulerTasksComputersList_ShedulerTasks" Association="MagicUpdaterModel.FK_ShedulerTasksComputersList_ShedulerTasks">
+      <End Role="ShedulerTask" EntitySet="ShedulerTasks" />
+      <End Role="ShedulerTasksComputersList" EntitySet="ShedulerTasksComputersLists" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ShopComputers_Shops" Association="MagicUpdaterModel.FK_ShopComputers_Shops">
+      <End Role="Shop" EntitySet="Shops" />
+      <End Role="ShopComputer" EntitySet="ShopComputers" />
+    </AssociationSet>
+    <EntitySet Name="ShedulerStatuses" EntityType="MagicUpdaterModel.ShedulerStatus" />
+    <EntitySet Name="ShedulerTaskModes" EntityType="MagicUpdaterModel.ShedulerTaskMode" />
+    <EntitySet Name="ViewShedulerStepsVis" EntityType="MagicUpdaterModel.ViewShedulerStepsVi" />
+  </EntityContainer>
+  <ComplexType Name="GetComputerSettings_Result">
+    <Property Type="Int32" Name="Computerid" Nullable="false" />
+    <Property Type="String" Name="ShopId" Nullable="false" MaxLength="100" />
+    <Property Type="Boolean" Name="Is1CServer" Nullable="false" />
+    <Property Type="Boolean" Name="IsMainCashbox" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="GetComputerSettingsViaMac_Result">
+    <Property Type="Int32" Name="Computerid" Nullable="false" />
+    <Property Type="String" Name="ShopId" Nullable="false" MaxLength="100" />
+    <Property Type="Boolean" Name="Is1CServer" Nullable="false" />
+    <Property Type="Boolean" Name="IsMainCashbox" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="GetComputersList_Result">
+    <Property Type="Int32" Name="ComputerId" Nullable="false" />
+    <Property Type="String" Name="ShopId" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="ComputerName" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="ComputerAddress" Nullable="true" MaxLength="50" />
+    <Property Type="Boolean" Name="is1CServer" Nullable="false" />
+    <Property Type="Boolean" Name="isMainCashbox" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="RegisterComputer_Result">
+    <Property Type="Decimal" Name="ComputerId" Nullable="true" Precision="38" Scale="0" />
+    <Property Type="Int32" Name="isNew" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="RegisterComputer_Service_Result">
+    <Property Type="Decimal" Name="ComputerId" Nullable="true" Precision="38" Scale="0" />
+    <Property Type="Int32" Name="isNew" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="SelectComputersByShop_Result">
+    <Property Type="Int32" Name="ComputerId" Nullable="false" />
+    <Property Type="String" Name="ShopId" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="ComputerName" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="ComputerAddress" Nullable="true" MaxLength="50" />
+    <Property Type="Boolean" Name="Is1CServer" Nullable="false" />
+    <Property Type="Boolean" Name="IsMainCashbox" Nullable="false" />
+    <Property Type="DateTime" Name="LastUpdateTime" Nullable="true" Precision="23" />
+    <Property Type="String" Name="ComputerHash" Nullable="true" MaxLength="32" />
+    <Property Type="String" Name="Mac" Nullable="true" MaxLength="32" />
+    <Property Type="String" Name="MagicUpdaterVersion" Nullable="true" MaxLength="32" />
+    <Property Type="String" Name="External_IP" Nullable="true" MaxLength="50" />
+    <Property Type="Boolean" Name="IsTaskerAlive" Nullable="true" />
+    <Property Type="Int32" Name="IsON" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="SelectOperationsList_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="Int32" Name="OperationType" Nullable="false" />
+    <Property Type="String" Name="Attributes" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="SelectRestartOperation_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="Int32" Name="OperationType" Nullable="false" />
+    <Property Type="String" Name="Attributes" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="SelectShopsList_Result">
+    <Property Type="String" Name="ShopId" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="ShopName" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="ShopRegion" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+  <EntityType Name="ActionsReport">
+    <Key>
+      <PropertyRef Name="ReportId" />
+    </Key>
+    <Property Name="ReportId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OperationId" Type="Int32" Nullable="false" />
+    <Property Name="ComputerId" Type="Int32" Nullable="false" />
+    <Property Name="ActionName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="IsFromLan" Type="Boolean" Nullable="false" />
+    <Property Name="IsCompleted" Type="Boolean" Nullable="false" />
+    <Property Name="DateCompleteOrError" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Result" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Operation" Relationship="MagicUpdaterModel.FK_ActionsReports_Operations" FromRole="ActionsReport" ToRole="Operation" />
+    <NavigationProperty Name="ShopComputer" Relationship="MagicUpdaterModel.FK_ActionsReports_ShopComputers" FromRole="ActionsReport" ToRole="ShopComputer" />
+  </EntityType>
+  <EntityType Name="CommonGlobalSetting">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="Value" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="ComputerErrorsLog">
+    <Key>
+      <PropertyRef Name="ErrorId" />
+    </Key>
+    <Property Name="ErrorId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ComputerId" Type="Int32" Nullable="false" />
+    <Property Name="ErrorMessage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ErrorDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="ShopComputer" Relationship="MagicUpdaterModel.FK_ComputerErrorsLog_ShopComputers" FromRole="ComputerErrorsLog" ToRole="ShopComputer" />
+  </EntityType>
+  <EntityType Name="LocalSetting">
+    <Key>
+      <PropertyRef Name="ComputerId" />
+      <PropertyRef Name="SettingId" />
+    </Key>
+    <Property Name="ComputerId" Type="Int32" Nullable="false" />
+    <Property Name="SettingId" Type="Int32" Nullable="false" />
+    <Property Name="Value" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="LocalSettingsDictionary" Relationship="MagicUpdaterModel.FK_LocalSettings_LocalSettingsDictionary" FromRole="LocalSetting" ToRole="LocalSettingsDictionary" />
+    <NavigationProperty Name="ShopComputer" Relationship="MagicUpdaterModel.FK_LocalSettings_ShopComputers" FromRole="LocalSetting" ToRole="ShopComputer" />
+  </EntityType>
+  <EntityType Name="LocalSettingsDictionary">
+    <Key>
+      <PropertyRef Name="SettingId" />
+    </Key>
+    <Property Name="SettingId" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="LocalSettings" Relationship="MagicUpdaterModel.FK_LocalSettings_LocalSettingsDictionary" FromRole="LocalSettingsDictionary" ToRole="LocalSetting" />
+  </EntityType>
+  <EntityType Name="Logs1C">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ComputerId" Type="Int32" Nullable="false" />
+    <Property Name="OperationId" Type="Int32" />
+    <Property Name="IsError" Type="Boolean" />
+    <Property Name="LogMessage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="LogDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="ShopComputer" Relationship="MagicUpdaterModel.FK_Logs1C_ShopComputers" FromRole="Logs1C" ToRole="ShopComputer" />
+  </EntityType>
+  <EntityType Name="OperationGroup">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="OperationTypes" Relationship="MagicUpdaterModel.FK_OperationTypes_OperationGroups" FromRole="OperationGroup" ToRole="OperationType" />
+  </EntityType>
+  <EntityType Name="Operation">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ComputerId" Type="Int32" Nullable="false" />
+    <Property Name="OperationType" Type="Int32" Nullable="false" />
+    <Property Name="Attributes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedUser" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="PoolDate" Type="DateTime" Precision="3" />
+    <Property Name="GroupGUID" Type="Guid" />
+    <Property Name="IsFromSheduler" Type="Boolean" />
+    <NavigationProperty Name="ActionsReports" Relationship="MagicUpdaterModel.FK_ActionsReports_Operations" FromRole="Operation" ToRole="ActionsReport" />
+    <NavigationProperty Name="OperationType1" Relationship="MagicUpdaterModel.FK_Operations_OperationTypes" FromRole="Operation" ToRole="OperationType" />
+    <NavigationProperty Name="ShopComputer" Relationship="MagicUpdaterModel.FK_Operations_ShopComputers" FromRole="Operation" ToRole="ShopComputer" />
+    <NavigationProperty Name="OperationsReport" Relationship="MagicUpdaterModel.FK_OperationsReports_Operations" FromRole="Operation" ToRole="OperationsReport" />
+    <NavigationProperty Name="OperationsStates" Relationship="MagicUpdaterModel.FK_OperationsStates_Operations" FromRole="Operation" ToRole="OperationsState" />
+  </EntityType>
+  <EntityType Name="OperationsReport">
+    <Key>
+      <PropertyRef Name="OperationId" />
+    </Key>
+    <Property Name="ReportId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OperationId" Type="Int32" Nullable="false" />
+    <Property Name="IsRead" Type="Boolean" Nullable="false" />
+    <Property Name="IsCompleted" Type="Boolean" Nullable="false" />
+    <Property Name="Result" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DateRead" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DateCompleteOrError" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Operation" Relationship="MagicUpdaterModel.FK_OperationsReports_Operations" FromRole="OperationsReport" ToRole="Operation" />
+  </EntityType>
+  <EntityType Name="OperationsState">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OperationId" Type="Int32" Nullable="false" />
+    <Property Name="OperStateId" Type="Int32" Nullable="false" />
+    <Property Name="StateDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Operation" Relationship="MagicUpdaterModel.FK_OperationsStates_Operations" FromRole="OperationsState" ToRole="Operation" />
+    <NavigationProperty Name="OperationStatesVoc" Relationship="MagicUpdaterModel.FK_OperationsStates_OperationStatesVoc" FromRole="OperationsState" ToRole="OperationStatesVoc" />
+  </EntityType>
+  <EntityType Name="OperationStatesVoc">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="OperationsStates" Relationship="MagicUpdaterModel.FK_OperationsStates_OperationStatesVoc" FromRole="OperationStatesVoc" ToRole="OperationsState" />
+  </EntityType>
+  <EntityType Name="OperationTypeAttribute">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OperationTypeId" Type="Int32" Nullable="false" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="Attributes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="OperationType" Relationship="MagicUpdaterModel.FK_OperationTypeAttributes_OperationTypes" FromRole="OperationTypeAttribute" ToRole="OperationType" />
+    <NavigationProperty Name="User" Relationship="MagicUpdaterModel.FK_OperationTypeAttributes_Users" FromRole="OperationTypeAttribute" ToRole="User" />
+  </EntityType>
+  <EntityType Name="OperationType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="SavedAttributes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="NameRus" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="GroupId" Type="Int32" Nullable="false" />
+    <Property Name="FileName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="LastModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="FileMD5" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="GUID" Type="Guid" />
+    <Property Name="Visible" Type="Boolean" />
+    <NavigationProperty Name="OperationGroup" Relationship="MagicUpdaterModel.FK_OperationTypes_OperationGroups" FromRole="OperationType" ToRole="OperationGroup" />
+    <NavigationProperty Name="Operations" Relationship="MagicUpdaterModel.FK_Operations_OperationTypes" FromRole="OperationType" ToRole="Operation" />
+    <NavigationProperty Name="OperationTypeAttributes" Relationship="MagicUpdaterModel.FK_OperationTypeAttributes_OperationTypes" FromRole="OperationType" ToRole="OperationTypeAttribute" />
+  </EntityType>
+  <EntityType Name="ShedulerPluginTask">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="true" />
+    <Property Name="Enabled" Type="Boolean" />
+    <Property Name="Mode" Type="Int32" Nullable="false" />
+    <Property Name="NextStartTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="LastStartTime" Type="DateTime" Precision="3" />
+    <Property Name="LastEndTime" Type="DateTime" Precision="3" />
+    <Property Name="Status" Type="Int32" Nullable="false" />
+    <Property Name="PluginFileName" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="RepeatValue" Type="Int32" />
+  </EntityType>
+  <EntityType Name="ShedulerStep">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TaskId" Type="Int32" Nullable="false" />
+    <Property Name="OperationType" Type="Int32" Nullable="false" />
+    <Property Name="RepeatCount" Type="Int32" />
+    <Property Name="RepeatTimeout" Type="Int32" />
+    <Property Name="OperationCheckIntervalMs" Type="Int32" Nullable="false" />
+    <Property Name="OnOperationCompleteStep" Type="Int32" Nullable="false" />
+    <Property Name="OnOperationErrorStep" Type="Int32" Nullable="false" />
+    <Property Name="OrderId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="ShedulerTask" Relationship="MagicUpdaterModel.FK_ShedulerSteps_ShedulerTasks" FromRole="ShedulerStep" ToRole="ShedulerTask" />
+    <NavigationProperty Name="ShedulerTaskHistories" Relationship="MagicUpdaterModel.FK_ShedulerTaskHistory_ShedulerSteps" FromRole="ShedulerStep" ToRole="ShedulerTaskHistory" />
+    <NavigationProperty Name="ShedulerTasks" Relationship="MagicUpdaterModel.FK_ShedulerTasks_ShedulerSteps" FromRole="ShedulerStep" ToRole="ShedulerTask" />
+    <Property Name="OperationAttributes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="ShedulerStepsUserHistory">
+    <Key>
+      <PropertyRef Name="HisId" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="TaskId" Type="Int32" Nullable="false" />
+    <Property Name="OperationType" Type="Int32" Nullable="false" />
+    <Property Name="RepeatCount" Type="Int32" />
+    <Property Name="RepeatTimeout" Type="Int32" />
+    <Property Name="OperationCheckIntervalMs" Type="Int32" Nullable="false" />
+    <Property Name="OnOperationCompleteStep" Type="Int32" Nullable="false" />
+    <Property Name="OnOperationErrorStep" Type="Int32" Nullable="false" />
+    <Property Name="OrderId" Type="Int32" Nullable="false" />
+    <Property Name="HisId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ChangeUserDateUtc" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UserLogin" Type="String" Nullable="false" MaxLength="400" FixedLength="false" Unicode="true" />
+    <Property Name="ActionType" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="ShedulerTaskHistory">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="TaskId" Type="Int32" Nullable="false" />
+    <Property Name="StepId" Type="Int32" Nullable="false" />
+    <Property Name="ComputerId" Type="Int32" />
+    <Property Name="IsComplete" Type="Boolean" Nullable="false" />
+    <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="ShedulerStep" Relationship="MagicUpdaterModel.FK_ShedulerTaskHistory_ShedulerSteps" FromRole="ShedulerTaskHistory" ToRole="ShedulerStep" />
+    <NavigationProperty Name="ShedulerTask" Relationship="MagicUpdaterModel.FK_ShedulerTaskHistory_ShedulerTasks" FromRole="ShedulerTaskHistory" ToRole="ShedulerTask" />
+  </EntityType>
+  <EntityType Name="ShedulerTask">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="true" />
+    <Property Name="Enabled" Type="Boolean" />
+    <Property Name="FirstStepId" Type="Int32" />
+    <Property Name="Mode" Type="Int32" Nullable="false" />
+    <Property Name="StartTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="NextStartTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="LastStartTime" Type="DateTime" Precision="3" />
+    <Property Name="LastEndTime" Type="DateTime" Precision="3" />
+    <Property Name="Status" Type="Int32" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
+    <Property Name="CreationDateUtc" Type="DateTime" Precision="3" />
+    <Property Name="CreatedUserLogin" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+    <Property Name="RepeatValue" Type="Int32" />
+    <NavigationProperty Name="ShedulerSteps" Relationship="MagicUpdaterModel.FK_ShedulerSteps_ShedulerTasks" FromRole="ShedulerTask" ToRole="ShedulerStep" />
+    <NavigationProperty Name="ShedulerStep" Relationship="MagicUpdaterModel.FK_ShedulerTasks_ShedulerSteps" FromRole="ShedulerTask" ToRole="ShedulerStep" />
+    <NavigationProperty Name="ShedulerTaskHistories" Relationship="MagicUpdaterModel.FK_ShedulerTaskHistory_ShedulerTasks" FromRole="ShedulerTask" ToRole="ShedulerTaskHistory" />
+    <NavigationProperty Name="ShedulerTasksComputersLists" Relationship="MagicUpdaterModel.FK_ShedulerTasksComputersList_ShedulerTasks" FromRole="ShedulerTask" ToRole="ShedulerTasksComputersList" />
+  </EntityType>
+  <EntityType Name="ShedulerTasksComputersList">
+    <Key>
+      <PropertyRef Name="TaskId" />
+      <PropertyRef Name="ComputerId" />
+    </Key>
+    <Property Name="TaskId" Type="Int32" Nullable="false" />
+    <Property Name="ComputerId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="ShedulerTask" Relationship="MagicUpdaterModel.FK_ShedulerTasksComputersList_ShedulerTasks" FromRole="ShedulerTasksComputersList" ToRole="ShedulerTask" />
+  </EntityType>
+  <EntityType Name="ShedulerTasksUserHistory">
+    <Key>
+      <PropertyRef Name="HisId" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="true" />
+    <Property Name="Enabled" Type="Boolean" />
+    <Property Name="FirstStepId" Type="Int32" />
+    <Property Name="Mode" Type="Int32" Nullable="false" />
+    <Property Name="StartTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="NextStartTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="LastStartTime" Type="DateTime" Precision="3" />
+    <Property Name="LastEndTime" Type="DateTime" Precision="3" />
+    <Property Name="Status" Type="Int32" Nullable="false" />
+    <Property Name="HisId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ChangeUserDateUtc" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UserLogin" Type="String" Nullable="false" MaxLength="400" FixedLength="false" Unicode="true" />
+    <Property Name="ComputersList" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ActionType" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="ShopComputer">
+    <Key>
+      <PropertyRef Name="ComputerId" />
+    </Key>
+    <Property Name="ComputerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ShopId" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ComputerName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ComputerAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Is1CServer" Type="Boolean" Nullable="false" />
+    <Property Name="IsMainCashbox" Type="Boolean" Nullable="false" />
+    <Property Name="LastUpdateTime" Type="DateTime" Precision="3" />
+    <Property Name="ComputerHash" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+    <Property Name="Mac" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+    <Property Name="MagicUpdaterVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+    <Property Name="External_IP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IsTaskerAlive" Type="Boolean" />
+    <Property Name="IsSettingsRead" Type="Boolean" />
+    <Property Name="IsON" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+    <Property Name="LastError" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IsAgentSettingsReaded" Type="Boolean" />
+    <NavigationProperty Name="ActionsReports" Relationship="MagicUpdaterModel.FK_ActionsReports_ShopComputers" FromRole="ShopComputer" ToRole="ActionsReport" />
+    <NavigationProperty Name="ComputerErrorsLogs" Relationship="MagicUpdaterModel.FK_ComputerErrorsLog_ShopComputers" FromRole="ShopComputer" ToRole="ComputerErrorsLog" />
+    <NavigationProperty Name="LocalSettings" Relationship="MagicUpdaterModel.FK_LocalSettings_ShopComputers" FromRole="ShopComputer" ToRole="LocalSetting" />
+    <NavigationProperty Name="Logs1C" Relationship="MagicUpdaterModel.FK_Logs1C_ShopComputers" FromRole="ShopComputer" ToRole="Logs1C" />
+    <NavigationProperty Name="Operations" Relationship="MagicUpdaterModel.FK_Operations_ShopComputers" FromRole="ShopComputer" ToRole="Operation" />
+    <NavigationProperty Name="Shop" Relationship="MagicUpdaterModel.FK_ShopComputers_Shops" FromRole="ShopComputer" ToRole="Shop" />
+  </EntityType>
+  <EntityType Name="Shop">
+    <Key>
+      <PropertyRef Name="ShopId" />
+    </Key>
+    <Property Name="ShopId" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ShopName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ShopRegion" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ExchangeError" Type="Boolean" />
+    <Property Name="LastSuccessfulUpload" Type="DateTime" Precision="3" />
+    <Property Name="LastSuccessfulReceive" Type="DateTime" Precision="3" />
+    <Property Name="AddressToConnect" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="IsClosed" Type="Boolean" />
+    <Property Name="Email" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+    <Property Name="VersionConfig1C" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="ShopComputers" Relationship="MagicUpdaterModel.FK_ShopComputers_Shops" FromRole="Shop" ToRole="ShopComputer" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserLogin" Type="String" Nullable="false" MaxLength="400" FixedLength="false" Unicode="true" />
+    <Property Name="UserName" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="OperationTypeAttributes" Relationship="MagicUpdaterModel.FK_OperationTypeAttributes_Users" FromRole="User" ToRole="OperationTypeAttribute" />
+  </EntityType>
+  <EntityType Name="ComputerErrorsLogView">
+    <Key>
+      <PropertyRef Name="ErrorId" />
+      <PropertyRef Name="ShopId" />
+      <PropertyRef Name="ComputerId" />
+      <PropertyRef Name="ErrorDate" />
+    </Key>
+    <Property Name="ErrorId" Type="Int32" Nullable="false" />
+    <Property Name="ShopId" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ComputerId" Type="Int32" Nullable="false" />
+    <Property Name="ComputerName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ErrorMessage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ErrorDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Mac" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="LocalSettingsView">
+    <Key>
+      <PropertyRef Name="ComputerId" />
+      <PropertyRef Name="SettingId" />
+      <PropertyRef Name="Name" />
+      <PropertyRef Name="Value" />
+      <PropertyRef Name="Description" />
+    </Key>
+    <Property Name="ComputerId" Type="Int32" Nullable="false" />
+    <Property Name="SettingId" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="Value" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="ViewComputerErrorsLog">
+    <Key>
+      <PropertyRef Name="ErrorId" />
+      <PropertyRef Name="ComputerId" />
+      <PropertyRef Name="Is1CServer" />
+      <PropertyRef Name="IsMainCashbox" />
+      <PropertyRef Name="IsON" />
+      <PropertyRef Name="ErrorDate" />
+    </Key>
+    <Property Name="ErrorId" Type="Int32" Nullable="false" />
+    <Property Name="ComputerId" Type="Int32" Nullable="false" />
+    <Property Name="ComputerName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="External_IP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Is1CServer" Type="Boolean" Nullable="false" />
+    <Property Name="IsMainCashbox" Type="Boolean" Nullable="false" />
+    <Property Name="IsTaskerAlive" Type="Boolean" />
+    <Property Name="IsON" Type="Int32" Nullable="false" />
+    <Property Name="ErrorMessage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ErrorDate" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="ViewOperation">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="OperationType" />
+      <PropertyRef Name="OperationTypeEn" />
+      <PropertyRef Name="ComputerId" />
+      <PropertyRef Name="ShopId" />
+      <PropertyRef Name="CreationDate" />
+      <PropertyRef Name="Is1CError" />
+      <PropertyRef Name="IsActionError" />
+      <PropertyRef Name="IsFromSheduler" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="OperationType" Type="Int32" Nullable="false" />
+    <Property Name="OperationTypeEn" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="OperationTypeRu" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedUser" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="ComputerId" Type="Int32" Nullable="false" />
+    <Property Name="ComputerName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ShopId" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Attributes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IsRead" Type="Boolean" />
+    <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DateRead" Type="DateTime" Precision="3" />
+    <Property Name="OperStateId" Type="Int32" />
+    <Property Name="OperState" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="IsCompleted" Type="Boolean" />
+    <Property Name="DateCompleteOrError" Type="DateTime" Precision="3" />
+    <Property Name="Result" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="LogDate1C" Type="DateTime" Precision="3" />
+    <Property Name="LogMessage1C" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Is1CError" Type="Int32" Nullable="false" />
+    <Property Name="IsActionError" Type="Int32" Nullable="false" />
+    <Property Name="IsFromSheduler" Type="Boolean" Nullable="false" />
+    <Property Name="PoolDate" Type="DateTime" Precision="3" />
+    <Property Name="GroupGUID" Type="Guid" />
+  </EntityType>
+  <EntityType Name="ViewOperationsForExecute">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="OperationType" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="OperationType" Type="Byte" Nullable="false" />
+    <Property Name="Attributes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="ViewOperationsLight">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="OperationTypeEn" />
+      <PropertyRef Name="ComputerId" />
+      <PropertyRef Name="CreationDate" />
+      <PropertyRef Name="Is1CError" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="OperationTypeEn" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="OperationTypeRu" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="ComputerId" Type="Int32" Nullable="false" />
+    <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="IsCompleted" Type="Boolean" />
+    <Property Name="OperStateId" Type="Int32" />
+    <Property Name="OperState" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="Is1CError" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ViewOperationsTop1000">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="OperationType" />
+      <PropertyRef Name="OperationTypeEn" />
+      <PropertyRef Name="ComputerId" />
+      <PropertyRef Name="ShopId" />
+      <PropertyRef Name="CreationDate" />
+      <PropertyRef Name="Is1CError" />
+      <PropertyRef Name="IsActionError" />
+      <PropertyRef Name="IsFromSheduler" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="OperationType" Type="Int32" Nullable="false" />
+    <Property Name="OperationTypeEn" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="OperationTypeRu" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedUser" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="ComputerId" Type="Int32" Nullable="false" />
+    <Property Name="ComputerName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ShopId" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Attributes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IsRead" Type="Boolean" />
+    <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DateRead" Type="DateTime" Precision="3" />
+    <Property Name="OperStateId" Type="Int32" />
+    <Property Name="OperState" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="IsCompleted" Type="Boolean" />
+    <Property Name="DateCompleteOrError" Type="DateTime" Precision="3" />
+    <Property Name="Result" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="LogDate1C" Type="DateTime" Precision="3" />
+    <Property Name="LogMessage1C" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Is1CError" Type="Int32" Nullable="false" />
+    <Property Name="IsActionError" Type="Int32" Nullable="false" />
+    <Property Name="IsFromSheduler" Type="Boolean" Nullable="false" />
+    <Property Name="PoolDate" Type="DateTime" Precision="3" />
+    <Property Name="GroupGUID" Type="Guid" />
+  </EntityType>
+  <EntityType Name="ViewOperationsTop1000_New">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="OperationType" />
+      <PropertyRef Name="OperationTypeEn" />
+      <PropertyRef Name="ComputerId" />
+      <PropertyRef Name="ShopId" />
+      <PropertyRef Name="CreationDate" />
+      <PropertyRef Name="Is1CError" />
+      <PropertyRef Name="IsActionError" />
+      <PropertyRef Name="IsFromSheduler" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="OperationType" Type="Int32" Nullable="false" />
+    <Property Name="OperationTypeEn" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="OperationTypeRu" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedUser" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="ComputerId" Type="Int32" Nullable="false" />
+    <Property Name="ComputerName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ShopId" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Attributes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IsRead" Type="Boolean" />
+    <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DateRead" Type="DateTime" Precision="3" />
+    <Property Name="OperStateId" Type="Int32" />
+    <Property Name="OperState" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="IsCompleted" Type="Boolean" />
+    <Property Name="DateCompleteOrError" Type="DateTime" Precision="3" />
+    <Property Name="Result" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="LogDate1C" Type="DateTime" Precision="3" />
+    <Property Name="LogMessage1C" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Is1CError" Type="Int32" Nullable="false" />
+    <Property Name="IsActionError" Type="Int32" Nullable="false" />
+    <Property Name="IsFromSheduler" Type="Boolean" Nullable="false" />
+    <Property Name="PoolDate" Type="DateTime" Precision="3" />
+    <Property Name="GroupGUID" Type="Guid" />
+  </EntityType>
+  <EntityType Name="ViewOperationsTop5000">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="OperationType" />
+      <PropertyRef Name="OperationTypeEn" />
+      <PropertyRef Name="ComputerId" />
+      <PropertyRef Name="ShopId" />
+      <PropertyRef Name="CreationDate" />
+      <PropertyRef Name="Is1CError" />
+      <PropertyRef Name="IsActionError" />
+      <PropertyRef Name="IsFromSheduler" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="OperationType" Type="Int32" Nullable="false" />
+    <Property Name="OperationTypeEn" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="OperationTypeRu" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedUser" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="ComputerId" Type="Int32" Nullable="false" />
+    <Property Name="ComputerName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ShopId" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Attributes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IsRead" Type="Boolean" />
+    <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DateRead" Type="DateTime" Precision="3" />
+    <Property Name="OperStateId" Type="Int32" />
+    <Property Name="OperState" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="IsCompleted" Type="Boolean" />
+    <Property Name="DateCompleteOrError" Type="DateTime" Precision="3" />
+    <Property Name="Result" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="LogDate1C" Type="DateTime" Precision="3" />
+    <Property Name="LogMessage1C" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Is1CError" Type="Int32" Nullable="false" />
+    <Property Name="IsActionError" Type="Int32" Nullable="false" />
+    <Property Name="IsFromSheduler" Type="Boolean" Nullable="false" />
+    <Property Name="PoolDate" Type="DateTime" Precision="3" />
+    <Property Name="GroupGUID" Type="Guid" />
+  </EntityType>
+  <EntityType Name="ViewOperState">
+    <Key>
+      <PropertyRef Name="OperationId" />
+      <PropertyRef Name="OperationType" />
+      <PropertyRef Name="ShopId" />
+      <PropertyRef Name="OperStateId" />
+      <PropertyRef Name="Name" />
+      <PropertyRef Name="Description" />
+      <PropertyRef Name="StateDate" />
+    </Key>
+    <Property Name="OperationId" Type="Int32" Nullable="false" />
+    <Property Name="OperationType" Type="Int32" Nullable="false" />
+    <Property Name="ShopId" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ComputerName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="OperStateId" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="StateDate" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="ViewShedulerStep">
+    <Key>
+      <PropertyRef Name="taskId" />
+      <PropertyRef Name="ParentId" />
+      <PropertyRef Name="IsChildPositiveBranch" />
+    </Key>
+    <Property Name="taskId" Type="Int32" Nullable="false" />
+    <Property Name="ParentId" Type="Int32" Nullable="false" />
+    <Property Name="ChildId" Type="Int32" />
+    <Property Name="IsChildPositiveBranch" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ViewShopComputersServer">
+    <Key>
+      <PropertyRef Name="ShopId" />
+      <PropertyRef Name="ComputerName" />
+      <PropertyRef Name="ComputerAddress" />
+      <PropertyRef Name="Is1CServer" />
+      <PropertyRef Name="IsMainCashbox" />
+      <PropertyRef Name="ComputerHash" />
+      <PropertyRef Name="Mac" />
+      <PropertyRef Name="MagicUpdaterVersion" />
+      <PropertyRef Name="External_IP" />
+      <PropertyRef Name="IsTaskerAlive" />
+      <PropertyRef Name="IsON" />
+      <PropertyRef Name="OperationTypeRu" />
+      <PropertyRef Name="OperState" />
+      <PropertyRef Name="LastError" />
+    </Key>
+    <Property Name="ComputerId" Type="Int32" />
+    <Property Name="ShopId" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ShopName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ShopRegion" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ExchangeError" Type="Boolean" />
+    <Property Name="AddressToConnect" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="IsClosed" Type="Boolean" />
+    <Property Name="Email" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+    <Property Name="LastSuccessfulUpload" Type="DateTime" Precision="3" />
+    <Property Name="LastSuccessfulReceive" Type="DateTime" Precision="3" />
+    <Property Name="ComputerName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ComputerAddress" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Is1CServer" Type="Boolean" Nullable="false" />
+    <Property Name="IsMainCashbox" Type="Boolean" Nullable="false" />
+    <Property Name="LastUpdateTime" Type="DateTime" Precision="3" />
+    <Property Name="ComputerHash" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
+    <Property Name="Mac" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
+    <Property Name="MagicUpdaterVersion" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
+    <Property Name="External_IP" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IsTaskerAlive" Type="Boolean" Nullable="false" />
+    <Property Name="IsON" Type="Int32" Nullable="false" />
+    <Property Name="OperationTypeRu" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="OperationCreationDate" Type="DateTime" Precision="3" />
+    <Property Name="OperState" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="LastError" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="ViewShopComputersServerFull">
+    <Key>
+      <PropertyRef Name="ShopId" />
+      <PropertyRef Name="ComputerName" />
+      <PropertyRef Name="ComputerAddress" />
+      <PropertyRef Name="Is1CServer" />
+      <PropertyRef Name="IsMainCashbox" />
+      <PropertyRef Name="ComputerHash" />
+      <PropertyRef Name="Mac" />
+      <PropertyRef Name="MagicUpdaterVersion" />
+      <PropertyRef Name="External_IP" />
+      <PropertyRef Name="IsTaskerAlive" />
+      <PropertyRef Name="IsON" />
+      <PropertyRef Name="OperationTypeRu" />
+      <PropertyRef Name="OperState" />
+      <PropertyRef Name="LastError" />
+    </Key>
+    <Property Name="ComputerId" Type="Int32" />
+    <Property Name="ShopId" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ShopName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ShopRegion" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ExchangeError" Type="Boolean" />
+    <Property Name="AddressToConnect" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="IsClosed" Type="Boolean" />
+    <Property Name="Email" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+    <Property Name="LastSuccessfulUpload" Type="DateTime" Precision="3" />
+    <Property Name="LastSuccessfulReceive" Type="DateTime" Precision="3" />
+    <Property Name="ComputerName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ComputerAddress" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Is1CServer" Type="Boolean" Nullable="false" />
+    <Property Name="IsMainCashbox" Type="Boolean" Nullable="false" />
+    <Property Name="LastUpdateTime" Type="DateTime" Precision="3" />
+    <Property Name="ComputerHash" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
+    <Property Name="Mac" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
+    <Property Name="MagicUpdaterVersion" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
+    <Property Name="External_IP" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IsTaskerAlive" Type="Boolean" Nullable="false" />
+    <Property Name="IsON" Type="Int32" Nullable="false" />
+    <Property Name="OperationTypeRu" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="OperationCreationDate" Type="DateTime" Precision="3" />
+    <Property Name="OperState" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="LastError" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <Association Name="FK_ActionsReports_Operations">
+    <End Type="MagicUpdaterModel.Operation" Role="Operation" Multiplicity="1" />
+    <End Type="MagicUpdaterModel.ActionsReport" Role="ActionsReport" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Operation">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ActionsReport">
+        <PropertyRef Name="OperationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ActionsReports_ShopComputers">
+    <End Type="MagicUpdaterModel.ShopComputer" Role="ShopComputer" Multiplicity="1" />
+    <End Type="MagicUpdaterModel.ActionsReport" Role="ActionsReport" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ShopComputer">
+        <PropertyRef Name="ComputerId" />
+      </Principal>
+      <Dependent Role="ActionsReport">
+        <PropertyRef Name="ComputerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ComputerErrorsLog_ShopComputers">
+    <End Type="MagicUpdaterModel.ShopComputer" Role="ShopComputer" Multiplicity="1" />
+    <End Type="MagicUpdaterModel.ComputerErrorsLog" Role="ComputerErrorsLog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ShopComputer">
+        <PropertyRef Name="ComputerId" />
+      </Principal>
+      <Dependent Role="ComputerErrorsLog">
+        <PropertyRef Name="ComputerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LocalSettings_LocalSettingsDictionary">
+    <End Type="MagicUpdaterModel.LocalSettingsDictionary" Role="LocalSettingsDictionary" Multiplicity="1" />
+    <End Type="MagicUpdaterModel.LocalSetting" Role="LocalSetting" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LocalSettingsDictionary">
+        <PropertyRef Name="SettingId" />
+      </Principal>
+      <Dependent Role="LocalSetting">
+        <PropertyRef Name="SettingId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LocalSettings_ShopComputers">
+    <End Type="MagicUpdaterModel.ShopComputer" Role="ShopComputer" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="MagicUpdaterModel.LocalSetting" Role="LocalSetting" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ShopComputer">
+        <PropertyRef Name="ComputerId" />
+      </Principal>
+      <Dependent Role="LocalSetting">
+        <PropertyRef Name="ComputerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Logs1C_ShopComputers">
+    <End Type="MagicUpdaterModel.ShopComputer" Role="ShopComputer" Multiplicity="1" />
+    <End Type="MagicUpdaterModel.Logs1C" Role="Logs1C" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ShopComputer">
+        <PropertyRef Name="ComputerId" />
+      </Principal>
+      <Dependent Role="Logs1C">
+        <PropertyRef Name="ComputerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OperationTypes_OperationGroups">
+    <End Type="MagicUpdaterModel.OperationGroup" Role="OperationGroup" Multiplicity="1" />
+    <End Type="MagicUpdaterModel.OperationType" Role="OperationType" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OperationGroup">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="OperationType">
+        <PropertyRef Name="GroupId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Operations_OperationTypes">
+    <End Type="MagicUpdaterModel.OperationType" Role="OperationType" Multiplicity="1" />
+    <End Type="MagicUpdaterModel.Operation" Role="Operation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OperationType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Operation">
+        <PropertyRef Name="OperationType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Operations_ShopComputers">
+    <End Type="MagicUpdaterModel.ShopComputer" Role="ShopComputer" Multiplicity="1" />
+    <End Type="MagicUpdaterModel.Operation" Role="Operation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ShopComputer">
+        <PropertyRef Name="ComputerId" />
+      </Principal>
+      <Dependent Role="Operation">
+        <PropertyRef Name="ComputerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OperationsReports_Operations">
+    <End Type="MagicUpdaterModel.Operation" Role="Operation" Multiplicity="1" />
+    <End Type="MagicUpdaterModel.OperationsReport" Role="OperationsReport" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Operation">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="OperationsReport">
+        <PropertyRef Name="OperationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OperationsStates_Operations">
+    <End Type="MagicUpdaterModel.Operation" Role="Operation" Multiplicity="1" />
+    <End Type="MagicUpdaterModel.OperationsState" Role="OperationsState" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Operation">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="OperationsState">
+        <PropertyRef Name="OperationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OperationsStates_OperationStatesVoc">
+    <End Type="MagicUpdaterModel.OperationStatesVoc" Role="OperationStatesVoc" Multiplicity="1" />
+    <End Type="MagicUpdaterModel.OperationsState" Role="OperationsState" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OperationStatesVoc">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="OperationsState">
+        <PropertyRef Name="OperStateId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OperationTypeAttributes_OperationTypes">
+    <End Type="MagicUpdaterModel.OperationType" Role="OperationType" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="MagicUpdaterModel.OperationTypeAttribute" Role="OperationTypeAttribute" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OperationType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="OperationTypeAttribute">
+        <PropertyRef Name="OperationTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OperationTypeAttributes_Users">
+    <End Type="MagicUpdaterModel.User" Role="User" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="MagicUpdaterModel.OperationTypeAttribute" Role="OperationTypeAttribute" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="OperationTypeAttribute">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ShedulerSteps_ShedulerTasks">
+    <End Type="MagicUpdaterModel.ShedulerTask" Role="ShedulerTask" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="MagicUpdaterModel.ShedulerStep" Role="ShedulerStep" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ShedulerTask">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ShedulerStep">
+        <PropertyRef Name="TaskId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ShedulerTaskHistory_ShedulerSteps">
+    <End Type="MagicUpdaterModel.ShedulerStep" Role="ShedulerStep" Multiplicity="1" />
+    <End Type="MagicUpdaterModel.ShedulerTaskHistory" Role="ShedulerTaskHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ShedulerStep">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ShedulerTaskHistory">
+        <PropertyRef Name="StepId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ShedulerTasks_ShedulerSteps">
+    <End Type="MagicUpdaterModel.ShedulerStep" Role="ShedulerStep" Multiplicity="0..1" />
+    <End Type="MagicUpdaterModel.ShedulerTask" Role="ShedulerTask" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ShedulerStep">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ShedulerTask">
+        <PropertyRef Name="FirstStepId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ShedulerTaskHistory_ShedulerTasks">
+    <End Type="MagicUpdaterModel.ShedulerTask" Role="ShedulerTask" Multiplicity="1" />
+    <End Type="MagicUpdaterModel.ShedulerTaskHistory" Role="ShedulerTaskHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ShedulerTask">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ShedulerTaskHistory">
+        <PropertyRef Name="TaskId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ShedulerTasksComputersList_ShedulerTasks">
+    <End Type="MagicUpdaterModel.ShedulerTask" Role="ShedulerTask" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="MagicUpdaterModel.ShedulerTasksComputersList" Role="ShedulerTasksComputersList" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ShedulerTask">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ShedulerTasksComputersList">
+        <PropertyRef Name="TaskId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ShopComputers_Shops">
+    <End Type="MagicUpdaterModel.Shop" Role="Shop" Multiplicity="1" />
+    <End Type="MagicUpdaterModel.ShopComputer" Role="ShopComputer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Shop">
+        <PropertyRef Name="ShopId" />
+      </Principal>
+      <Dependent Role="ShopComputer">
+        <PropertyRef Name="ShopId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="ShedulerStatus">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="NameRus" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="ShedulerTaskMode">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="NameRus" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="ViewShedulerStepsVi">
+    <Key>
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="TaskId" />
+      <PropertyRef Name="OperationType" />
+      <PropertyRef Name="Name" />
+      <PropertyRef Name="OperationCheckIntervalMs" />
+      <PropertyRef Name="OnOperationCompleteStep" />
+      <PropertyRef Name="OnOperationErrorStep" />
+      <PropertyRef Name="OrderId" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Step" Type="Int64" />
+    <Property Name="TaskId" Type="Int32" Nullable="false" />
+    <Property Name="OperationType" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="NameRus" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="nameVis" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="nameVisCount" Type="String" MaxLength="289" FixedLength="false" Unicode="true" />
+    <Property Name="RepeatCount" Type="Int32" />
+    <Property Name="RepeatTimeout" Type="Int32" />
+    <Property Name="OperationCheckIntervalMs" Type="Int32" Nullable="false" />
+    <Property Name="OnOperationCompleteStep" Type="Int32" Nullable="false" />
+    <Property Name="NameCompleteStep" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="NameRusCompleteStep" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="nameVisCompleteStep" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="nameVisCountCompleteStep" Type="String" MaxLength="289" FixedLength="false" Unicode="true" />
+    <Property Name="OnOperationErrorStep" Type="Int32" Nullable="false" />
+    <Property Name="NameErrorStep" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="NameRusErrorStep" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="nameVisErrorStep" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="nameVisCountErrorStep" Type="String" MaxLength="289" FixedLength="false" Unicode="true" />
+    <Property Name="OrderId" Type="Int32" Nullable="false" />
+    <Property Name="OperationAttributes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+</Schema>

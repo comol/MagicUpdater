@@ -1,0 +1,4 @@
+Path=%temp%\myapp
+Overwrite=1
+Setup=MagicUpdaterInstaller.exe
+Silent=2

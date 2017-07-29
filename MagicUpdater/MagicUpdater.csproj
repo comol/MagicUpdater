@@ -1,0 +1,215 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{EDE68B4A-5883-4541-9263-9C71619CC6E2}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MagicUpdater</RootNamespace>
+    <AssemblyName>MagicUpdater</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>favicon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>false</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'TestReleaseToFTP|AnyCPU'">
+    <OutputPath>\\sela.ru\Хранилище данных SELA MSK\==FTP==\cis_obmen\MagicUpdaterTest\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release%28DebugInfo%29|AnyCPU' ">
+    <OutputPath>bin\Release%28DebugInfo%291\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'ReleaseNoUpdate|AnyCPU'">
+    <OutputPath>bin\ReleaseNoUpdate\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'ReleaseMuToFTP|AnyCPU'">
+    <OutputPath>\\sela.ru\Хранилище данных SELA MSK\==FTP==\cis_obmen\MagicUpdater\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DemoRelease|AnyCPU'">
+    <OutputPath>bin\DemoRelease\</OutputPath>
+    <DefineConstants>TRACE;DEMO</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DemoRelease%28NoUpdate%29|AnyCPU'">
+    <OutputPath>bin\DemoRelease%28NoUpdate%29\</OutputPath>
+    <DefineConstants>TRACE;DEMO</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DotNetZip, Version=1.10.1.0, Culture=neutral, PublicKeyToken=6583c7c814667745, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetZip.1.10.1\lib\net20\DotNetZip.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SmartAssembly.Attributes, Version=6.5.0.1037, Culture=neutral, PublicKeyToken=7f465a1c156d4d57, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Smartassembly\attributes\SmartAssembly.Attributes.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration.Install" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Actions\Disabled\BackupBaseAction.cs" />
+    <Compile Include="Actions\Disabled\DelCacheFolders1C.cs" />
+    <Compile Include="Actions\Disabled\FTPDownloadUpdate.cs" />
+    <Compile Include="Actions\Disabled\KillAll1CUsers.cs" />
+    <Compile Include="Actions\Disabled\KillProcess1C.cs" />
+    <Compile Include="Actions\Disabled\LockBackgroundJobsOnServer1C.cs" />
+    <Compile Include="Actions\Disabled\OpenVikiAndShowDialogForStaticUpdate.cs" />
+    <Compile Include="Actions\Disabled\SendLogsToCenter1C.cs" />
+    <Compile Include="Actions\Disabled\StartServer1C.cs" />
+    <Compile Include="Actions\Disabled\StartServerSQL.cs" />
+    <Compile Include="Actions\Disabled\StartSettingsAferUpdate.cs" />
+    <Compile Include="Actions\Disabled\StartWithParameter1C.cs" />
+    <Compile Include="Actions\Disabled\StopServer1C.cs" />
+    <Compile Include="Actions\Disabled\StopServerSQL.cs" />
+    <Compile Include="Actions\Disabled\UnLockBackgroundJobsOnServer1C.cs" />
+    <Compile Include="Actions\Disabled\UpdateBase1C.cs" />
+    <Compile Include="Actions\Disabled\WorkContinueDialog.cs" />
+    <Compile Include="ServiceTools\ServiceConnector.cs" />
+    <Compile Include="Core\MuCore.cs" />
+    <Compile Include="Core\TaskerReporter.cs" />
+    <Compile Include="Operations %28internal%29\Disabled\BackupBase.cs" />
+    <Compile Include="Operations %28internal%29\Disabled\CacheClear1C.cs" />
+    <Compile Include="Operations %28internal%29\Disabled\CheckFileExistsViaMd5.cs" />
+    <Compile Include="Operations %28internal%29\Disabled\CheckShareAccess.cs" />
+    <Compile Include="Operations %28internal%29\Disabled\DownloadPaltform1C.cs" />
+    <Compile Include="Operations %28internal%29\Disabled\DynamicUpdate1C.cs" />
+    <Compile Include="Operations %28internal%29\Disabled\ExecProcessing1C.cs" />
+    <Compile Include="Operations %28internal%29\Disabled\ForceStaticUpdate1C.cs" />
+    <Compile Include="Operations %28internal%29\Disabled\KillForceStaticUpdate.cs" />
+    <Compile Include="Operations %28internal%29\Disabled\PlatformUpdate1C.cs" />
+    <Compile Include="Operations %28internal%29\Disabled\RegisterViaMac_Service.cs" />
+    <Compile Include="Operations %28internal%29\RestartMagicUpdater_Service.cs" />
+    <Compile Include="Operations %28internal%29\SelfUpdate.cs" />
+    <Compile Include="Operations %28internal%29\Disabled\ServerRestart1C.cs" />
+    <Compile Include="Operations %28internal%29\SetExternalIp_Service.cs" />
+    <Compile Include="Operations %28internal%29\Disabled\SetLanMacToDB_Service.cs" />
+    <Compile Include="Operations %28internal%29\Disabled\SetOperationsListCheckTimeout.cs" />
+    <Compile Include="Operations %28internal%29\Disabled\StaticUpdate1C.cs" />
+    <Compile Include="ProjectInstaller.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ProjectInstaller.Designer.cs">
+      <DependentUpon>ProjectInstaller.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Service1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Service1.Designer.cs">
+      <DependentUpon>Service1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Smartassembly\attributes\SmartAssembly.Attributes.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MagicUpdaterCommon\MagicUpdaterCommon.csproj">
+      <Project>{d07b1f6c-d42c-4c1c-a2fb-767d685df979}</Project>
+      <Name>MagicUpdaterCommon</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Communications\Communications.csproj">
+      <Project>{37260178-9B84-4673-B27F-9F70A408739A}</Project>
+      <Name>Communications</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="favicon.ico" />
+    <Content Include="NLog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="NLog.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\app.manifest" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ProjectInstaller.resx">
+      <DependentUpon>ProjectInstaller.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Service1.resx">
+      <DependentUpon>Service1.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

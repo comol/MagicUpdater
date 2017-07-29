@@ -1,0 +1,9 @@
+\\sela.ru\Хранилище данных SELA MSK\==FTP==\cis_obmen\MagicUpdaterTest\NLog.config
+\\sela.ru\Хранилище данных SELA MSK\==FTP==\cis_obmen\MagicUpdaterTest\MagicUpdater.exe
+\\sela.ru\Хранилище данных SELA MSK\==FTP==\cis_obmen\MagicUpdaterTest\MagicUpdater.pdb
+D:\GitProjects\MagicUpdater\MagicUpdater\obj\TestReleaseToFTP\MagicUpdater.csprojResolveAssemblyReference.cache
+D:\GitProjects\MagicUpdater\MagicUpdater\obj\TestReleaseToFTP\MagicUpdater.ProjectInstaller.resources
+D:\GitProjects\MagicUpdater\MagicUpdater\obj\TestReleaseToFTP\MagicUpdater.Service1.resources
+D:\GitProjects\MagicUpdater\MagicUpdater\obj\TestReleaseToFTP\MagicUpdater.csproj.GenerateResource.Cache
+D:\GitProjects\MagicUpdater\MagicUpdater\obj\TestReleaseToFTP\MagicUpdater.exe
+D:\GitProjects\MagicUpdater\MagicUpdater\obj\TestReleaseToFTP\MagicUpdater.pdb

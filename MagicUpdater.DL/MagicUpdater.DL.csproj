@@ -1,0 +1,358 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D41258F7-69EB-48CD-874B-FD4FD7E1D8E3}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MagicUpdater.DL</RootNamespace>
+    <AssemblyName>MagicUpdater.DL</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release%28DebugInfo%29|AnyCPU' ">
+    <OutputPath>bin\Release%28DebugInfo%291\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'ReleaseNoUpdate|AnyCPU'">
+    <OutputPath>bin\ReleaseNoUpdate\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DemoRelease|AnyCPU'">
+    <OutputPath>bin\DemoRelease\</OutputPath>
+    <DefineConstants>TRACE;DEMO</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DemoRelease%28NoUpdate%29|AnyCPU'">
+    <OutputPath>bin\DemoRelease%28NoUpdate%29\</OutputPath>
+    <DefineConstants>TRACE;DEMO</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NLog.4.3.8\lib\net45\NLog.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ActionsReport.cs">
+      <DependentUpon>TaskDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Class1.cs" />
+    <Compile Include="CommonGlobalSetting.cs">
+      <DependentUpon>TaskDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Common\Constants.cs" />
+    <Compile Include="Common\CustomAttributes.cs" />
+    <Compile Include="ComputerErrorsLog.cs">
+      <DependentUpon>TaskDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ComputerErrorsLogView.cs">
+      <DependentUpon>TaskDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\EntityDb.cs" />
+    <Compile Include="DB\MQueryCommand.cs" />
+    <Compile Include="GetComputerSettingsViaMac_Result.cs">
+      <DependentUpon>TaskDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GetComputerSettings_Result.cs">
+      <DependentUpon>TaskDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GetComputersList_Result.cs">
+      <DependentUpon>TaskDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\Extensions.cs" />
+    <Compile Include="Helpers\MLogger.cs" />
+    <Compile Include="Images.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Images.resx</DependentUpon>
+    </Compile>
+    <Compile Include="LocalSetting.cs">
+      <DependentUpon>TaskDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LocalSettingsDictionary.cs">
+      <DependentUpon>TaskDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LocalSettingsView.cs">
+      <DependentUpon>TaskDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Logs1C.cs">
+      <DependentUpon>TaskDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ActionsReportsModel.cs" />
+    <Compile Include="Models\MagicUpdaterEntities.cs" />
+    <Compile Include="Models\OperationGroupsModel.cs" />
+    <Compile Include="Models\OperationsModel.cs" />
+    <Compile Include="Models\OperationTypeModel.cs" />
+    <Compile Include="Models\SendOperationModel.cs" />
+    <Compile Include="Models\ShopComputersModel.cs" />
+    <Compile Include="Models\ShopSettingsModel.cs" />
+    <Compile Include="Models\ShopsModel.cs" />
+    <Compile Include="Models\ViewComputerErrorsLogModel.cs" />
+    <Compile Include="Models\ViewOperationsModel.cs" />
+    <Compile Include="Models\ViewShedulerStepModel.cs" />
+    <Compile Include="Models\ViewShedulerStepsModelParentChild.cs" />
+    <Compile Include="Models\ViewTaskModel.cs" />
+    <Compile Include="Operation.cs">
+      <DependentUpon>TaskDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OperationGroup.cs">
+      <DependentUpon>TaskDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OperationsReport.cs">
+      <DependentUpon>TaskDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OperationsState.cs">
+      <DependentUpon>TaskDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OperationStatesVoc.cs">
+      <DependentUpon>TaskDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OperationType.cs">
+      <DependentUpon>TaskDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OperationTypeAttribute.cs">
+      <DependentUpon>TaskDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RegisterComputer_Result.cs">
+      <DependentUpon>TaskDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RegisterComputer_Service_Result.cs">
+      <DependentUpon>TaskDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SelectComputersByShop_Result.cs">
+      <DependentUpon>TaskDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SelectOperationsList_Result.cs">
+      <DependentUpon>TaskDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SelectRestartOperation_Result.cs">
+      <DependentUpon>TaskDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SelectShopsList_Result.cs">
+      <DependentUpon>TaskDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ShedulerPluginTask.cs">
+      <DependentUpon>TaskDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ShedulerPluginTasksUserHistory.cs">
+      <DependentUpon>TaskDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ShedulerStatus.cs">
+      <DependentUpon>TaskDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ShedulerStep.cs">
+      <DependentUpon>TaskDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ShedulerStepsUserHistory.cs">
+      <DependentUpon>TaskDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ShedulerTask.cs">
+      <DependentUpon>TaskDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ShedulerTaskHistory.cs">
+      <DependentUpon>TaskDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ShedulerTaskMode.cs">
+      <DependentUpon>TaskDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ShedulerTasksComputersList.cs">
+      <DependentUpon>TaskDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ShedulerTasksUserHistory.cs">
+      <DependentUpon>TaskDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Shop.cs">
+      <DependentUpon>TaskDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ShopComputer.cs">
+      <DependentUpon>TaskDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>TaskDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_helpdiagrams_Result.cs">
+      <DependentUpon>TaskDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sysdiagram.cs">
+      <DependentUpon>TaskDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TaskDBModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TaskDBModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TaskDBModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TaskDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TaskDBModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TaskDBModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Tools\OperationTools.cs" />
+    <Compile Include="User.cs">
+      <DependentUpon>TaskDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewComputerErrorsLog.cs">
+      <DependentUpon>TaskDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewOperation.cs">
+      <DependentUpon>TaskDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewOperationsForExecute.cs">
+      <DependentUpon>TaskDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewOperationsLight.cs">
+      <DependentUpon>TaskDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewOperationsTop1000.cs">
+      <DependentUpon>TaskDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewOperationsTop1000_New.cs">
+      <DependentUpon>TaskDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewOperationsTop5000.cs">
+      <DependentUpon>TaskDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewOperState.cs">
+      <DependentUpon>TaskDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewShedulerStep.cs">
+      <DependentUpon>TaskDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewShedulerStepsVi.cs">
+      <DependentUpon>TaskDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewShopComputersServer.cs">
+      <DependentUpon>TaskDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewShopComputersServerFull.cs">
+      <DependentUpon>TaskDBModel.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <Content Include="NLog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="NLog.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+    <EntityDeploy Include="TaskDBModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>TaskDBModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="TaskDBModel.edmx.diagram">
+      <DependentUpon>TaskDBModel.edmx</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\connected64.png" />
+    <None Include="Resources\disconnected64.png" />
+    <None Include="Resources\connected16.png" />
+    <None Include="Resources\connected32.png" />
+    <None Include="Resources\disconnected16.png" />
+    <None Include="Resources\disconnected32.png" />
+    <None Include="Resources\accept16.png" />
+    <None Include="Resources\delete16.png" />
+    <Content Include="TaskDBModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TaskDBModel.edmx</DependentUpon>
+      <LastGenOutput>TaskDBModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="TaskDBModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TaskDBModel.edmx</DependentUpon>
+      <LastGenOutput>TaskDBModel.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MagicUpdaterCommon\MagicUpdaterCommon.csproj">
+      <Project>{D07B1F6C-D42C-4C1C-A2FB-767D685DF979}</Project>
+      <Name>MagicUpdaterCommon</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Images.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

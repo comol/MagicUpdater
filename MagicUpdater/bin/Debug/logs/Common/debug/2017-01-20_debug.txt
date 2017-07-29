@@ -1,0 +1,2 @@
+-----------------------------------
+2017-01-20 23:23:56.6402 DEBUG Client: Async client created. Pipe name: "MuAsyncPipe"

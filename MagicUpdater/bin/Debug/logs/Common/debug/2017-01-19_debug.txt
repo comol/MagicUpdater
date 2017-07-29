@@ -1,0 +1,6 @@
+-----------------------------------
+2017-01-19 22:29:58.1534 DEBUG Client: Async client created. Pipe name: "RestartSettingsAsyncPipe"
+-----------------------------------
+2017-01-19 22:31:17.1723 DEBUG Client: Async client created. Pipe name: "RestartSettingsAsyncPipe"
+-----------------------------------
+2017-01-19 22:32:23.1929 DEBUG args[0] == MainSettings.Constants.SETTINGS_RESTART_PARAMETER

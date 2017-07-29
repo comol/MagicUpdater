@@ -1,0 +1,21 @@
+D:\GitProjects\MagicUpdater\MagicUpdaterRestart\bin\TestReleaseToFTP\NLog.config
+D:\GitProjects\MagicUpdater\MagicUpdaterRestart\bin\TestReleaseToFTP\MagicUpdaterRestart.exe.config
+D:\GitProjects\MagicUpdater\MagicUpdaterRestart\bin\TestReleaseToFTP\MagicUpdaterRestart.exe
+D:\GitProjects\MagicUpdater\MagicUpdaterRestart\bin\TestReleaseToFTP\MagicUpdaterRestart.pdb
+D:\GitProjects\MagicUpdater\MagicUpdaterRestart\bin\TestReleaseToFTP\MagicUpdaterCommon.dll
+D:\GitProjects\MagicUpdater\MagicUpdaterRestart\bin\TestReleaseToFTP\Newtonsoft.Json.dll
+D:\GitProjects\MagicUpdater\MagicUpdaterRestart\bin\TestReleaseToFTP\NLog.dll
+D:\GitProjects\MagicUpdater\MagicUpdaterRestart\bin\TestReleaseToFTP\MagicUpdaterCommon.pdb
+D:\GitProjects\MagicUpdater\MagicUpdaterRestart\bin\TestReleaseToFTP\Newtonsoft.Json.xml
+D:\GitProjects\MagicUpdater\MagicUpdaterRestart\bin\TestReleaseToFTP\NLog.xml
+\\sela.ru\Хранилище данных SELA MSK\==FTP==\cis_obmen\MagicUpdaterTest\NLog.config
+\\sela.ru\Хранилище данных SELA MSK\==FTP==\cis_obmen\MagicUpdaterTest\MagicUpdaterRestart.exe.config
+\\sela.ru\Хранилище данных SELA MSK\==FTP==\cis_obmen\MagicUpdaterTest\MagicUpdaterRestart.exe
+\\sela.ru\Хранилище данных SELA MSK\==FTP==\cis_obmen\MagicUpdaterTest\MagicUpdaterRestart.pdb
+\\sela.ru\Хранилище данных SELA MSK\==FTP==\cis_obmen\MagicUpdaterTest\restart\NLog.config
+\\sela.ru\Хранилище данных SELA MSK\==FTP==\cis_obmen\MagicUpdaterTest\restart\MagicUpdaterRestart.exe.config
+\\sela.ru\Хранилище данных SELA MSK\==FTP==\cis_obmen\MagicUpdaterTest\restart\MagicUpdaterRestart.exe
+\\sela.ru\Хранилище данных SELA MSK\==FTP==\cis_obmen\MagicUpdaterTest\restart\MagicUpdaterRestart.pdb
+D:\GitProjects\MagicUpdater\MagicUpdaterRestart\obj\TestReleaseToFTP\MagicUpdaterRestart.csprojResolveAssemblyReference.cache
+D:\GitProjects\MagicUpdater\MagicUpdaterRestart\obj\TestReleaseToFTP\MagicUpdaterRestart.exe
+D:\GitProjects\MagicUpdater\MagicUpdaterRestart\obj\TestReleaseToFTP\MagicUpdaterRestart.pdb

@@ -1,0 +1,2322 @@
+<?xml version="1.0"?>
+<doc>
+  <assembly>
+    <name>Ftp</name>
+  </assembly>
+  <members>
+    <member name="T:Limilabs.FTP.BasicConstant">
+      <summary>
+            Base class for all constant values.
+            </summary>
+    </member>
+    <member name="P:Limilabs.FTP.BasicConstant.Name">
+      <summary>
+            Gets the name of the constant.
+            </summary>
+    </member>
+    <member name="M:Limilabs.FTP.BasicConstant.Equals(Limilabs.FTP.BasicConstant)">
+      <summary>
+             Determines whether the specified <see cref="T:Limilabs.FTP.BasicConstant" /> object is equal to the current one.
+             Names are compared case insensitive.
+            </summary>
+      <param name="other">The <see cref="T:Limilabs.FTP.BasicConstant" /> to compare with the current <see cref="T:Limilabs.FTP.BasicConstant" /></param>
+      <returns>
+        <c>true</c> if the specified object is equal to the current object; otherwise, <c>false</c>.</returns>
+    </member>
+    <member name="M:Limilabs.FTP.BasicConstant.Equals(System.Object)">
+      <summary>
+            Determines whether the specified object is equal to the current object.
+            </summary>
+      <param name="obj">The object to compare with the current object. </param>
+      <returns>
+        <c>true</c> if the specified object is equal to the current object; otherwise, <c>false</c>.</returns>
+    </member>
+    <member name="M:Limilabs.FTP.BasicConstant.GetHashCode">
+      <summary>
+            Serves as a hash function for a particular type. 
+            </summary>
+      <returns>A hash code for the current <see cref="T:Limilabs.FTP.BasicConstant" />.</returns>
+    </member>
+    <member name="M:Limilabs.FTP.BasicConstant.op_Equality(Limilabs.FTP.BasicConstant,Limilabs.FTP.BasicConstant)">
+      <summary>
+            Checks is two <see cref="T:Limilabs.FTP.BasicConstant" /> objects are same.
+            </summary>
+      <param name="left">First object to compare</param>
+      <param name="right">Second object to compare</param>
+      <returns>
+        <c>True</c> if flags are equal <c>false</c> otherwise</returns>
+    </member>
+    <member name="M:Limilabs.FTP.BasicConstant.op_Inequality(Limilabs.FTP.BasicConstant,Limilabs.FTP.BasicConstant)">
+      <summary>
+            Checks is two <see cref="T:Limilabs.FTP.BasicConstant" /> objects are different.
+            </summary>
+      <param name="left">First object to compare</param>
+      <param name="right">Second object to compare</param>
+      <returns>
+        <c>False</c> if flags are equal <c>true</c> otherwise</returns>
+    </member>
+    <member name="M:Limilabs.FTP.BasicConstant.ToString">
+      <summary>
+            Returns the <see cref="P:Limilabs.FTP.BasicConstant.Name" /> of this object.
+            </summary>
+      <returns>
+        <see cref="P:Limilabs.FTP.BasicConstant.Name" /> of this object.</returns>
+    </member>
+    <member name="T:Limilabs.FTP.Client.AuthExtension">
+      <summary>
+            Represets AUTH extension (AUTH SSL, AUTH TLS).
+            </summary>
+    </member>
+    <member name="P:Limilabs.FTP.Client.AuthExtension.Method">
+      <summary>
+            Gets AUTH method.
+            </summary>
+    </member>
+    <member name="T:Limilabs.FTP.Client.AuthMethod">
+      <summary>
+            Represents AUTH method (<see cref="F:Limilabs.FTP.Client.AuthMethod.SSL" />, <see cref="F:Limilabs.FTP.Client.AuthMethod.TLS" />).
+            </summary>
+    </member>
+    <member name="F:Limilabs.FTP.Client.AuthMethod.SSL">
+      <summary>
+            Represents AUTH SSL method.
+            </summary>
+    </member>
+    <member name="F:Limilabs.FTP.Client.AuthMethod.TLS">
+      <summary>
+            Represents AUTH TLS method.
+            </summary>
+    </member>
+    <member name="T:Limilabs.FTP.Client.BatchProgressEventArgs">
+      <summary>
+            Represents progress of the current operation
+            </summary>
+    </member>
+    <member name="P:Limilabs.FTP.Client.BatchProgressEventArgs.CurrentFile">
+      <summary>
+            Total files already transferred.
+            </summary>
+    </member>
+    <member name="P:Limilabs.FTP.Client.BatchProgressEventArgs.TotalFilesTransferred">
+      <summary>
+            Total files already transferred.
+            </summary>
+    </member>
+    <member name="P:Limilabs.FTP.Client.BatchProgressEventArgs.TotalFilesToTransfer">
+      <summary>
+            Total files to transfer.
+            </summary>
+    </member>
+    <member name="P:Limilabs.FTP.Client.BatchProgressEventArgs.TotalBytesToTransfer">
+      <summary>
+            Total bytes to transfer.
+            </summary>
+    </member>
+    <member name="P:Limilabs.FTP.Client.BatchProgressEventArgs.Percentage">
+      <summary>
+            Percentage of the finished job.
+            If <see cref="P:Limilabs.FTP.Client.BatchProgressEventArgs.TotalFilesToTransfer" /> is 0 returns -1.
+            </summary>
+    </member>
+    <member name="T:Limilabs.FTP.Client.ExtensionContainer">
+      <summary>
+            Represents extensions supported by the remote server.
+            You can access this object through <see cref="P:Limilabs.FTP.Client.Ftp.Extensions" /> property.
+            It is updated as soon as the connection is made, after login, and every time <see cref="M:Limilabs.FTP.Client.Ftp.Feat" /> method is used.
+            </summary>
+    </member>
+    <member name="P:Limilabs.FTP.Client.ExtensionContainer.SupportsMLST">
+      <summary>
+            Gets boolean value indicating if <see cref="F:Limilabs.FTP.Client.FtpExtension.MLST" /> is supported. 
+            True indicates you can use <see cref="M:Limilabs.FTP.Client.Ftp.MLST" />, <see cref="M:Limilabs.FTP.Client.Ftp.MLST(System.String)" /> and <see cref="M:Limilabs.FTP.Client.Ftp.MLSD" />, <see cref="M:Limilabs.FTP.Client.Ftp.MLSD(System.String)" /> methods.
+            <seealso cref="M:Limilabs.FTP.Client.Ftp.GetList" /></summary>
+    </member>
+    <member name="P:Limilabs.FTP.Client.ExtensionContainer.SupportsMFMT">
+      <summary>
+            Gets boolean value indicating if <see cref="F:Limilabs.FTP.Client.FtpExtension.MFMT" /> is supported. 
+            True indicates you can use <see cref="M:Limilabs.FTP.Client.Ftp.SetFileModificationTime(System.String,System.DateTime)" />  method.
+            </summary>
+    </member>
+    <member name="P:Limilabs.FTP.Client.ExtensionContainer.SupportsMDTM">
+      <summary>
+            Gets boolean value indicating if <see cref="F:Limilabs.FTP.Client.FtpExtension.MDTM" /> is supported. 
+            True indicates you can use <see cref="M:Limilabs.FTP.Client.Ftp.GetFileModificationTime(System.String)" /> and <see cref="M:Limilabs.FTP.Client.Ftp.SetFileModificationTime(System.String,System.DateTime)" /> method.
+            </summary>
+    </member>
+    <member name="P:Limilabs.FTP.Client.ExtensionContainer.SupportsUTF8">
+      <summary>
+            Gets boolean value indicating if <see cref="F:Limilabs.FTP.Client.FtpExtension.UTF8" /> is supported. 
+            </summary>
+    </member>
+    <member name="P:Limilabs.FTP.Client.ExtensionContainer.SupportsSize">
+      <summary>
+            Gets boolean value indicating if <see cref="F:Limilabs.FTP.Client.FtpExtension.Size" /> is supported. 
+            True indicates you can use <see cref="M:Limilabs.FTP.Client.Ftp.GetFileSize(System.String)" /> method.
+            </summary>
+    </member>
+    <member name="P:Limilabs.FTP.Client.ExtensionContainer.SupportsRestStream">
+      <summary>
+            Gets boolean value indicating if <see cref="F:Limilabs.FTP.Client.FtpExtension.Rest" /> extension with <see cref="F:Limilabs.FTP.Client.RestMethod.Stream" /> is supported. 
+            True indicates you can use <see cref="M:Limilabs.FTP.Client.Ftp.Download(System.String,System.Int64)" />, <see cref="M:Limilabs.FTP.Client.Ftp.Download(System.String,System.Int64,System.IO.Stream)" /> method.
+            </summary>
+    </member>
+    <member name="P:Limilabs.FTP.Client.ExtensionContainer.SupportsAuthSSL">
+      <summary>
+            Gets boolean value indicating if <see cref="F:Limilabs.FTP.Client.FtpExtension.Auth" /> extension with <see cref="F:Limilabs.FTP.Client.AuthMethod.SSL" /> is supported. 
+            True indicates you can use <see cref="M:Limilabs.FTP.Client.Ftp.AuthSSL" /> method.
+            </summary>
+    </member>
+    <member name="P:Limilabs.FTP.Client.ExtensionContainer.SupportsAuthTLS">
+      <summary>
+            Gets boolean value indicating if <see cref="F:Limilabs.FTP.Client.FtpExtension.Auth" /> extension with <see cref="F:Limilabs.FTP.Client.AuthMethod.TLS" /> is supported. 
+            True indicates you can use <see cref="M:Limilabs.FTP.Client.Ftp.AuthTLS" /> method.
+            </summary>
+    </member>
+    <member name="P:Limilabs.FTP.Client.ExtensionContainer.SupportsModeZ">
+      <summary>
+            Gets boolean value indicating if <see cref="F:Limilabs.FTP.Client.FtpExtension.Mode" /> extension with <see cref="F:Limilabs.FTP.Client.ModeMethod.ZLib" /> is supported. 
+            </summary>
+      <seealso cref="P:Limilabs.FTP.Client.Ftp.UsesCompression" />
+      <seealso cref="P:Limilabs.FTP.Client.Ftp.DontUseCompression" />
+    </member>
+    <member name="P:Limilabs.FTP.Client.ExtensionContainer.SupportedHashTypes">
+      <summary>
+            Gets all hash algorithms supported by the remote FTP server.
+            You can use values returned by this method as parameters for <see cref="M:Limilabs.FTP.Client.Ftp.GetFileHash(System.String,Limilabs.FTP.Client.FtpHashType)" /> and <see cref="M:Limilabs.FTP.Client.Ftp.GetFileHash(System.String,Limilabs.FTP.Client.FtpHashType,System.Int64,System.Int64)" /> methods.
+            </summary>
+    </member>
+    <member name="M:Limilabs.FTP.Client.ExtensionContainer.GetExtensions">
+      <summary>
+            Gets all extensions supported by the remote FTP server.
+            </summary>
+      <returns>Extension list supported by the remote FTP server.</returns>
+    </member>
+    <member name="M:Limilabs.FTP.Client.ExtensionContainer.Supports(Limilabs.FTP.Client.FtpExtension)">
+      <summary>
+            Checks if the remote FTP server supports specified extension.
+            </summary>
+      <param name="extension">Extensions to check (e.g. <see cref="F:Limilabs.FTP.Client.FtpExtension.MLST" />)</param>
+      <returns>Retruns true if the specified extension is supported.</returns>
+    </member>
+    <member name="T:Limilabs.FTP.Client.Ftp">
+      <summary>
+            FTP client implementation. 
+            Allows listing, moving, copying, downloading and uploading files using FTP/FTPS protocol.
+            </summary>
+      <remarks>
+        <a href="https://www.limilabs.com/ftp/rfc/5797">FTP Command and Extension Registry</a>
+      </remarks>
+    </member>
+    <member name="F:Limilabs.FTP.Client.Ftp.DefaultPort">
+      <summary>
+            Gets the number of default port used for FTP's control connection.
+            </summary>
+    </member>
+    <member name="F:Limilabs.FTP.Client.Ftp.DefaultSSLPort">
+      <summary>
+            Gets the number of default port used for FTP's control connection using SSL.
+            </summary>
+    </member>
+    <member name="E:Limilabs.FTP.Client.Ftp.Progress">
+      <summary>
+            Reports progress of the current upload or download. This event may be raised from a diffrent thread. 
+            </summary>
+    </member>
+    <member name="E:Limilabs.FTP.Client.Ftp.BatchProgress">
+      <summary>
+            Reports progress of the current batch upload or download.
+            </summary>
+    </member>
+    <member name="P:Limilabs.FTP.Client.Ftp.Extensions">
+      <summary>
+            Gets features container that can be used to check what <see cref="T:Limilabs.FTP.Client.FtpExtension" />s are supported by the server.
+            </summary>
+    </member>
+    <member name="P:Limilabs.FTP.Client.Ftp.Mode">
+      <summary>
+            FTP data connection mode: Active (client waits for incoming data connections) or Passive (client establishes data connections).
+            Passive is default.
+            </summary>
+      <remarks>You can specifies ports to use in active mode by using <see cref="P:Limilabs.FTP.Client.Ftp.ActiveModePorts" /> property.</remarks>
+    </member>
+    <member name="P:Limilabs.FTP.Client.Ftp.ActiveModePorts">
+      <summary>
+            Gets or sets the port range used in <see cref="F:Limilabs.FTP.Client.FtpMode.Active" /> mode.
+            This has no effect for passive mode transfers.
+            </summary>
+    </member>
+    <member name="P:Limilabs.FTP.Client.Ftp.ActiveModeAddress">
+      <summary>
+            Gets or sets the IP address announced to the FTP server when establishing an <see cref="F:Limilabs.FTP.Client.FtpMode.Active" /> mode data transfer.  
+            Don't set this unless needed. 
+            By default, the value of this property is <see cref="F:System.Net.IPAddress.None" /> which means that the address of the network interface is used instead. 
+            This has no effect for passive mode transfers.
+            </summary>
+    </member>
+    <member name="P:Limilabs.FTP.Client.Ftp.IgnorePassiveModeLocalAddress">
+      <summary>
+            Gets or sets the value indicating if a workaround for FTP servers that announce private range IP addresses even though a public IP was used for control connection.
+            By default, when such address is detected, an IP address announced by the server in response to PASV command is ignored.
+            Control's connection address is used instead. 
+            Default is <see langword="true" />.
+            </summary>
+    </member>
+    <member name="P:Limilabs.FTP.Client.Ftp.IgnorePassiveModeAddress">
+      <summary>
+            Ignores address sent by the FTP server for data connections in <see cref="F:Limilabs.FTP.Client.FtpMode.Passive" /> mode in response to PASV command. 
+            Default is <see langword="false" />.
+            </summary>
+    </member>
+    <member name="P:Limilabs.FTP.Client.Ftp.TransfersDataType">
+      <summary>
+            Gets or sets data type used for all data transfers. Default is <see cref="F:Limilabs.FTP.Client.FtpDataType.Binary" /> (I).
+            </summary>
+    </member>
+    <member name="P:Limilabs.FTP.Client.Ftp.ASCIIChangeNewLines">
+      <summary>
+            Specifies if new lines should be changed when <see cref="P:Limilabs.FTP.Client.Ftp.TransfersDataType" /> is set to <see cref="F:Limilabs.FTP.Client.FtpDataType.Ascii" /> transfers. Default is false.
+            </summary>
+    </member>
+    <member name="P:Limilabs.FTP.Client.Ftp.ProtectionBufferSize">
+      <summary>
+             Gets or sets the maximum size, in bytes, of the encoded data blocks to be sent or received during file transfer.
+            </summary>
+    </member>
+    <member name="P:Limilabs.FTP.Client.Ftp.DontUseCompression">
+      <summary>
+            Forces the compression not to be used. You should set this field before connecting to the remote server. Default value is false.
+            </summary>
+      <seealso cref="P:Limilabs.FTP.Client.Ftp.UsesCompression" />
+    </member>
+    <member name="P:Limilabs.FTP.Client.Ftp.UsesCompression">
+      <summary>
+            Gets a value indicating whether the compression is used for data transfers. 
+            </summary>
+      <seealso cref="P:Limilabs.FTP.Client.Ftp.DontUseCompression" />
+    </member>
+    <member name="M:Limilabs.FTP.Client.Ftp.#ctor">
+      <summary>
+            Initializes new instance of the Ftp class (IPv4 is used).
+            </summary>
+    </member>
+    <member name="M:Limilabs.FTP.Client.Ftp.#ctor(System.Net.Sockets.AddressFamily)">
+      <summary>
+            Initializes new instance of the Ftp class.
+            </summary>
+      <param name="addressFamily">Address family.</param>
+    </member>
+    <member name="M:Limilabs.FTP.Client.Ftp.GetServerGreeting">
+      <summary>
+            Get server's greeting.
+            </summary>
+    </member>
+    <member name="M:Limilabs.FTP.Client.Ftp.Connect(System.String)">
+      <summary>
+            Connects to FTP server on port 21. Use <see cref="M:Limilabs.FTP.Client.Ftp.ConnectSSL(System.String)" /> when SSL connection is needed.
+            </summary>
+      <param name="host">Target host name or IP address.</param>
+    </member>
+    <member name="M:Limilabs.FTP.Client.Ftp.ConnectSSL(System.String)">
+      <summary>
+            Connects to FTP server using SSL on port 990.
+            Please use <see cref="E:Limilabs.FTP.Client.TcpTextClient.ServerCertificateValidate" /> for self signed certificates.
+            </summary>
+      <param name="host">Target host name or IP address.</param>
+    </member>
+    <member name="M:Limilabs.FTP.Client.Ftp.BeginConnect(System.String)">
+      <summary>
+            Begins an asynchronous request for a remote server connection using <see cref="F:Limilabs.FTP.Client.Ftp.DefaultPort" />.
+            </summary>
+      <param name="host">The name or IP address of the remote server.</param>
+      <returns>An IAsyncResult that references the asynchronous connection.</returns>
+    </member>
+    <member name="M:Limilabs.FTP.Client.Ftp.BeginConnect(System.String,System.AsyncCallback)">
+      <summary>
+            Begins an asynchronous request for a remote server connection using <see cref="F:Limilabs.FTP.Client.Ftp.DefaultPort" />.
+            </summary>
+      <param name="host">The name or IP address of the remote server.</param>
+      <param name="asyncCallback">The AsyncCallback delegate.</param>
+      <returns>An IAsyncResult that references the asynchronous connection.</returns>
+    </member>
+    <member name="M:Limilabs.FTP.Client.Ftp.BeginConnectSSL(System.String)">
+      <summary>
+            Begins an asynchronous request for a remote server secure connection using <see cref="F:Limilabs.FTP.Client.Ftp.DefaultSSLPort" /> and SSL.
+            </summary>
+      <param name="host">The name or IP address of the remote server.</param>
+      <returns>An IAsyncResult that references the asynchronous connection.</returns>
+    </member>
+    <member name="M:Limilabs.FTP.Client.Ftp.BeginConnectSSL(System.String,System.AsyncCallback)">
+      <summary>
+            Begins an asynchronous request for a remote server secure connection using <see cref="F:Limilabs.FTP.Client.Ftp.DefaultSSLPort" /> and SSL.
+            </summary>
+      <param name="host">The name or IP address of the remote server.</param>
+      <param name="asyncCallback">The AsyncCallback delegate.</param>
+      <returns>An IAsyncResult that references the asynchronous connection.</returns>
+    </member>
+    <member name="M:Limilabs.FTP.Client.Ftp.AuthSSL">
+      <summary>
+            Secures the communication with remote server using SSL (explicit SSL).
+            Please use <see cref="E:Limilabs.FTP.Client.TcpTextClient.ServerCertificateValidate" /> event to handle self signed certificates.
+            </summary>
+    </member>
+    <member name="M:Limilabs.FTP.Client.Ftp.AuthTLS">
+      <summary>
+            Secures the communication with remote server using TLS (explicit SSL/TLS) (<a href="https://www.limilabs.com/ftp/rfc/4217">RFC 4217</a>).
+            Please use <see cref="E:Limilabs.FTP.Client.TcpTextClient.ServerCertificateValidate" /> event to handle self signed certificates.
+            </summary>
+      <remarks>
+            As the SSL/TLS protocols self-negotiate their levels, there is no need to distinguish between SSL and TLS.
+            </remarks>
+    </member>
+    <member name="M:Limilabs.FTP.Client.Ftp.SendCommand(System.String,System.Object[])">
+      <summary>
+            Executes command on the FTP server.
+            </summary>
+      <param name="command">Command (e.g. "HELP {0}").</param>
+      <param name="args">Command arguments.</param>
+      <returns>FTP server response.</returns>
+    </member>
+    <member name="M:Limilabs.FTP.Client.Ftp.SendCommand(System.String,System.Boolean,System.Object[])">
+      <summary>
+            Executes command on the FTP server.
+            </summary>
+      <param name="command">Command (e.g. "HELP {0}").</param>
+      <param name="throwException">If <c>true</c> throws <see cref="T:Limilabs.FTP.Client.FtpException" /> on negative response.</param>
+      <param name="args">Command arguments.</param>
+      <returns>FTP server response.</returns>
+    </member>
+    <member name="M:Limilabs.FTP.Client.Ftp.SendCommand(System.String)">
+      <summary>
+            Executes command on the FTP server.
+            </summary>
+      <param name="command">Command (e.g. "HELP").</param>
+      <returns>FTP server response.</returns>
+    </member>
+    <member name="M:Limilabs.FTP.Client.Ftp.SendCommand(System.String,System.Boolean)">
+      <summary>
+            Executes command on the FTP server.
+            </summary>
+      <param name="command">Command (e.g. "HELP").</param>
+      <param name="throwException">If <c>true</c> throws <see cref="T:Limilabs.FTP.Client.FtpException" /> on negative response.</param>
+      <returns>FTP server response.</returns>
+    </member>
+    <member name="M:Limilabs.FTP.Client.Ftp.Login(System.String)">
+      <summary>
+            Logs user in using specified user and empty password.
+            </summary>
+      <param name="user">User's login.</param>
+    </member>
+    <member name="M:Limilabs.FTP.Client.Ftp.LoginAnonymous">
+      <summary>
+            Logs user in using "anonymous" as user and "anonymous@example.com" as password.
+            </summary>
+    </member>
+    <member name="M:Limilabs.FTP.Client.Ftp.Login(System.String,System.String)">
+      <summary>
+            Logs user in.
+            </summary>
+      <param name="user">User's login.</param>
+      <param name="password">User's password.</param>
+    </member>
+    <member name="M:Limilabs.FTP.Client.Ftp.Login(System.String,System.String,System.String)">
+      <summary>
+            Logs user in.
+            </summary>
+      <param name="user">User's login.</param>
+      <param name="password">User's password.</param>
+      <param name="account">User's account.</param>
+    </member>
+    <member name="M:Limilabs.FTP.Client.Ftp.GetSystem">
+      <summary>
+            Returns the name of the remote OS.
+            </summary>
+      <returns>Remote OS.</returns>
+    </member>
+    <member name="M:Limilabs.FTP.Client.Ftp.Feat">
+      <summary>
+            Returns the list of additional features supported by the remote server (FEAT command).
+            </summary>
+      <returns>Additional features supported by the remote server</returns>
+    </member>
+    <member name="M:Limilabs.FTP.Client.Ftp.GetCurrentFolder">
+      <summary>
+            Gets the absolute path of the current working folder on the remote server.
+            </summary>
+      <returns>Absolute path of the current working remote folder.</returns>
+    </member>
+    <member name="M:Limilabs.FTP.Client.Ftp.ChangeFolder(System.String)">
+      <summary>
+            Changes the current working folder on the server.
+            </summary>
+      <param name="folder">Pathname of the folder to change to.</param>
+      <returns>Absolute path of the current working remote folder.</returns>
+    </member>
+    <member name="M:Limilabs.FTP.Client.Ftp.ChangeFolderUp">
+      <summary>
+            Changes the current working folder on the server one level up.
+            </summary>
+      <returns>Absolute path of the current working remote folder.</returns>
+    </member>
+    <member name="M:Limilabs.FTP.Client.Ftp.CreateFolder(System.String)">
+      <summary>
+            Creates a folder on the server.
+            </summary>
+      <param name="remotePath">Pathname of the new remote folder.</param>
+      <returns>Absolute path of the newly created or already existing remote folder.</returns>
+    </member>
+    <member name="M:Limilabs.FTP.Client.Ftp.CreateAllFolders(System.String)">
+      <summary>
+            Creates all the directories and subdirectories in a specified by the <paramref name="remotePath" />.
+            Some servers implement this feature by default, in such case you can use <see cref="M:Limilabs.FTP.Client.Ftp.CreateFolder(System.String)" /> method.
+            </summary>
+      <param name="remotePath">Pathname of the new remote folder.</param>
+      <returns>Absolute path of the newly created remote folder.</returns>
+    </member>
+    <member name="M:Limilabs.FTP.Client.Ftp.DeleteFolder(System.String)">
+      <summary>
+            Deletes an empty remote folder with the specified pathname.
+            </summary>
+      <param name="folder">Remote folder pathname.</param>
+    </member>
+    <member name="M:Limilabs.FTP.Client.Ftp.DeleteFolderRecursively(System.String)">
+      <summary>
+            Deletes remote folder recursively with the specified pathname.
+            </summary>
+      <param name="folder">Remote folder pathname.</param>
+    </member>
+    <member name="M:Limilabs.FTP.Client.Ftp.Rename(System.String,System.String)">
+      <summary>
+            Renames a file or folder on the server. 
+            </summary>
+      <param name="from"> The pathname of the remote file or folder to be renamed.</param>
+      <param name="to">The pathname to rename the file or folder to.</param>
+    </member>
+    <member name="M:Limilabs.FTP.Client.Ftp.GetFileSize(System.String)">
+      <summary>
+            Returns the size of the specified remote file.
+            You can check the value of <see cref="P:Limilabs.FTP.Client.ExtensionContainer.SupportsSize" /> of <see cref="P:Limilabs.FTP.Client.Ftp.Extensions" /> property to check if this method is supported by the remote server.
+            </summary>
+      <remarks>
+            On some servers this command works on folders.
+            </remarks>
+      <param name="remotePath">The path of the remote file.</param>
+      <returns>Size of the specified file in bytes.</returns>
+      <seealso cref="P:Limilabs.FTP.Client.Ftp.Extensions" />
+      <seealso cref="P:Limilabs.FTP.Client.ExtensionContainer.SupportsSize" />
+    </member>
+    <member name="M:Limilabs.FTP.Client.Ftp.GetFileModificationTime(System.String)">
+      <summary>
+            Returns the modification date and time of the specified remote file.
+            This method uses MDTM command (<a href="https://www.limilabs.com/ftp/rfc/3659">RFC 3659</a>), that may be NOT supported by the server.
+            You can check the value of <see cref="P:Limilabs.FTP.Client.ExtensionContainer.SupportsMDTM" /> of <see cref="P:Limilabs.FTP.Client.Ftp.Extensions" /> property to check if this method is supported by the remote server.
+            </summary>
+      <remarks>
+            On some servers this command works on folders.
+            </remarks>
+      <param name="remotePath">The path of the remote file or folder.</param>
+      <returns>Modification date of the specified file or folder.</returns>
+      <seealso cref="P:Limilabs.FTP.Client.Ftp.Extensions" />
+      <seealso cref="P:Limilabs.FTP.Client.ExtensionContainer.SupportsMDTM" />
+    </member>
+    <member name="M:Limilabs.FTP.Client.Ftp.SetFileModificationTime(System.String,System.DateTime)">
+      <summary>
+            Sets the modification date and time of the specified remote file.
+            This method uses MFTM (<a href="https://www.limilabs.com/ftp/rfc/draft-somers-ftp-mfxx-04">draft-somers-ftp-mfxx-04</a>) or MDTM (<a href="https://www.limilabs.com/ftp/rfc/3659">RFC 3659</a>) commands, that may be NOT supported by the server.
+            </summary>
+      <remarks>
+            On some servers this command works on folders.
+            </remarks>
+      <param name="remotePath">The path of the remote file or folder.</param>
+      <param name="newDateTime">New last modification date of the specified file or folder.</param>
+      <seealso cref="P:Limilabs.FTP.Client.Ftp.Extensions" />
+      <seealso cref="P:Limilabs.FTP.Client.ExtensionContainer.SupportsMFMT" />
+      <seealso cref="P:Limilabs.FTP.Client.ExtensionContainer.SupportsMDTM" />
+    </member>
+    <member name="M:Limilabs.FTP.Client.Ftp.SetTransferMode(Limilabs.FTP.Client.FtpTransferMode)">
+      <summary>
+            Forces transfer mode change.
+            </summary>
+      <param name="mode">Transfer mode to set (<see cref="F:Limilabs.FTP.Client.FtpTransferMode.Stream" />, <see cref="F:Limilabs.FTP.Client.FtpTransferMode.Zlib" />).</param>
+      <remarks>
+            Compresion (<see cref="F:Limilabs.FTP.Client.FtpTransferMode.Zlib" />) is turned on automatically when remote FTP server supports it (<see cref="P:Limilabs.FTP.Client.ExtensionContainer.SupportsModeZ" />).
+            </remarks>
+    </member>
+    <member name="M:Limilabs.FTP.Client.Ftp.Append(System.String,System.Byte[])">
+      <summary>
+            Appends the content of the byte array to the file on the server, creating it if it doesn't exists.
+            </summary>
+      <param name="remotePath">The path of the remote file.</param>
+      <param name="data">The source data.</param>
+      <returns>Server response send after the transfer completed.</returns>
+    </member>
+    <member name="M:Limilabs.FTP.Client.Ftp.Append(System.String,System.IO.Stream)">
+      <summary>
+            Appends the content of the data streamto the file on the server, creating it if it doesn't exists.
+            </summary>
+      <param name="remotePath">The path of the remote file.</param>
+      <param name="source">The source data stream.</param>
+      <returns>Server response send after the transfer completed.</returns>
+    </member>
+    <member name="M:Limilabs.FTP.Client.Ftp.Upload(System.String,System.String)">
+      <summary>
+            Uploads the content of the local file to the file on the server, overriding it if it already exists.
+            </summary>
+      <param name="remotePath">The path of the remote file.</param>
+      <param name="localPath">The path of the local file.</param>
+      <returns>Server response send after the transfer completed.</returns>
+    </member>
+    <member name="M:Limilabs.FTP.Client.Ftp.Upload(System.String,System.Byte[])">
+      <summary>
+            Uploads the content of the byte array to the file on the server.
+            </summary>
+      <param name="remotePath">The path of the remote file.</param>
+      <param name="data">The source data.</param>
+      <returns>Server response send after the transfer completed.</returns>
+    </member>
+    <member name="M:Limilabs.FTP.Client.Ftp.Upload(System.String,System.Int64,System.Byte[])">
+      <summary>
+            Uploads the content of the byte array to the file on the server starting from the specified remote position.
+            You can check the value of <see cref="P:Limilabs.FTP.Client.ExtensionContainer.SupportsRestStream" /> of <see cref="P:Limilabs.FTP.Client.Ftp.Extensions" /> property to check if this method is supported by the remote server.
+            </summary>
+      <seealso cref="M:Limilabs.FTP.Client.Ftp.GetFileHash(System.String,Limilabs.FTP.Client.FtpHashType)" />
+      <param name="remotePath">The path of the remote file.</param>
+      <param name="remoteStartPosition">The starting offset of the remote file.</param>
+      <param name="data">The source data.</param>
+      <returns>Server response send after the transfer completed.</returns>
+    </member>
+    <member name="M:Limilabs.FTP.Client.Ftp.Upload(System.String,System.IO.Stream)">
+      <summary>
+            Uploads the content of the data stream to the file on the server.
+            </summary>
+      <param name="remotePath">The path of the remote file.</param>
+      <param name="source">The source data stream.</param>
+      <returns>Server response send after the transfer completed.</returns>
+    </member>
+    <member name="M:Limilabs.FTP.Client.Ftp.Upload(System.String,System.Int64,System.IO.Stream)">
+      <summary>
+            Uploads the content of the data stream to the file on the server from the specified remote position.
+            You can check the value of <see cref="P:Limilabs.FTP.Client.ExtensionContainer.SupportsRestStream" /> of <see cref="P:Limilabs.FTP.Client.Ftp.Extensions" /> property to check if this method is supported by the remote server.
+            </summary>
+      <param name="remotePath">The path of the remote file.</param>
+      <param name="remoteStartPosition">The starting offset of the remote file.</param>
+      <param name="source">The source data stream.</param>
+      <returns>Server response send after the transfer completed.</returns>
+    </member>
+    <member name="M:Limilabs.FTP.Client.Ftp.Noop">
+      <summary>
+            Sends NO OPeration command to the server.
+            </summary>
+      <returns>Server response.</returns>
+    </member>
+    <member name="M:Limilabs.FTP.Client.Ftp.UploadUnique(System.Byte[])">
+      <summary>
+            Uploads the content of the local file to the file with unique name on the server.
+            </summary>
+      <param name="data">The source data.</param>
+      <returns>Name of the newly created unique file on the server.</returns>
+      <remarks>
+            Some servers support this command incorrectly (MS FTP).
+            Microsoft FTP Service does not return the filename in passive mode: 125 Data connection already open; Transfer starting.
+            </remarks>
+    </member>
+    <member name="M:Limilabs.FTP.Client.Ftp.UploadUnique(System.IO.Stream)">
+      <summary>
+            Uploads the content of the stream to the file with unique name on the server.
+            </summary>
+      <param name="source">The source data stream.</param>
+      <returns>Name of the newly created unique file on the server.</returns>
+      <remarks>
+            Some servers support this command incorrectly (MS FTP).
+            </remarks>
+    </member>
+    <member name="M:Limilabs.FTP.Client.Ftp.GetList">
+      <summary>
+            Returns parsed list of files and folders in the current server folder.
+            </summary>
+      <returns>List containing files and folders.</returns>
+      <remarks>
+             This method will use the MLSD command (<a href="https://www.limilabs.com/ftp/rfc/3659">RFC 3659</a>) if the server supports it, and the LIST command (<a href="https://www.limilabs.com/ftp/rfc/959">RFC 959</a>) if MLSD is not supported.
+            </remarks>
+    </member>
+    <member name="M:Limilabs.FTP.Client.Ftp.GetList(System.String)">
+      <summary>
+            Returns parsed list of files and folders in the specific server folder.
+            </summary>
+      <param name="remotePath">The path of the remote file or folder.</param>
+      <returns>List containing files and folders.</returns>
+      <remarks>
+             This method will use the MLSD command (<a href="https://www.limilabs.com/ftp/rfc/3659">RFC 3659</a>) if the server supports <see cref="F:Limilabs.FTP.Client.FtpExtension.MLST" /> extension and the LIST command (<a href="https://www.limilabs.com/ftp/rfc/959">RFC 959</a>) if this extensions is not supported.
+            </remarks>
+    </member>
+    <member name="M:Limilabs.FTP.Client.Ftp.List">
+      <summary>
+            Returns parsed list of files and folders in the current server folder. This method uses LIST command.
+            There is no standard that describes LIST command response, <see cref="M:Limilabs.FTP.Client.Ftp.GetList" /> is a better choice in most cases.
+            </summary>
+      <returns>List containing files and folders.</returns>
+    </member>
+    <member name="M:Limilabs.FTP.Client.Ftp.List(System.String)">
+      <summary>
+            Returns parsed list of files and folders in the specified server folder. This method uses LIST command (<a href="https://www.limilabs.com/ftp/rfc/959">RFC 959</a>).
+            There is no standard that describes LIST command response, <see cref="M:Limilabs.FTP.Client.Ftp.GetList(System.String)" /> is a better choice in most cases.
+            </summary>
+      <param name="remotePath">The path of the remote file or folder.</param>
+      <returns>List containing files and folders.</returns>
+    </member>
+    <member name="M:Limilabs.FTP.Client.Ftp.Site(System.String)">
+      <summary>
+            Sends SITE command to the server.
+            </summary>
+      <param name="argument">SITE command argument.</param>
+      <returns>Server response.</returns>
+    </member>
+    <member name="M:Limilabs.FTP.Client.Ftp.SiteChangeMode(System.String,Limilabs.FTP.Client.UnixPermissionSet)">
+      <summary>
+            Executes SITE CHMOD command - changes the permissions of the file to specified value
+            </summary>
+      <param name="remotePath">File to change permissions for.</param>
+      <param name="set">New permissions to set.</param>
+    </member>
+    <member name="M:Limilabs.FTP.Client.Ftp.SiteChangeMode(System.String)">
+      <summary>
+            Executes SITE CHMOD command: removes all privileges for all.
+            </summary>
+      <param name="remotePath">File to change permissions for.</param>
+    </member>
+    <member name="M:Limilabs.FTP.Client.Ftp.MLSD">
+      <summary>
+            Returns parsed list of files and folders in the current server folder. 
+            This method uses MLSD command (<a href="https://www.limilabs.com/ftp/rfc/3659">RFC 3659</a>), that may be NOT supported by the server.
+            </summary>
+      <returns>List containing files and folders.</returns>
+    </member>
+    <member name="M:Limilabs.FTP.Client.Ftp.MLSD(System.String)">
+      <summary>
+            Returns parsed list of files and folders in the specified folder or file information in case of a file.
+            This method uses MLSD command (<a href="https://www.limilabs.com/ftp/rfc/3659">RFC 3659</a>), that may be NOT supported by the server.
+            </summary>
+      <param name="remotePath">The path of the remote file or folder.</param>
+      <returns>List containing files and folders.</returns>
+    </member>
+    <member name="M:Limilabs.FTP.Client.Ftp.MLST">
+      <summary>
+            Returns information about current server folder.
+            This method uses MLST command (<a href="https://www.limilabs.com/ftp/rfc/3659">RFC 3659</a>), that may be NOT supported by the server.
+            </summary>
+      <remarks>
+            Returns name as full path.
+            </remarks>
+      <returns>Current folder information.</returns>
+    </member>
+    <member name="M:Limilabs.FTP.Client.Ftp.MLST(System.String)">
+      <summary>
+            Returns information about current server folder.
+            This method uses MLST command (<a href="https://www.limilabs.com/ftp/rfc/3659">RFC 3659</a>), that may be NOT supported by the server.
+            </summary>
+      <remarks>
+            Returns name as full path.
+            </remarks>
+      <param name="remotePath">The path of the remote file or folder.</param>
+      <returns>Information about specified file or folder.</returns>
+    </member>
+    <member name="M:Limilabs.FTP.Client.Ftp.DownloadFiles(System.String,System.String)">
+      <summary>
+            Downloads remote files to local location.
+            </summary>
+      <param name="remoteFolderPath">Remote folder to download from.</param>
+      <param name="localFolderPath">Local folder to download to.</param>
+    </member>
+    <member name="M:Limilabs.FTP.Client.Ftp.DownloadFiles(System.String)">
+      <summary>
+            Downloads remote files from the current server folder to the local location.
+            </summary>
+      <param name="localFolderPath">Local folder to download to.</param>
+    </member>
+    <member name="M:Limilabs.FTP.Client.Ftp.DownloadFiles(System.String,System.String,Limilabs.FTP.Client.RemoteSearchOptions)">
+      <summary>
+            Downloads remote files to the local location.
+            </summary>
+      <param name="remoteFolderPath">Remote folder to download from.</param>
+      <param name="localFolderPath">Local folder to download to.</param>
+      <param name="options">Options for remote search (e.g.: recursive, search pattern).</param>
+    </member>
+    <member name="M:Limilabs.FTP.Client.Ftp.DownloadFiles(System.String,System.Collections.Generic.List{Limilabs.FTP.Client.RemoteSearchItem})">
+      <summary>
+            Downloads remote files to the local location.
+            </summary>
+      <param name="remote">Remote search items returned by a call to <see cref="M:Limilabs.FTP.Client.Ftp.Search(Limilabs.FTP.Client.RemoteSearchOptions)" /> or <see cref="M:Limilabs.FTP.Client.Ftp.Search(System.String,Limilabs.FTP.Client.RemoteSearchOptions)" />.</param>
+      <param name="localFolderPath">Local folder to download to.</param>
+    </member>
+    <member name="M:Limilabs.FTP.Client.Ftp.DownloadFiles(System.String,Limilabs.FTP.Client.RemoteSearchOptions)">
+      <summary>
+            Downloads remote files from the current server folder to local location.
+            </summary>
+      <param name="localFolderPath">Local folder to download to.</param>
+      <param name="options">Options for remote search (e.g.: recursive, search pattern).</param>
+    </member>
+    <member name="M:Limilabs.FTP.Client.Ftp.UploadFiles(System.String,System.String)">
+      <summary>
+            Uploads local files to remote location.
+            </summary>
+      <param name="remotePath">Remote folder to upload to.</param>
+      <param name="localPath">Local folder to upload from.</param>
+    </member>
+    <member name="M:Limilabs.FTP.Client.Ftp.UploadFiles(System.String)">
+      <summary>
+            Uploads local files to the current remote server location.
+            </summary>
+      <param name="localPath">Local folder to upload from.</param>
+    </member>
+    <member name="M:Limilabs.FTP.Client.Ftp.UploadFiles(System.String,System.String,Limilabs.FTP.Client.LocalSearchOptions)">
+      <summary>
+            Uploads local files to remote location.
+            </summary>
+      <param name="remoteFolderPath">Remote folder to upload to.</param>
+      <param name="localFolderPath">Local folder to upload from.</param>
+      <param name="options">Options for local search (e.g.: recursive, search pattern).</param>
+    </member>
+    <member name="M:Limilabs.FTP.Client.Ftp.UploadFiles(System.String,Limilabs.FTP.Client.LocalSearchOptions)">
+      <summary>
+            Uploads local files to the current remote server location.
+            </summary>
+      <param name="localFolderPath">Local folder to upload from.</param>
+      <param name="options">Options for local search (e.g.: recursive, search pattern).</param>
+    </member>
+    <member name="M:Limilabs.FTP.Client.Ftp.Download(System.String)">
+      <summary>
+            Downloads the remote file.
+            </summary>
+      <param name="remotePath">The path of the remote file.</param>
+      <returns>Downloaded data.</returns>
+    </member>
+    <member name="M:Limilabs.FTP.Client.Ftp.Download(System.String,System.Int64)">
+      <summary>
+            Downloads the remote file starting from the specified position.
+            You can check the value of <see cref="P:Limilabs.FTP.Client.ExtensionContainer.SupportsRestStream" /> of <see cref="P:Limilabs.FTP.Client.Ftp.Extensions" /> property to check if this method is supported by the remote server.
+            </summary>
+      <param name="remotePath">The path of the remote file.</param>
+      <param name="remoteStartPosition">The starting offset of the remote file.</param>
+      <returns>Downloaded data.</returns>
+    </member>
+    <member name="M:Limilabs.FTP.Client.Ftp.Download(System.String,System.String)">
+      <summary>
+            Downloads the remote file to the local file.
+            </summary>
+      <param name="remotePath">The path of the remote file.</param>
+      <param name="localPath">The path of the local file.</param>
+    </member>
+    <member name="M:Limilabs.FTP.Client.Ftp.Download(System.String,System.IO.Stream)">
+      <summary>
+            Downloads the remote file to the data stream.
+            </summary>
+      <param name="remotePath">The path of the remote file.</param>
+      <param name="destination">The destination stream.</param>
+    </member>
+    <member name="M:Limilabs.FTP.Client.Ftp.Download(System.String,System.Int64,System.IO.Stream)">
+      <summary>
+            Downloads the remote file to the data stream starting from the specified position.
+            You can check the value of <see cref="P:Limilabs.FTP.Client.ExtensionContainer.SupportsRestStream" /> of <see cref="P:Limilabs.FTP.Client.Ftp.Extensions" /> property to check if this method is supported by the remote server.
+            </summary>
+      <param name="remotePath">The path of the remote file.</param>
+      <param name="remoteStartPosition">The starting offset of the remote file.</param>
+      <param name="destination">The destination stream.</param>
+    </member>
+    <member name="M:Limilabs.FTP.Client.Ftp.DeleteFile(System.String)">
+      <summary>
+            Deletes the file on the server.
+            </summary>
+      <param name="remotePath">The pathname of the file to be deleted. Either an absolute pathname or relative to the current working folder.</param>
+    </member>
+    <member name="M:Limilabs.FTP.Client.Ftp.DeleteFiles(System.String,Limilabs.FTP.Client.RemoteSearchOptions)">
+      <summary>
+            Deletes files from the server, that match specified pattern.
+            </summary>
+      <param name="remoteFolderPath">Remote folder to download from.</param>
+      <param name="options">Options for remote search (e.g.: recursive, search pattern).</param>
+    </member>
+    <member name="M:Limilabs.FTP.Client.Ftp.DeleteFiles(Limilabs.FTP.Client.RemoteSearchOptions)">
+      <summary>
+            Deletes files from the current server folder, that match specified pattern.
+            </summary>
+      <param name="options">Options for remote search (e.g.: recursive, search pattern).</param>
+    </member>
+    <member name="M:Limilabs.FTP.Client.Ftp.Search">
+      <summary>
+            Returns all files and folders on the server.
+            </summary>
+      <returns>All files and folders on the server.</returns>
+    </member>
+    <member name="M:Limilabs.FTP.Client.Ftp.Search(Limilabs.FTP.Client.RemoteSearchOptions)">
+      <summary>
+            Searches files and folders on the server that match specified pattern.
+            </summary>
+      <param name="options">Options for remote search (e.g.: recursive, search pattern).</param>
+      <returns>Items that match the search query.</returns>
+    </member>
+    <member name="M:Limilabs.FTP.Client.Ftp.Search(System.String,Limilabs.FTP.Client.RemoteSearchOptions)">
+      <summary>
+            Searches files and folders on the server that match specified pattern.
+            </summary>
+      <param name="remoteFolderPath">Remote folder to search.</param>
+      <param name="options">Options for remote search (e.g.: recursive, search pattern).</param>
+      <returns>Items that match the search query.</returns>
+    </member>
+    <member name="M:Limilabs.FTP.Client.Ftp.Abort">
+      <summary>
+            Aborts current transfers.
+            </summary>
+    </member>
+    <member name="M:Limilabs.FTP.Client.Ftp.FileExists(System.String)">
+      <summary>
+            Detects whether the specified file exists on the server.
+            </summary>
+      <param name="remotePath">The path of the remote file to check.</param>
+      <returns>True if the file exists, <see langword="false" /> otherwise.</returns>
+    </member>
+    <member name="M:Limilabs.FTP.Client.Ftp.FolderExists(System.String)">
+      <summary>
+            Detects whether the specified folder exists on the server.
+            </summary>
+      <param name="remotePath">The path of the remote folder to check.</param>
+      <returns>
+        <see langword="True" /> if the folder exists, <see langword="false" /> otherwise.</returns>
+    </member>
+    <member name="M:Limilabs.FTP.Client.Ftp.GetSupportedHashTypes">
+      <summary>
+            Returns checksum types supported by the server.
+            </summary>
+      <returns>Checksum types supported by the server.</returns>
+      <seealso cref="P:Limilabs.FTP.Client.Ftp.Extensions" />
+      <seealso cref="P:Limilabs.FTP.Client.ExtensionContainer.SupportedHashTypes" />
+    </member>
+    <member name="M:Limilabs.FTP.Client.Ftp.GetFileHash(System.String,Limilabs.FTP.Client.FtpHashType)">
+      <summary>
+            Returns the checksum of the specified remote file.
+            You can use <see cref="T:Limilabs.FTP.Client.Hash.FileHash" /> class to compute or validate local file checksum.        
+            </summary>
+      <seealso cref="P:Limilabs.FTP.Client.Ftp.Extensions" />
+      <seealso cref="P:Limilabs.FTP.Client.ExtensionContainer.SupportedHashTypes" />
+      <param name="remotePath">The path of the remote file.</param>
+      <param name="type">Hash algorithm used.</param>
+      <returns>Checksum of the specified remote file.</returns>
+    </member>
+    <member name="M:Limilabs.FTP.Client.Ftp.GetFileHash(System.String,Limilabs.FTP.Client.FtpHashType,System.Int64,System.Int64)">
+      <summary>
+            Returns the checksum of the specified remote file.
+            You can use <see cref="T:Limilabs.FTP.Client.Hash.FileHash" /> class to compute or validate local file checksum.
+            </summary>
+      <seealso cref="P:Limilabs.FTP.Client.Ftp.Extensions" />
+      <seealso cref="P:Limilabs.FTP.Client.ExtensionContainer.SupportedHashTypes" />
+      <param name="remotePath">The path of the remote file.</param>
+      <param name="type">Hash algorithm used.</param>
+      <param name="start">The offset in remote file where reading will start.</param>
+      <param name="count">The number of bytes to read.</param>
+      <returns>Checksum of the specified remote file.</returns>
+    </member>
+    <member name="M:Limilabs.FTP.Client.Ftp.KeepAliveDuringTransfer(System.TimeSpan)">
+      <summary>
+            Sets the interval, at which a NOOP command is sent on the control conenction during a file transfer.
+            </summary>
+      <param name="noopInterval">Specifies interval at which a NOOP command will be sent on the  control conenction during transfer. <see cref="F:System.TimeSpan.Zero" /> indicates that no NOOP command should be sent.</param>
+      <remarks>
+            Setting keep alive can be useful to prevent routers from prematurely closing the command channel while a long data transfer is taking place. 
+            It is generally not necessary to set a value less than 15 minutes (900 seconds).
+            Not all FTP servers support receiving NOOP commands during file transfers.
+            It's been observed that these servers will act strangely: not reply to the command, or only send the reply after the file transfer has completed.
+            This will cause the component to throw a timeout exception since it's expecting a reply within the timeout period.
+            If you see this behavior, consider not using this method.
+            </remarks>
+    </member>
+    <member name="M:Limilabs.FTP.Client.Ftp.Close">
+      <summary>
+            Sends QUIT command. Releases all resources acquired by this object.
+            </summary>
+    </member>
+    <member name="M:Limilabs.FTP.Client.Ftp.Close(System.Boolean)">
+      <summary>
+            Sends QUIT command. Releases all resources acquired by this object.
+            </summary>
+      <param name="throwException">If <c>true</c> throws <see cref="T:Limilabs.FTP.Client.FtpResponseException" /> on error response to QUIT command.</param>
+    </member>
+    <member name="T:Limilabs.FTP.Client.FtpDataType">
+      <summary>
+            Represents data connection transfer type (<see cref="F:Limilabs.FTP.Client.FtpDataType.Binary" />, <see cref="F:Limilabs.FTP.Client.FtpDataType.Ascii" />). 
+            You can use <see cref="P:Limilabs.FTP.Client.Ftp.TransfersDataType" /> to specify default transfer type explicitly.
+            </summary>
+    </member>
+    <member name="F:Limilabs.FTP.Client.FtpDataType.Binary">
+      <summary>
+            Binary transfer type (I).
+            </summary>
+    </member>
+    <member name="F:Limilabs.FTP.Client.FtpDataType.Ascii">
+      <summary>
+            ASCII transfer type (A)
+            RFC 959: The sender converts the data from an internal character representation to the standard 8-bit NVT-ASCII.
+            </summary>
+    </member>
+    <member name="F:Limilabs.FTP.Client.FtpDataType.Ebcdic">
+      <summary>
+            EBCDIC transfer type (E)
+            </summary>
+    </member>
+    <member name="T:Limilabs.FTP.Client.FtpException">
+      <summary>
+            Represents an error that occurred during FTP conversation.
+            </summary>
+    </member>
+    <member name="M:Limilabs.FTP.Client.FtpException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary>
+            Initializes new instance of FtpException with serialized data.
+            </summary>
+      <param name="info">Serialized object data.</param>
+      <param name="context">Contextual information.</param>
+    </member>
+    <member name="T:Limilabs.FTP.Client.FtpExtension">
+      <summary>
+            Represents single FTP extension.
+            <seealso cref="P:Limilabs.FTP.Client.Ftp.Extensions" /><seealso cref="T:Limilabs.FTP.Client.ExtensionContainer" /></summary>
+    </member>
+    <member name="F:Limilabs.FTP.Client.FtpExtension.Rest">
+      <summary>
+            Represents REST extension. Consider using <see cref="P:Limilabs.FTP.Client.ExtensionContainer.SupportsRestStream" /> property.
+            </summary>
+    </member>
+    <member name="F:Limilabs.FTP.Client.FtpExtension.MLST">
+      <summary>
+            Represents MLST extension.
+            </summary>
+    </member>
+    <member name="F:Limilabs.FTP.Client.FtpExtension.MFMT">
+      <summary>
+            Represents 'Modify Fact: Modification Time' (MFMT) extension (<a href="https://www.limilabs.com/ftp/rfc/draft-somers-ftp-mfxx-04">draft-somers-ftp-mfxx-04</a>).
+            <seealso cref="M:Limilabs.FTP.Client.Ftp.SetFileModificationTime(System.String,System.DateTime)" /></summary>
+    </member>
+    <member name="F:Limilabs.FTP.Client.FtpExtension.MDTM">
+      <summary>
+            Represents 'File Modification Time' (MDTM) extension (<a href="https://www.limilabs.com/ftp/rfc/3659">RFC 3659</a>).
+            <seealso cref="M:Limilabs.FTP.Client.Ftp.SetFileModificationTime(System.String,System.DateTime)" /><seealso cref="M:Limilabs.FTP.Client.Ftp.GetFileModificationTime(System.String)" /></summary>
+    </member>
+    <member name="F:Limilabs.FTP.Client.FtpExtension.UTF8">
+      <summary>
+            Represents UTF8 extension.
+            </summary>
+    </member>
+    <member name="F:Limilabs.FTP.Client.FtpExtension.Size">
+      <summary>
+            Represents SIZE extension. 
+            <seealso cref="M:Limilabs.FTP.Client.Ftp.GetFileSize(System.String)" /></summary>
+    </member>
+    <member name="F:Limilabs.FTP.Client.FtpExtension.Clnt">
+      <summary>
+            Represents CLNT extension.
+            </summary>
+    </member>
+    <member name="F:Limilabs.FTP.Client.FtpExtension.Mode">
+      <summary>
+            Represents MODE extension. Consider using <see cref="P:Limilabs.FTP.Client.ExtensionContainer.SupportsModeZ" /> property.
+            <seealso cref="M:Limilabs.FTP.Client.Ftp.SetTransferMode(Limilabs.FTP.Client.FtpTransferMode)" /></summary>
+    </member>
+    <member name="F:Limilabs.FTP.Client.FtpExtension.Auth">
+      <summary>
+            Represents AUTH extension. Consider using <see cref="P:Limilabs.FTP.Client.ExtensionContainer.SupportsAuthSSL" /> and <see cref="P:Limilabs.FTP.Client.ExtensionContainer.SupportsAuthTLS" />  property.
+            <seealso cref="M:Limilabs.FTP.Client.Ftp.AuthTLS" /><seealso cref="M:Limilabs.FTP.Client.Ftp.AuthSSL" /></summary>
+    </member>
+    <member name="F:Limilabs.FTP.Client.FtpExtension.XCRC">
+      <summary>
+            Represents XCRC extension. Consider using <see cref="P:Limilabs.FTP.Client.ExtensionContainer.SupportedHashTypes" /> property.
+            </summary>
+    </member>
+    <member name="F:Limilabs.FTP.Client.FtpExtension.XMD5">
+      <summary>
+            Represents XMD5 extension. Consider using <see cref="P:Limilabs.FTP.Client.ExtensionContainer.SupportedHashTypes" /> property.
+            </summary>
+    </member>
+    <member name="F:Limilabs.FTP.Client.FtpExtension.XSHA1">
+      <summary>
+            Represents XSHA1 extension. Consider using <see cref="P:Limilabs.FTP.Client.ExtensionContainer.SupportedHashTypes" /> property.
+            </summary>
+    </member>
+    <member name="F:Limilabs.FTP.Client.FtpExtension.XSHA256">
+      <summary>
+            Represents XSHA256 extension. Consider using <see cref="P:Limilabs.FTP.Client.ExtensionContainer.SupportedHashTypes" /> property.
+            </summary>
+    </member>
+    <member name="F:Limilabs.FTP.Client.FtpExtension.XSHA512">
+      <summary>
+            Represents XSHA1 extension. Consider using <see cref="P:Limilabs.FTP.Client.ExtensionContainer.SupportedHashTypes" /> property.
+            </summary>
+    </member>
+    <member name="T:Limilabs.FTP.Client.FtpHashType">
+      <summary>
+            Represents hash algorithm.
+            You can use <see cref="T:Limilabs.FTP.Client.Hash.FileHash" /> to compute or check hash of the file.
+            You can use <see cref="M:Limilabs.FTP.Client.Ftp.GetFileHash(System.String,Limilabs.FTP.Client.FtpHashType)" /> or
+            <see cref="M:Limilabs.FTP.Client.Ftp.GetFileHash(System.String,Limilabs.FTP.Client.FtpHashType,System.Int64,System.Int64)" />
+            to compute or check hash of the file on FTP server.
+            </summary>
+    </member>
+    <member name="F:Limilabs.FTP.Client.FtpHashType.CRC">
+      <summary>
+            CRC32 hash type (FTP client uses XCRC command).
+            </summary>
+    </member>
+    <member name="F:Limilabs.FTP.Client.FtpHashType.MD5">
+      <summary>
+            MD5 hash type (FTP client uses XMD5 command).
+            </summary>
+    </member>
+    <member name="F:Limilabs.FTP.Client.FtpHashType.SHA1">
+      <summary>
+            SHA-1 hash type (FTP client uses XSHA1 command).
+            </summary>
+    </member>
+    <member name="F:Limilabs.FTP.Client.FtpHashType.SHA256">
+      <summary>
+            SHA-256 hash type (FTP client uses XSHA256 command).
+            </summary>
+    </member>
+    <member name="F:Limilabs.FTP.Client.FtpHashType.SHA512">
+      <summary>
+            SHA-512 hash type (FTP client uses XSHA512 command).
+            </summary>
+    </member>
+    <member name="T:Limilabs.FTP.Client.FtpItem">
+      <summary>
+            Represents system entry (folder, file, link) stored on the server.
+            </summary>
+    </member>
+    <member name="P:Limilabs.FTP.Client.FtpItem.Name">
+      <summary>
+            Gets the name of the file system object.
+            </summary>
+    </member>
+    <member name="P:Limilabs.FTP.Client.FtpItem.SymlinkPath">
+      <summary>
+            Gets the path of the symbolic link.
+            </summary>
+      <seealso cref="P:Limilabs.FTP.Client.FtpItem.IsSymlink" />
+    </member>
+    <member name="P:Limilabs.FTP.Client.FtpItem.Size">
+      <summary>
+            Gets size of the file system object.
+            </summary>
+    </member>
+    <member name="P:Limilabs.FTP.Client.FtpItem.ModifyDate">
+      <summary>
+            Gets the last modification date of the file system object.
+            </summary>
+    </member>
+    <member name="P:Limilabs.FTP.Client.FtpItem.IsParentFolder">
+      <summary>
+            Returns true if object represents parent folder (".", "..").
+            </summary>
+    </member>
+    <member name="P:Limilabs.FTP.Client.FtpItem.IsCurrentFolder">
+      <summary>
+            Returns true if object represents current folder.
+            </summary>
+    </member>
+    <member name="P:Limilabs.FTP.Client.FtpItem.IsFolder">
+      <summary>
+            Returns true if object represents folder.
+            </summary>
+    </member>
+    <member name="P:Limilabs.FTP.Client.FtpItem.IsFile">
+      <summary>
+            Returns true if object represents file.
+            </summary>
+    </member>
+    <member name="P:Limilabs.FTP.Client.FtpItem.IsSymlink">
+      <summary>
+            Returns true if object represents symbolic link.
+            </summary>
+      <seealso cref="P:Limilabs.FTP.Client.FtpItem.SymlinkPath" />
+    </member>
+    <member name="P:Limilabs.FTP.Client.FtpItem.UnixPermissions">
+      <summary>
+            Gets UNIX permissions for this item.
+            This property is filled by <see cref="M:Limilabs.FTP.Client.Ftp.List" /> method (when remote server is running on UNIX/LINUX operating system)
+            or by <see cref="M:Limilabs.FTP.Client.Ftp.GetList" /> (when <see cref="F:Limilabs.FTP.Client.FtpExtension.MLST" /> is NOT supported and remote server is running on UNIX/LINUX operating system).
+            </summary>
+      <remarks>May be null.</remarks>
+    </member>
+    <member name="P:Limilabs.FTP.Client.FtpItem.Permissions">
+      <summary>
+            Gets MLSD permissions for this item.
+            This list is filled by <see cref="M:Limilabs.FTP.Client.Ftp.MLSD" /> method or by <see cref="M:Limilabs.FTP.Client.Ftp.GetList" /> 
+            (when <see cref="F:Limilabs.FTP.Client.FtpExtension.MLST" /> is supported and perm fact is returned by the server).
+            </summary>
+      <remarks>May be null.</remarks>
+    </member>
+    <member name="P:Limilabs.FTP.Client.FtpItem.Extensions">
+      <summary>
+            Provides access to additional elements parsed from the server response.
+            </summary>
+    </member>
+    <member name="M:Limilabs.FTP.Client.FtpItem.ToString">
+      <summary>
+            Returns the name of this file system object. 
+            </summary>
+      <returns>Name of this file system object. </returns>
+    </member>
+    <member name="T:Limilabs.FTP.Client.FtpMode">
+      <summary>
+            FTP data connection mode (<see cref="F:Limilabs.FTP.Client.FtpMode.Active" />, <see cref="F:Limilabs.FTP.Client.FtpMode.Passive" />). Use <see cref="P:Limilabs.FTP.Client.Ftp.Mode" /> property to get or set data connection mode.
+            </summary>
+    </member>
+    <member name="F:Limilabs.FTP.Client.FtpMode.Active">
+      <summary>
+            Client waits for incomming data connections.
+            </summary>
+    </member>
+    <member name="F:Limilabs.FTP.Client.FtpMode.Passive">
+      <summary>
+            Client establishes data connections.
+            </summary>
+    </member>
+    <member name="T:Limilabs.FTP.Client.FtpPermission">
+      <summary>
+            Represents FTP permissions returned using perm fact in response to MLSD command (<see cref="M:Limilabs.FTP.Client.Ftp.MLSD" /> method or <see cref="M:Limilabs.FTP.Client.Ftp.GetList" /> when <see cref="F:Limilabs.FTP.Client.FtpExtension.MLST" /> is supported)  
+            </summary>
+    </member>
+    <member name="F:Limilabs.FTP.Client.FtpPermission.Append">
+      <summary>
+            The "a" permission applies to objects of type=file, and indicates that the <see cref="M:Limilabs.FTP.Client.Ftp.Append(System.String,System.Byte[])" /> command may be applied to the file named.
+            </summary>
+    </member>
+    <member name="F:Limilabs.FTP.Client.FtpPermission.CreateFile">
+      <summary>
+            The "c" permission applies to objects of type=dir (and type=pdir, type=cdir).  
+            It indicates that files may be created in the directory named.  
+            That is, that a <see cref="M:Limilabs.FTP.Client.Ftp.UploadUnique(System.Byte[])" /> and <see cref="M:Limilabs.FTP.Client.Ftp.UploadUnique(System.IO.Stream)" /> commands are likely to succeed, 
+            and that <see cref="M:Limilabs.FTP.Client.Ftp.Upload(System.String,System.Byte[])" /> and <see cref="M:Limilabs.FTP.Client.Ftp.Append(System.String,System.Byte[])" /> commands might succeed if the file named did not previously exist, 
+            but is to be created in the directory object that has the "c" permission.  
+            It also indicates that the <see cref="M:Limilabs.FTP.Client.Ftp.Rename(System.String,System.String)" /> command is likely to succeed for names in the directory.
+            </summary>
+    </member>
+    <member name="F:Limilabs.FTP.Client.FtpPermission.Delete">
+      <summary>
+            The "d" permission applies to all types.  
+            It indicates that the object named may be deleted, that is, 
+            that the <see cref="M:Limilabs.FTP.Client.Ftp.DeleteFolder(System.String)" /> command may be applied to it if it is a directory, 
+            and otherwise that the <see cref="M:Limilabs.FTP.Client.Ftp.DeleteFile(System.String)" /> command may be applied to it.
+            </summary>
+    </member>
+    <member name="F:Limilabs.FTP.Client.FtpPermission.ChangeFolder">
+      <summary>
+            The "e" permission applies to the directory types. 
+            When set on an object of type=dir, type=cdir, or type=pdir it indicates that a <see cref="M:Limilabs.FTP.Client.Ftp.ChangeFolder(System.String)" />
+            command naming the object should succeed, and the user should be able to enter the directory named.  
+            For type=pdir it also indicates that the <see cref="M:Limilabs.FTP.Client.Ftp.ChangeFolderUp" /> command may succeed 
+            (if this particular pathname is the one to which a <see cref="M:Limilabs.FTP.Client.Ftp.ChangeFolderUp" /> would apply.)
+            </summary>
+    </member>
+    <member name="F:Limilabs.FTP.Client.FtpPermission.Rename">
+      <summary>
+            The "f" permission for objects indicates that the object named may be
+            renamed - that is, may be the object of an <see cref="M:Limilabs.FTP.Client.Ftp.Rename(System.String,System.String)" /> command.
+            </summary>
+    </member>
+    <member name="F:Limilabs.FTP.Client.FtpPermission.List">
+      <summary>
+            The "l" permission applies to the directory file types, and indicates
+            that the listing commands, <see cref="M:Limilabs.FTP.Client.Ftp.List" />, NLST, and <see cref="M:Limilabs.FTP.Client.Ftp.GetList" /> may be applied to the directory in question.
+            </summary>
+    </member>
+    <member name="F:Limilabs.FTP.Client.FtpPermission.CreateFolder">
+      <summary>
+            The "m" permission applies to directory types. 
+            It indicates that the <see cref="M:Limilabs.FTP.Client.Ftp.CreateFolder(System.String)" /> command may be used to create a new directory within the directory under consideration.
+            </summary>
+    </member>
+    <member name="F:Limilabs.FTP.Client.FtpPermission.Purge">
+      <summary>
+            The "p" permission applies to directory types. 
+            It indicates that objects in the directory may be deleted, 
+            or (stretching naming a little) that the directory may be purged.  
+            Note: it does not indicate that the RMD command may be used to remove the directory named itself, the "d" permission indicator indicates that.
+            </summary>
+    </member>
+    <member name="F:Limilabs.FTP.Client.FtpPermission.Read">
+      <summary>
+            The "r" permission applies to type=file objects, and for some systems, perhaps to other types of objects. 
+            It indicates that the <see cref="M:Limilabs.FTP.Client.Ftp.Download(System.String)" /> command may be applied to that object.
+            </summary>
+    </member>
+    <member name="F:Limilabs.FTP.Client.FtpPermission.Write">
+      <summary>
+            The "w" permission applies to type=file objects, and for some systems, perhaps to other types of objects. 
+            It indicates that the <see cref="M:Limilabs.FTP.Client.Ftp.Upload(System.String,System.Byte[])" /> command may be applied to the object named.
+            </summary>
+    </member>
+    <member name="T:Limilabs.FTP.Client.FtpResponse">
+      <summary>
+            Represents server response to FTP command.
+            </summary>
+    </member>
+    <member name="P:Limilabs.FTP.Client.FtpResponse.Code">
+      <summary>
+            Gets response code.
+            </summary>
+    </member>
+    <member name="P:Limilabs.FTP.Client.FtpResponse.Message">
+      <summary>
+            Gets response message.
+            </summary>
+    </member>
+    <member name="P:Limilabs.FTP.Client.FtpResponse.IsPositive">
+      <summary>
+            Returns <see langword="true" /> if response was positive. (1xy, 2yz, 3xy)
+            </summary>
+    </member>
+    <member name="P:Limilabs.FTP.Client.FtpResponse.IsPositivePreliminary">
+      <summary>
+            Returns <see langword="true" /> if the requested action has successfully started, but another reply is to be expected before the client issues another command. 
+            (1yz Positive Preliminary reply)
+            </summary>
+    </member>
+    <member name="P:Limilabs.FTP.Client.FtpResponse.IsPositiveCompletion">
+      <summary>
+            Returns <see langword="true" /> if response was positive completion. (2yz)
+            </summary>
+    </member>
+    <member name="P:Limilabs.FTP.Client.FtpResponse.IsPositiveIntermediate">
+      <summary>
+            Returns <see langword="true" /> if the requested action has been accepted, but more information is required. The client should send another command in reply. 
+            (3yz Positive Intermediate reply)
+            </summary>
+    </member>
+    <member name="P:Limilabs.FTP.Client.FtpResponse.IsNegative">
+      <summary>
+            Returns <see langword="true" /> if the  command failed, but it can be retried. (4yz Transient Negative reply)
+            </summary>
+    </member>
+    <member name="P:Limilabs.FTP.Client.FtpResponse.IsNegativePermanently">
+      <summary>
+            Returns <see langword="true" /> if the command failed permanently. (5yz Permanent Negative reply)
+            </summary>
+    </member>
+    <member name="P:Limilabs.FTP.Client.FtpResponse.Lines">
+      <summary>
+            Gets all lines (except <see cref="P:Limilabs.FTP.Client.FtpResponse.EndLine" />) returned by multi-line response.
+            </summary>
+    </member>
+    <member name="P:Limilabs.FTP.Client.FtpResponse.EndLine">
+      <summary>
+            Gets the last line returned by multi-line response.
+            </summary>
+    </member>
+    <member name="M:Limilabs.FTP.Client.FtpResponse.ToString">
+      <summary>
+            Returns <see cref="P:Limilabs.FTP.Client.FtpResponse.Message" /> of this response.
+            </summary>
+      <returns>
+        <see cref="P:Limilabs.FTP.Client.FtpResponse.Message" /> of this response</returns>
+    </member>
+    <member name="T:Limilabs.FTP.Client.FtpResponseException">
+      <summary>
+            Represents FTP server error response.
+            </summary>
+    </member>
+    <member name="P:Limilabs.FTP.Client.FtpResponseException.Response">
+      <summary>
+            Gets FTP server response that caused this exception to be thrown.
+            </summary>
+    </member>
+    <member name="M:Limilabs.FTP.Client.FtpResponseException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary>
+            Initializes new instance of ImapResponseException with serialized data.
+            </summary>
+      <param name="info">Serialized object data.</param>
+      <param name="context">Contextual information.</param>
+    </member>
+    <member name="T:Limilabs.FTP.Client.FtpTransferMode">
+      <summary>
+            Represents FTP transfer mode. Default is <see cref="F:Limilabs.FTP.Client.FtpTransferMode.Stream" />.
+            You can use <see cref="M:Limilabs.FTP.Client.Ftp.SetTransferMode(Limilabs.FTP.Client.FtpTransferMode)" /> method to force transfer mode change.
+            </summary>
+    </member>
+    <member name="F:Limilabs.FTP.Client.FtpTransferMode.Stream">
+      <summary>
+            Represents stream transfer mode (S)
+            </summary>
+    </member>
+    <member name="F:Limilabs.FTP.Client.FtpTransferMode.Zlib">
+      <summary>
+            Represents compressed transfer mode (Z)
+            </summary>
+    </member>
+    <member name="T:Limilabs.FTP.Client.Hash.FileHash">
+      <summary>
+            Utility class for computing and validating file checksum.
+            You can use 
+            <see cref="M:Limilabs.FTP.Client.Ftp.GetFileHash(System.String,Limilabs.FTP.Client.FtpHashType)" /> or <see cref="M:Limilabs.FTP.Client.Ftp.GetFileHash(System.String,Limilabs.FTP.Client.FtpHashType,System.Int64,System.Int64)" /> 
+            to obtain the hash value of the file on FTP server.
+            </summary>
+    </member>
+    <member name="M:Limilabs.FTP.Client.Hash.FileHash.#ctor(Limilabs.FTP.Client.FtpHashType)">
+      <summary>
+            Creates new instance of FileHash class.
+            </summary>
+      <param name="hashType">Hash type used to create </param>
+    </member>
+    <member name="M:Limilabs.FTP.Client.Hash.FileHash.Compute(System.String)">
+      <summary>
+            Computes hash value for specified file.
+            </summary>
+      <param name="path">The file to compute hash for.</param>
+      <returns>Hash value.</returns>
+    </member>
+    <member name="M:Limilabs.FTP.Client.Hash.FileHash.Compute(System.String,System.Int32)">
+      <summary>
+            Computes hash value for specified file.
+            </summary>
+      <param name="path">The file to compute hash for.</param>
+      <param name="length">Number of bytes to compute hash for.</param>
+      <returns>Hash value.</returns>
+    </member>
+    <member name="M:Limilabs.FTP.Client.Hash.FileHash.Compute(System.Byte[])">
+      <summary>
+            Computes hash value for specified data.
+            </summary>
+      <param name="data">Byte array to compute hash for.</param>
+      <returns>Hash value.</returns>
+    </member>
+    <member name="M:Limilabs.FTP.Client.Hash.FileHash.Compute(System.Byte[],System.Int32)">
+      <summary>
+            Computes hash value for specified data.
+            </summary>
+      <param name="data">Byte array to compute hash for.</param>
+      <param name="length">Number of bytes to compute hash for.</param>
+      <returns>Hash value.</returns>
+    </member>
+    <member name="M:Limilabs.FTP.Client.Hash.FileHash.Compute(System.IO.Stream)">
+      <summary>
+            Computes hash value for specified stream.
+            </summary>
+      <param name="stream">The stream to compute hash for.</param>
+      <returns>Hash value.</returns>
+    </member>
+    <member name="M:Limilabs.FTP.Client.Hash.FileHash.Compute(System.IO.Stream,System.Int32)">
+      <summary>
+            Computes hash value for specified stream.
+            </summary>
+      <param name="stream">The stream to compute hash for.</param>
+      <param name="length">Number of bytes to compute hash for.</param>
+      <returns>Hash value.</returns>
+    </member>
+    <member name="M:Limilabs.FTP.Client.Hash.FileHash.IsValid(System.String,System.Byte[])">
+      <summary>
+            Checks if the hash for specified file has correct value.
+            </summary>
+      <param name="path">The file to compute hash for.</param>
+      <param name="expectedHash">Expected hash.</param>
+      <returns>True if hashes match, false otherwise.</returns>
+    </member>
+    <member name="M:Limilabs.FTP.Client.Hash.FileHash.IsValid(System.String,System.Int32,System.Byte[])">
+      <summary>
+            Checks if the hash for specified file has correct value.
+            </summary>
+      <param name="path">The file to compute hash for.</param>
+      <param name="length">Number of bytes to compute hash for.</param>
+      <param name="expectedHash">Expected hash.</param>
+      <returns>True if hashes match, false otherwise.</returns>
+    </member>
+    <member name="M:Limilabs.FTP.Client.Hash.FileHash.IsValid(System.IO.Stream,System.Byte[])">
+      <summary>
+            Checks if the hash for specified stream has correct value.
+            </summary>
+      <param name="stream">The stream to compute hash for.</param>
+      <param name="expectedHash">Expected hash.</param>
+      <returns>True if hashes match, false otherwise.</returns>
+    </member>
+    <member name="M:Limilabs.FTP.Client.Hash.FileHash.IsValid(System.IO.Stream,System.Int32,System.Byte[])">
+      <summary>
+            Checks if the hash for specified stream has correct value.
+            </summary>
+      <param name="stream">The stream to compute hash for.</param>
+      <param name="length">Number of bytes to compute hash for.</param>
+      <param name="expectedHash">Expected hash.</param>
+      <returns>True if hashes match, false otherwise.</returns>
+    </member>
+    <member name="M:Limilabs.FTP.Client.Hash.FileHash.IsValid(System.String,System.String)">
+      <summary>
+            Checks if the hash for specified file has correct value.
+            </summary>
+      <param name="path">The file to compute hash for.</param>
+      <param name="expectedHashAsHex">Expected hash encoded as hex string (e.g.: 7BEE53C5).</param>
+      <returns>True if hashes match, false otherwise.</returns>
+    </member>
+    <member name="M:Limilabs.FTP.Client.Hash.FileHash.IsValid(System.String,System.Int32,System.String)">
+      <summary>
+            Checks if the hash for specified file has correct value.
+            </summary>
+      <param name="path">The file to compute hash for.</param>
+      <param name="length">Number of bytes to compute hash for.</param>
+      <param name="expectedHashAsHex">Expected hash encoded as hex string (e.g.: 7BEE53C5).</param>
+      <returns>True if hashes match, false otherwise.</returns>
+    </member>
+    <member name="M:Limilabs.FTP.Client.Hash.FileHash.IsValid(System.IO.Stream,System.String)">
+      <summary>
+            Checks if the hash for specified stream has correct value.
+            </summary>
+      <param name="stream">The stream to compute hash for.</param>
+      <param name="expectedHashAsHex">Expected hash encoded as hex string (e.g.: 7BEE53C5).</param>
+      <returns>True if hashes match, false otherwise.</returns>
+    </member>
+    <member name="M:Limilabs.FTP.Client.Hash.FileHash.IsValid(System.IO.Stream,System.Int32,System.String)">
+      <summary>
+            Checks if the hash for specified stream has correct value.
+            </summary>
+      <param name="stream">The stream to compute hash for.</param>
+      <param name="length">Number of bytes to compute hash for.</param>
+      <param name="expectedHashAsHex">Expected hash encoded as hex string (e.g.: 7BEE53C5).</param>
+      <returns>True if hashes match, false otherwise.</returns>
+    </member>
+    <member name="T:Limilabs.FTP.Client.LocalSearchOptions">
+      <summary>
+            Represents options for local search.
+            </summary>
+    </member>
+    <member name="P:Limilabs.FTP.Client.LocalSearchOptions.FolderPattern">
+      <summary>
+            The search string to match against the names of folder in path. Default is "*".
+            </summary>
+    </member>
+    <member name="P:Limilabs.FTP.Client.LocalSearchOptions.FilePattern">
+      <summary>
+            The search string to match against the names of files in path. Default is "*".
+            </summary>
+    </member>
+    <member name="P:Limilabs.FTP.Client.LocalSearchOptions.IgnoreCase">
+      <summary>
+            Specifies if <see cref="P:Limilabs.FTP.Client.LocalSearchOptions.FilePattern" /> and <see cref="P:Limilabs.FTP.Client.LocalSearchOptions.FolderPattern" /> is case sensitive or not.
+            </summary>
+    </member>
+    <member name="P:Limilabs.FTP.Client.LocalSearchOptions.UseRegex">
+      <summary>
+            Specifies if <see cref="P:Limilabs.FTP.Client.LocalSearchOptions.FilePattern" /> and <see cref="P:Limilabs.FTP.Client.LocalSearchOptions.FolderPattern" /> use regex matching (e.g. @"^.*\.txt$) or file matching (e.g. "*.txt").
+            </summary>
+    </member>
+    <member name="P:Limilabs.FTP.Client.LocalSearchOptions.Recursive">
+      <summary>
+            Specifies if search should include sub folders. Default is <see langword="true" />.
+            </summary>
+    </member>
+    <member name="M:Limilabs.FTP.Client.LocalSearchOptions.#ctor">
+      <summary>
+            Creates new LocalSearchOptions using default values.
+            </summary>
+    </member>
+    <member name="M:Limilabs.FTP.Client.LocalSearchOptions.#ctor(System.String,System.Boolean)">
+      <summary>
+            Creates new LocalSearchOptions using specified values.
+            </summary>
+      <param name="filePattern">The search string to match against the names of files in path.</param>
+      <param name="recursive">Specifies if search should include sub folders.</param>
+    </member>
+    <member name="M:Limilabs.FTP.Client.LocalSearchOptions.UseRegexMatch(System.String)">
+      <summary>
+            Specifies regex search pattern (e.g. @"^.*\.txt$").
+            </summary>
+      <param name="filePattern">Regex file pattern.</param>
+    </member>
+    <member name="M:Limilabs.FTP.Client.LocalSearchOptions.UseRegexMatch(System.String,System.String,System.Boolean)">
+      <summary>
+            Specifies regex search patterns (e.g. @"^.*\.txt$").
+            </summary>
+      <param name="folderPattern">Regex folder pattern.</param>
+      <param name="filePattern">Regex file pattern.</param>
+      <param name="ignoreCase">True if case should be ignored, false otherwise.</param>
+    </member>
+    <member name="M:Limilabs.FTP.Client.LocalSearchOptions.UseWildcardMatch(System.String)">
+      <summary>
+            Specifies wildcard search pattern (e.g. @"*.txt").
+            </summary>
+      <param name="filePattern">Regex file pattern.</param>
+    </member>
+    <member name="M:Limilabs.FTP.Client.LocalSearchOptions.UseWildcardMatch(System.String,System.String,System.Boolean)">
+      <summary>
+            Specifies wildcard search patterns (e.g. @"*.txt").
+            </summary>
+      <param name="folderPattern">Regex folder pattern.</param>
+      <param name="filePattern">Regex file pattern.</param>
+      <param name="ignoreCase">True if case should be ignored, false otherwise.</param>
+    </member>
+    <member name="T:Limilabs.FTP.Client.MLSTExtension">
+      <summary>
+            Representes MLST extension.
+            </summary>
+    </member>
+    <member name="P:Limilabs.FTP.Client.MLSTExtension.Parameters">
+      <summary>
+            Gets MLST extension parameters.
+            </summary>
+    </member>
+    <member name="T:Limilabs.FTP.Client.ModeExtension">
+      <summary>
+            Represents MODE extension.
+            </summary>
+    </member>
+    <member name="P:Limilabs.FTP.Client.ModeExtension.Methods">
+      <summary>
+            Gets MODE methods. At least <see cref="F:Limilabs.FTP.Client.ModeMethod.ZLib" /> should be supported.
+            </summary>
+    </member>
+    <member name="T:Limilabs.FTP.Client.ModeMethod">
+      <summary>
+            Represent <see cref="T:Limilabs.FTP.Client.ModeExtension" /> methods.
+            </summary>
+    </member>
+    <member name="F:Limilabs.FTP.Client.ModeMethod.ZLib">
+      <summary>
+            Represents MODE Z (ZLIB) mode method.
+            </summary>
+    </member>
+    <member name="T:Limilabs.FTP.Client.ProgressEventArgs">
+      <summary>
+            Represents progress of the current operation
+            </summary>
+    </member>
+    <member name="P:Limilabs.FTP.Client.ProgressEventArgs.TotalBytesTransferred">
+      <summary>
+            Gets total bytes already transferred.
+            </summary>
+    </member>
+    <member name="P:Limilabs.FTP.Client.ProgressEventArgs.TotalBytesToTransfer">
+      <summary>
+            Gets total bytes to transfer.
+            </summary>
+    </member>
+    <member name="P:Limilabs.FTP.Client.ProgressEventArgs.Transferred">
+      <summary>
+            Gets bytes transfered during last operation.
+            </summary>
+    </member>
+    <member name="P:Limilabs.FTP.Client.ProgressEventArgs.Percentage">
+      <summary>
+            Gets percentage of the finished job. If <see cref="P:Limilabs.FTP.Client.ProgressEventArgs.TotalBytesToTransfer" /> is 0 returns -1.
+            </summary>
+    </member>
+    <member name="T:Limilabs.FTP.Client.Range">
+      <summary>
+            Represents positive range of values.
+            Range(1, 3) represents values: 1,2,3.
+            Range(1, 1) represents single value: 1.
+            </summary>
+    </member>
+    <member name="P:Limilabs.FTP.Client.Range.Min">
+      <summary>
+            Minimum value included in this range.
+            </summary>
+    </member>
+    <member name="P:Limilabs.FTP.Client.Range.Max">
+      <summary>
+            Maximum value included in this range.
+            </summary>
+    </member>
+    <member name="M:Limilabs.FTP.Client.Range.#ctor(System.Int32,System.Int32)">
+      <summary>
+            Create new range with specified minimum and maximum values.
+            </summary>
+      <param name="min">Minimum value included in this range.</param>
+      <param name="max">Maximum value included in this range.</param>
+    </member>
+    <member name="M:Limilabs.FTP.Client.Range.ToString">
+      <summary>
+            Returns a string that represents the current object.
+            </summary>
+      <returns>String that represents the current object.</returns>
+    </member>
+    <member name="T:Limilabs.FTP.Client.RemoteSearchItem">
+      <summary>
+            Represents remote server search result item (file or folder), returned by <see cref="M:Limilabs.FTP.Client.Ftp.Search(Limilabs.FTP.Client.RemoteSearchOptions)" /> or  <see cref="M:Limilabs.FTP.Client.Ftp.Search(System.String,Limilabs.FTP.Client.RemoteSearchOptions)" /> method.
+            </summary>
+    </member>
+    <member name="P:Limilabs.FTP.Client.RemoteSearchItem.FtpItem">
+      <summary>
+            Gets the <see cref="T:Limilabs.FTP.Client.FtpItem" /> represented by this remote server search result item.
+            </summary>
+    </member>
+    <member name="P:Limilabs.FTP.Client.RemoteSearchItem.RemoteFolder">
+      <summary>
+            Gets the remote folder of this remote server search result item.
+            </summary>
+    </member>
+    <member name="P:Limilabs.FTP.Client.RemoteSearchItem.IsFolder">
+      <summary>
+            Gets the boolean value indicating if this remote server search result item is a folder.
+            </summary>
+    </member>
+    <member name="M:Limilabs.FTP.Client.RemoteSearchItem.GetRemotePath">
+      <summary>
+            Gets the full remote path of the <see cref="P:Limilabs.FTP.Client.RemoteSearchItem.FtpItem" /> represented by this remote server search result item.
+            </summary>
+      <returns>Remote server path.</returns>
+    </member>
+    <member name="T:Limilabs.FTP.Client.RemoteSearchOptions">
+      <summary>
+            Represents options for remote server search.
+            </summary>
+    </member>
+    <member name="P:Limilabs.FTP.Client.RemoteSearchOptions.FolderPattern">
+      <summary>
+            The search string to match against the names of folder in path. Default is "*".
+            </summary>
+    </member>
+    <member name="P:Limilabs.FTP.Client.RemoteSearchOptions.FilePattern">
+      <summary>
+            The search string to match against the names of files in path. Default is "*".
+            </summary>
+    </member>
+    <member name="P:Limilabs.FTP.Client.RemoteSearchOptions.IgnoreCase">
+      <summary>
+            Specifies if <see cref="P:Limilabs.FTP.Client.RemoteSearchOptions.FilePattern" /> and <see cref="P:Limilabs.FTP.Client.RemoteSearchOptions.FolderPattern" /> is case sensitive or not.
+            </summary>
+    </member>
+    <member name="P:Limilabs.FTP.Client.RemoteSearchOptions.UseRegex">
+      <summary>
+            Specifies if <see cref="P:Limilabs.FTP.Client.RemoteSearchOptions.FilePattern" /> and <see cref="P:Limilabs.FTP.Client.RemoteSearchOptions.FolderPattern" /> use regex matching (e.g. @"^.*\.txt$) or file matching (e.g. "*.txt").
+            </summary>
+    </member>
+    <member name="P:Limilabs.FTP.Client.RemoteSearchOptions.Recursive">
+      <summary>
+            Specifies if search should include sub folders. Default is <see langword="true" />.
+            </summary>
+    </member>
+    <member name="P:Limilabs.FTP.Client.RemoteSearchOptions.SymlinkAction">
+      <summary>
+            Specifies the action to take when symbolic link is found. Default is <see cref="F:Limilabs.FTP.Client.SearchSymlinkAction.Skip" />.
+            </summary>
+    </member>
+    <member name="M:Limilabs.FTP.Client.RemoteSearchOptions.#ctor">
+      <summary>
+            Creates new RemoteSearchOptions using default values.
+            </summary>
+    </member>
+    <member name="M:Limilabs.FTP.Client.RemoteSearchOptions.#ctor(System.String,System.Boolean)">
+      <summary>
+            Creates new RemoteSearchOptions using specified values.
+            </summary>
+      <param name="filePattern">The search string to match against the names of files in path.</param>
+      <param name="recursive">Specifies if search should include sub folders.</param>
+    </member>
+    <member name="M:Limilabs.FTP.Client.RemoteSearchOptions.UseRegexMatch(System.String)">
+      <summary>
+            Specifies regex search pattern (e.g. @"^.*\.txt$").
+            </summary>
+      <param name="filePattern">Regex file pattern.</param>
+    </member>
+    <member name="M:Limilabs.FTP.Client.RemoteSearchOptions.UseRegexMatch(System.String,System.String,System.Boolean)">
+      <summary>
+            Specifies regex search patterns (e.g. @"^.*\.txt$").
+            </summary>
+      <param name="folderPattern">Regex folder pattern.</param>
+      <param name="filePattern">Regex file pattern.</param>
+      <param name="ignoreCase">True if case should be ignored, false otherwise.</param>
+    </member>
+    <member name="M:Limilabs.FTP.Client.RemoteSearchOptions.UseWildcardMatch(System.String)">
+      <summary>
+            Specifies wildcard search pattern (e.g. @"*.txt").
+            </summary>
+      <param name="filePattern">Regex file pattern.</param>
+    </member>
+    <member name="M:Limilabs.FTP.Client.RemoteSearchOptions.UseWildcardMatch(System.String,System.String,System.Boolean)">
+      <summary>
+            Specifies wildcard search patterns (e.g. @"*.txt").
+            </summary>
+      <param name="folderPattern">Regex folder pattern.</param>
+      <param name="filePattern">Regex file pattern.</param>
+      <param name="ignoreCase">True if case should be ignored, false otherwise.</param>
+    </member>
+    <member name="M:Limilabs.FTP.Client.RemoteSearchOptions.UseLambdaMatch(Limilabs.Infrastructure.Func{Limilabs.FTP.Client.FtpItem,System.Boolean})">
+      <summary>
+            Specifies lambda search function.
+            </summary>
+      <param name="func">Search function.</param>
+    </member>
+    <member name="T:Limilabs.FTP.Client.RestExtension">
+      <summary>
+            Represents REST extension.
+            </summary>
+      <seeals cref="P:Limilabs.FTP.Client.ExtensionContainer.SupportsRestStream" />
+    </member>
+    <member name="P:Limilabs.FTP.Client.RestExtension.Methods">
+      <summary>
+            Gets REST methods. At least <see cref="F:Limilabs.FTP.Client.RestMethod.Stream" /> should be supported.
+            </summary>
+    </member>
+    <member name="T:Limilabs.FTP.Client.RestMethod">
+      <summary>
+            Represent <see cref="T:Limilabs.FTP.Client.RestExtension" /> methods.
+            </summary>
+    </member>
+    <member name="F:Limilabs.FTP.Client.RestMethod.Stream">
+      <summary>
+            Represents REST STREAM rest method.
+            </summary>
+    </member>
+    <member name="T:Limilabs.FTP.Client.SearchSymlinkAction">
+      <summary>
+            Specifies the action to take when symbolic link is found. 
+            </summary>
+    </member>
+    <member name="F:Limilabs.FTP.Client.SearchSymlinkAction.Skip">
+      <summary>
+            Ignore the symlink.
+            </summary>
+    </member>
+    <member name="F:Limilabs.FTP.Client.SearchSymlinkAction.Throw">
+      <summary>
+            Throw exception when symlink is found.
+            </summary>
+    </member>
+    <member name="F:Limilabs.FTP.Client.SearchSymlinkAction.Follow">
+      <summary>
+            Try to follow the symlink as regular folder.
+            </summary>
+    </member>
+    <member name="T:Limilabs.FTP.Client.ServerCertificateValidateEventArgs">
+      <summary>
+            Arguments for <see cref="T:Limilabs.FTP.Client.ServerCertificateValidateEventHandler" /> and <see cref="E:Limilabs.FTP.Client.TcpTextClient.ServerCertificateValidate" /> event.
+            </summary>
+    </member>
+    <member name="P:Limilabs.FTP.Client.ServerCertificateValidateEventArgs.Certificate">
+      <summary>
+            The certificate used to authenticate the remote party.
+            </summary>
+    </member>
+    <member name="P:Limilabs.FTP.Client.ServerCertificateValidateEventArgs.Chain">
+      <summary>
+            The _chain of certificate authorities associated with the remote certificate.
+            </summary>
+    </member>
+    <member name="P:Limilabs.FTP.Client.ServerCertificateValidateEventArgs.SslPolicyErrors">
+      <summary>
+            One or more errors associated with the remote certificate.
+            </summary>
+    </member>
+    <member name="P:Limilabs.FTP.Client.ServerCertificateValidateEventArgs.IsValid">
+      <summary>
+            Set this field to indicate validness of server's certificate.
+            </summary>
+    </member>
+    <member name="T:Limilabs.FTP.Client.ServerCertificateValidateEventHandler">
+      <summary>
+            Handler for ServerCertificateValidateEventHandler.
+            </summary>
+      <param name="sender">An object that contains state information for this validation.</param>
+      <param name="e">Event arguments. Use <see cref="P:Limilabs.FTP.Client.ServerCertificateValidateEventArgs.IsValid" /> to validate the certificate.</param>
+    </member>
+    <member name="T:Limilabs.FTP.Client.SSLConfiguration">
+      <summary>
+            Represents SSL configuration (client certificates, enabled SSL protocols)
+            </summary>
+    </member>
+    <member name="P:Limilabs.FTP.Client.SSLConfiguration.TargetHost">
+      <summary>
+            Gets or sets the target host name used for authenticating as client.
+            </summary>
+    </member>
+    <member name="P:Limilabs.FTP.Client.SSLConfiguration.CheckCertificateRevocation">
+      <summary>
+             Specifies whether the certificate revocation list is checked during authentication. Default is false.
+            </summary>
+    </member>
+    <member name="P:Limilabs.FTP.Client.SSLConfiguration.ClientCertificates">
+      <summary>
+             The <see cref="T:System.Security.Cryptography.X509Certificates.X509CertificateCollection" /> that contains client certificates.
+            </summary>
+    </member>
+    <member name="P:Limilabs.FTP.Client.SSLConfiguration.EnabledSslProtocols">
+      <summary>
+            Represents the protocol used for authentication. Default is <see cref="F:System.Security.Authentication.SslProtocols.Default" />.
+            </summary>
+    </member>
+    <member name="E:Limilabs.FTP.Client.SSLConfiguration.ServerCertificateValidate">
+      <summary>
+            Event which is called for custom server certificate validation.
+            </summary>
+    </member>
+    <member name="F:Limilabs.FTP.Client.SSLConfiguration.SelectLocalCertificate">
+      <summary>
+            Callback which is called for custom client certificate selection.
+            </summary>
+    </member>
+    <member name="T:Limilabs.FTP.Client.Syst">
+      <summary>
+            FTP server system. Use <see cref="M:Limilabs.FTP.Client.Ftp.GetSystem" /> to retrieve server system.
+            </summary>
+    </member>
+    <member name="F:Limilabs.FTP.Client.Syst.Windows">
+      <summary>
+            Windows
+            </summary>
+    </member>
+    <member name="F:Limilabs.FTP.Client.Syst.Unix">
+      <summary>
+            Unix
+            </summary>
+    </member>
+    <member name="F:Limilabs.FTP.Client.Syst.Netware">
+      <summary>
+            Netware
+            </summary>
+    </member>
+    <member name="F:Limilabs.FTP.Client.Syst.Unknown">
+      <summary>
+            Unknown
+            </summary>
+    </member>
+    <member name="T:Limilabs.FTP.Client.TcpTextClient">
+      <summary>
+            Implements TCP/IP text client.
+            </summary>
+    </member>
+    <member name="P:Limilabs.FTP.Client.TcpTextClient.SSLConfiguration">
+      <summary>
+            Gets SSL configuration for this object (client certificates, enabled SSL protocols).
+            </summary>
+    </member>
+    <member name="P:Limilabs.FTP.Client.TcpTextClient.Socket">
+      <summary>
+            Gets the underlying <see cref="P:Limilabs.FTP.Client.TcpTextClient.Socket" />.
+            </summary>
+    </member>
+    <member name="P:Limilabs.FTP.Client.TcpTextClient.Stream">
+      <summary>
+            Gets underlying read stream for current connection.
+            </summary>
+    </member>
+    <member name="M:Limilabs.FTP.Client.TcpTextClient.#ctor(System.Net.Sockets.AddressFamily)">
+      <summary>
+            Initializes a new instance of the TcpTextClient object.
+            Sets <see cref="P:Limilabs.FTP.Client.TcpTextClient.ReceiveTimeout" /> and <see cref="P:Limilabs.FTP.Client.TcpTextClient.SendTimeout" /> to 20 sec.
+            </summary>
+      <param name="addressFamily">Address family.</param>
+    </member>
+    <member name="M:Limilabs.FTP.Client.TcpTextClient.KeepAliveTcp(System.TimeSpan,System.TimeSpan)">
+      <summary>
+            Sets TCP protocol keep alive (SO_KEEPALIVE) option on.
+            </summary>
+      <param name="keepAliveTime">Duration between two keepalive transmissions in idle condition (TCP protocol default is 2h).</param>
+      <param name="keepAliveInterval">Duration between two successive keepalive retransmissions, if acknowledgement to the previous keepalive transmission is not received (TCP protocol default is 1s).</param>
+    </member>
+    <member name="P:Limilabs.FTP.Client.TcpTextClient.ReceiveTimeout">
+      <summary>
+            Gets or sets the amount of time the underlying <see cref="P:Limilabs.FTP.Client.TcpTextClient.Socket" /> will wait to receive data once a read operation is initiated.
+            </summary>
+    </member>
+    <member name="P:Limilabs.FTP.Client.TcpTextClient.SendTimeout">
+      <summary>
+            Gets or sets the amount of time the underlying <see cref="P:Limilabs.FTP.Client.TcpTextClient.Socket" /> will wait for a send operation to complete successfully.
+            </summary>
+    </member>
+    <member name="P:Limilabs.FTP.Client.TcpTextClient.Connected">
+      <summary>
+            Gets a value indicating whether the underlying <see cref="P:Limilabs.FTP.Client.TcpTextClient.Socket" /> is connected to a remote host.
+            This property makes a nonblocking, zero-byte Send call to determine the current state of the connection.
+            </summary>
+    </member>
+    <member name="P:Limilabs.FTP.Client.TcpTextClient.IsEncrypted">
+      <summary>
+            Gets a Boolean value that indicates whether communication to the remote server is encrypted.
+            </summary>
+    </member>
+    <member name="P:Limilabs.FTP.Client.TcpTextClient.IsSigned">
+      <summary>
+            Gets a Boolean value that indicates whether communication to the remote server is signed.
+            </summary>
+    </member>
+    <member name="P:Limilabs.FTP.Client.TcpTextClient.IsMutuallyAuthenticated">
+      <summary>
+            Gets a Boolean value that indicates whether communication to the remote server is mutually authenticated.
+            </summary>
+    </member>
+    <member name="M:Limilabs.FTP.Client.TcpTextClient.GetServerGreeting">
+      <summary>
+            Override this function to get server's greeting.
+            </summary>
+    </member>
+    <member name="E:Limilabs.FTP.Client.TcpTextClient.ServerCertificateValidate">
+      <summary>
+            Event which is called for custom server certificate validation.
+            </summary>
+    </member>
+    <member name="M:Limilabs.FTP.Client.TcpTextClient.Connect(System.String,System.Int32)">
+      <summary>
+            Connects to server. Use <see cref="M:Limilabs.FTP.Client.TcpTextClient.ConnectSSL(System.String,System.Int32)" /> when SSL connection is needed.
+            </summary>
+      <param name="host">Host name or IP address.</param>
+      <param name="port">Port number.</param>
+      <exception cref="T:Limilabs.FTP.Client.FtpException">
+            -ERR response,
+            Connection error.
+             </exception>
+    </member>
+    <member name="M:Limilabs.FTP.Client.TcpTextClient.ConnectSSL(System.String,System.Int32)">
+      <summary>
+            Connects to server using SSL.
+            </summary>
+      <param name="host">Host name or IP address.</param>
+      <param name="port">Port number.</param>
+      <exception cref="T:Limilabs.FTP.Client.FtpException">
+            -ERR response,
+            Connection error.
+             </exception>
+    </member>
+    <member name="M:Limilabs.FTP.Client.TcpTextClient.Connect(System.Net.IPAddress,System.Int32,System.Boolean)">
+      <summary>
+            Connects to server.
+            </summary>
+      <param name="ipAddress">IP address.</param>
+      <param name="port">Port number.</param>
+      <param name="useSSL">if <c>true</c> creates SSL connection.</param>
+      <exception cref="T:Limilabs.FTP.Client.FtpException">
+            -ERR response,
+            Connection error.
+             </exception>
+    </member>
+    <member name="M:Limilabs.FTP.Client.TcpTextClient.Connect(System.Net.IPEndPoint,System.Boolean)">
+      <summary>
+            Connects to server.
+            </summary>
+      <param name="ipEndPoint">IP end point of the connection.</param>
+      <param name="useSSL">if <c>true</c> creates SSL connection.</param>
+      <exception cref="T:Limilabs.FTP.Client.FtpException">
+            -ERR response,
+            Connection error.
+             </exception>
+    </member>
+    <member name="M:Limilabs.FTP.Client.TcpTextClient.Connect(System.String,System.Int32,System.Boolean)">
+      <summary>
+            Connects to server.
+            </summary>
+      <param name="host">Host name or IP address.</param>
+      <param name="port">Port number.</param>
+      <param name="useSSL">if <c>true</c> creates SSL connection</param>
+      <exception cref="T:Limilabs.FTP.Client.FtpException">
+            Error response, connection error.
+             </exception>
+    </member>
+    <member name="M:Limilabs.FTP.Client.TcpTextClient.BeginConnect(System.Net.IPEndPoint,System.Boolean)">
+      <summary>
+            Begins an asynchronous request for a remote server connection. 
+            </summary>
+      <param name="ipEndPoint">Network endpoint (IP address and port) of the remote server.</param>
+      <param name="useSSL">Creates SSL connection when set to <c>true</c>.</param>
+      <returns>An IAsyncResult that references the asynchronous connection.</returns>
+    </member>
+    <member name="M:Limilabs.FTP.Client.TcpTextClient.BeginConnectSSL(System.String,System.Int32)">
+      <summary>
+            Begins an asynchronous request for a remote server secure connection using SSL.
+            </summary>
+      <param name="host">The name or IP address of the remote server.</param>
+      <param name="port">The port number of the remote server.</param>
+      <returns>An IAsyncResult that references the asynchronous connection.</returns>
+    </member>
+    <member name="M:Limilabs.FTP.Client.TcpTextClient.BeginConnectSSL(System.String,System.Int32,System.AsyncCallback)">
+      <summary>
+            Begins an asynchronous request for a remote server secure connection using SSL.
+            </summary>
+      <param name="host">The name or IP address of the remote server.</param>
+      <param name="port">The port number of the remote server.</param>
+      <param name="asyncCallback">The AsyncCallback delegate.</param>
+      <returns>An IAsyncResult that references the asynchronous connection.</returns>
+    </member>
+    <member name="M:Limilabs.FTP.Client.TcpTextClient.BeginConnect(System.String,System.Int32)">
+      <summary>
+            Begins an asynchronous request for a remote server connection. You can use <see cref="M:Limilabs.FTP.Client.TcpTextClient.BeginConnectSSL(System.String,System.Int32)" /> when SSL connection is needed.
+            </summary>
+      <param name="host">The name or IP address of the remote server.</param>
+      <param name="port">The port number of the remote server.</param>
+      <returns>An IAsyncResult that references the asynchronous connection.</returns>
+    </member>
+    <member name="M:Limilabs.FTP.Client.TcpTextClient.BeginConnect(System.String,System.Int32,System.Boolean)">
+      <summary>
+            Begins an asynchronous request for a remote server connection. 
+            </summary>
+      <param name="host">The name or IP address of the remote server.</param>
+      <param name="port">The port number of the remote server.</param>
+      <param name="useSSL">Creates SSL connection when set to <c>true</c>.</param>
+      <returns>An IAsyncResult that references the asynchronous connection.</returns>
+    </member>
+    <member name="M:Limilabs.FTP.Client.TcpTextClient.BeginConnect(System.String,System.Int32,System.Boolean,System.AsyncCallback)">
+      <summary>
+            Begins an asynchronous request for a remote server connection.
+            </summary>
+      <param name="host">The name or IP address of the remote server.</param>
+      <param name="port">The port number of the remote server.</param>
+      <param name="useSSL">Creates SSL connection when set to <c>true</c>.</param>
+      <param name="asyncCallback">The AsyncCallback delegate.</param>
+      <returns>An IAsyncResult that references the asynchronous connection.</returns>
+    </member>
+    <member name="M:Limilabs.FTP.Client.TcpTextClient.EndConnect(System.IAsyncResult)">
+      <summary>
+            Ends a pending asynchronous connection request.
+            </summary>
+      <param name="result">Object that stores state information and any user defined data for this asynchronous operation.</param>
+    </member>
+    <member name="M:Limilabs.FTP.Client.TcpTextClient.Send(System.String)">
+      <summary>
+            Sends the text command to server.
+            Adds "\r\n" to the command.
+            </summary>
+      <exception cref="T:Limilabs.FTP.Client.FtpException">
+            An error occurred when accessing the socket.
+            -or-
+            The <see cref="T:System.Net.Sockets.NetworkStream" /> is closed.
+            -or-
+            There is a failure reading from the network.
+            </exception>
+      <param name="command">Text command to send.</param>
+    </member>
+    <member name="M:Limilabs.FTP.Client.TcpTextClient.Dispose(System.Boolean)">
+      <summary>
+            Releases all resources acquired by this object. Closes connection, without issuing any quit commands.
+            </summary>
+      <param name="disposing">Indicates if invoked by Dipsose method.</param>
+    </member>
+    <member name="M:Limilabs.FTP.Client.TcpTextClient.Dispose">
+      <summary>
+            Releases all resources acquired by this object. Closes connection, without issuing any quit commands.
+            </summary>
+    </member>
+    <member name="T:Limilabs.FTP.Client.UnixPermission">
+      <summary>
+            Represents single permission entry.
+            </summary>
+    </member>
+    <member name="F:Limilabs.FTP.Client.UnixPermission.None">
+      <summary>
+            None.
+            </summary>
+    </member>
+    <member name="F:Limilabs.FTP.Client.UnixPermission.Execute">
+      <summary>
+            Permission to execute/run.
+            </summary>
+    </member>
+    <member name="F:Limilabs.FTP.Client.UnixPermission.Write">
+      <summary>
+            Permission to write.
+            </summary>
+    </member>
+    <member name="F:Limilabs.FTP.Client.UnixPermission.Read">
+      <summary>
+            Permission to read.
+            </summary>
+    </member>
+    <member name="T:Limilabs.FTP.Client.UnixPermissionSet">
+      <summary>
+            Represents Unix permissions.
+            </summary>
+      <seealso cref="M:Limilabs.FTP.Client.Ftp.List" />
+      <seealso cref="P:Limilabs.FTP.Client.FtpItem.UnixPermissions" />
+    </member>
+    <member name="P:Limilabs.FTP.Client.UnixPermissionSet.OwnerUser">
+      <summary>
+            Gets or sets permissions for owning user.
+            </summary>
+    </member>
+    <member name="P:Limilabs.FTP.Client.UnixPermissionSet.OwnerGroup">
+      <summary>
+            Gets or sets permissions for owning group.
+            </summary>
+    </member>
+    <member name="P:Limilabs.FTP.Client.UnixPermissionSet.Others">
+      <summary>
+            Gets or sets permissions for other users/groups.
+            </summary>
+    </member>
+    <member name="M:Limilabs.FTP.Client.UnixPermissionSet.#ctor">
+      <summary>
+            Creates new, empty UnixPermissions object.
+            </summary>
+    </member>
+    <member name="M:Limilabs.FTP.Client.UnixPermissionSet.#ctor(Limilabs.FTP.Client.UnixPermission)">
+      <summary>
+            Creates new UnixPermissions object with <see cref="P:Limilabs.FTP.Client.UnixPermissionSet.OwnerUser" />, <see cref="P:Limilabs.FTP.Client.UnixPermissionSet.OwnerGroup" /> and <see cref="P:Limilabs.FTP.Client.UnixPermissionSet.Others" /> properties set to specified value.
+            </summary>
+      <param name="forAll">Permissions to be set for <see cref="P:Limilabs.FTP.Client.UnixPermissionSet.OwnerUser" />, <see cref="P:Limilabs.FTP.Client.UnixPermissionSet.OwnerGroup" /> and <see cref="P:Limilabs.FTP.Client.UnixPermissionSet.Others" /></param>
+    </member>
+    <member name="M:Limilabs.FTP.Client.UnixPermissionSet.ToNumber">
+      <summary>
+            Returns a number that represents this permission in CHMOD style (755, 666, 777, 0)
+            </summary>
+      <returns>Number that represents this premissions.</returns>
+    </member>
+    <member name="M:Limilabs.FTP.Client.UnixPermissionSet.ToNumberAsText">
+      <summary>
+            Returns a number as string that represents this permission in CHMOD command style ("755", "666", "777", "000")
+            </summary>
+      <returns>Number that represents this premissions.</returns>
+    </member>
+    <member name="M:Limilabs.FTP.Client.UnixPermissionSet.ToText">
+      <summary>
+            Returns a string that represents this permission in ls command style ("rw-r--r--", "rw-rw-rw-", "rwxrwxrwx", "000")
+            </summary>
+      <returns>String that represents this premissions.</returns>
+    </member>
+    <member name="M:Limilabs.FTP.Client.UnixPermissionSet.ParseText(System.String)">
+      <summary>
+            Parses ls command style text ("rw-r--r--", "rw-rw-rw-", "rwxrwxrwx", "000").
+            </summary>
+      <param name="text">Text to parse.</param>
+    </member>
+    <member name="M:Limilabs.FTP.Client.UnixPermissionSet.Equals(Limilabs.FTP.Client.UnixPermissionSet)">
+      <summary>
+            Indicates whether the current object is equal to another object of the same type.
+            </summary>
+      <returns>
+            true if the current object is equal to the <paramref name="other" /> parameter; otherwise, false.
+            </returns>
+      <param name="other">An object to compare with this object.
+                            </param>
+    </member>
+    <member name="M:Limilabs.FTP.Client.UnixPermissionSet.Equals(System.Object)">
+      <summary>
+            Determines whether the specified <see cref="T:System.Object" /> is equal to the current <see cref="T:System.Object" />.
+            </summary>
+      <returns>
+            true if the specified <see cref="T:System.Object" /> is equal to the current <see cref="T:System.Object" />; otherwise, false.
+            </returns>
+      <param name="obj">The <see cref="T:System.Object" /> to compare with the current <see cref="T:System.Object" />.</param>
+      <exception cref="T:System.NullReferenceException">The <paramref name="obj" /> parameter is null. </exception>
+      <filterpriority>2</filterpriority>
+    </member>
+    <member name="M:Limilabs.FTP.Client.UnixPermissionSet.GetHashCode">
+      <summary>
+            Serves as a hash function for a particular type. 
+            </summary>
+      <returns>
+            A hash code for the current <see cref="T:System.Object" />.
+            </returns>
+      <filterpriority>2</filterpriority>
+    </member>
+    <member name="M:Limilabs.FTP.Client.UnixPermissionSet.op_Equality(Limilabs.FTP.Client.UnixPermissionSet,Limilabs.FTP.Client.UnixPermissionSet)">
+      <summary>
+            Checks is two <see cref="T:Limilabs.FTP.Client.UnixPermissionSet" /> objects are same.
+            </summary>
+      <param name="left">First object to compare</param>
+      <param name="right">Second object to compare</param>
+      <returns>
+        <c>True</c> if permissions are equal <c>false</c> otherwise</returns>
+    </member>
+    <member name="M:Limilabs.FTP.Client.UnixPermissionSet.op_Inequality(Limilabs.FTP.Client.UnixPermissionSet,Limilabs.FTP.Client.UnixPermissionSet)">
+      <summary>
+            Checks is two <see cref="T:Limilabs.FTP.Client.UnixPermissionSet" /> objects are different.
+            </summary>
+      <param name="left">First object to compare</param>
+      <param name="right">Second object to compare</param>
+      <returns>
+        <c>False</c> if permissions are equal <c>true</c> otherwise</returns>
+    </member>
+    <member name="T:Limilabs.FTP.Licensing.LicenseHelper">
+      <summary>
+            Utility class for license related functions.
+            </summary>
+    </member>
+    <member name="M:Limilabs.FTP.Licensing.LicenseHelper.UseMachineKeyStore(System.Boolean)">
+      <summary>
+            Sets a value indicating whether the key should be persisted in the computer's key store instead of the user profile store.
+            </summary>
+      <param name="value">
+        <c>true</c> if the key should be persisted in the computer key store; otherwise, <c>false</c>.</param>
+    </member>
+    <member name="M:Limilabs.FTP.Licensing.LicenseHelper.GetLicensePath">
+      <summary>
+            Returns the file path used to load the license file.
+            </summary>
+      <returns>License file path.</returns>
+    </member>
+    <member name="M:Limilabs.FTP.Licensing.LicenseHelper.GetLicenseStatus">
+      <summary>
+            Gets the status of the license file.
+            </summary>
+      <returns>License file status.</returns>
+    </member>
+    <member name="T:Limilabs.FTP.Licensing.LicenseStatus">
+      <summary>
+            Status of the license validation.
+            </summary>
+      <seealso cref="M:Limilabs.FTP.Licensing.LicenseHelper.GetLicenseStatus" />
+    </member>
+    <member name="F:Limilabs.FTP.Licensing.LicenseStatus.NotLoaded">
+      <summary>
+            There was no attempt to load and check the license file yet.
+            </summary>
+    </member>
+    <member name="F:Limilabs.FTP.Licensing.LicenseStatus.NoLicenseFile">
+      <summary>
+            There is no license file in appropriate folder. 
+            Please check the value of <see cref="M:Limilabs.FTP.Licensing.LicenseHelper.GetLicensePath" /> method and place your license there.
+            </summary>
+    </member>
+    <member name="F:Limilabs.FTP.Licensing.LicenseStatus.Invalid">
+      <summary>
+            License was loaded, but is invalid.
+            </summary>
+    </member>
+    <member name="F:Limilabs.FTP.Licensing.LicenseStatus.InvalidXml">
+      <summary>
+            License was loaded, but the XML is invalid.
+            </summary>
+    </member>
+    <member name="F:Limilabs.FTP.Licensing.LicenseStatus.InvalidSignature">
+      <summary>
+            License was loaded, but it has invalid signature.
+            </summary>
+    </member>
+    <member name="F:Limilabs.FTP.Licensing.LicenseStatus.InvalidLicenseXml">
+      <summary>
+            License was loaded, but the XML is not a license.
+            </summary>
+    </member>
+    <member name="F:Limilabs.FTP.Licensing.LicenseStatus.Exception">
+      <summary>
+            License was loaded, but an exception occurred.
+            </summary>
+    </member>
+    <member name="F:Limilabs.FTP.Licensing.LicenseStatus.Valid">
+      <summary>
+            License was loaded and is valid.
+            </summary>
+    </member>
+    <member name="F:Limilabs.FTP.Licensing.LicenseStatus.Revoked">
+      <summary>
+            Valid license was loaded, but was revoked.
+            </summary>
+    </member>
+    <member name="T:Limilabs.FTP.Log">
+      <summary>
+            Represents Ftp.dll log. Use <see cref="P:Limilabs.FTP.Log.Enabled" /> property to turn on logging.
+            </summary>
+      <remarks>
+            You can use following xml in your configuration file to log to file:
+            
+            <code><configuration><system.diagnostics><trace autoflush="true" /><switches><add name="Ftp.dll" value="Verbose" /></switches><sources><source name="Ftp.dll"><listeners><add name="FtpLogFile" /></listeners></source></sources><sharedListeners><add name="FtpLogFile" type="System.Diagnostics.TextWriterTraceListener" initializeData="c:\ftp.log" /></sharedListeners></system.diagnostics></configuration></code></remarks>
+    </member>
+    <member name="E:Limilabs.FTP.Log.WriteLine">
+      <summary>
+            You can subscribe your logging library to this event.
+            </summary>
+    </member>
+    <member name="P:Limilabs.FTP.Log.Enabled">
+      <summary>
+            Gets or sets a value indicating whether logging is enabled or disabled.
+            You can observe the log on standard VS output -or- subscribe to <see cref="E:Limilabs.FTP.Log.WriteLine" /> event -or- use application's config file to turn on logging and add your own listeners.
+            </summary>
+    </member>
+    <member name="T:Limilabs.Infrastructure.Func`2">
+      <summary>
+            Encapsulates a method that has one parameter and returns a value of the type specified by the TResult parameter.
+            </summary>
+      <typeparam name="T">The type of the parameter of the method that this delegate encapsulates.</typeparam>
+      <typeparam name="TResult">The type of the return value of the method that this delegate encapsulates.</typeparam>
+      <param name="arg0">The parameter of the method that this delegate encapsulates.</param>
+      <returns>The return value of the method that this delegate encapsulates.</returns>
+    </member>
+  </members>
+</doc>

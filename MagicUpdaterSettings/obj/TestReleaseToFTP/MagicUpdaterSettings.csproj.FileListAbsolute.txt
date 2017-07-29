@@ -1,0 +1,22 @@
+D:\GitProjects\MagicUpdater\MagicUpdaterSettings\bin\TestReleaseToFTP\NLog.config
+D:\GitProjects\MagicUpdater\MagicUpdaterSettings\bin\TestReleaseToFTP\MagicUpdaterSettings.exe.config
+D:\GitProjects\MagicUpdater\MagicUpdaterSettings\bin\TestReleaseToFTP\MagicUpdaterSettings.exe
+D:\GitProjects\MagicUpdater\MagicUpdaterSettings\bin\TestReleaseToFTP\MagicUpdaterSettings.pdb
+D:\GitProjects\MagicUpdater\MagicUpdaterSettings\bin\TestReleaseToFTP\Communications.dll
+D:\GitProjects\MagicUpdater\MagicUpdaterSettings\bin\TestReleaseToFTP\MagicUpdaterCommon.dll
+D:\GitProjects\MagicUpdater\MagicUpdaterSettings\bin\TestReleaseToFTP\Newtonsoft.Json.dll
+D:\GitProjects\MagicUpdater\MagicUpdaterSettings\bin\TestReleaseToFTP\NLog.dll
+D:\GitProjects\MagicUpdater\MagicUpdaterSettings\bin\TestReleaseToFTP\Communications.pdb
+D:\GitProjects\MagicUpdater\MagicUpdaterSettings\bin\TestReleaseToFTP\MagicUpdaterCommon.pdb
+D:\GitProjects\MagicUpdater\MagicUpdaterSettings\bin\TestReleaseToFTP\Newtonsoft.Json.xml
+D:\GitProjects\MagicUpdater\MagicUpdaterSettings\bin\TestReleaseToFTP\NLog.xml
+\\sela.ru\Хранилище данных SELA MSK\==FTP==\cis_obmen\MagicUpdaterTest\NLog.config
+\\sela.ru\Хранилище данных SELA MSK\==FTP==\cis_obmen\MagicUpdaterTest\MagicUpdaterSettings.exe.config
+\\sela.ru\Хранилище данных SELA MSK\==FTP==\cis_obmen\MagicUpdaterTest\MagicUpdaterSettings.exe
+\\sela.ru\Хранилище данных SELA MSK\==FTP==\cis_obmen\MagicUpdaterTest\MagicUpdaterSettings.pdb
+D:\GitProjects\MagicUpdater\MagicUpdaterSettings\obj\TestReleaseToFTP\MagicUpdaterSettings.csprojResolveAssemblyReference.cache
+D:\GitProjects\MagicUpdater\MagicUpdaterSettings\obj\TestReleaseToFTP\MagicUpdaterSettings.Properties.Resources.resources
+D:\GitProjects\MagicUpdater\MagicUpdaterSettings\obj\TestReleaseToFTP\MagicUpdaterSettings.csproj.GenerateResource.Cache
+D:\GitProjects\MagicUpdater\MagicUpdaterSettings\obj\TestReleaseToFTP\MagicUpdaterSettings.exe
+D:\GitProjects\MagicUpdater\MagicUpdaterSettings\obj\TestReleaseToFTP\MagicUpdaterSettings.pdb
+D:\GitProjects\MagicUpdater\MagicUpdaterSettings\obj\TestReleaseToFTP\MagicUpdaterInstaller.SettingsForm.resources

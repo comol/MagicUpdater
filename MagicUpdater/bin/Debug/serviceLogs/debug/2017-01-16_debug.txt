@@ -1,0 +1,14 @@
+-----------------------------------
+2017-01-16 10:41:12.1642 DEBUG System.IO.IOException: Все копии канала заняты.
+
+   в System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   в System.IO.Pipes.NamedPipeServerStream.Create(String fullPipeName, PipeDirection direction, Int32 maxNumberOfServerInstances, PipeTransmissionMode transmissionMode, PipeOptions options, Int32 inBufferSize, Int32 outBufferSize, PipeAccessRights rights, SECURITY_ATTRIBUTES secAttrs)
+   в System.IO.Pipes.NamedPipeServerStream..ctor(String pipeName, PipeDirection direction, Int32 maxNumberOfServerInstances, PipeTransmissionMode transmissionMode, PipeOptions options, Int32 inBufferSize, Int32 outBufferSize, PipeSecurity pipeSecurity, HandleInheritability inheritability, PipeAccessRights additionalAccessRights)
+   в System.IO.Pipes.NamedPipeServerStream..ctor(String pipeName, PipeDirection direction, Int32 maxNumberOfServerInstances, PipeTransmissionMode transmissionMode, PipeOptions options)
+   в Communications.AsyncCore.AsyncServer.WaitForConnectionAsync() в D:\GitProjects\MagicUpdater\Communications\AsyncCore\AsyncServer.cs:строка 36
+   в MagicUpdater.ApplicationTools.ServerConnector.CreateAsyncServerBase() в D:\GitProjects\MagicUpdater\MagicUpdater\ApplicationTools\ServerConnector.cs:строка 61
+   в MagicUpdater.ApplicationTools.ServerConnector.CreateAsyncServer() в D:\GitProjects\MagicUpdater\MagicUpdater\ApplicationTools\ServerConnector.cs:строка 47
+   в MagicUpdater.Core.MuCore..ctor() в D:\GitProjects\MagicUpdater\MagicUpdater\Core\MuCore.cs:строка 16
+   в MagicUpdater.Service1.StartEntryPoint() в D:\GitProjects\MagicUpdater\MagicUpdater\Service1.cs:строка 107
+-----------------------------------
+2017-01-16 10:41:42.3602 DEBUG Служба остановлена

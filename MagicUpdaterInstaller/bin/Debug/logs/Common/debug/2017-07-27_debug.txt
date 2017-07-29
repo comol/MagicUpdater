@@ -1,0 +1,307 @@
+-----------------------------------
+2017-07-27 20:48:47.8211 DEBUG MagicUpdaterInstaller Тест соединения с Sql базой заданий успешно пройден.
+-----------------------------------
+2017-07-27 20:48:47.8541 DEBUG MagicUpdaterInstaller Создание Json - файла с настроками.
+-----------------------------------
+2017-07-27 20:48:48.0501 DEBUG MagicUpdaterInstaller Json с настройками подключения к базе заданий создан успешно.
+-----------------------------------
+2017-07-27 20:48:48.0541 DEBUG MagicUpdaterInstaller Проверка Json - файла.
+-----------------------------------
+2017-07-27 20:48:48.1281 DEBUG MagicUpdaterInstaller Проверка Json - файла завершена успешно.
+-----------------------------------
+2017-07-27 20:48:48.1551 DEBUG MagicUpdaterInstaller Поиск настроек агента в Sql базе заданий.
+-----------------------------------
+2017-07-27 20:48:48.2881 DEBUG MagicUpdaterInstaller Загрузка настроек из SQL: Ошибка регистрации компьютера, не получен ComputerId. Проверьте настройки и перезапустите службу. - настройки не найдены.
+-----------------------------------
+2017-07-27 20:48:48.2881 DEBUG MagicUpdaterInstaller Пробуем узнать версию 1С
+-----------------------------------
+2017-07-27 20:49:57.3351 DEBUG MagicUpdaterInstaller Компьютер не зарегистрирован... Производится регистрация компьютера.
+-----------------------------------
+2017-07-27 20:49:57.4671 DEBUG MagicUpdaterInstaller Регистрация компьютера произведена успешно.
+-----------------------------------
+2017-07-27 20:49:57.4671 DEBUG MagicUpdaterInstaller Проверка регистрации компьютера.
+-----------------------------------
+2017-07-27 20:49:57.5751 DEBUG MagicUpdaterInstaller Проверка регистрации компьютера успешно завершена.
+-----------------------------------
+2017-07-27 20:49:57.5751 DEBUG MagicUpdaterInstaller Сохранение главных настроек компьютера.
+-----------------------------------
+2017-07-27 20:49:57.5941 DEBUG MagicUpdaterInstaller Настройки компьютера успешно сохранены.
+-----------------------------------
+2017-07-27 20:49:57.5941 DEBUG MagicUpdaterInstaller Сохранение дополнительных настроек компьютера.
+-----------------------------------
+2017-07-27 20:49:57.6361 DEBUG MagicUpdaterInstaller System.NullReferenceException: Ссылка на объект не указывает на экземпляр объекта.
+   в MagicUpdaterInstaller.InstallerForm.btnNextStep_Click(Object sender, EventArgs e) в D:\GitProjects\MagicUpdater\MagicUpdaterInstaller\InstallerForm.cs:строка 649
+-----------------------------------
+2017-07-27 20:50:09.7318 DEBUG MagicUpdaterInstaller Тест соединения с Sql базой заданий успешно пройден.
+-----------------------------------
+2017-07-27 20:50:09.7318 DEBUG MagicUpdaterInstaller Создание Json - файла с настроками.
+-----------------------------------
+2017-07-27 20:50:09.7388 DEBUG MagicUpdaterInstaller Json с настройками подключения к базе заданий создан успешно.
+-----------------------------------
+2017-07-27 20:50:09.7388 DEBUG MagicUpdaterInstaller Проверка Json - файла.
+-----------------------------------
+2017-07-27 20:50:09.7388 DEBUG MagicUpdaterInstaller Проверка Json - файла завершена успешно.
+-----------------------------------
+2017-07-27 20:50:09.7898 DEBUG MagicUpdaterInstaller Поиск настроек агента в Sql базе заданий.
+-----------------------------------
+2017-07-27 20:50:09.9098 DEBUG MagicUpdaterInstaller Получение полного пути до exe - файла 1С: Версия 1С не указана в настройках - настройки не найдены.
+-----------------------------------
+2017-07-27 20:50:09.9098 DEBUG MagicUpdaterInstaller Пробуем узнать версию 1С
+-----------------------------------
+2017-07-27 20:50:28.8249 DEBUG MagicUpdaterInstaller Сохранение главных настроек компьютера.
+-----------------------------------
+2017-07-27 20:50:28.8349 DEBUG MagicUpdaterInstaller Настройки компьютера успешно сохранены.
+-----------------------------------
+2017-07-27 20:50:28.8349 DEBUG MagicUpdaterInstaller Сохранение дополнительных настроек компьютера.
+-----------------------------------
+2017-07-27 20:50:28.9449 DEBUG MagicUpdaterInstaller Дополнительные настройки компьютера успешно сохранены.
+-----------------------------------
+2017-07-27 20:50:28.9449 DEBUG MagicUpdaterInstaller Проверка настроек.
+-----------------------------------
+2017-07-27 20:50:29.0729 DEBUG MagicUpdaterInstaller Проверка настроек успешно завершена.
+-----------------------------------
+2017-07-27 20:50:29.0909 DEBUG MagicUpdaterInstaller Помечаем магазин как открытый.
+-----------------------------------
+2017-07-27 20:50:40.2365 DEBUG MagicUpdaterInstaller Установка службы.
+-----------------------------------
+2017-07-27 20:50:40.2525 DEBUG MagicUpdaterInstaller Тормозим старую службу...
+-----------------------------------
+2017-07-27 20:50:40.2875 DEBUG MagicUpdaterInstaller System.InvalidOperationException: Служба MagicUpdater не найдена на компьютере '.'. ---> System.ComponentModel.Win32Exception: Указанная служба не установлена
+   --- Конец трассировки внутреннего стека исключений ---
+   в System.ServiceProcess.ServiceController.GenerateNames()
+   в System.ServiceProcess.ServiceController.get_ServiceName()
+   в System.ServiceProcess.ServiceController.Stop()
+   в MagicUpdaterInstaller.MuServiceInstaller.UninstallBase() в D:\GitProjects\MagicUpdater\MagicUpdaterInstaller\MuServiceInstaller.cs:строка 84
+-----------------------------------
+2017-07-27 20:50:40.3165 DEBUG MagicUpdaterInstaller System.ComponentModel.Win32Exception (0x80004005): Указанная служба не установлена
+   в System.ServiceProcess.ServiceInstaller.RemoveService()
+   в System.ServiceProcess.ServiceInstaller.Uninstall(IDictionary savedState)
+   в MagicUpdaterInstaller.MuServiceInstaller.UninstallBase() в D:\GitProjects\MagicUpdater\MagicUpdaterInstaller\MuServiceInstaller.cs:строка 107
+-----------------------------------
+2017-07-27 20:50:40.3165 DEBUG MagicUpdaterInstaller Убиваем все процессы MagicUpdater...
+-----------------------------------
+2017-07-27 20:50:43.3257 DEBUG MagicUpdaterInstaller Все процессы MagicUpdater завершены
+-----------------------------------
+2017-07-27 20:50:43.3257 DEBUG MagicUpdaterInstaller Чистим реестр (автозагрузка MU как приложения в корне run)...
+-----------------------------------
+2017-07-27 20:50:43.3417 DEBUG MagicUpdaterInstaller CurrentUser: Значения для этого имени не существует.
+-----------------------------------
+2017-07-27 20:50:43.3417 DEBUG MagicUpdaterInstaller LocalMachine: Значения для этого имени не существует.
+-----------------------------------
+2017-07-27 20:50:43.3417 DEBUG MagicUpdaterInstaller Удаляем все из папок MagicUpdater и MagicUpdaterNewVer...
+-----------------------------------
+2017-07-27 20:50:43.3647 DEBUG MagicUpdaterInstaller Не удалось найти часть пути "C:\SystemUtils\MagicUpdater".
+-----------------------------------
+2017-07-27 20:50:43.3747 DEBUG MagicUpdaterInstaller Не удалось найти часть пути "C:\SystemUtils\MagicUpdaterNewVer".
+-----------------------------------
+2017-07-27 20:50:43.3747 DEBUG MagicUpdaterInstaller Копирование файла settings.json.
+-----------------------------------
+2017-07-27 20:50:43.3867 DEBUG MagicUpdaterInstaller Копирование файла settings.json успешно завершено.
+-----------------------------------
+2017-07-27 20:50:44.3878 DEBUG MagicUpdaterInstaller Скачиваем новую версию...
+-----------------------------------
+2017-07-27 20:52:30.2148 DEBUG MagicUpdaterInstaller Закачка нового MagicUpdater - завешена
+-----------------------------------
+2017-07-27 20:52:33.2180 DEBUG MagicUpdaterInstaller Установка новой службы MagicUpdater
+-----------------------------------
+2017-07-27 20:52:33.3530 DEBUG MagicUpdaterInstaller Новая служба MagicUpdater - установлена и запущена
+-----------------------------------
+2017-07-27 20:52:36.4962 DEBUG MagicUpdaterInstaller Для службы MagicUpdater - установлен отложенный запуск.
+-----------------------------------
+2017-07-27 20:52:36.5072 DEBUG MagicUpdaterInstaller Успешная установка службы.
+-----------------------------------
+2017-07-27 20:53:00.1745 DEBUG MagicUpdaterInstaller MagicUpdater успешно установлен.
+-----------------------------------
+2017-07-27 20:54:23.4773 DEBUG MagicUpdaterInstaller Удаление службы.
+-----------------------------------
+2017-07-27 20:54:23.5303 DEBUG MagicUpdaterInstaller Тормозим старую службу...
+-----------------------------------
+2017-07-27 20:54:23.7883 DEBUG MagicUpdaterInstaller Старая служба MagicUpdater - остановлена
+-----------------------------------
+2017-07-27 20:54:23.7883 DEBUG MagicUpdaterInstaller Старая служба остановлена
+-----------------------------------
+2017-07-27 20:54:31.8168 DEBUG MagicUpdaterInstaller Старая служба MagicUpdater - удалена
+-----------------------------------
+2017-07-27 20:54:31.8168 DEBUG MagicUpdaterInstaller Убиваем все процессы MagicUpdater...
+-----------------------------------
+2017-07-27 20:54:34.8369 DEBUG MagicUpdaterInstaller Все процессы MagicUpdater завершены
+-----------------------------------
+2017-07-27 20:54:34.8369 DEBUG MagicUpdaterInstaller Чистим реестр (автозагрузка MU как приложения в корне run)...
+-----------------------------------
+2017-07-27 20:54:34.8639 DEBUG MagicUpdaterInstaller CurrentUser: Значения для этого имени не существует.
+-----------------------------------
+2017-07-27 20:54:34.8639 DEBUG MagicUpdaterInstaller LocalMachine: Значения для этого имени не существует.
+-----------------------------------
+2017-07-27 20:54:34.8749 DEBUG MagicUpdaterInstaller Удаляем все из папок MagicUpdater и MagicUpdaterNewVer...
+-----------------------------------
+2017-07-27 20:54:34.8749 DEBUG MagicUpdaterInstaller Путь C:\SystemUtils\MagicUpdater\ - очищен
+-----------------------------------
+2017-07-27 20:54:34.8950 DEBUG MagicUpdaterInstaller Не удалось найти часть пути "C:\SystemUtils\MagicUpdaterNewVer".
+-----------------------------------
+2017-07-27 20:54:34.8950 DEBUG MagicUpdaterInstaller Успешное удаление службы.
+-----------------------------------
+2017-07-27 20:55:19.3245 DEBUG MagicUpdaterInstaller Тест соединения с Sql базой заданий успешно пройден.
+-----------------------------------
+2017-07-27 20:55:19.3435 DEBUG MagicUpdaterInstaller Создание Json - файла с настроками.
+-----------------------------------
+2017-07-27 20:55:19.3905 DEBUG MagicUpdaterInstaller Json с настройками подключения к базе заданий создан успешно.
+-----------------------------------
+2017-07-27 20:55:19.3905 DEBUG MagicUpdaterInstaller Проверка Json - файла.
+-----------------------------------
+2017-07-27 20:55:19.3905 DEBUG MagicUpdaterInstaller Проверка Json - файла завершена успешно.
+-----------------------------------
+2017-07-27 20:55:19.4265 DEBUG MagicUpdaterInstaller Поиск настроек агента в Sql базе заданий.
+-----------------------------------
+2017-07-27 20:55:19.5735 DEBUG MagicUpdaterInstaller Загрузка настроек из SQL: Ошибка регистрации компьютера, не получен ComputerId. Проверьте настройки и перезапустите службу. - настройки не найдены.
+-----------------------------------
+2017-07-27 20:55:19.5735 DEBUG MagicUpdaterInstaller Пробуем узнать версию 1С
+-----------------------------------
+2017-07-27 20:55:43.2439 DEBUG MagicUpdaterInstaller Компьютер не зарегистрирован... Производится регистрация компьютера.
+-----------------------------------
+2017-07-27 20:55:43.3579 DEBUG MagicUpdaterInstaller Регистрация компьютера произведена успешно.
+-----------------------------------
+2017-07-27 20:55:43.3599 DEBUG MagicUpdaterInstaller Проверка регистрации компьютера.
+-----------------------------------
+2017-07-27 20:55:43.4609 DEBUG MagicUpdaterInstaller Проверка регистрации компьютера успешно завершена.
+-----------------------------------
+2017-07-27 20:55:43.4609 DEBUG MagicUpdaterInstaller Сохранение главных настроек компьютера.
+-----------------------------------
+2017-07-27 20:55:43.4779 DEBUG MagicUpdaterInstaller Настройки компьютера успешно сохранены.
+-----------------------------------
+2017-07-27 20:55:43.4779 DEBUG MagicUpdaterInstaller Сохранение дополнительных настроек компьютера.
+-----------------------------------
+2017-07-27 20:55:43.5159 DEBUG MagicUpdaterInstaller System.NullReferenceException: Ссылка на объект не указывает на экземпляр объекта.
+   в MagicUpdaterInstaller.InstallerForm.btnNextStep_Click(Object sender, EventArgs e) в D:\GitProjects\MagicUpdater\MagicUpdaterInstaller\InstallerForm.cs:строка 649
+-----------------------------------
+2017-07-27 21:00:20.4357 DEBUG MagicUpdaterInstaller Тест соединения с Sql базой заданий успешно пройден.
+-----------------------------------
+2017-07-27 21:00:20.4547 DEBUG MagicUpdaterInstaller Создание Json - файла с настроками.
+-----------------------------------
+2017-07-27 21:00:20.5007 DEBUG MagicUpdaterInstaller Json с настройками подключения к базе заданий создан успешно.
+-----------------------------------
+2017-07-27 21:00:20.5007 DEBUG MagicUpdaterInstaller Проверка Json - файла.
+-----------------------------------
+2017-07-27 21:00:20.5197 DEBUG MagicUpdaterInstaller Проверка Json - файла завершена успешно.
+-----------------------------------
+2017-07-27 21:00:20.5517 DEBUG MagicUpdaterInstaller Поиск настроек агента в Sql базе заданий.
+-----------------------------------
+2017-07-27 21:00:20.6677 DEBUG MagicUpdaterInstaller Загрузка настроек из SQL: Ошибка регистрации компьютера, не получен ComputerId. Проверьте настройки и перезапустите службу. - настройки не найдены.
+-----------------------------------
+2017-07-27 21:00:20.6677 DEBUG MagicUpdaterInstaller Пробуем узнать версию 1С
+-----------------------------------
+2017-07-27 21:01:37.6801 DEBUG MagicUpdaterInstaller Компьютер не зарегистрирован... Производится регистрация компьютера.
+-----------------------------------
+2017-07-27 21:01:37.8051 DEBUG MagicUpdaterInstaller Регистрация компьютера произведена успешно.
+-----------------------------------
+2017-07-27 21:01:37.8111 DEBUG MagicUpdaterInstaller Проверка регистрации компьютера.
+-----------------------------------
+2017-07-27 21:01:37.9141 DEBUG MagicUpdaterInstaller Проверка регистрации компьютера успешно завершена.
+-----------------------------------
+2017-07-27 21:01:37.9181 DEBUG MagicUpdaterInstaller Сохранение главных настроек компьютера.
+-----------------------------------
+2017-07-27 21:01:37.9181 DEBUG MagicUpdaterInstaller Настройки компьютера успешно сохранены.
+-----------------------------------
+2017-07-27 21:01:37.9341 DEBUG MagicUpdaterInstaller Сохранение дополнительных настроек компьютера.
+-----------------------------------
+2017-07-27 21:01:38.0612 DEBUG MagicUpdaterInstaller Дополнительные настройки компьютера успешно сохранены.
+-----------------------------------
+2017-07-27 21:01:38.0612 DEBUG MagicUpdaterInstaller Проверка настроек.
+-----------------------------------
+2017-07-27 21:01:38.1792 DEBUG MagicUpdaterInstaller Проверка настроек успешно завершена.
+-----------------------------------
+2017-07-27 21:01:38.1942 DEBUG MagicUpdaterInstaller Помечаем магазин как открытый.
+-----------------------------------
+2017-07-27 21:01:39.6112 DEBUG MagicUpdaterInstaller Установка службы.
+-----------------------------------
+2017-07-27 21:01:39.6282 DEBUG MagicUpdaterInstaller Тормозим старую службу...
+-----------------------------------
+2017-07-27 21:01:39.6602 DEBUG MagicUpdaterInstaller System.InvalidOperationException: Служба MagicUpdater не найдена на компьютере '.'. ---> System.ComponentModel.Win32Exception: Указанная служба не установлена
+   --- Конец трассировки внутреннего стека исключений ---
+   в System.ServiceProcess.ServiceController.GenerateNames()
+   в System.ServiceProcess.ServiceController.get_ServiceName()
+   в System.ServiceProcess.ServiceController.Stop()
+   в MagicUpdaterInstaller.MuServiceInstaller.UninstallBase() в D:\GitProjects\MagicUpdater\MagicUpdaterInstaller\MuServiceInstaller.cs:строка 84
+-----------------------------------
+2017-07-27 21:01:39.6832 DEBUG MagicUpdaterInstaller System.ComponentModel.Win32Exception (0x80004005): Указанная служба не установлена
+   в System.ServiceProcess.ServiceInstaller.RemoveService()
+   в System.ServiceProcess.ServiceInstaller.Uninstall(IDictionary savedState)
+   в MagicUpdaterInstaller.MuServiceInstaller.UninstallBase() в D:\GitProjects\MagicUpdater\MagicUpdaterInstaller\MuServiceInstaller.cs:строка 107
+-----------------------------------
+2017-07-27 21:01:39.6832 DEBUG MagicUpdaterInstaller Убиваем все процессы MagicUpdater...
+-----------------------------------
+2017-07-27 21:01:42.6914 DEBUG MagicUpdaterInstaller Все процессы MagicUpdater завершены
+-----------------------------------
+2017-07-27 21:01:42.6914 DEBUG MagicUpdaterInstaller Чистим реестр (автозагрузка MU как приложения в корне run)...
+-----------------------------------
+2017-07-27 21:01:42.6914 DEBUG MagicUpdaterInstaller CurrentUser: Значения для этого имени не существует.
+-----------------------------------
+2017-07-27 21:01:42.7134 DEBUG MagicUpdaterInstaller LocalMachine: Значения для этого имени не существует.
+-----------------------------------
+2017-07-27 21:01:42.7134 DEBUG MagicUpdaterInstaller Удаляем все из папок MagicUpdater и MagicUpdaterNewVer...
+-----------------------------------
+2017-07-27 21:01:42.7284 DEBUG MagicUpdaterInstaller Не удалось найти часть пути "C:\SystemUtils\MagicUpdater".
+-----------------------------------
+2017-07-27 21:01:42.7384 DEBUG MagicUpdaterInstaller Не удалось найти часть пути "C:\SystemUtils\MagicUpdaterNewVer".
+-----------------------------------
+2017-07-27 21:01:42.7384 DEBUG MagicUpdaterInstaller Копирование файла settings.json.
+-----------------------------------
+2017-07-27 21:01:42.7384 DEBUG MagicUpdaterInstaller Копирование файла settings.json успешно завершено.
+-----------------------------------
+2017-07-27 21:01:43.7485 DEBUG MagicUpdaterInstaller Скачиваем новую версию...
+-----------------------------------
+2017-07-27 21:02:05.6847 DEBUG MagicUpdaterInstaller Закачка нового MagicUpdater - завешена
+-----------------------------------
+2017-07-27 21:02:08.6879 DEBUG MagicUpdaterInstaller Установка новой службы MagicUpdater
+-----------------------------------
+2017-07-27 21:02:08.8049 DEBUG MagicUpdaterInstaller Новая служба MagicUpdater - установлена и запущена
+-----------------------------------
+2017-07-27 21:02:11.9351 DEBUG MagicUpdaterInstaller Для службы MagicUpdater - установлен отложенный запуск.
+-----------------------------------
+2017-07-27 21:02:11.9481 DEBUG MagicUpdaterInstaller Успешная установка службы.
+-----------------------------------
+2017-07-27 21:02:14.5232 DEBUG MagicUpdaterInstaller MagicUpdater успешно установлен.
+-----------------------------------
+2017-07-27 21:03:32.1137 DEBUG MagicUpdaterInstaller Тест соединения с Sql базой заданий успешно пройден.
+-----------------------------------
+2017-07-27 21:03:32.1367 DEBUG MagicUpdaterInstaller Создание Json - файла с настроками.
+-----------------------------------
+2017-07-27 21:03:32.1827 DEBUG MagicUpdaterInstaller Json с настройками подключения к базе заданий создан успешно.
+-----------------------------------
+2017-07-27 21:03:32.1827 DEBUG MagicUpdaterInstaller Проверка Json - файла.
+-----------------------------------
+2017-07-27 21:03:32.1887 DEBUG MagicUpdaterInstaller Проверка Json - файла завершена успешно.
+-----------------------------------
+2017-07-27 21:03:32.2147 DEBUG MagicUpdaterInstaller Поиск настроек агента в Sql базе заданий.
+-----------------------------------
+2017-07-27 21:03:32.3457 DEBUG MagicUpdaterInstaller Настройки найдены.
+-----------------------------------
+2017-07-27 21:03:35.6189 DEBUG MagicUpdaterInstaller Установка не завершена!
+Установка прервана пользователем.
+-----------------------------------
+2017-07-27 21:08:08.0825 DEBUG MagicUpdaterInstaller Удаление службы.
+-----------------------------------
+2017-07-27 21:08:08.1615 DEBUG MagicUpdaterInstaller Тормозим старую службу...
+-----------------------------------
+2017-07-27 21:08:08.1975 DEBUG MagicUpdaterInstaller Старая служба MagicUpdater - остановлена
+-----------------------------------
+2017-07-27 21:08:08.1975 DEBUG MagicUpdaterInstaller Старая служба остановлена
+-----------------------------------
+2017-07-27 21:08:16.2729 DEBUG MagicUpdaterInstaller Старая служба MagicUpdater - удалена
+-----------------------------------
+2017-07-27 21:08:16.2729 DEBUG MagicUpdaterInstaller Убиваем все процессы MagicUpdater...
+-----------------------------------
+2017-07-27 21:08:19.2901 DEBUG MagicUpdaterInstaller Все процессы MagicUpdater завершены
+-----------------------------------
+2017-07-27 21:08:19.2901 DEBUG MagicUpdaterInstaller Чистим реестр (автозагрузка MU как приложения в корне run)...
+-----------------------------------
+2017-07-27 21:08:19.3111 DEBUG MagicUpdaterInstaller CurrentUser: Значения для этого имени не существует.
+-----------------------------------
+2017-07-27 21:08:19.3111 DEBUG MagicUpdaterInstaller LocalMachine: Значения для этого имени не существует.
+-----------------------------------
+2017-07-27 21:08:19.3111 DEBUG MagicUpdaterInstaller Удаляем все из папок MagicUpdater и MagicUpdaterNewVer...
+-----------------------------------
+2017-07-27 21:08:19.3281 DEBUG MagicUpdaterInstaller Путь C:\SystemUtils\MagicUpdater\ - очищен
+-----------------------------------
+2017-07-27 21:08:19.3401 DEBUG MagicUpdaterInstaller Не удалось найти часть пути "C:\SystemUtils\MagicUpdaterNewVer".
+-----------------------------------
+2017-07-27 21:08:19.3401 DEBUG MagicUpdaterInstaller Успешное удаление службы.

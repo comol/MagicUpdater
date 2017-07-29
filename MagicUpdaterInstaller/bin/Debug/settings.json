@@ -1,0 +1,15 @@
+{
+  "Server1C": null,
+  "Base1C": null,
+  "User1C": null,
+  "Password1C": null,
+  "Platform": null,
+  "AddressAst": null,
+  "UserAst": null,
+  "PasswordAst": null,
+  "ConnectionString": "Data Source=mskcsharp-dev.sela.ru;Initial Catalog=MagicUpdater;User ID=Sela;Password=Kizombo1313",
+  "ServerTask": "mskcsharp-dev.sela.ru",
+  "BaseTask": "MagicUpdater",
+  "UserTask": "Sela",
+  "PasswordTask": "Kizombo1313"
+}

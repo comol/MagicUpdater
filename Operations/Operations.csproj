@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E116F641-8547-4C75-AC0F-B88237AFD68A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Operations</RootNamespace>
+    <AssemblyName>Operations</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Ftp, Version=2.0.17017.1319, Culture=neutral, PublicKeyToken=6dc438ab78a525b3, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ftp.dll.2.0.17017.1319\lib\Net20\Ftp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Actions\BackupBaseAction.cs" />
+    <Compile Include="Actions\DelCacheFolders1C.cs" />
+    <Compile Include="Actions\FTPDownloadUpdate.cs" />
+    <Compile Include="Actions\KillAll1CUsers.cs" />
+    <Compile Include="Actions\KillAllProcess1CinShop.cs" />
+    <Compile Include="Actions\KillProcess1C.cs" />
+    <Compile Include="Actions\LockBackgroundJobsOnServer1C.cs" />
+    <Compile Include="Actions\OpenVikiAndShowDialogForStaticUpdate.cs" />
+    <Compile Include="Actions\SendLogsToCenter1C.cs" />
+    <Compile Include="Actions\StartServer1C.cs" />
+    <Compile Include="Actions\StartServerSQL.cs" />
+    <Compile Include="Actions\StartSettingsAferUpdate.cs" />
+    <Compile Include="Actions\StartWithParameter1C.cs" />
+    <Compile Include="Actions\StopServer1C.cs" />
+    <Compile Include="Actions\StopServerSQL.cs" />
+    <Compile Include="Actions\UnLockBackgroundJobsOnServer1C.cs" />
+    <Compile Include="Actions\UpdateBase1C.cs" />
+    <Compile Include="Actions\WorkContinueDialog.cs" />
+    <Compile Include="Operations\BackupBase.cs" />
+    <Compile Include="Operations\CacheClear1C.cs" />
+    <Compile Include="Operations\CheckFileExistsViaMd5.cs" />
+    <Compile Include="Operations\CheckShareAccess.cs" />
+    <Compile Include="Operations\DownloadPaltform1C.cs" />
+    <Compile Include="Operations\DynamicUpdate1C.cs" />
+    <Compile Include="Operations\ExecProcessing1C.cs" />
+    <Compile Include="Operations\ForceStaticUpdate1C.cs" />
+    <Compile Include="Operations\KillForceStaticUpdate.cs" />
+    <Compile Include="Operations\PlatformUpdate1C.cs" />
+    <Compile Include="Operations\RegisterViaMac_Service.cs" />
+    <Compile Include="Operations\RestartMagicUpdater_Service.cs" />
+    <Compile Include="Operations\SelfUpdate.cs" />
+    <Compile Include="Operations\ServerRestart1C.cs" />
+    <Compile Include="Operations\SetExternalIp_Service.cs" />
+    <Compile Include="Operations\SetLanMacToDB_Service.cs" />
+    <Compile Include="Operations\SetOperationsListCheckTimeout.cs" />
+    <Compile Include="Operations\StaticUpdate1C.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\MagicUpdaterCommon\MagicUpdaterCommon.csproj">
+      <Project>{D07B1F6C-D42C-4C1C-A2FB-767D685DF979}</Project>
+      <Name>MagicUpdaterCommon</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

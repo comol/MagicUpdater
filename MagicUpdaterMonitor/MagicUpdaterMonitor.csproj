@@ -1,0 +1,523 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{DF41638F-1AAB-4ED2-B554-9FCD30AAF744}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MagicUpdaterMonitor</RootNamespace>
+    <AssemblyName>MagicUpdaterMonitor</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>icons\favicon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release%28DebugInfo%29|AnyCPU' ">
+    <OutputPath>bin\Release%28DebugInfo%29\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>false</Optimize>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'ReleaseNoUpdate|AnyCPU'">
+    <OutputPath>bin\ReleaseNoUpdate\</OutputPath>
+    <DefineConstants>TRACE;NO_UPDATE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'PublicMonitorRelease|AnyCPU'">
+    <OutputPath>\\sela.ru\Data\RUS\MSK_Office\Деп-т ИТ\Обмен\MagicUpdaterMonitor1\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'ReleaseMonNoUpdate%28DebugInfo%29|AnyCPU'">
+    <OutputPath>bin\ReleaseMonNoUpdate%28DebugInfo%29\</OutputPath>
+    <DefineConstants>TRACE;NO_UPDATE</DefineConstants>
+    <Optimize>false</Optimize>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DemoRelease|AnyCPU'">
+    <OutputPath>bin\DemoRelease\</OutputPath>
+    <DefineConstants>TRACE;DEMO</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DemoRelease%28NoUpdate%29|AnyCPU'">
+    <OutputPath>bin\DemoRelease%28NoUpdate%29\</OutputPath>
+    <DefineConstants>TRACE;DEMO; NO_UPDATE;</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DotNetZip, Version=1.10.1.0, Culture=neutral, PublicKeyToken=6583c7c814667745, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetZip.1.10.1\lib\net20\DotNetZip.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>dll\Microsoft.Office.Interop.Excel.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Base\BaseSettingsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Base\BaseSettingsForm.Designer.cs">
+      <DependentUpon>BaseSettingsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Base\OperationBase.cs" />
+    <Compile Include="Base\BaseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Base\BaseForm.Designer.cs">
+      <DependentUpon>BaseForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Common\AppSettings.cs" />
+    <Compile Include="Common\TryResult.cs" />
+    <Compile Include="Controls\DetailsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\DetailsForm.Designer.cs">
+      <DependentUpon>DetailsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\OperationAttributes.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\OperationAttributes.Designer.cs">
+      <DependentUpon>OperationAttributes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\RefreshingGridView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\RefreshingGridView.Designer.cs">
+      <DependentUpon>RefreshingGridView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\CellExtensionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\CellExtensionForm.Designer.cs">
+      <DependentUpon>CellExtensionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ColumnFindingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\ColumnFindingForm.Designer.cs">
+      <DependentUpon>ColumnFindingForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\StepsTree\StepPropertiesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\StepsTree\StepPropertiesForm.Designer.cs">
+      <DependentUpon>StepPropertiesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\StepsTree\StepsTree.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\StepsTree\StepsTree.Designer.cs">
+      <DependentUpon>StepsTree.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\StepsTree\StepsTreeExt.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\AboutForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AboutForm.Designer.cs">
+      <DependentUpon>AboutForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\AgentSettingsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AgentSettingsForm.Designer.cs">
+      <DependentUpon>AgentSettingsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ApplicationLoadingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ApplicationLoadingForm.Designer.cs">
+      <DependentUpon>ApplicationLoadingForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ConfirmationWithTableForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ConfirmationWithTableForm.Designer.cs">
+      <DependentUpon>ConfirmationWithTableForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CreateOrEditOperationGroupForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CreateOrEditOperationGroupForm.Designer.cs">
+      <DependentUpon>CreateOrEditOperationGroupForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CreateShopForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CreateShopForm.Designer.cs">
+      <DependentUpon>CreateShopForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DialogTimerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DialogTimerForm.Designer.cs">
+      <DependentUpon>DialogTimerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\MoveToOperationGroupForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MoveToOperationGroupForm.Designer.cs">
+      <DependentUpon>MoveToOperationGroupForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\NewEditShedulerPluginTaskForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\NewEditShedulerPluginTaskForm.Designer.cs">
+      <DependentUpon>NewEditShedulerPluginTaskForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\NewEditShedulerStepForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\NewEditShedulerStepForm.Designer.cs">
+      <DependentUpon>NewEditShedulerStepForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\NewEditShedulerTaskForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\NewEditShedulerTaskForm.Designer.cs">
+      <DependentUpon>NewEditShedulerTaskForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\NewTaskForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\NewTaskForm.Designer.cs">
+      <DependentUpon>NewTaskForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ScheduleForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ScheduleForm.Designer.cs">
+      <DependentUpon>ScheduleForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SettingsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SettingsForm.Designer.cs">
+      <DependentUpon>SettingsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ShedulerFormNew.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ShedulerFormNew.Designer.cs">
+      <DependentUpon>ShedulerFormNew.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ShedulerPluginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ShedulerPluginForm.Designer.cs">
+      <DependentUpon>ShedulerPluginForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ShopSettingsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ShopSettingsForm.Designer.cs">
+      <DependentUpon>ShopSettingsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UpdatingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\UpdatingForm.Designer.cs">
+      <DependentUpon>UpdatingForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\Extensions.cs" />
+    <Compile Include="Helpers\ExtTools.cs" />
+    <Compile Include="Helpers\FilesWorks.cs" />
+    <Compile Include="Helpers\Mapping.cs" />
+    <Compile Include="Helpers\SelfUpdate.cs" />
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\LastVersionChecker.cs" />
+    <Compile Include="Helpers\SortableBindingList.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Controls\StepsTree\ABSTreeSaver\STreeNode.cs" />
+    <Compile Include="Controls\StepsTree\ABSTreeSaver\STROperation.cs" />
+    <Compile Include="Controls\StepsTree\StepsProperties.cs" />
+    <Compile Include="Images.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Images.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Settings.cs" />
+    <EmbeddedResource Include="Forms\CreateOrEditOperationGroupForm.resx">
+      <DependentUpon>CreateOrEditOperationGroupForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DialogTimerForm.resx">
+      <DependentUpon>DialogTimerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MoveToOperationGroupForm.resx">
+      <DependentUpon>MoveToOperationGroupForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\NewEditShedulerPluginTaskForm.resx">
+      <DependentUpon>NewEditShedulerPluginTaskForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\NewEditShedulerStepForm.resx">
+      <DependentUpon>NewEditShedulerStepForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\NewEditShedulerTaskForm.resx">
+      <DependentUpon>NewEditShedulerTaskForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ShedulerFormNew.resx">
+      <DependentUpon>ShedulerFormNew.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Images.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <Resource Include="icons\BasicFilter.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\ClearFilters.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icons\settings.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <None Include="icons\clearFilter.png" />
+    <None Include="icons\filter.png" />
+    <None Include="icons\settings1.png" />
+    <None Include="icons\settings2.png" />
+    <None Include="icons\minus.png" />
+    <None Include="icons\minus1.png" />
+    <None Include="icons\plus.png" />
+    <None Include="icons\filterError.png" />
+    <None Include="icons\filterOff.png" />
+    <None Include="icons\arrow-down24.png" />
+    <None Include="icons\arrow-up24.png" />
+    <None Include="icons\arrow-down16.png" />
+    <None Include="icons\arrow-up16.png" />
+    <None Include="icons\connected64.png" />
+    <None Include="icons\disconnected64.png" />
+    <Content Include="Wallpapers\MonitorWallpaper1.jpg" />
+    <EmbeddedResource Include="Base\BaseForm.resx">
+      <DependentUpon>BaseForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Base\BaseSettingsForm.resx">
+      <DependentUpon>BaseSettingsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\DetailsForm.resx">
+      <DependentUpon>DetailsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\OperationAttributes.resx">
+      <DependentUpon>OperationAttributes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\RefreshingGridView.resx">
+      <DependentUpon>RefreshingGridView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\CellExtensionForm.resx">
+      <DependentUpon>CellExtensionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ColumnFindingForm.resx">
+      <DependentUpon>ColumnFindingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\StepsTree\StepPropertiesForm.resx">
+      <DependentUpon>StepPropertiesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\StepsTree\StepsTree.resx">
+      <DependentUpon>StepsTree.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AboutForm.resx">
+      <DependentUpon>AboutForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AgentSettingsForm.resx">
+      <DependentUpon>AgentSettingsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ApplicationLoadingForm.resx">
+      <DependentUpon>ApplicationLoadingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ConfirmationWithTableForm.resx">
+      <DependentUpon>ConfirmationWithTableForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CreateShopForm.resx">
+      <DependentUpon>CreateShopForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\NewTaskForm.resx">
+      <DependentUpon>NewTaskForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ScheduleForm.resx">
+      <DependentUpon>ScheduleForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SettingsForm.resx">
+      <DependentUpon>SettingsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ShopSettingsForm.resx">
+      <DependentUpon>ShopSettingsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UpdatingForm.resx">
+      <DependentUpon>UpdatingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="app.config" />
+    <Content Include="NLog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="app.manifest" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="icons\favicon.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Operations\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MagicUpdater.DL\MagicUpdater.DL.csproj">
+      <Project>{D41258F7-69EB-48CD-874B-FD4FD7E1D8E3}</Project>
+      <Name>MagicUpdater.DL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MagicUpdaterCommon\MagicUpdaterCommon.csproj">
+      <Project>{d07b1f6c-d42c-4c1c-a2fb-767d685df979}</Project>
+      <Name>MagicUpdaterCommon</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

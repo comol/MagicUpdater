@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="67c719d19f56411aa1993957febedc73" Name="Diagram1" ZoomLevel="88">
+        <EntityTypeShape EntityType="MagicUpdaterModel.ActionsReport" Width="1.5" PointX="8.25" PointY="9.375" />
+        <EntityTypeShape EntityType="MagicUpdaterModel.CommonGlobalSetting" Width="1.5" PointX="0.75" PointY="4" />
+        <EntityTypeShape EntityType="MagicUpdaterModel.ComputerErrorsLog" Width="1.5" PointX="5.25" PointY="22.25" />
+        <EntityTypeShape EntityType="MagicUpdaterModel.LocalSetting" Width="1.5" PointX="5.25" PointY="7.875" />
+        <EntityTypeShape EntityType="MagicUpdaterModel.LocalSettingsDictionary" Width="1.5" PointX="3" PointY="1" />
+        <EntityTypeShape EntityType="MagicUpdaterModel.Logs1C" Width="1.5" PointX="5.25" PointY="11" />
+        <EntityTypeShape EntityType="MagicUpdaterModel.OperationGroup" Width="1.5" PointX="3.75" PointY="4" />
+        <EntityTypeShape EntityType="MagicUpdaterModel.Operation" Width="1.5" PointX="8.25" PointY="4" />
+        <EntityTypeShape EntityType="MagicUpdaterModel.OperationsReport" Width="1.5" PointX="10.5" PointY="7.5" />
+        <EntityTypeShape EntityType="MagicUpdaterModel.OperationsState" Width="1.5" PointX="10.5" PointY="3.75" />
+        <EntityTypeShape EntityType="MagicUpdaterModel.OperationStatesVoc" Width="1.5" PointX="8.25" PointY="1" />
+        <EntityTypeShape EntityType="MagicUpdaterModel.OperationTypeAttribute" Width="1.5" PointX="11.25" PointY="0.75" />
+        <EntityTypeShape EntityType="MagicUpdaterModel.OperationType" Width="1.5" PointX="6" PointY="3" />
+        <EntityTypeShape EntityType="MagicUpdaterModel.ShedulerPluginTask" Width="1.5" PointX="12.75" PointY="4" />
+        <EntityTypeShape EntityType="MagicUpdaterModel.ShedulerStep" Width="1.5" PointX="13" PointY="13.75" />
+        <EntityTypeShape EntityType="MagicUpdaterModel.ShedulerStepsUserHistory" Width="1.5" PointX="14.75" PointY="1" />
+        <EntityTypeShape EntityType="MagicUpdaterModel.ShedulerTaskHistory" Width="1.5" PointX="15.25" PointY="13.125" />
+        <EntityTypeShape EntityType="MagicUpdaterModel.ShedulerTask" Width="1.5" PointX="10.75" PointY="12" />
+        <EntityTypeShape EntityType="MagicUpdaterModel.ShedulerTasksComputersList" Width="1.5" PointX="13" PointY="11.375" />
+        <EntityTypeShape EntityType="MagicUpdaterModel.ShedulerTasksUserHistory" Width="1.5" PointX="0.75" PointY="15" />
+        <EntityTypeShape EntityType="MagicUpdaterModel.ShopComputer" Width="1.5" PointX="3" PointY="8.25" />
+        <EntityTypeShape EntityType="MagicUpdaterModel.Shop" Width="1.5" PointX="0.75" PointY="9.125" />
+        <EntityTypeShape EntityType="MagicUpdaterModel.sysdiagram" Width="1.5" PointX="12.75" PointY="8" />
+        <EntityTypeShape EntityType="MagicUpdaterModel.User" Width="1.5" PointX="9" PointY="17.375" />
+        <EntityTypeShape EntityType="MagicUpdaterModel.ComputerErrorsLogView" Width="1.5" PointX="7.75" PointY="14" />
+        <EntityTypeShape EntityType="MagicUpdaterModel.LocalSettingsView" Width="1.5" PointX="2.75" PointY="15" />
+        <EntityTypeShape EntityType="MagicUpdaterModel.ViewComputerErrorsLog" Width="1.5" PointX="4.75" PointY="15" />
+        <EntityTypeShape EntityType="MagicUpdaterModel.ViewOperation" Width="1.5" PointX="15.75" PointY="6" />
+        <EntityTypeShape EntityType="MagicUpdaterModel.ViewOperationsForExecute" Width="1.5" PointX="16.75" PointY="1" />
+        <EntityTypeShape EntityType="MagicUpdaterModel.ViewOperationsLight" Width="1.5" PointX="15.75" PointY="17" />
+        <EntityTypeShape EntityType="MagicUpdaterModel.ViewOperationsTop1000" Width="1.5" PointX="17.75" PointY="4" />
+        <EntityTypeShape EntityType="MagicUpdaterModel.ViewOperationsTop1000_New" Width="1.5" PointX="17.75" PointY="11" />
+        <EntityTypeShape EntityType="MagicUpdaterModel.ViewOperationsTop5000" Width="1.5" PointX="11.75" PointY="18" />
+        <EntityTypeShape EntityType="MagicUpdaterModel.ViewOperState" Width="1.5" PointX="17.75" PointY="18" />
+        <EntityTypeShape EntityType="MagicUpdaterModel.ViewShedulerStep" Width="1.5" PointX="18.75" PointY="1" />
+        <EntityTypeShape EntityType="MagicUpdaterModel.ViewShopComputersServer" Width="2.375" PointX="0.75" PointY="20.25" />
+        <EntityTypeShape EntityType="MagicUpdaterModel.ViewShopComputersServerFull" Width="2.5" PointX="19.75" PointY="4" />
+        <AssociationConnector Association="MagicUpdaterModel.FK_ActionsReports_Operations" />
+        <AssociationConnector Association="MagicUpdaterModel.FK_ActionsReports_ShopComputers" />
+        <AssociationConnector Association="MagicUpdaterModel.FK_ComputerErrorsLog_ShopComputers" />
+        <AssociationConnector Association="MagicUpdaterModel.FK_LocalSettings_LocalSettingsDictionary" />
+        <AssociationConnector Association="MagicUpdaterModel.FK_LocalSettings_ShopComputers" />
+        <AssociationConnector Association="MagicUpdaterModel.FK_Logs1C_ShopComputers" />
+        <AssociationConnector Association="MagicUpdaterModel.FK_OperationTypes_OperationGroups" />
+        <AssociationConnector Association="MagicUpdaterModel.FK_Operations_OperationTypes" />
+        <AssociationConnector Association="MagicUpdaterModel.FK_Operations_ShopComputers" />
+        <AssociationConnector Association="MagicUpdaterModel.FK_OperationsReports_Operations" />
+        <AssociationConnector Association="MagicUpdaterModel.FK_OperationsStates_Operations" />
+        <AssociationConnector Association="MagicUpdaterModel.FK_OperationsStates_OperationStatesVoc" />
+        <AssociationConnector Association="MagicUpdaterModel.FK_OperationTypeAttributes_OperationTypes" />
+        <AssociationConnector Association="MagicUpdaterModel.FK_OperationTypeAttributes_Users" />
+        <AssociationConnector Association="MagicUpdaterModel.FK_ShedulerSteps_ShedulerTasks" />
+        <AssociationConnector Association="MagicUpdaterModel.FK_ShedulerTaskHistory_ShedulerSteps" />
+        <AssociationConnector Association="MagicUpdaterModel.FK_ShedulerTasks_ShedulerSteps" />
+        <AssociationConnector Association="MagicUpdaterModel.FK_ShedulerTaskHistory_ShedulerTasks" />
+        <AssociationConnector Association="MagicUpdaterModel.FK_ShedulerTasksComputersList_ShedulerTasks" />
+        <AssociationConnector Association="MagicUpdaterModel.FK_ShopComputers_Shops" />
+        <EntityTypeShape EntityType="MagicUpdaterModel.ShedulerStatus" Width="1.5" PointX="3.375" PointY="18.75" />
+        <EntityTypeShape EntityType="MagicUpdaterModel.ShedulerTaskMode" Width="1.5" PointX="5.375" PointY="18.75" />
+        <EntityTypeShape EntityType="MagicUpdaterModel.ViewShedulerStepsVi" Width="1.5" PointX="7.375" PointY="20.75" />
+        <EntityTypeShape EntityType="MagicUpdaterModel.ShedulerPluginTasksUserHistory" Width="1.5" PointX="20.375" PointY="11.75" />
+        <AssociationConnector Association="MagicUpdaterModel.FK_ShedulerPluginTasks_ShedulerStatuses" />
+        <AssociationConnector Association="MagicUpdaterModel.FK_ShedulerPluginTasks_ShedulerTaskModes" />
+        <AssociationConnector Association="MagicUpdaterModel.FK_ShedulerTasks_ShedulerStatuses" />
+        <AssociationConnector Association="MagicUpdaterModel.FK_ShedulerTasks_ShedulerTaskModes" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

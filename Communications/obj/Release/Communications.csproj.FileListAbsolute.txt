@@ -1,0 +1,13 @@
+D:\GitProjects\MagicUpdater\Communications\bin\Release\Communications.dll
+D:\GitProjects\MagicUpdater\Communications\bin\Release\Communications.pdb
+D:\GitProjects\MagicUpdater\Communications\obj\Release\Communications.dll
+D:\GitProjects\MagicUpdater\Communications\obj\Release\Communications.pdb
+D:\Repos\MagicUpdater\Communications\bin\Release\Communications.dll
+D:\Repos\MagicUpdater\Communications\bin\Release\Communications.pdb
+D:\Repos\MagicUpdater\Communications\obj\Release\Communications.dll
+D:\Repos\MagicUpdater\Communications\obj\Release\Communications.pdb
+C:\Users\oleg.filippov.SELA\Source\Repos\MagicUpdater\Communications\bin\Release\Communications.dll
+C:\Users\oleg.filippov.SELA\Source\Repos\MagicUpdater\Communications\bin\Release\Communications.pdb
+C:\Users\oleg.filippov.SELA\Source\Repos\MagicUpdater\Communications\obj\Release\Communications.dll
+C:\Users\oleg.filippov.SELA\Source\Repos\MagicUpdater\Communications\obj\Release\Communications.pdb
+D:\GitProjects\MagicUpdater\Communications\obj\Release\Communications.csprojResolveAssemblyReference.cache

@@ -1,0 +1,148 @@
+-----------------------------------
+2017-01-22 18:32:53.6189 DEBUG Server: Async server created. Pipe name: "MuAsyncPipe"
+-----------------------------------
+2017-01-22 18:33:49.5269 DEBUG Server: Async server created. Pipe name: "MuAsyncPipe"
+-----------------------------------
+2017-01-22 18:48:59.8339 DEBUG Server: Async server created. Pipe name: "MuAsyncPipe"
+-----------------------------------
+2017-01-22 19:23:06.2936 DEBUG Server: Async server created. Pipe name: "MuAsyncPipe"
+-----------------------------------
+2017-01-22 20:46:40.8208 DEBUG Server: Async server created. Pipe name: "MuAsyncPipe"
+-----------------------------------
+2017-01-22 20:51:48.5148 DEBUG Client: Async client created. Pipe name: "MuAsyncPipe"
+-----------------------------------
+2017-01-22 20:52:02.9758 DEBUG Client: Async client connected. Pipe name: "MuAsyncPipe"
+-----------------------------------
+2017-01-22 20:52:03.1478 DEBUG Server: Async server created. Pipe name: "MuAsyncPipe"
+-----------------------------------
+2017-01-22 20:52:03.1478 DEBUG Server: Client connected. Pipe name: "MuAsyncPipe"
+-----------------------------------
+2017-01-22 20:53:14.5798 DEBUG Server: Message sended: "ShowMessage". Pipe name: "MuAsyncPipe"
+-----------------------------------
+2017-01-22 20:53:14.5808 DEBUG Client: Message recieved: "ShowMessage". Pipe name: "MuAsyncPipe"
+-----------------------------------
+2017-01-22 20:53:14.5808 DEBUG Client: Start action excecute...:"ShowMessage". Pipe name: "MuAsyncPipe"
+-----------------------------------
+2017-01-22 20:53:15.7798 DEBUG Client: End action execute: "ShowMessage". Pipe name: "MuAsyncPipe"
+-----------------------------------
+2017-01-22 21:55:00.7768 DEBUG Client: Async client created. Pipe name: "MuAsyncPipe"
+-----------------------------------
+2017-01-22 21:55:02.6088 DEBUG Client: Async client connected. Pipe name: "MuAsyncPipe"
+-----------------------------------
+2017-01-22 21:55:04.6838 DEBUG Client: Message recieved: "ShowMessage". Pipe name: "MuAsyncPipe"
+-----------------------------------
+2017-01-22 21:55:04.6838 DEBUG Client: Start action excecute...:"ShowMessage". Pipe name: "MuAsyncPipe"
+-----------------------------------
+2017-01-22 21:55:07.0878 DEBUG Client: End action execute: "ShowMessage". Pipe name: "MuAsyncPipe"
+-----------------------------------
+2017-01-22 21:55:42.4568 DEBUG Client: Async client created. Pipe name: "MuAsyncPipe"
+-----------------------------------
+2017-01-22 21:55:44.4268 DEBUG Client: Async client connected. Pipe name: "MuAsyncPipe"
+-----------------------------------
+2017-01-22 21:55:46.8988 DEBUG Client: Message recieved: "ShowMessage". Pipe name: "MuAsyncPipe"
+-----------------------------------
+2017-01-22 21:55:46.8988 DEBUG Client: Start action excecute...:"ShowMessage". Pipe name: "MuAsyncPipe"
+-----------------------------------
+2017-01-22 21:55:47.9638 DEBUG Client: End action execute: "ShowMessage". Pipe name: "MuAsyncPipe"
+-----------------------------------
+2017-01-22 22:01:46.3568 DEBUG Client: Async client created. Pipe name: "MuAsyncPipe"
+-----------------------------------
+2017-01-22 22:01:46.7988 DEBUG Client: Async client connected. Pipe name: "MuAsyncPipe"
+-----------------------------------
+2017-01-22 22:01:47.3368 DEBUG Client: Message recieved: "ShowMessage". Pipe name: "MuAsyncPipe"
+-----------------------------------
+2017-01-22 22:01:47.3368 DEBUG Client: Start action excecute...:"ShowMessage". Pipe name: "MuAsyncPipe"
+-----------------------------------
+2017-01-22 22:01:51.6128 DEBUG Client: Async client created. Pipe name: "MuAsyncPipe"
+-----------------------------------
+2017-01-22 22:01:55.2508 DEBUG Client: Async client connected. Pipe name: "MuAsyncPipe"
+-----------------------------------
+2017-01-22 22:01:56.6488 DEBUG Client: Message recieved: "ShowMessage". Pipe name: "MuAsyncPipe"
+-----------------------------------
+2017-01-22 22:01:56.6488 DEBUG Client: Start action excecute...:"ShowMessage". Pipe name: "MuAsyncPipe"
+-----------------------------------
+2017-01-22 22:02:46.5538 DEBUG Client: Async client created. Pipe name: "MuAsyncPipe"
+-----------------------------------
+2017-01-22 22:02:48.3448 DEBUG Client: Async client connected. Pipe name: "MuAsyncPipe"
+-----------------------------------
+2017-01-22 22:02:48.4138 DEBUG Client: Message recieved: "ShowMessage". Pipe name: "MuAsyncPipe"
+-----------------------------------
+2017-01-22 22:02:48.4138 DEBUG Client: Start action excecute...:"ShowMessage". Pipe name: "MuAsyncPipe"
+-----------------------------------
+2017-01-22 22:02:49.6058 DEBUG Client: End action execute: "ShowMessage". Pipe name: "MuAsyncPipe"
+-----------------------------------
+2017-01-22 22:10:42.5628 DEBUG Client: Async client connected. Pipe name: "MuAsyncPipe"
+-----------------------------------
+2017-01-22 22:10:42.5628 DEBUG Client: Async client created. Pipe name: "MuAsyncPipe"
+-----------------------------------
+2017-01-22 22:10:49.1558 DEBUG Client: Message recieved: "ShowMessage". Pipe name: "MuAsyncPipe"
+-----------------------------------
+2017-01-22 22:10:49.1558 DEBUG Client: Start action excecute...:"ShowMessage". Pipe name: "MuAsyncPipe"
+-----------------------------------
+2017-01-22 22:10:50.2568 DEBUG Client: End action execute: "ShowMessage". Pipe name: "MuAsyncPipe"
+-----------------------------------
+2017-01-22 22:11:37.6798 DEBUG Client: Async client created. Pipe name: "MuAsyncPipe"
+-----------------------------------
+2017-01-22 22:11:37.6798 DEBUG Client: Async client connected. Pipe name: "MuAsyncPipe"
+-----------------------------------
+2017-01-22 22:11:51.5118 DEBUG Client: Async client created. Pipe name: "MuAsyncPipe"
+-----------------------------------
+2017-01-22 22:11:51.5118 DEBUG Client: Async client connected. Pipe name: "MuAsyncPipe"
+-----------------------------------
+2017-01-22 22:12:01.7448 DEBUG Client: Async client created. Pipe name: "MuAsyncPipe"
+-----------------------------------
+2017-01-22 22:12:01.7448 DEBUG Client: Async client connected. Pipe name: "MuAsyncPipe"
+-----------------------------------
+2017-01-22 22:12:26.6108 DEBUG Client: Async client created. Pipe name: "MuAsyncPipe"
+-----------------------------------
+2017-01-22 22:12:26.6108 DEBUG Client: Async client connected. Pipe name: "MuAsyncPipe"
+-----------------------------------
+2017-01-22 22:12:53.1128 DEBUG Client: Async client created. Pipe name: "MuAsyncPipe"
+-----------------------------------
+2017-01-22 22:12:53.1128 DEBUG Client: Async client connected. Pipe name: "MuAsyncPipe"
+-----------------------------------
+2017-01-22 22:12:55.0168 DEBUG Client: Message recieved: "ShowMessage". Pipe name: "MuAsyncPipe"
+-----------------------------------
+2017-01-22 22:12:55.0168 DEBUG Client: Start action excecute...:"ShowMessage". Pipe name: "MuAsyncPipe"
+-----------------------------------
+2017-01-22 22:12:56.1718 DEBUG Client: End action execute: "ShowMessage". Pipe name: "MuAsyncPipe"
+-----------------------------------
+2017-01-22 22:13:40.0678 DEBUG Client: Async client created. Pipe name: "MuAsyncPipe"
+-----------------------------------
+2017-01-22 22:13:40.0678 DEBUG Client: Async client connected. Pipe name: "MuAsyncPipe"
+-----------------------------------
+2017-01-22 22:13:41.7958 DEBUG Client: Message recieved: "ShowMessage". Pipe name: "MuAsyncPipe"
+-----------------------------------
+2017-01-22 22:13:41.7958 DEBUG Client: Start action excecute...:"ShowMessage". Pipe name: "MuAsyncPipe"
+-----------------------------------
+2017-01-22 22:13:42.9378 DEBUG Client: End action execute: "ShowMessage". Pipe name: "MuAsyncPipe"
+-----------------------------------
+2017-01-22 22:13:51.4068 DEBUG Client: Async client connected. Pipe name: "MuAsyncPipe"
+-----------------------------------
+2017-01-22 22:13:51.4068 DEBUG Client: Async client created. Pipe name: "MuAsyncPipe"
+-----------------------------------
+2017-01-22 22:13:55.1738 DEBUG Client: Message recieved: "ShowMessage". Pipe name: "MuAsyncPipe"
+-----------------------------------
+2017-01-22 22:13:55.1738 DEBUG Client: Start action excecute...:"ShowMessage". Pipe name: "MuAsyncPipe"
+-----------------------------------
+2017-01-22 22:13:56.5298 DEBUG Client: End action execute: "ShowMessage". Pipe name: "MuAsyncPipe"
+-----------------------------------
+2017-01-22 22:14:02.2518 DEBUG Client: Async client created. Pipe name: "MuAsyncPipe"
+-----------------------------------
+2017-01-22 22:14:02.2518 DEBUG Client: Async client connected. Pipe name: "MuAsyncPipe"
+-----------------------------------
+2017-01-22 22:14:04.9648 DEBUG Client: Message recieved: "ShowMessage". Pipe name: "MuAsyncPipe"
+-----------------------------------
+2017-01-22 22:14:04.9648 DEBUG Client: Start action excecute...:"ShowMessage". Pipe name: "MuAsyncPipe"
+-----------------------------------
+2017-01-22 22:14:06.1568 DEBUG Client: End action execute: "ShowMessage". Pipe name: "MuAsyncPipe"
+-----------------------------------
+2017-01-22 22:14:16.3048 DEBUG Client: Async client created. Pipe name: "MuAsyncPipe"
+-----------------------------------
+2017-01-22 22:14:16.3048 DEBUG Client: Async client connected. Pipe name: "MuAsyncPipe"
+-----------------------------------
+2017-01-22 22:14:19.0718 DEBUG Client: Message recieved: "ShowMessage". Pipe name: "MuAsyncPipe"
+-----------------------------------
+2017-01-22 22:14:19.0718 DEBUG Client: Start action excecute...:"ShowMessage". Pipe name: "MuAsyncPipe"
+-----------------------------------
+2017-01-22 22:14:20.4908 DEBUG Client: End action execute: "ShowMessage". Pipe name: "MuAsyncPipe"
