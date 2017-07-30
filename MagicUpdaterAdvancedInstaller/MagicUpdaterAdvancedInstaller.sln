@@ -1,0 +1,15 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "MagicUpdaterAdvancedInstaller", "MagicUpdaterAdvancedInstaller\MagicUpdaterAdvancedInstaller.shproj", "{6B3E79BB-11EB-4673-88A1-74F7669641B5}"
+EndProject
+Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		MagicUpdaterAdvancedInstaller\MagicUpdaterAdvancedInstaller.projitems*{6b3e79bb-11eb-4673-88a1-74f7669641b5}*SharedItemsImports = 13
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
