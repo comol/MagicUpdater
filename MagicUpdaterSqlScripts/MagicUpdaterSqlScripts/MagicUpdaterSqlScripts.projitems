@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>201daecd-ba0f-4e51-9592-023e3ec4ba66</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>MagicUpdaterSqlScripts</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)DatabaseCreation\AllObjects.sql" />
+    <None Include="$(MSBuildThisFileDirectory)DatabaseUpdates\Records.sql" />
+    <None Include="$(MSBuildThisFileDirectory)DatabaseUpdates\Tables.sql" />
+    <None Include="$(MSBuildThisFileDirectory)DatabaseUpdates\ViewsProcs.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)Прочти!!!.txt" />
+  </ItemGroup>
+</Project>

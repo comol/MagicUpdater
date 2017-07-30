@@ -147,8 +147,30 @@
     <Property Name="LastStartTime" Type="datetime" />
     <Property Name="LastEndTime" Type="datetime" />
     <Property Name="Status" Type="int" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="3000" />
+    <Property Name="CreationDateUtc" Type="datetime" />
+    <Property Name="CreatedUserLogin" Type="nvarchar" MaxLength="400" />
     <Property Name="PluginFileName" Type="nvarchar" MaxLength="128" Nullable="false" />
     <Property Name="RepeatValue" Type="int" />
+  </EntityType>
+  <EntityType Name="ShedulerPluginTasksUserHistory">
+    <Key>
+      <PropertyRef Name="HisId" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="80" Nullable="false" />
+    <Property Name="Enabled" Type="bit" />
+    <Property Name="FirstStepId" Type="int" />
+    <Property Name="Mode" Type="int" Nullable="false" />
+    <Property Name="NextStartTime" Type="datetime" Nullable="false" />
+    <Property Name="LastStartTime" Type="datetime" />
+    <Property Name="LastEndTime" Type="datetime" />
+    <Property Name="Status" Type="int" Nullable="false" />
+    <Property Name="HisId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ChangeUserDateUtc" Type="datetime" Nullable="false" />
+    <Property Name="UserLogin" Type="nvarchar" MaxLength="400" Nullable="false" />
+    <Property Name="PluginFileName" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="ActionType" Type="nvarchar" MaxLength="128" Nullable="false" />
   </EntityType>
   <EntityType Name="ShedulerStatuses">
     <Key>
@@ -276,6 +298,7 @@
     <Property Name="IsTaskerAlive" Type="bit" />
     <Property Name="IsSettingsRead" Type="bit" />
     <Property Name="IsON" Type="int" StoreGeneratedPattern="Computed" Nullable="false" />
+    <Property Name="LastErrorDate" Type="datetime" />
     <Property Name="LastError" Type="nvarchar(max)" />
     <Property Name="IsAgentSettingsReaded" Type="bit" />
   </EntityType>
@@ -640,10 +663,10 @@ warning 6002: The table/view 'MagicUpdater.dbo.ViewShopComputersServer' does not
       <PropertyRef Name="MagicUpdaterVersion" />
       <PropertyRef Name="External_IP" />
       <PropertyRef Name="IsTaskerAlive" />
+      <PropertyRef Name="LastError" />
       <PropertyRef Name="IsON" />
       <PropertyRef Name="OperationTypeRu" />
       <PropertyRef Name="OperState" />
-      <PropertyRef Name="LastError" />
     </Key>
     <Property Name="ComputerId" Type="int" />
     <Property Name="ShopId" Type="nvarchar" MaxLength="100" Nullable="false" />
@@ -666,11 +689,12 @@ warning 6002: The table/view 'MagicUpdater.dbo.ViewShopComputersServer' does not
     <Property Name="MagicUpdaterVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
     <Property Name="External_IP" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="IsTaskerAlive" Type="bit" Nullable="false" />
+    <Property Name="LastErrorDate" Type="datetime" />
+    <Property Name="LastError" Type="nvarchar(max)" Nullable="false" />
     <Property Name="IsON" Type="int" Nullable="false" />
     <Property Name="OperationTypeRu" Type="nvarchar" MaxLength="256" Nullable="false" />
     <Property Name="OperationCreationDate" Type="datetime" />
     <Property Name="OperState" Type="nvarchar" MaxLength="256" Nullable="false" />
-    <Property Name="LastError" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
 warning 6002: The table/view 'MagicUpdater.dbo.ViewShopComputersServerFull' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -892,6 +916,30 @@ warning 6002: The table/view 'MagicUpdater.dbo.ViewShopComputersServerFull' does
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_ShedulerPluginTasks_ShedulerStatuses">
+    <End Role="ShedulerStatuses" Type="Self.ShedulerStatuses" Multiplicity="1" />
+    <End Role="ShedulerPluginTasks" Type="Self.ShedulerPluginTasks" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ShedulerStatuses">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ShedulerPluginTasks">
+        <PropertyRef Name="Status" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ShedulerPluginTasks_ShedulerTaskModes">
+    <End Role="ShedulerTaskModes" Type="Self.ShedulerTaskModes" Multiplicity="1" />
+    <End Role="ShedulerPluginTasks" Type="Self.ShedulerPluginTasks" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ShedulerTaskModes">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ShedulerPluginTasks">
+        <PropertyRef Name="Mode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_ShedulerSteps_ShedulerTasks">
     <End Role="ShedulerTasks" Type="Self.ShedulerTasks" Multiplicity="1">
       <OnDelete Action="Cascade" />
@@ -930,6 +978,18 @@ warning 6002: The table/view 'MagicUpdater.dbo.ViewShopComputersServerFull' does
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_ShedulerTasks_ShedulerStatuses">
+    <End Role="ShedulerStatuses" Type="Self.ShedulerStatuses" Multiplicity="1" />
+    <End Role="ShedulerTasks" Type="Self.ShedulerTasks" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ShedulerStatuses">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ShedulerTasks">
+        <PropertyRef Name="Status" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_ShedulerTasks_ShedulerSteps">
     <End Role="ShedulerSteps" Type="Self.ShedulerSteps" Multiplicity="0..1" />
     <End Role="ShedulerTasks" Type="Self.ShedulerTasks" Multiplicity="*" />
@@ -939,6 +999,18 @@ warning 6002: The table/view 'MagicUpdater.dbo.ViewShopComputersServerFull' does
       </Principal>
       <Dependent Role="ShedulerTasks">
         <PropertyRef Name="FirstStepId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ShedulerTasks_ShedulerTaskModes">
+    <End Role="ShedulerTaskModes" Type="Self.ShedulerTaskModes" Multiplicity="1" />
+    <End Role="ShedulerTasks" Type="Self.ShedulerTasks" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ShedulerTaskModes">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ShedulerTasks">
+        <PropertyRef Name="Mode" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1127,6 +1199,7 @@ warning 6002: The table/view 'MagicUpdater.dbo.ViewShopComputersServerFull' does
     <EntitySet Name="OperationTypeAttributes" EntityType="Self.OperationTypeAttributes" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="OperationTypes" EntityType="Self.OperationTypes" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ShedulerPluginTasks" EntityType="Self.ShedulerPluginTasks" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ShedulerPluginTasksUserHistory" EntityType="Self.ShedulerPluginTasksUserHistory" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ShedulerStatuses" EntityType="Self.ShedulerStatuses" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ShedulerSteps" EntityType="Self.ShedulerSteps" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ShedulerStepsUserHistory" EntityType="Self.ShedulerStepsUserHistory" Schema="dbo" store:Type="Tables" />
@@ -1375,11 +1448,12 @@ warning 6002: The table/view 'MagicUpdater.dbo.ViewShopComputersServerFull' does
     [ViewShopComputersServer].[MagicUpdaterVersion] AS [MagicUpdaterVersion], 
     [ViewShopComputersServer].[External_IP] AS [External_IP], 
     [ViewShopComputersServer].[IsTaskerAlive] AS [IsTaskerAlive], 
+    [ViewShopComputersServer].[LastErrorDate] AS [LastErrorDate], 
+    [ViewShopComputersServer].[LastError] AS [LastError], 
     [ViewShopComputersServer].[IsON] AS [IsON], 
     [ViewShopComputersServer].[OperationTypeRu] AS [OperationTypeRu], 
     [ViewShopComputersServer].[OperationCreationDate] AS [OperationCreationDate], 
-    [ViewShopComputersServer].[OperState] AS [OperState], 
-    [ViewShopComputersServer].[LastError] AS [LastError]
+    [ViewShopComputersServer].[OperState] AS [OperState]
     FROM [dbo].[ViewShopComputersServer] AS [ViewShopComputersServer]</DefiningQuery>
     </EntitySet>
     <EntitySet Name="ViewShopComputersServerFull" EntityType="Self.ViewShopComputersServerFull" store:Type="Views" store:Schema="dbo">
@@ -1468,6 +1542,14 @@ warning 6002: The table/view 'MagicUpdater.dbo.ViewShopComputersServerFull' does
       <End Role="OperationGroups" EntitySet="OperationGroups" />
       <End Role="OperationTypes" EntitySet="OperationTypes" />
     </AssociationSet>
+    <AssociationSet Name="FK_ShedulerPluginTasks_ShedulerStatuses" Association="Self.FK_ShedulerPluginTasks_ShedulerStatuses">
+      <End Role="ShedulerStatuses" EntitySet="ShedulerStatuses" />
+      <End Role="ShedulerPluginTasks" EntitySet="ShedulerPluginTasks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ShedulerPluginTasks_ShedulerTaskModes" Association="Self.FK_ShedulerPluginTasks_ShedulerTaskModes">
+      <End Role="ShedulerTaskModes" EntitySet="ShedulerTaskModes" />
+      <End Role="ShedulerPluginTasks" EntitySet="ShedulerPluginTasks" />
+    </AssociationSet>
     <AssociationSet Name="FK_ShedulerSteps_ShedulerTasks" Association="Self.FK_ShedulerSteps_ShedulerTasks">
       <End Role="ShedulerTasks" EntitySet="ShedulerTasks" />
       <End Role="ShedulerSteps" EntitySet="ShedulerSteps" />
@@ -1480,8 +1562,16 @@ warning 6002: The table/view 'MagicUpdater.dbo.ViewShopComputersServerFull' does
       <End Role="ShedulerTasks" EntitySet="ShedulerTasks" />
       <End Role="ShedulerTaskHistory" EntitySet="ShedulerTaskHistory" />
     </AssociationSet>
+    <AssociationSet Name="FK_ShedulerTasks_ShedulerStatuses" Association="Self.FK_ShedulerTasks_ShedulerStatuses">
+      <End Role="ShedulerStatuses" EntitySet="ShedulerStatuses" />
+      <End Role="ShedulerTasks" EntitySet="ShedulerTasks" />
+    </AssociationSet>
     <AssociationSet Name="FK_ShedulerTasks_ShedulerSteps" Association="Self.FK_ShedulerTasks_ShedulerSteps">
       <End Role="ShedulerSteps" EntitySet="ShedulerSteps" />
+      <End Role="ShedulerTasks" EntitySet="ShedulerTasks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ShedulerTasks_ShedulerTaskModes" Association="Self.FK_ShedulerTasks_ShedulerTaskModes">
+      <End Role="ShedulerTaskModes" EntitySet="ShedulerTaskModes" />
       <End Role="ShedulerTasks" EntitySet="ShedulerTasks" />
     </AssociationSet>
     <AssociationSet Name="FK_ShedulerTasksComputersList_ShedulerTasks" Association="Self.FK_ShedulerTasksComputersList_ShedulerTasks">

@@ -1,0 +1,15 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "MsSqlServerScripts", "MagicUpdaterSqlScripts\MsSqlServerScripts.shproj", "{201DAECD-BA0F-4E51-9592-023E3EC4BA66}"
+EndProject
+Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		MagicUpdaterSqlScripts\MagicUpdaterSqlScripts.projitems*{201daecd-ba0f-4e51-9592-023e3ec4ba66}*SharedItemsImports = 13
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

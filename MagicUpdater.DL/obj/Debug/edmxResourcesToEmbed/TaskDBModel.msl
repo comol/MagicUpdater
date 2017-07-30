@@ -283,6 +283,9 @@
     <EntitySetMapping Name="ShedulerPluginTasks">
       <EntityTypeMapping TypeName="MagicUpdaterModel.ShedulerPluginTask">
         <MappingFragment StoreEntitySet="ShedulerPluginTasks">
+          <ScalarProperty Name="CreatedUserLogin" ColumnName="CreatedUserLogin" />
+          <ScalarProperty Name="CreationDateUtc" ColumnName="CreationDateUtc" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
           <ScalarProperty Name="RepeatValue" ColumnName="RepeatValue" />
           <ScalarProperty Name="PluginFileName" ColumnName="PluginFileName" />
           <ScalarProperty Name="Status" ColumnName="Status" />
@@ -396,6 +399,7 @@
     <EntitySetMapping Name="ShopComputers">
       <EntityTypeMapping TypeName="MagicUpdaterModel.ShopComputer">
         <MappingFragment StoreEntitySet="ShopComputers">
+          <ScalarProperty Name="LastErrorDate" ColumnName="LastErrorDate" />
           <ScalarProperty Name="IsAgentSettingsReaded" ColumnName="IsAgentSettingsReaded" />
           <ScalarProperty Name="LastError" ColumnName="LastError" />
           <ScalarProperty Name="IsON" ColumnName="IsON" />
@@ -663,6 +667,7 @@
     <EntitySetMapping Name="ViewShopComputersServers">
       <EntityTypeMapping TypeName="MagicUpdaterModel.ViewShopComputersServer">
         <MappingFragment StoreEntitySet="ViewShopComputersServer">
+          <ScalarProperty Name="LastErrorDate" ColumnName="LastErrorDate" />
           <ScalarProperty Name="LastError" ColumnName="LastError" />
           <ScalarProperty Name="OperState" ColumnName="OperState" />
           <ScalarProperty Name="OperationCreationDate" ColumnName="OperationCreationDate" />
@@ -767,6 +772,26 @@
           <ScalarProperty Name="OperationType" ColumnName="OperationType" />
           <ScalarProperty Name="TaskId" ColumnName="TaskId" />
           <ScalarProperty Name="Step" ColumnName="Step" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ShedulerPluginTasksUserHistories">
+      <EntityTypeMapping TypeName="MagicUpdaterModel.ShedulerPluginTasksUserHistory">
+        <MappingFragment StoreEntitySet="ShedulerPluginTasksUserHistory">
+          <ScalarProperty Name="ActionType" ColumnName="ActionType" />
+          <ScalarProperty Name="PluginFileName" ColumnName="PluginFileName" />
+          <ScalarProperty Name="UserLogin" ColumnName="UserLogin" />
+          <ScalarProperty Name="ChangeUserDateUtc" ColumnName="ChangeUserDateUtc" />
+          <ScalarProperty Name="HisId" ColumnName="HisId" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="LastEndTime" ColumnName="LastEndTime" />
+          <ScalarProperty Name="LastStartTime" ColumnName="LastStartTime" />
+          <ScalarProperty Name="NextStartTime" ColumnName="NextStartTime" />
+          <ScalarProperty Name="Mode" ColumnName="Mode" />
+          <ScalarProperty Name="FirstStepId" ColumnName="FirstStepId" />
+          <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>

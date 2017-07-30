@@ -264,6 +264,23 @@
     <EntitySet Name="ShedulerStatuses" EntityType="MagicUpdaterModel.ShedulerStatus" />
     <EntitySet Name="ShedulerTaskModes" EntityType="MagicUpdaterModel.ShedulerTaskMode" />
     <EntitySet Name="ViewShedulerStepsVis" EntityType="MagicUpdaterModel.ViewShedulerStepsVi" />
+    <EntitySet Name="ShedulerPluginTasksUserHistories" EntityType="MagicUpdaterModel.ShedulerPluginTasksUserHistory" />
+    <AssociationSet Name="FK_ShedulerPluginTasks_ShedulerStatuses" Association="MagicUpdaterModel.FK_ShedulerPluginTasks_ShedulerStatuses">
+      <End Role="ShedulerStatus" EntitySet="ShedulerStatuses" />
+      <End Role="ShedulerPluginTask" EntitySet="ShedulerPluginTasks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ShedulerPluginTasks_ShedulerTaskModes" Association="MagicUpdaterModel.FK_ShedulerPluginTasks_ShedulerTaskModes">
+      <End Role="ShedulerTaskMode" EntitySet="ShedulerTaskModes" />
+      <End Role="ShedulerPluginTask" EntitySet="ShedulerPluginTasks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ShedulerTasks_ShedulerStatuses" Association="MagicUpdaterModel.FK_ShedulerTasks_ShedulerStatuses">
+      <End Role="ShedulerStatus" EntitySet="ShedulerStatuses" />
+      <End Role="ShedulerTask" EntitySet="ShedulerTasks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ShedulerTasks_ShedulerTaskModes" Association="MagicUpdaterModel.FK_ShedulerTasks_ShedulerTaskModes">
+      <End Role="ShedulerTaskMode" EntitySet="ShedulerTaskModes" />
+      <End Role="ShedulerTask" EntitySet="ShedulerTasks" />
+    </AssociationSet>
   </EntityContainer>
   <ComplexType Name="GetComputerSettings_Result">
     <Property Type="Int32" Name="Computerid" Nullable="false" />
@@ -505,6 +522,11 @@
     <Property Name="Status" Type="Int32" Nullable="false" />
     <Property Name="PluginFileName" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
     <Property Name="RepeatValue" Type="Int32" />
+    <Property Name="Description" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
+    <Property Name="CreationDateUtc" Type="DateTime" Precision="3" />
+    <Property Name="CreatedUserLogin" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="ShedulerStatus" Relationship="MagicUpdaterModel.FK_ShedulerPluginTasks_ShedulerStatuses" FromRole="ShedulerPluginTask" ToRole="ShedulerStatus" />
+    <NavigationProperty Name="ShedulerTaskMode" Relationship="MagicUpdaterModel.FK_ShedulerPluginTasks_ShedulerTaskModes" FromRole="ShedulerPluginTask" ToRole="ShedulerTaskMode" />
   </EntityType>
   <EntityType Name="ShedulerStep">
     <Key>
@@ -578,6 +600,8 @@
     <NavigationProperty Name="ShedulerStep" Relationship="MagicUpdaterModel.FK_ShedulerTasks_ShedulerSteps" FromRole="ShedulerTask" ToRole="ShedulerStep" />
     <NavigationProperty Name="ShedulerTaskHistories" Relationship="MagicUpdaterModel.FK_ShedulerTaskHistory_ShedulerTasks" FromRole="ShedulerTask" ToRole="ShedulerTaskHistory" />
     <NavigationProperty Name="ShedulerTasksComputersLists" Relationship="MagicUpdaterModel.FK_ShedulerTasksComputersList_ShedulerTasks" FromRole="ShedulerTask" ToRole="ShedulerTasksComputersList" />
+    <NavigationProperty Name="ShedulerStatus" Relationship="MagicUpdaterModel.FK_ShedulerTasks_ShedulerStatuses" FromRole="ShedulerTask" ToRole="ShedulerStatus" />
+    <NavigationProperty Name="ShedulerTaskMode" Relationship="MagicUpdaterModel.FK_ShedulerTasks_ShedulerTaskModes" FromRole="ShedulerTask" ToRole="ShedulerTaskMode" />
   </EntityType>
   <EntityType Name="ShedulerTasksComputersList">
     <Key>
@@ -634,6 +658,7 @@
     <NavigationProperty Name="Logs1C" Relationship="MagicUpdaterModel.FK_Logs1C_ShopComputers" FromRole="ShopComputer" ToRole="Logs1C" />
     <NavigationProperty Name="Operations" Relationship="MagicUpdaterModel.FK_Operations_ShopComputers" FromRole="ShopComputer" ToRole="Operation" />
     <NavigationProperty Name="Shop" Relationship="MagicUpdaterModel.FK_ShopComputers_Shops" FromRole="ShopComputer" ToRole="Shop" />
+    <Property Name="LastErrorDate" Type="DateTime" Precision="3" />
   </EntityType>
   <EntityType Name="Shop">
     <Key>
@@ -968,6 +993,7 @@
     <Property Name="OperationCreationDate" Type="DateTime" Precision="3" />
     <Property Name="OperState" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
     <Property Name="LastError" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="LastErrorDate" Type="DateTime" Precision="3" />
   </EntityType>
   <EntityType Name="ViewShopComputersServerFull">
     <Key>
@@ -1270,6 +1296,8 @@
     <Property Name="Id" Type="Int32" Nullable="false" />
     <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
     <Property Name="NameRus" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="ShedulerPluginTasks" Relationship="MagicUpdaterModel.FK_ShedulerPluginTasks_ShedulerStatuses" FromRole="ShedulerStatus" ToRole="ShedulerPluginTask" />
+    <NavigationProperty Name="ShedulerTasks" Relationship="MagicUpdaterModel.FK_ShedulerTasks_ShedulerStatuses" FromRole="ShedulerStatus" ToRole="ShedulerTask" />
   </EntityType>
   <EntityType Name="ShedulerTaskMode">
     <Key>
@@ -1278,6 +1306,8 @@
     <Property Name="Id" Type="Int32" Nullable="false" />
     <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
     <Property Name="NameRus" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="ShedulerPluginTasks" Relationship="MagicUpdaterModel.FK_ShedulerPluginTasks_ShedulerTaskModes" FromRole="ShedulerTaskMode" ToRole="ShedulerPluginTask" />
+    <NavigationProperty Name="ShedulerTasks" Relationship="MagicUpdaterModel.FK_ShedulerTasks_ShedulerTaskModes" FromRole="ShedulerTaskMode" ToRole="ShedulerTask" />
   </EntityType>
   <EntityType Name="ViewShedulerStepsVi">
     <Key>
@@ -1314,4 +1344,71 @@
     <Property Name="OrderId" Type="Int32" Nullable="false" />
     <Property Name="OperationAttributes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
   </EntityType>
+  <EntityType Name="ShedulerPluginTasksUserHistory">
+    <Key>
+      <PropertyRef Name="HisId" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="true" />
+    <Property Name="Enabled" Type="Boolean" />
+    <Property Name="FirstStepId" Type="Int32" />
+    <Property Name="Mode" Type="Int32" Nullable="false" />
+    <Property Name="NextStartTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="LastStartTime" Type="DateTime" Precision="3" />
+    <Property Name="LastEndTime" Type="DateTime" Precision="3" />
+    <Property Name="Status" Type="Int32" Nullable="false" />
+    <Property Name="HisId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ChangeUserDateUtc" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UserLogin" Type="String" Nullable="false" MaxLength="400" FixedLength="false" Unicode="true" />
+    <Property Name="PluginFileName" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="ActionType" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <Association Name="FK_ShedulerPluginTasks_ShedulerStatuses">
+    <End Type="MagicUpdaterModel.ShedulerStatus" Role="ShedulerStatus" Multiplicity="1" />
+    <End Type="MagicUpdaterModel.ShedulerPluginTask" Role="ShedulerPluginTask" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ShedulerStatus">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ShedulerPluginTask">
+        <PropertyRef Name="Status" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ShedulerPluginTasks_ShedulerTaskModes">
+    <End Type="MagicUpdaterModel.ShedulerTaskMode" Role="ShedulerTaskMode" Multiplicity="1" />
+    <End Type="MagicUpdaterModel.ShedulerPluginTask" Role="ShedulerPluginTask" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ShedulerTaskMode">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ShedulerPluginTask">
+        <PropertyRef Name="Mode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ShedulerTasks_ShedulerStatuses">
+    <End Type="MagicUpdaterModel.ShedulerStatus" Role="ShedulerStatus" Multiplicity="1" />
+    <End Type="MagicUpdaterModel.ShedulerTask" Role="ShedulerTask" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ShedulerStatus">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ShedulerTask">
+        <PropertyRef Name="Status" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ShedulerTasks_ShedulerTaskModes">
+    <End Type="MagicUpdaterModel.ShedulerTaskMode" Role="ShedulerTaskMode" Multiplicity="1" />
+    <End Type="MagicUpdaterModel.ShedulerTask" Role="ShedulerTask" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ShedulerTaskMode">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ShedulerTask">
+        <PropertyRef Name="Mode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>
