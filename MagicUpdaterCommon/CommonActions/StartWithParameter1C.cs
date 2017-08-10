@@ -29,7 +29,9 @@ namespace MagicUpdaterCommon.CommonActions
 			}
 			catch
 			{
-				SendReportToDB($"ExePath1C: {MainSettings.ExePath1C}, parameters: {parameters}");
+				string exePath1C = string.IsNullOrEmpty(MainSettings.ExePath1C) ? "ExePath1C: [Отсутствует путь к 1С]" : $"ExePath1C: {MainSettings.ExePath1C}";
+
+				SendReportToDB($"{exePath1C}, parameters: {parameters}{Environment.NewLine}Возможная причина - не установлен флаг: \"Проверка установки 1С\"");
 				throw;
 			}
 		}

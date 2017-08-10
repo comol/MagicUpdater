@@ -24,6 +24,5 @@ D:\Repos\MagicUpdater\Communications\obj\Debug\Communications.csprojResolveAssem
 D:\GitProjects\MagicUpdater\Communications\obj\Debug\Communications.csprojResolveAssemblyReference.cache
 D:\GitProjects\MagicUpdater_ms\Communications\bin\Debug\Communications.dll
 D:\GitProjects\MagicUpdater_ms\Communications\bin\Debug\Communications.pdb
-D:\GitProjects\MagicUpdater_ms\Communications\obj\Debug\Communications.csprojResolveAssemblyReference.cache
 D:\GitProjects\MagicUpdater_ms\Communications\obj\Debug\Communications.dll
 D:\GitProjects\MagicUpdater_ms\Communications\obj\Debug\Communications.pdb

@@ -548,7 +548,7 @@ namespace MagicUpdaterInstaller
 			this.rbServerBase.Size = new System.Drawing.Size(87, 17);
 			this.rbServerBase.TabIndex = 0;
 			this.rbServerBase.TabStop = true;
-			this.rbServerBase.Text = "Серврерная база";
+			this.rbServerBase.Text = "Серверная база";
 			this.rbServerBase.UseVisualStyleBackColor = true;
 			this.rbServerBase.CheckedChanged += new System.EventHandler(this.rbServerBase_CheckedChanged);
 			// 

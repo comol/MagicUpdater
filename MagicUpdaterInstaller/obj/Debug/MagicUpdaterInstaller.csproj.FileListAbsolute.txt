@@ -65,7 +65,6 @@ D:\GitProjects\MagicUpdater_ms\MagicUpdaterInstaller\bin\Debug\Microsoft.Threadi
 D:\GitProjects\MagicUpdater_ms\MagicUpdaterInstaller\bin\Debug\Microsoft.Threading.Tasks.Extensions.dll
 D:\GitProjects\MagicUpdater_ms\MagicUpdaterInstaller\bin\Debug\Microsoft.Win32.TaskScheduler.dll
 D:\GitProjects\MagicUpdater_ms\MagicUpdaterInstaller\bin\Debug\System.IO.dll
-D:\GitProjects\MagicUpdater_ms\MagicUpdaterInstaller\bin\Debug\System.Net.Http.dll
 D:\GitProjects\MagicUpdater_ms\MagicUpdaterInstaller\bin\Debug\System.Runtime.dll
 D:\GitProjects\MagicUpdater_ms\MagicUpdaterInstaller\bin\Debug\System.Threading.Tasks.dll
 D:\GitProjects\MagicUpdater_ms\MagicUpdaterInstaller\bin\Debug\DotNetZip.dll
@@ -82,7 +81,6 @@ D:\GitProjects\MagicUpdater_ms\MagicUpdaterInstaller\bin\Debug\Microsoft.Win32.T
 D:\GitProjects\MagicUpdater_ms\MagicUpdaterInstaller\bin\Debug\System.IO.xml
 D:\GitProjects\MagicUpdater_ms\MagicUpdaterInstaller\bin\Debug\System.Runtime.xml
 D:\GitProjects\MagicUpdater_ms\MagicUpdaterInstaller\bin\Debug\System.Threading.Tasks.xml
-D:\GitProjects\MagicUpdater_ms\MagicUpdaterInstaller\bin\Debug\System.Net.Http.xml
 D:\GitProjects\MagicUpdater_ms\MagicUpdaterInstaller\bin\Debug\DotNetZip.xml
 D:\GitProjects\MagicUpdater_ms\MagicUpdaterInstaller\bin\Debug\Scs.xml
 D:\GitProjects\MagicUpdater_ms\MagicUpdaterInstaller\bin\Debug\Newtonsoft.Json.xml
