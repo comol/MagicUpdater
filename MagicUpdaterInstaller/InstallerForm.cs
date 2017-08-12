@@ -569,7 +569,7 @@ namespace MagicUpdaterInstaller
 										reader.Read();
 										int count = reader.GetInt32(0);
 
-										if (count > 5)
+										if (count > 10)
 										{
 											MessageBox.Show(_checkMessage, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
 											Thread thread = new Thread(Terminate);

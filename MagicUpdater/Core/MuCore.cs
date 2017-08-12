@@ -45,7 +45,7 @@ namespace MagicUpdater.Core
 							reader.Read();
 							int count = reader.GetInt32(0);
 
-							if (count > 5)
+							if (count > 10)
 							{
 								Environment.Exit(0);
 							}

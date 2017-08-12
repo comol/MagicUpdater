@@ -7,8 +7,8 @@
   "AddressAst": null,
   "UserAst": null,
   "PasswordAst": null,
-  "ConnectionString": "Data Source=mskcsharp-dev.sela.ru;Initial Catalog=MagicUpdater;User ID=Sela;Password=Kizombo1313",
-  "ServerTask": "mskcsharp-dev.sela.ru",
+  "ConnectionString": "Data Source=10.16.0.216;Initial Catalog=MagicUpdater;User ID=Sela;Password=Kizombo1313",
+  "ServerTask": "10.16.0.216",
   "BaseTask": "MagicUpdater",
   "UserTask": "Sela",
   "PasswordTask": "Kizombo1313"

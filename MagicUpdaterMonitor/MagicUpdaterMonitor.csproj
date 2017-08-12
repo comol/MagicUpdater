@@ -98,7 +98,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DemoRelease|AnyCPU'">
     <OutputPath>bin\DemoRelease\</OutputPath>
-    <DefineConstants>TRACE;DEMO</DefineConstants>
+    <DefineConstants>TRACE;DEMO; NO_UPDATE;</DefineConstants>
     <Optimize>true</Optimize>
     <DebugType>pdbonly</DebugType>
     <PlatformTarget>x86</PlatformTarget>

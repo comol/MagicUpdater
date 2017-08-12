@@ -36,6 +36,47 @@ namespace MagicUpdaterMonitor.Forms
 			}
 		}
 
+		private int _performanceCounterMode
+		{
+			get
+			{
+				if (rbPerformanceCounterOff.Checked)
+				{
+					return 0;
+				}
+				else if (rbPerformanceCounterAvgOnly.Checked)
+				{
+					return 1;
+				}
+				else if (rbPerformanceCounterAvgAndHistory.Checked)
+				{
+					return 2;
+				}
+				else
+				{
+					return 0;
+				}
+			}
+			set
+			{
+				switch (value)
+				{
+					case 0:
+						rbPerformanceCounterOff.Checked = true;
+						break;
+					case 1:
+						rbPerformanceCounterAvgOnly.Checked = true;
+						break;
+					case 2:
+						rbPerformanceCounterAvgAndHistory.Checked = true;
+						break;
+					default:
+						rbPerformanceCounterOff.Checked = true;
+						break;
+				}
+			}
+		}
+
 		public AgentSettingsForm(int computerId)
 		{
 			InitializeComponent();
@@ -54,7 +95,7 @@ namespace MagicUpdaterMonitor.Forms
 			if (!_isLoadingErrorExists)
 			{
 				_agentSettingsIsReadCheckTimer = new System.Threading.Timer(AgentSettingsIsReadCheckTimerCallback, null, AGENT_SETTINGS_ISREADCHECK_TIMER_INTERVAL, Timeout.Infinite);
-				ChangeAgentSettingsReadedLabel(); 
+				ChangeAgentSettingsReadedLabel();
 			}
 		}
 
@@ -152,7 +193,8 @@ namespace MagicUpdaterMonitor.Forms
 			&& tbSelfUpdateFtpPath.Text == (_sqlLocalSettings.SelfUpdateFtpPath ?? "")
 			&& _is1CBaseOnServer == _sqlLocalSettings.Is1CBaseOnServer
 			&& tbServerOrPath1C.Text == (_sqlLocalSettings.Is1CBaseOnServer ? (_sqlLocalSettings.Server1C ?? "") : (_sqlLocalSettings.InformationBaseDirectory ?? ""))
-			&& tbBase1C.Text==(_sqlLocalSettings.Base1C ?? ""));
+			&& tbBase1C.Text == (_sqlLocalSettings.Base1C ?? "")
+			&& _performanceCounterMode == _sqlLocalSettings.PerformanceCounterMode);
 		}
 
 		private void AgentSettingsForm_Load(object sender, EventArgs e)
@@ -170,6 +212,7 @@ namespace MagicUpdaterMonitor.Forms
 			_is1CBaseOnServer = _sqlLocalSettings.Is1CBaseOnServer;
 			tbServerOrPath1C.Text = (_sqlLocalSettings.Is1CBaseOnServer ? _sqlLocalSettings.Server1C : _sqlLocalSettings.InformationBaseDirectory);
 			tbBase1C.Text = _sqlLocalSettings.Base1C;
+			_performanceCounterMode = _sqlLocalSettings.PerformanceCounterMode;
 
 			btnOk.Enabled = IsChangeExists();
 		}
@@ -207,7 +250,9 @@ namespace MagicUpdaterMonitor.Forms
 			{
 				_sqlLocalSettings.InformationBaseDirectory = tbServerOrPath1C.Text;
 			}
-			
+
+			_sqlLocalSettings.PerformanceCounterMode = _performanceCounterMode;
+
 			_sqlLocalSettings.SaveSettingsToDb(_computerId);
 
 			//Проставляем флаг в базу о том, что настройки были изменены
@@ -261,6 +306,11 @@ namespace MagicUpdaterMonitor.Forms
 				tbServerOrPath1C.Text = _sqlLocalSettings.InformationBaseDirectory;
 				btnOk.Enabled = IsChangeExists();
 			}
+		}
+
+		private void rbPerformanceCounterOff_CheckedChanged(object sender, EventArgs e)
+		{
+			btnOk.Enabled = IsChangeExists();
 		}
 	}
 }

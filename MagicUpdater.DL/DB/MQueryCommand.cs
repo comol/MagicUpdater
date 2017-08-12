@@ -2347,7 +2347,7 @@ namespace MagicUpdater.DL.DB
 										 });
 
 #if DEMO
-				return await queryComputersGrid.Take(5).ToArrayAsync(); 
+				return await queryComputersGrid.Take(10).ToArrayAsync(); 
 #else
 				return await queryComputersGrid.ToArrayAsync();
 #endif

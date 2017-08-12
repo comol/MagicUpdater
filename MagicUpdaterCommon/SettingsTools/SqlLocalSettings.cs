@@ -107,6 +107,9 @@ namespace MagicUpdaterCommon.SettingsTools
 						case "Is1CBaseOnServer":
 							Is1CBaseOnServer = Convert.ToBoolean(drv["Value"]);
 							break;
+						case "PerformanceCounterMode":
+							PerformanceCounterMode = Convert.ToInt32(drv["Value"]);
+							break;
 					}
 				}
 			}
@@ -134,5 +137,7 @@ namespace MagicUpdaterCommon.SettingsTools
 		public string SelfUpdateFtpPath { get; set; }
 		public string InformationBaseDirectory { get; set; }
 		public bool Is1CBaseOnServer { get; set; } = true;
+		//Режимсчетчика производительности (0 - выключен, 1 - последние значения, 2 - последние значения и история)
+		public int PerformanceCounterMode { get; set; } = 0;
 	}
 }
