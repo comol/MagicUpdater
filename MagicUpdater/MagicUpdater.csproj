@@ -137,6 +137,7 @@
     <Compile Include="Actions\Disabled\UnLockBackgroundJobsOnServer1C.cs" />
     <Compile Include="Actions\Disabled\UpdateBase1C.cs" />
     <Compile Include="Actions\Disabled\WorkContinueDialog.cs" />
+    <Compile Include="Core\PerformanceReporter.cs" />
     <Compile Include="ServiceTools\ServiceConnector.cs" />
     <Compile Include="Core\MuCore.cs" />
     <Compile Include="Core\TaskerReporter.cs" />
@@ -172,6 +173,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServiceTools\WorkloadAnalyzer.cs" />
     <Compile Include="Smartassembly\attributes\SmartAssembly.Attributes.cs" />
   </ItemGroup>
   <ItemGroup>
