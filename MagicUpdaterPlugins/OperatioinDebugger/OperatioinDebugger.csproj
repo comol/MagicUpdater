@@ -13,7 +13,7 @@
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x86</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -41,11 +41,8 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MagicUpdater, Version=1.0.6231.38735, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="MagicUpdaterCommon, Version=1.1.6435.30261, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\MagicUpdater\bin\Release\MagicUpdater.exe</HintPath>
-    </Reference>
-    <Reference Include="MagicUpdaterCommon">
       <HintPath>..\..\MagicUpdater\bin\Release\MagicUpdaterCommon.dll</HintPath>
     </Reference>
     <Reference Include="System" />
@@ -65,6 +62,13 @@
       <Project>{07C7BE50-AA53-4DA2-B463-6F157DD886CA}</Project>
       <Name>CouchDBDeployerPlugin</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CouchDbExecuteCommandPlugin\CouchDbExecuteCommandPlugin.csproj">
+      <Project>{7DF5F825-6690-4C7D-9545-EFF3AC78B1BE}</Project>
+      <Name>CouchDbExecuteCommandPlugin</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
