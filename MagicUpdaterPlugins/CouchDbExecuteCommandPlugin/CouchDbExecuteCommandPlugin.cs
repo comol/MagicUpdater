@@ -8,24 +8,36 @@ using MagicUpdater.Actions;
 
 namespace CouchDbExecuteCommandPlugin
 {
-	public class CouchDbExecuteCommandPlugin : Operation
-	{
-		public CouchDbExecuteCommandPlugin(int? operationId) : base(operationId)
-		{
-		}
+    public class CouchDbExecuteCommandPlugin : OperationWithAttr<CouchDbExecuteCommandPluginAttr>
+    {
+        public CouchDbExecuteCommandPlugin(int? operationId, string attrsJson) : base(operationId, attrsJson)
+        {
+        }
 
-		protected override void Execution(object sender = null, DoWorkEventArgs e = null)
-		{
-			new CouchDBExecuteCommandAction(Id).ActRun();
-		}
-	}
+        protected override void Execution(object sender = null, DoWorkEventArgs e = null)
+        {
+            var act = new CouchDBExecuteCommandAction(Id, Attributes.Command, Attributes.ParameterName);
+            act.ActRun();
+            SendOperationReport(act.Result, true);
+        }
+    }
 
-	public class RegistrationParams : IRegistrationParams
-	{
-		public string Description => "";
+    public class CouchDbExecuteCommandPluginAttr : IOperationAttributes
+    {
+        [OperationAttributeDisplayName("Текст команды")]
+        public string Command { get; set; } = "";
 
-		public int GroupId => 2;
+        [OperationAttributeDisplayName("Имя параметра")]
+        public string ParameterName { get; set; } = "";
+    }
 
-		public string NameRus => "CouchDb: Выполнение команды (плагин)";
-	}
+
+    public class RegistrationParams : IRegistrationParams
+    {
+        public string Description => "";
+
+        public int GroupId => 2;
+
+        public string NameRus => "CouchDb: Выполнение команды (плагин)";
+    }
 }
