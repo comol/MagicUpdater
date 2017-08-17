@@ -33,7 +33,8 @@ namespace MagicUpdaterInstaller
 		private int _operationId = 0;
 
 		private string _servicePath;
-		private string _magic_updater_path;
+		private string _magicUpdaterPath;
+		private string _restartApplicationPath;
 
 		private ServiceController service = new ServiceController(SERVICE_NAME);
 		#endregion Private Variables
@@ -63,7 +64,7 @@ namespace MagicUpdaterInstaller
 			{
 				throw new Exception($"Ошибочный путь установки MU - {path}");
 			}
-			_magic_updater_path = path;
+			_magicUpdaterPath = path;
 			_servicePath = Path.Combine(path, SERVICE_EXE_NAME);
 		}
 
@@ -195,7 +196,7 @@ namespace MagicUpdaterInstaller
 			#region Удаляем все из папок MagicUpdater и MagicUpdaterNewVer
 			try
 			{
-				DirectoryInfo di = new DirectoryInfo(_magic_updater_path);
+				DirectoryInfo di = new DirectoryInfo(_magicUpdaterPath);
 
 				foreach (FileInfo file in di.GetFiles())
 				{
@@ -208,9 +209,9 @@ namespace MagicUpdaterInstaller
 				{
 					dir.Delete(true);
 				}
-				Program.MainForm?.LogInstallServiceString($"Путь {_magic_updater_path} - очищен");
+				Program.MainForm?.LogInstallServiceString($"Путь {_magicUpdaterPath} - очищен");
 				//NLogger.LogDebugToHdd($"Путь {_magic_updater_path} - очищен");
-				AddMessage($"Путь {_magic_updater_path} - очищен");
+				AddMessage($"Путь {_magicUpdaterPath} - очищен");
 			}
 			catch (Exception ex)
 			{
@@ -270,37 +271,58 @@ namespace MagicUpdaterInstaller
 
 		private void InstallBase()
 		{
-			Directory.CreateDirectory(_magic_updater_path);
+			Directory.CreateDirectory(_magicUpdaterPath);
 
 			Program.MainForm?.LogInstallServiceString($"Копирование файла {MainSettings.Constants.SETTINGS_JSON_FILE_NAME}.");
-			if (File.Exists(Path.Combine(_magic_updater_path, MainSettings.Constants.SETTINGS_JSON_FILE_NAME)))
+			if (File.Exists(Path.Combine(_magicUpdaterPath, MainSettings.Constants.SETTINGS_JSON_FILE_NAME)))
 			{
-				File.Delete(Path.Combine(_magic_updater_path, MainSettings.Constants.SETTINGS_JSON_FILE_NAME));
+				File.Delete(Path.Combine(_magicUpdaterPath, MainSettings.Constants.SETTINGS_JSON_FILE_NAME));
 			}
-			File.Copy(MainSettings.JsonSettingsFileFullPath, Path.Combine(_magic_updater_path, MainSettings.Constants.SETTINGS_JSON_FILE_NAME));
+			File.Copy(MainSettings.JsonSettingsFileFullPath, Path.Combine(_magicUpdaterPath, MainSettings.Constants.SETTINGS_JSON_FILE_NAME));
 			Program.MainForm?.LogInstallServiceString($"Копирование файла {MainSettings.Constants.SETTINGS_JSON_FILE_NAME} успешно завершено.");
 
 
 			Thread.Sleep(1000);
 
-			Program.MainForm?.LogInstallServiceString("Скачиваем новую версию...");
+			Program.MainForm?.LogInstallServiceString("Скачиваем новую версию приложения для перезапуска для агента");
 			//Копируем новый MagicUpdater целиком!
 			#region Копируем новый MagicUpdater целиком!
-			Directory.CreateDirectory(_magic_updater_path);
+			Directory.CreateDirectory(_magicUpdaterPath);
+			
+			//Restart applivation
+			var resReatartApp = FtpWorks.DownloadFilesFromFtpFolder(MainSettings.LocalSqlSettings.SelfUpdateFtpServer
+				, MainSettings.LocalSqlSettings.SelfUpdateFtpUser
+				, MainSettings.LocalSqlSettings.SelfUpdateFtpPassword
+				, Path.Combine(MainSettings.LocalSqlSettings.SelfUpdateFtpPath, MainSettings.Constants.MU_RESTART_FOLDER_NAME)
+				, Path.Combine(_magicUpdaterPath, MainSettings.Constants.MU_RESTART_FOLDER_NAME)
+				, "*");
 
-			var res = FtpWorks.DownloadFilesFromFtpFolder(MainSettings.LocalSqlSettings.SelfUpdateFtpServer
+			if (!resReatartApp.IsComplete)
+			{
+				throw new Exception(resReatartApp.Message);
+			}
+			else
+			{
+				Program.MainForm?.LogInstallServiceString($"Закачка нового {MainSettings.Constants.MAGIC_UPDATER_RESTART} - завешена");
+				//NLogger.LogDebugToHdd($"Закачка нового {SERVICE_NAME} - завешена");
+				AddMessage($"Закачка нового {MainSettings.Constants.MAGIC_UPDATER_RESTART} - завешена");
+			}
+
+			//Agent
+			Program.MainForm?.LogInstallServiceString("Скачиваем новую версию агента");
+			var resAgent = FtpWorks.DownloadFilesFromFtpFolder(MainSettings.LocalSqlSettings.SelfUpdateFtpServer
 				, MainSettings.LocalSqlSettings.SelfUpdateFtpUser
 				, MainSettings.LocalSqlSettings.SelfUpdateFtpPassword
 				, MainSettings.LocalSqlSettings.SelfUpdateFtpPath
-				, _magic_updater_path
+				, _magicUpdaterPath
 				, "*");
 
-			if (!res.IsComplete)
+			if (!resAgent.IsComplete)
 			{
 				//Program.MainForm?.LogInstallServiceString(res.Message);
 				//AddMessage(res.Message);
 				//return;
-				throw new Exception(res.Message);
+				throw new Exception(resAgent.Message);
 			}
 			else
 			{

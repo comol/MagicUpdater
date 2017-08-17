@@ -1,22 +1,35 @@
 ﻿using MagicUpdater.ServiceTools;
 using MagicUpdaterCommon.Data;
+using MagicUpdaterCommon.Helpers;
 using MagicUpdaterCommon.SettingsTools;
 using System;
 
 namespace MagicUpdater.Core
 {
-	public class PerformanceReporter : IDisposable
+	public static class PerformanceReporter
 	{
-		private WorkloadAnalyzer _workloadAnalyzer;
+		private static WorkloadAnalyzer _workloadAnalyzer;
 
-		public void StartOnlyAvg()
+		public static void StartOnlyAvg()
 		{
-			_workloadAnalyzer = new WorkloadAnalyzer();
-			_workloadAnalyzer.OnWorkloadAllSave += _workloadAnalyzer_OnWorkloadAvgSave;
-			_workloadAnalyzer.Start();
+			if (_workloadAnalyzer != null)
+			{
+				return;
+			}
+
+			try
+			{
+				_workloadAnalyzer = new WorkloadAnalyzer();
+				_workloadAnalyzer.OnWorkloadAllSave += _workloadAnalyzer_OnWorkloadAvgSave;
+				_workloadAnalyzer.Start();
+			}
+			catch (Exception ex)
+			{
+				NLogger.LogErrorToBaseAndHdd(MainSettings.MainSqlSettings.ComputerId, ex.ToString(), MainSettings.Constants.MAGIC_UPDATER);
+			}
 		}
 
-		private void _workloadAnalyzer_OnWorkloadAvgSave(WorkloadInfo workloadInfo)
+		private static void _workloadAnalyzer_OnWorkloadAvgSave(WorkloadInfo workloadInfo)
 		{
 			SqlWorks.ExecProc("AddAvgPerformanceCounter"
 				, MainSettings.MainSqlSettings.ComputerId
@@ -26,15 +39,34 @@ namespace MagicUpdater.Core
 				, workloadInfo.AvgWorkloadInfoDisk);
 		}
 
-		public void StartAll()
+		public static void StartAll()
 		{
-			_workloadAnalyzer = new WorkloadAnalyzer();
-			_workloadAnalyzer.OnWorkloadAllSave += _workloadAnalyzer_OnWorkloadAllSave;
-			_workloadAnalyzer.Start();
+			if (_workloadAnalyzer != null)
+			{
+				return;
+			}
+
+			try
+			{
+				_workloadAnalyzer = new WorkloadAnalyzer();
+				_workloadAnalyzer.OnWorkloadAllSave += _workloadAnalyzer_OnWorkloadAllSave;
+				_workloadAnalyzer.Start();
+			}
+			catch (Exception ex)
+			{
+				NLogger.LogErrorToBaseAndHdd(MainSettings.MainSqlSettings.ComputerId, ex.ToString(), MainSettings.Constants.MAGIC_UPDATER);
+			}
 		}
 
-		private void _workloadAnalyzer_OnWorkloadAllSave(WorkloadInfo workloadInfo)
+		private static void _workloadAnalyzer_OnWorkloadAllSave(WorkloadInfo workloadInfo)
 		{
+			SqlWorks.ExecProc("AddAvgPerformanceCounter"
+				, MainSettings.MainSqlSettings.ComputerId
+				, DateTime.UtcNow
+				, workloadInfo.AvgWorkloadInfoCpu
+				, workloadInfo.AvgWorkloadInfoRam
+				, workloadInfo.AvgWorkloadInfoDisk);
+
 			//ProcessorTime
 			foreach (var item in workloadInfo.WorkloadInfoCpuList)
 			{
@@ -66,9 +98,10 @@ namespace MagicUpdater.Core
 			}
 		}
 
-		public void Dispose()
+		public static void Stop()
 		{
 			_workloadAnalyzer?.Stop();
+			_workloadAnalyzer = null;
 		}
 	}
 }

@@ -891,7 +891,7 @@ namespace MagicUpdaterInstaller
 			// progressBar1
 			// 
 			this.progressBar1.Location = new System.Drawing.Point(3, 152);
-			this.progressBar1.Maximum = 17;
+			this.progressBar1.Maximum = 18;
 			this.progressBar1.Name = "progressBar1";
 			this.progressBar1.Size = new System.Drawing.Size(1027, 23);
 			this.progressBar1.TabIndex = 30;

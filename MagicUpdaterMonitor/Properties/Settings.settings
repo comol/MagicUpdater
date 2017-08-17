@@ -26,8 +26,8 @@
     <Setting Name="MainWindowStartPosition" Type="System.Windows.Forms.FormStartPosition" Scope="User">
       <Value Profile="(Default)">Manual</Value>
     </Setting>
-    <Setting Name="Setting" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+    <Setting Name="cbOperationGroups" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">-1</Value>
     </Setting>
   </Settings>
 </SettingsFile>

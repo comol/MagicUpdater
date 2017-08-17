@@ -80,7 +80,7 @@ namespace MagicUpdaterMonitor
 
 		public static int UserId { get; private set; }
 
-		public static CommonGlobalSettings MonitorCommonGlobalSettings { get; private set;}
+		public static CommonGlobalSettings MonitorCommonGlobalSettings { get; private set; }
 
 		public MainForm()
 		{
@@ -116,7 +116,7 @@ namespace MagicUpdaterMonitor
 			//tabControl1.TabPages.Remove(tabPage3);
 #endif
 			//tsddbSpecialSendOpers.Visible = AppSettings.IsServiceMode;
-			LoadUserSettings();
+			//LoadUserSettings();
 #if DEMO
 			ShowOtrs.Visible = false; 
 #endif
@@ -137,6 +137,7 @@ namespace MagicUpdaterMonitor
 				Properties.Settings.Default.scOpersDistance = this.scOpers.SplitterDistance;
 				Properties.Settings.Default.scMainDistance = this.scMain.SplitterDistance;
 				Properties.Settings.Default.scSendOpersDistance = this.scSendOpers.SplitterDistance;
+				Properties.Settings.Default.cbOperationGroups = this.cbOperationGroups.SelectedIndex;
 				Properties.Settings.Default.Save();
 			}
 			catch (Exception ex)
@@ -178,6 +179,11 @@ namespace MagicUpdaterMonitor
 
 				if (Properties.Settings.Default.scSendOpersDistance != 0)
 					this.scSendOpers.SplitterDistance = Properties.Settings.Default.scSendOpersDistance;
+
+				if (Properties.Settings.Default.cbOperationGroups != -1 && this.cbOperationGroups.Items.Count - 1 >= Properties.Settings.Default.cbOperationGroups)
+				{
+					this.cbOperationGroups.SelectedIndex = Properties.Settings.Default.cbOperationGroups;
+				}
 			}
 			catch (Exception ex)
 			{
@@ -185,12 +191,13 @@ namespace MagicUpdaterMonitor
 
 				this.Location = location;
 				this.WindowState = windowState;
-				this.StartPosition = startPosition;
+				this.StartPosition = FormStartPosition.CenterScreen;
 				this.Size = size;
 				this.scShopsOpers.SplitterDistance = scShopsOpersSplitterDistance;
 				this.scOpers.SplitterDistance = scOpersSplitterDistance;
 				this.scMain.SplitterDistance = scMainSplitterDistance;
 				this.scSendOpers.SplitterDistance = scSendOpersSplitterDistance;
+				this.Opacity = 1;
 
 				SaveUserSettings();
 			}
@@ -290,6 +297,7 @@ namespace MagicUpdaterMonitor
 			RefreshOperationsTimer = new System.Threading.Timer(RefreshOperationsTimerCallback, null, GRIDS_REFRESH_TIMEOUT, Timeout.Infinite);
 			//RefreshShopsTimer = new System.Threading.Timer(RefreshShopsTimerCallback, null, GRIDS_REFRESH_TIMEOUT, Timeout.Infinite);
 			//RefreshComputerErrorsLogTimer = new System.Threading.Timer(RefreshComputerErrorsLogTimerCallback, null, GRIDS_REFRESH_TIMEOUT, Timeout.Infinite);
+			LoadUserSettings();
 		}
 
 		private void FilterByAgentTimerCallback(object state)
@@ -443,7 +451,7 @@ namespace MagicUpdaterMonitor
 				rgvComputers.PaintCells += PaintComputersGrid;
 				rgvComputers.SelectedValueChanged += RgvComputers_SelectedValueChanged;
 				rgvComputers.MappingColumns = Mapping.ComputersGridColMap;
-				
+
 
 				if (AppSettings.IsServiceMode)
 				{
@@ -466,7 +474,7 @@ namespace MagicUpdaterMonitor
 				rgvComputers.dataGridView.RowHeadersVisible = false;
 
 				rgvComputers.HideColumns("Is1CServer", "IsMainCashbox", "IsClosed");
-				
+
 				SetFilterOnStart();
 
 				#region ContextMenuAdd
@@ -495,6 +503,38 @@ namespace MagicUpdaterMonitor
 					}
 				};
 				rgvComputers.AddMenuItem(miShowHideClosedShops);
+
+				//Показать/скрыть системные ресурсы
+				const string SHOW_PC_COLUMNS = "Показать системные ресурсы";
+				const string HIDE_PC_COLUMNS = "Скрыть системные ресурсы";
+				string[] additionalPcColumns = new string[]
+				{
+					"AvgPerformanceCounterValuesDateTimeUtc",
+					"AvgCpuTimeVis",
+					"AvgRamAvailableMBytesVis",
+					"AvgDiskQueueLengthVis"
+				};
+				rgvComputers.HideColumns(additionalPcColumns);
+				var miShowHidePcColumns = new ToolStripMenuItem();
+				miShowHidePcColumns.Name = "miShowHideColumns";
+				miShowHidePcColumns.Text = SHOW_PC_COLUMNS;
+				miShowHidePcColumns.Image = Images.plus;
+				miShowHidePcColumns.Click += (sender, e) =>
+				{
+					if (miShowHidePcColumns.Text == SHOW_PC_COLUMNS)
+					{
+						miShowHidePcColumns.Text = HIDE_PC_COLUMNS;
+						rgvComputers.ShowColumns(additionalPcColumns);
+						miShowHidePcColumns.Image = Images.minus;
+					}
+					else
+					{
+						miShowHidePcColumns.Text = SHOW_PC_COLUMNS;
+						rgvComputers.HideColumns(additionalPcColumns);
+						miShowHidePcColumns.Image = Images.plus;
+					}
+				};
+				rgvComputers.AddMenuItem(miShowHidePcColumns);
 
 				//Показать/скрыть дополнительные поля
 				const string SHOW_ADDITIONAL_COLUMNS = "Показать дополнительные столбцы";
@@ -1289,7 +1329,7 @@ namespace MagicUpdaterMonitor
 
 		private void tsbScheduler_Click(object sender, EventArgs e)
 		{
-			
+
 		}
 
 		private void CheckAll_Click(object sender, EventArgs e)
@@ -1595,7 +1635,7 @@ namespace MagicUpdaterMonitor
 
 		private void MainForm_Shown(object sender, EventArgs e)
 		{
-			LoadUserSettings();
+			//LoadUserSettings();
 		}
 
 		private void вЦентреToolStripMenuItem_Click(object sender, EventArgs e)

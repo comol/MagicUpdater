@@ -2318,33 +2318,37 @@ namespace MagicUpdater.DL.DB
 			using (EntityDb context = new EntityDb())
 			{
 				var queryComputersGrid = (from Computers in context.ViewShopComputersServers
-										 select new ShopComputersModel
-										 {
-											 ShopId = Computers.ShopName,
-											 ShopName = Computers.ShopName,
-											 ExchangeError = Computers.ExchangeError ?? false,
-											 AddressToConnect = Computers.AddressToConnect,
-											 Phone = Computers.Phone,
-											 IsExchangeError = Computers.ExchangeError ?? false,
-											 LastSuccessfulReceive = Computers.LastSuccessfulReceive,
-											 LastSuccessfulUpload = Computers.LastSuccessfulUpload,
-											 ComputerId = Computers.ComputerId ?? 0,
-											 IsClosed = Computers.IsClosed ?? false,
-											 ComputerName = Computers.ComputerName,
-											 Local_IP = Computers.ComputerAddress,
-											 External_IP = Computers.External_IP,
-											 Is1CServer = Computers.Is1CServer,
-											 IsMainCashbox = Computers.IsMainCashbox,
-											 IsTaskerAlive = Computers.IsTaskerAlive,
-											 OperationTypeRu = Computers.OperationTypeRu,
-											 OperationCreationDate = Computers.OperationCreationDate,
-											 OperState = Computers.OperState,
-											 MagicUpdaterVersion = Computers.MagicUpdaterVersion,
-											 IsOn = (Computers.IsON == 1) ? true : false,
-											 Email = Computers.Email,
-											 LastErrorDate = Computers.LastErrorDate,
-											 LastError = Computers.LastError
-										 });
+										  select new ShopComputersModel
+										  {
+											  ShopId = Computers.ShopName,
+											  ShopName = Computers.ShopName,
+											  ExchangeError = Computers.ExchangeError ?? false,
+											  AddressToConnect = Computers.AddressToConnect,
+											  Phone = Computers.Phone,
+											  IsExchangeError = Computers.ExchangeError ?? false,
+											  LastSuccessfulReceive = Computers.LastSuccessfulReceive,
+											  LastSuccessfulUpload = Computers.LastSuccessfulUpload,
+											  ComputerId = Computers.ComputerId ?? 0,
+											  IsClosed = Computers.IsClosed ?? false,
+											  ComputerName = Computers.ComputerName,
+											  Local_IP = Computers.ComputerAddress,
+											  External_IP = Computers.External_IP,
+											  Is1CServer = Computers.Is1CServer,
+											  IsMainCashbox = Computers.IsMainCashbox,
+											  IsTaskerAlive = Computers.IsTaskerAlive,
+											  OperationTypeRu = Computers.OperationTypeRu,
+											  OperationCreationDate = Computers.OperationCreationDate,
+											  OperState = Computers.OperState,
+											  MagicUpdaterVersion = Computers.MagicUpdaterVersion,
+											  IsOn = (Computers.IsON == 1) ? true : false,
+											  Email = Computers.Email,
+											  LastErrorDate = Computers.LastErrorDate,
+											  LastError = Computers.LastError,
+											  AvgPerformanceCounterValuesDateTimeUtc = Computers.AvgPerformanceCounterValuesDateTimeUtc,
+											  AvgCpuTime = Computers.AvgCpuTime,
+											  AvgRamAvailableMBytes = Computers.AvgRamAvailableMBytes,
+											  AvgDiskQueueLength = Computers.AvgDiskQueueLength
+										  });
 
 #if DEMO
 				return await queryComputersGrid.Take(10).ToArrayAsync(); 

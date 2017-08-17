@@ -121,13 +121,13 @@ namespace MagicUpdaterMonitor.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string Setting {
+        [global::System.Configuration.DefaultSettingValueAttribute("-1")]
+        public int cbOperationGroups {
             get {
-                return ((string)(this["Setting"]));
+                return ((int)(this["cbOperationGroups"]));
             }
             set {
-                this["Setting"] = value;
+                this["cbOperationGroups"] = value;
             }
         }
     }

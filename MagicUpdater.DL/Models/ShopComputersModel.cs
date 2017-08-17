@@ -62,6 +62,17 @@ namespace MagicUpdater.DL.Models
 		[SetCurrentTimeZome]
 		public DateTime? OperationCreationDate { get; set; }
 		public string OperState { get; set; }
+		[SetCurrentTimeZome]
+		public DateTime? AvgPerformanceCounterValuesDateTimeUtc { get; set; }
+		[NotMapRefreshingGridView]
+		public double? AvgCpuTime { get; set; }
+		public string AvgCpuTimeVis => AvgCpuTime == null ? string.Empty : $"{Math.Round(AvgCpuTime.Value).ToString()}%";
+		[NotMapRefreshingGridView]
+		public double? AvgRamAvailableMBytes { get; set; }
+		public string AvgRamAvailableMBytesVis => AvgRamAvailableMBytes == null ? string.Empty : $"{Math.Round(AvgRamAvailableMBytes.Value).ToString()} MB";
+		[NotMapRefreshingGridView]
+		public double? AvgDiskQueueLength { get; set; }
+		public string AvgDiskQueueLengthVis => AvgDiskQueueLength == null ? string.Empty : $"{Math.Round(AvgDiskQueueLength.Value).ToString()}";
 		[NotMapRefreshingGridView]
 		public DateTime? LastErrorDate { get; set; }
 		[NotMapRefreshingGridView]

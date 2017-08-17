@@ -994,6 +994,10 @@
     <Property Name="OperState" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
     <Property Name="LastError" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="LastErrorDate" Type="DateTime" Precision="3" />
+    <Property Name="AvgPerformanceCounterValuesDateTimeUtc" Type="DateTime" Precision="3" />
+    <Property Name="AvgCpuTime" Type="Double" />
+    <Property Name="AvgRamAvailableMBytes" Type="Double" />
+    <Property Name="AvgDiskQueueLength" Type="Double" />
   </EntityType>
   <EntityType Name="ViewShopComputersServerFull">
     <Key>

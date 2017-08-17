@@ -133,6 +133,17 @@ namespace MagicUpdater.Core
 				SqlWorks.ExecProc("UpdateVersion", MainSettings.MainSqlSettings.ComputerId, Extensions.GetApplicationVersion());
 				TaskerReporter.Start();
 				RestartTaskerReporter.Start();
+				switch (MainSettings.LocalSqlSettings.PerformanceCounterMode)
+				{
+					case 0:
+						break;
+					case 1:
+						PerformanceReporter.StartOnlyAvg();
+						break;
+					case 2:
+						PerformanceReporter.StartAll();
+						break;
+				}
 			}
 
 			return true;
@@ -162,6 +173,7 @@ namespace MagicUpdater.Core
 			TaskerReporter.DisposeTasker();
 			RestartTaskerReporter.DisposeTasker();
 			NetworkForActions.StopServer();
+			PerformanceReporter.Stop();
 		}
 
 		public static ServerConnector ConnectionToSettings { get; private set; }

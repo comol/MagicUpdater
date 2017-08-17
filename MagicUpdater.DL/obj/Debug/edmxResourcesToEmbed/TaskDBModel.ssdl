@@ -695,6 +695,10 @@ warning 6002: The table/view 'MagicUpdater.dbo.ViewShopComputersServer' does not
     <Property Name="OperationTypeRu" Type="nvarchar" MaxLength="256" Nullable="false" />
     <Property Name="OperationCreationDate" Type="datetime" />
     <Property Name="OperState" Type="nvarchar" MaxLength="256" Nullable="false" />
+    <Property Name="AvgPerformanceCounterValuesDateTimeUtc" Type="datetime" />
+    <Property Name="AvgCpuTime" Type="float" />
+    <Property Name="AvgRamAvailableMBytes" Type="float" />
+    <Property Name="AvgDiskQueueLength" Type="float" />
   </EntityType>
   <!--Errors Found During Generation:
 warning 6002: The table/view 'MagicUpdater.dbo.ViewShopComputersServerFull' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -1453,7 +1457,11 @@ warning 6002: The table/view 'MagicUpdater.dbo.ViewShopComputersServerFull' does
     [ViewShopComputersServer].[IsON] AS [IsON], 
     [ViewShopComputersServer].[OperationTypeRu] AS [OperationTypeRu], 
     [ViewShopComputersServer].[OperationCreationDate] AS [OperationCreationDate], 
-    [ViewShopComputersServer].[OperState] AS [OperState]
+    [ViewShopComputersServer].[OperState] AS [OperState], 
+    [ViewShopComputersServer].[AvgPerformanceCounterValuesDateTimeUtc] AS [AvgPerformanceCounterValuesDateTimeUtc], 
+    [ViewShopComputersServer].[AvgCpuTime] AS [AvgCpuTime], 
+    [ViewShopComputersServer].[AvgRamAvailableMBytes] AS [AvgRamAvailableMBytes], 
+    [ViewShopComputersServer].[AvgDiskQueueLength] AS [AvgDiskQueueLength]
     FROM [dbo].[ViewShopComputersServer] AS [ViewShopComputersServer]</DefiningQuery>
     </EntitySet>
     <EntitySet Name="ViewShopComputersServerFull" EntityType="Self.ViewShopComputersServerFull" store:Type="Views" store:Schema="dbo">

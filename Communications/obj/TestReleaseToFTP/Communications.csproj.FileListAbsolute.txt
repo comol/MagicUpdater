@@ -2,3 +2,8 @@ D:\GitProjects\MagicUpdater\Communications\bin\TestReleaseToFTP\Communications.d
 D:\GitProjects\MagicUpdater\Communications\bin\TestReleaseToFTP\Communications.pdb
 D:\GitProjects\MagicUpdater\Communications\obj\TestReleaseToFTP\Communications.dll
 D:\GitProjects\MagicUpdater\Communications\obj\TestReleaseToFTP\Communications.pdb
+D:\GitProjects\MagicUpdater_ms\Communications\bin\TestReleaseToFTP\Communications.dll
+D:\GitProjects\MagicUpdater_ms\Communications\bin\TestReleaseToFTP\Communications.pdb
+D:\GitProjects\MagicUpdater_ms\Communications\obj\TestReleaseToFTP\Communications.csprojResolveAssemblyReference.cache
+D:\GitProjects\MagicUpdater_ms\Communications\obj\TestReleaseToFTP\Communications.dll
+D:\GitProjects\MagicUpdater_ms\Communications\obj\TestReleaseToFTP\Communications.pdb

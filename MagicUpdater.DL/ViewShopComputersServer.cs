@@ -41,5 +41,9 @@ namespace MagicUpdater.DL
         public string OperState { get; set; }
         public string LastError { get; set; }
         public Nullable<System.DateTime> LastErrorDate { get; set; }
+        public Nullable<System.DateTime> AvgPerformanceCounterValuesDateTimeUtc { get; set; }
+        public Nullable<double> AvgCpuTime { get; set; }
+        public Nullable<double> AvgRamAvailableMBytes { get; set; }
+        public Nullable<double> AvgDiskQueueLength { get; set; }
     }
 }

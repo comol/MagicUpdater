@@ -43,7 +43,11 @@ namespace MagicUpdaterMonitor.Helpers
 			{"Phone","Телефон"},
 			{"IsOn","Включен"},
 			{"IsOnBitmap","Включен"},
-			{"LastErrorString", "Последняя критическая ошибка"}
+			{"LastErrorString", "Последняя критическая ошибка"},
+			{"AvgPerformanceCounterValuesDateTimeUtc","Дата записи данных производительности"},
+			{"AvgCpuTimeVis","ЦП"},
+			{"AvgRamAvailableMBytesVis","Доступно ОЗУ"},
+			{"AvgDiskQueueLengthVis","Жесткий диск"}
 		};
 
 		public static Dictionary<string, string> StepsGridMapping = new Dictionary<string, string>

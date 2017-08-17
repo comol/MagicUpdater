@@ -700,6 +700,10 @@ warning 6002: The table/view 'MagicUpdater.dbo.ViewShopComputersServer' does not
           <Property Name="OperationTypeRu" Type="nvarchar" MaxLength="256" Nullable="false" />
           <Property Name="OperationCreationDate" Type="datetime" />
           <Property Name="OperState" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="AvgPerformanceCounterValuesDateTimeUtc" Type="datetime" />
+          <Property Name="AvgCpuTime" Type="float" />
+          <Property Name="AvgRamAvailableMBytes" Type="float" />
+          <Property Name="AvgDiskQueueLength" Type="float" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'MagicUpdater.dbo.ViewShopComputersServerFull' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -1458,7 +1462,11 @@ warning 6002: The table/view 'MagicUpdater.dbo.ViewShopComputersServerFull' does
     [ViewShopComputersServer].[IsON] AS [IsON], 
     [ViewShopComputersServer].[OperationTypeRu] AS [OperationTypeRu], 
     [ViewShopComputersServer].[OperationCreationDate] AS [OperationCreationDate], 
-    [ViewShopComputersServer].[OperState] AS [OperState]
+    [ViewShopComputersServer].[OperState] AS [OperState], 
+    [ViewShopComputersServer].[AvgPerformanceCounterValuesDateTimeUtc] AS [AvgPerformanceCounterValuesDateTimeUtc], 
+    [ViewShopComputersServer].[AvgCpuTime] AS [AvgCpuTime], 
+    [ViewShopComputersServer].[AvgRamAvailableMBytes] AS [AvgRamAvailableMBytes], 
+    [ViewShopComputersServer].[AvgDiskQueueLength] AS [AvgDiskQueueLength]
     FROM [dbo].[ViewShopComputersServer] AS [ViewShopComputersServer]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="ViewShopComputersServerFull" EntityType="Self.ViewShopComputersServerFull" store:Type="Views" store:Schema="dbo">
@@ -2586,6 +2594,10 @@ warning 6002: The table/view 'MagicUpdater.dbo.ViewShopComputersServerFull' does
           <Property Name="OperState" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
           <Property Name="LastError" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="LastErrorDate" Type="DateTime" Precision="3" />
+          <Property Name="AvgPerformanceCounterValuesDateTimeUtc" Type="DateTime" Precision="3" />
+          <Property Name="AvgCpuTime" Type="Double" />
+          <Property Name="AvgRamAvailableMBytes" Type="Double" />
+          <Property Name="AvgDiskQueueLength" Type="Double" />
         </EntityType>
         <EntityType Name="ViewShopComputersServerFull">
           <Key>
@@ -3675,6 +3687,10 @@ warning 6002: The table/view 'MagicUpdater.dbo.ViewShopComputersServerFull' does
           <EntitySetMapping Name="ViewShopComputersServers">
             <EntityTypeMapping TypeName="MagicUpdaterModel.ViewShopComputersServer">
               <MappingFragment StoreEntitySet="ViewShopComputersServer">
+                <ScalarProperty Name="AvgDiskQueueLength" ColumnName="AvgDiskQueueLength" />
+                <ScalarProperty Name="AvgRamAvailableMBytes" ColumnName="AvgRamAvailableMBytes" />
+                <ScalarProperty Name="AvgCpuTime" ColumnName="AvgCpuTime" />
+                <ScalarProperty Name="AvgPerformanceCounterValuesDateTimeUtc" ColumnName="AvgPerformanceCounterValuesDateTimeUtc" />
                 <ScalarProperty Name="LastErrorDate" ColumnName="LastErrorDate" />
                 <ScalarProperty Name="LastError" ColumnName="LastError" />
                 <ScalarProperty Name="OperState" ColumnName="OperState" />
