@@ -11,6 +11,7 @@ using MagicUpdaterCommon.Helpers;
 using MagicUpdater.DL.Common;
 using MagicUpdaterMonitor.Base;
 using MagicUpdaterCommon.Common;
+using MagicUpdaterCommon.SettingsTools;
 
 namespace MagicUpdater.DL.DB
 {
@@ -34,6 +35,7 @@ namespace MagicUpdater.DL.DB
 		public string Message { get; private set; }
 		public int ReturnedId { get; private set; }
 	}
+
 	public class MQueryCommand
 	{
 		private static object lockTryInsertShedulerHistory = new object();
@@ -56,6 +58,89 @@ namespace MagicUpdater.DL.DB
 		private static object lockTryInsertNewOperationByShedulerStep = new object();
 
 		#region Commands
+		public static TrySQLCommand TryUpdatePcCounts(int monitorCount, int agentCount)
+		{
+			try
+			{
+				using (EntityDb context = new EntityDb())
+				{
+					CommonGlobalSetting commonGlobalSettingMonitorCount = context.CommonGlobalSettings.FirstOrDefault(f => f.Name == CommonGlobalSettings.Lic_Monitor_Count);
+					CommonGlobalSetting commonGlobalSettingAgentCount = context.CommonGlobalSettings.FirstOrDefault(f => f.Name == CommonGlobalSettings.Lic_Agents_Count);
+
+					if (commonGlobalSettingMonitorCount == null)
+					{
+						return new TrySQLCommand(false, "Ошибка счетчика мониторов");
+					}
+
+					if (commonGlobalSettingAgentCount == null)
+					{
+						return new TrySQLCommand(false, "Ошибка счетчика агентов");
+					}
+
+					commonGlobalSettingMonitorCount.Value = monitorCount.ToString();
+					commonGlobalSettingAgentCount.Value = agentCount.ToString();
+					context.SaveChanges();
+					return new TrySQLCommand(true, "");
+				}
+			}
+			catch (Exception ex)
+			{
+				return new TrySQLCommand(false, ex.ToString());
+			}
+		}
+
+		public static TrySQLCommand TryUpdateMonitorLic(int userId, LicResponce licResponce)
+		{
+			try
+			{
+				using (EntityDb context = new EntityDb())
+				{
+					User user = context.Users.FirstOrDefault(f => f.Id == userId);
+					if (user == null)
+					{
+						return new TrySQLCommand(false, $"Пользователь с userId = {userId} отсутствует");
+					}
+
+					user.LicId = licResponce.Val;
+					context.SaveChanges();
+					return new TrySQLCommand(true, "");
+				}
+			}
+			catch (Exception ex)
+			{
+				return new TrySQLCommand(false, ex.ToString());
+			}
+		}
+
+		public static TrySQLCommand TryUpdateAgentLic(int computerId, LicResponce licResponce)
+		{
+			try
+			{
+				using (EntityDb context = new EntityDb())
+				{
+					ShopComputer shopComputer = context.ShopComputers.FirstOrDefault(f => f.ComputerId == computerId);
+					if (shopComputer == null)
+					{
+						return new TrySQLCommand(false, $"Агент с computerId = {computerId} отсутствует");
+					}
+
+					LicAgent licAgent = context.LicAgents.FirstOrDefault(f => f.ComputerId == computerId);
+					if (licAgent == null)
+					{
+						return new TrySQLCommand(false, $"Агент с computerId = {computerId} отсутствует в таблице лицензий");
+					}
+
+					licAgent.LicId = licResponce.Val;
+					context.SaveChanges();
+					return new TrySQLCommand(true, "");
+				}
+			}
+			catch (Exception ex)
+			{
+				return new TrySQLCommand(false, ex.ToString());
+			}
+		}
+
 		public static TrySQLCommand TryDeleteInsertUpdateTaskFromForm(ShedulerTask task, IEnumerable<ShedulerStep> steps)
 		{
 			try
@@ -654,13 +739,22 @@ namespace MagicUpdater.DL.DB
 			return new TrySQLCommand(true, "");
 		}
 
-		public static TrySQLCommand CreateUser(string userLogin, string userName = null)
+		public static TrySQLCommand CreateUser(string userLogin, string hwId, string userName = null)
 		{
 			try
 			{
 				using (EntityDb context = new EntityDb())
 				{
-					if (context.Users.Any(a => a.UserLogin == userLogin))
+					//Заплатка для проставления HwId
+					if (context.Users.Any(a => a.UserLogin == userLogin && string.IsNullOrEmpty(a.HwId)))
+					{
+						User exUser = context.Users.First(f => f.UserLogin == userLogin);
+						exUser.HwId = hwId;
+						context.SaveChanges();
+						return new TrySQLCommand(true, "");
+					}
+
+					if (context.Users.Any(a => a.UserLogin == userLogin && a.HwId == hwId))
 					{
 						return new TrySQLCommand(true, "");
 					}
@@ -1799,6 +1893,22 @@ namespace MagicUpdater.DL.DB
 		#endregion Commands
 
 		#region Queries
+		public static bool CheckMonitorLic(int userId, string hwId)
+		{
+			CommonGlobalSettings commonGlobalSettings = new CommonGlobalSettings();
+			commonGlobalSettings.LoadCommonGlobalSettings();
+			int licMonitorCount;
+			if (!int.TryParse(commonGlobalSettings.LicMonitorCount, out licMonitorCount))
+			{
+				return false;
+			}
+			using (EntityDb context = new EntityDb())
+			{
+				string licId = LicRequest.GetRequest(hwId, licMonitorCount);
+				return context.Users.FirstOrDefault(f => f.Id == userId && f.HwId == hwId && f.LicId == licId) != null;
+			}
+		}
+
 		public static bool CheckTaskExistsByName(string name, int[] excludedTasks = null)
 		{
 			using (EntityDb context = new EntityDb())
@@ -1825,12 +1935,12 @@ namespace MagicUpdater.DL.DB
 			}
 		}
 
-		public static int GetUserId(string userLogin)
+		public static int GetUserId(string userLogin, string hwId)
 		{
 			User user = null;
 			using (EntityDb context = new EntityDb())
 			{
-				user = context.Users.FirstOrDefault(f => f.UserLogin == userLogin);
+				user = context.Users.FirstOrDefault(f => f.UserLogin == userLogin && f.HwId == hwId);
 			}
 
 			return user == null ? 0 : user.Id;

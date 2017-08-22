@@ -114,6 +114,25 @@
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'LicenceRelease|AnyCPU'">
+    <OutputPath>bin\LicenceRelease\</OutputPath>
+    <DefineConstants>TRACE;LIC</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'LicenceDebug|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\LicenceDebug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;LIC</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="DotNetZip, Version=1.10.1.0, Culture=neutral, PublicKeyToken=6583c7c814667745, processorArchitecture=MSIL">
       <HintPath>..\packages\DotNetZip.1.10.1\lib\net20\DotNetZip.dll</HintPath>
@@ -253,6 +272,12 @@
     <Compile Include="Forms\DialogTimerForm.Designer.cs">
       <DependentUpon>DialogTimerForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\LicForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\LicForm.Designer.cs">
+      <DependentUpon>LicForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\MoveToOperationGroupForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -348,6 +373,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DialogTimerForm.resx">
       <DependentUpon>DialogTimerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\LicForm.resx">
+      <DependentUpon>LicForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MoveToOperationGroupForm.resx">
       <DependentUpon>MoveToOperationGroupForm.cs</DependentUpon>

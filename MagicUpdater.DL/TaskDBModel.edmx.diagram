@@ -70,6 +70,14 @@
         <AssociationConnector Association="MagicUpdaterModel.FK_ShedulerPluginTasks_ShedulerTaskModes" />
         <AssociationConnector Association="MagicUpdaterModel.FK_ShedulerTasks_ShedulerStatuses" />
         <AssociationConnector Association="MagicUpdaterModel.FK_ShedulerTasks_ShedulerTaskModes" />
+        <EntityTypeShape EntityType="MagicUpdaterModel.LicAgent" Width="1.5" PointX="5.25" PointY="28.625" />
+        <EntityTypeShape EntityType="MagicUpdaterModel.PerformanceCounterDictionary" Width="1.5" PointX="12" PointY="26.25" />
+        <EntityTypeShape EntityType="MagicUpdaterModel.ShopComputersAdd" Width="1.5" PointX="5.25" PointY="0.75" />
+        <EntityTypeShape EntityType="MagicUpdaterModel.PerformanceCounter" Width="1.5" PointX="14.25" PointY="22" />
+        <AssociationConnector Association="MagicUpdaterModel.FK_LicAgent_ShopComputers" />
+        <AssociationConnector Association="MagicUpdaterModel.FK_PerformanceCounter_PerformanceCounterDictionary" />
+        <AssociationConnector Association="MagicUpdaterModel.FK_PerformanceCounter_ShopComputers" />
+        <AssociationConnector Association="MagicUpdaterModel.FK_ShopComputersAdd_ShopComputers" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

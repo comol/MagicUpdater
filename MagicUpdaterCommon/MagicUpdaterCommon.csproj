@@ -78,6 +78,25 @@
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'LicenceRelease|AnyCPU'">
+    <OutputPath>bin\LicenceRelease\</OutputPath>
+    <DefineConstants>TRACE;LIC</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'LicenceDebug|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\LicenceDebug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;LIC</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="DotNetZip, Version=1.10.1.0, Culture=neutral, PublicKeyToken=6583c7c814667745, processorArchitecture=MSIL">
       <HintPath>..\packages\DotNetZip.1.10.1\lib\net20\DotNetZip.dll</HintPath>
@@ -125,7 +144,11 @@
     <Compile Include="Helpers\FilesWorks.cs" />
     <Compile Include="Helpers\FtpWorks.cs" />
     <Compile Include="Helpers\HardwareInfo.cs" />
+    <Compile Include="Helpers\HWID.cs" />
     <Compile Include="Helpers\LatestVersion1C.cs" />
+    <Compile Include="Helpers\LicGetter.cs" />
+    <Compile Include="Helpers\LicRequest.cs" />
+    <Compile Include="Helpers\LicResponce.cs" />
     <Compile Include="Helpers\MD5Works.cs" />
     <Compile Include="Helpers\NetWork.cs" />
     <Compile Include="Helpers\NewtonJson.cs" />

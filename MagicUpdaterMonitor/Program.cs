@@ -76,6 +76,38 @@ namespace MagicUpdaterMonitor
 				}
 			}
 
+			MainForm.HwId = HWID.Value();
+
+			//Создаем пользователя в базе, если его нет
+			MQueryCommand.CreateUser(Environment.UserName, MainForm.HwId);
+			MainForm.UserId = MQueryCommand.GetUserId(Environment.UserName, MainForm.HwId);
+			if (MainForm.UserId == 0)
+			{
+				MessageBox.Show($"Ошибка получения UserId по имени {Environment.UserName}", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+				Environment.Exit(0);
+			}
+
+			Application.EnableVisualStyles();
+			Application.SetCompatibleTextRenderingDefault(false);
+
+#if LIC
+			if (!MQueryCommand.CheckMonitorLic(MainForm.UserId, MainForm.HwId))
+			{
+				LicForm licForm = new LicForm();
+				licForm.ShowDialog();
+				if (licForm.DialogResult != DialogResult.OK)
+				{
+					Environment.Exit(0);
+				}
+			}
+
+			if (!MQueryCommand.CheckMonitorLic(MainForm.UserId, MainForm.HwId))
+			{
+				MessageBox.Show($"Ошибка проверки лицензии", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+				Environment.Exit(0);
+			}
+#endif
+
 #if !DEBUG && !NO_UPDATE
 			if (SelfUpdate.IsUpdateNeeded())
 			{
@@ -93,13 +125,12 @@ namespace MagicUpdaterMonitor
 
 		private static void StartApplication()
 		{
-			Application.EnableVisualStyles();
-			Application.SetCompatibleTextRenderingDefault(false);
+			
 
 			var tryLoadGlobalSettings = MainSettings.LoadMonitorCommonGlobalSettings();
 			if (!tryLoadGlobalSettings.IsComplete)
 			{
-				MessageBox.Show(tryLoadGlobalSettings.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				MessageBox.Show(tryLoadGlobalSettings.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
 				return;
 			}
 			_mainForm = new MainForm();

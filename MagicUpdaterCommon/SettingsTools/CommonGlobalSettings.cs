@@ -8,6 +8,12 @@ namespace MagicUpdaterCommon.SettingsTools
 {
 	public class CommonGlobalSettings
 	{
+		private static readonly string LIC_AGENTS_COUNT = "LicAgentsCount";
+		private static readonly string LIC_MONITOR_COUNT = "LicMonitorCount";
+
+		public static string Lic_Agents_Count => LIC_AGENTS_COUNT;
+		public static string Lic_Monitor_Count => LIC_MONITOR_COUNT;
+
 		public class TryLoadCommonGlobalSettings : TryResult
 		{
 			public TryLoadCommonGlobalSettings(bool isComplete = true, string message = "") : base(isComplete, message)
@@ -30,7 +36,7 @@ namespace MagicUpdaterCommon.SettingsTools
 
 		}
 
-		public TryLoadCommonGlobalSettings LoadCommonGlobalSettingsFromSQL()
+		private TryLoadCommonGlobalSettings LoadCommonGlobalSettingsFromSQL()
 		{
 			DataSet ds = null;
 			if (MainSettings.JsonSettings != null && !string.IsNullOrEmpty(MainSettings.JsonSettings.ConnectionString))
@@ -87,11 +93,26 @@ namespace MagicUpdaterCommon.SettingsTools
 						case "AddressAst":
 							AddressAst = Convert.ToString(drv["Value"]);
 							break;
+						case "UserAst":
+							UserAst = Convert.ToString(drv["Value"]);
+							break;
 						case "PasswordAst":
 							PasswordAst = Convert.ToString(drv["Value"]);
 							break;
-						case "UserAst":
-							UserAst = Convert.ToString(drv["Value"]);
+						case "LicAgentsCount":
+							LicAgentsCount = Convert.ToString(drv["Value"]);
+							break;
+						case "LicMonitorCount":
+							LicMonitorCount = Convert.ToString(drv["Value"]);
+							break;
+						case "LicLink":
+							LicLink = Convert.ToString(drv["Value"]);
+							break;
+						case "LicLogin":
+							LicLogin = Convert.ToString(drv["Value"]);
+							break;
+						case "LicPassword":
+							LicPassword = Convert.ToString(drv["Value"]);
 							break;
 					}
 				}
@@ -123,7 +144,10 @@ namespace MagicUpdaterCommon.SettingsTools
 		public string AddressAst { get; set; }
 		public string UserAst { get; set; }
 		public string PasswordAst { get; set; }
-
-
+		public string LicAgentsCount { get; set; }
+		public string LicMonitorCount { get; set; }
+		public string LicLink { get; set; }
+		public string LicLogin { get; set; }
+		public string LicPassword { get; set; }
 	}
 }

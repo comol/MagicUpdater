@@ -1,6 +1,6 @@
 {
-  "ConnectionString": "Data Source=10.16.0.216;Initial Catalog=MagicUpdater;User ID=Sela;Password=Kizombo1313",
-  "ServerTask": "10.16.0.216",
+  "ConnectionString": "Data Source=mskcsharp-dev.sela.ru;Initial Catalog=MagicUpdater;User ID=Sela;Password=Kizombo1313",
+  "ServerTask": "mskcsharp-dev.sela.ru",
   "BaseTask": "MagicUpdater",
   "UserTask": "Sela",
   "PasswordTask": "Kizombo1313",

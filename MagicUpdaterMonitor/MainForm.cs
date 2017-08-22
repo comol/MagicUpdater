@@ -44,6 +44,8 @@ namespace MagicUpdaterMonitor
 			_blockedUser1
 		};
 
+		private static System.Threading.Timer _checkLicTimer;
+
 		/*
 		 if (AppSettings.IsServiceMode)
 				{
@@ -78,29 +80,23 @@ namespace MagicUpdaterMonitor
 
 		private DateTime LastOperationDateLocal => lastOperationDateUtc.Add(TimeZone.CurrentTimeZone.GetUtcOffset(DateTime.Now));
 
-		public static int UserId { get; private set; }
+		public static int UserId { get; set; }
+		public static string HwId { get; set; }
 
 		public static CommonGlobalSettings MonitorCommonGlobalSettings { get; private set; }
 
 		public MainForm()
 		{
+#if LIC
+			_checkLicTimer = new System.Threading.Timer(CheckLicTimerCallback, null, 5000, System.Threading.Timeout.Infinite);
+#endif
 			InitializeComponent();
 
 			FilterByAgentTimer = new System.Threading.Timer(FilterByAgentTimerCallback, null, Timeout.Infinite, Timeout.Infinite);
 			operationAttributes1.OnValueChanged += OperationAttributes1_OnValueChanged;
 
-			//Создаем пользователя в базе, если его нет
-			MQueryCommand.CreateUser(Environment.UserName);
-
 			//Создаем пользователя для шедулера
 			//MQueryCommand.CreateUser(MainSettings.Constants.MU_SHEDULER_USER_LOGIN_GUID, MainSettings.Constants.MU_SHEDULER_USER_NAME);
-
-			UserId = MQueryCommand.GetUserId(Environment.UserName);
-			if (UserId == 0)
-			{
-				MessageBox.Show($"Ошибка получения UserId по имени {Environment.UserName}", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
-				Application.Exit();
-			}
 
 			MonitorCommonGlobalSettings = new CommonGlobalSettings();
 			var loadCommonGlobalSettingsRes = MonitorCommonGlobalSettings.LoadCommonGlobalSettings();
@@ -120,6 +116,32 @@ namespace MagicUpdaterMonitor
 #if DEMO
 			ShowOtrs.Visible = false; 
 #endif
+		}
+
+		private void CheckLicTimerCallback(object state)
+		{
+			try
+			{
+				if (!MQueryCommand.CheckMonitorLic(MainForm.UserId, MainForm.HwId))
+				{
+					if (this.InvokeRequired)
+					{
+						this.Invoke(new MethodInvoker(() =>
+						{
+							MessageBox.Show(this, "Ошибка лицензии, приложение завершает работу!", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+						}));
+					}
+					else
+					{
+						MessageBox.Show(this, "Ошибка лицензии, приложение завершает работу!", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+					}
+					Environment.Exit(0);
+				}
+			}
+			finally
+			{
+				_checkLicTimer.Change(5000, System.Threading.Timeout.Infinite);
+			}
 		}
 
 		//Пользовательские настройки

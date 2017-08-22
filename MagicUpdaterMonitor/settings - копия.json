@@ -1,0 +1,8 @@
+{
+  "ConnectionString": "Data Source=10.16.0.216;Initial Catalog=MagicUpdater;User ID=Sela;Password=Kizombo1313",
+  "ServerTask": "10.16.0.216",
+  "BaseTask": "MagicUpdater",
+  "UserTask": "Sela",
+  "PasswordTask": "Kizombo1313",
+  "Version1C": "8.3.7.1970"
+}

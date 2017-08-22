@@ -22,6 +22,7 @@ namespace MagicUpdater.DL
             this.LocalSettings = new HashSet<LocalSetting>();
             this.Logs1C = new HashSet<Logs1C>();
             this.Operations = new HashSet<Operation>();
+            this.PerformanceCounters = new HashSet<PerformanceCounter>();
         }
     
         public int ComputerId { get; set; }
@@ -53,5 +54,9 @@ namespace MagicUpdater.DL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Operation> Operations { get; set; }
         public virtual Shop Shop { get; set; }
+        public virtual LicAgent LicAgent { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PerformanceCounter> PerformanceCounters { get; set; }
+        public virtual ShopComputersAdd ShopComputersAdd { get; set; }
     }
 }

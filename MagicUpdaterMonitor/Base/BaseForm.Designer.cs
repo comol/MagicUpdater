@@ -36,7 +36,7 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(284, 262);
 			this.Name = "BaseForm";
-			this.Text = "MagicUpdaterMonitor";
+			this.Text = "Монитор обновления 1С";
 			this.Load += new System.EventHandler(this.BaseForm_Load);
 			this.ResumeLayout(false);
 

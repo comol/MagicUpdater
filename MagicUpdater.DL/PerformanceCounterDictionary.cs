@@ -12,21 +12,19 @@ namespace MagicUpdater.DL
     using System;
     using System.Collections.Generic;
     
-    public partial class User
+    public partial class PerformanceCounterDictionary
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public User()
+        public PerformanceCounterDictionary()
         {
-            this.OperationTypeAttributes = new HashSet<OperationTypeAttribute>();
+            this.PerformanceCounters = new HashSet<PerformanceCounter>();
         }
     
         public int Id { get; set; }
-        public string UserLogin { get; set; }
-        public string UserName { get; set; }
-        public string HwId { get; set; }
-        public string LicId { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<OperationTypeAttribute> OperationTypeAttributes { get; set; }
+        public virtual ICollection<PerformanceCounter> PerformanceCounters { get; set; }
     }
 }

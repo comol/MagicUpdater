@@ -16,4 +16,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'TestReleaseToFTP|AnyCPU'">
     <StartArguments>restartMagicUpdaterSettings</StartArguments>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'LicenceDebug|AnyCPU'">
+    <StartArguments>restartMagicUpdaterSettings 0</StartArguments>
+  </PropertyGroup>
 </Project>

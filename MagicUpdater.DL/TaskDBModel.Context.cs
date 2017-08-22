@@ -68,6 +68,10 @@ namespace MagicUpdater.DL
         public virtual DbSet<ShedulerTaskMode> ShedulerTaskModes { get; set; }
         public virtual DbSet<ViewShedulerStepsVi> ViewShedulerStepsVis { get; set; }
         public virtual DbSet<ShedulerPluginTasksUserHistory> ShedulerPluginTasksUserHistories { get; set; }
+        public virtual DbSet<LicAgent> LicAgents { get; set; }
+        public virtual DbSet<PerformanceCounterDictionary> PerformanceCounterDictionaries { get; set; }
+        public virtual DbSet<ShopComputersAdd> ShopComputersAdds { get; set; }
+        public virtual DbSet<PerformanceCounter> PerformanceCounters { get; set; }
     
         public virtual int AddOperState(Nullable<int> operationId, Nullable<int> operStateId)
         {

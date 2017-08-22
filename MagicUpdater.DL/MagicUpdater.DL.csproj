@@ -69,6 +69,25 @@
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'LicenceRelease|AnyCPU'">
+    <OutputPath>bin\LicenceRelease\</OutputPath>
+    <DefineConstants>TRACE;LIC</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'LicenceDebug|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\LicenceDebug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;LIC</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
@@ -128,6 +147,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Images.resx</DependentUpon>
     </Compile>
+    <Compile Include="LicAgent.cs">
+      <DependentUpon>TaskDBModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="LocalSetting.cs">
       <DependentUpon>TaskDBModel.tt</DependentUpon>
     </Compile>
@@ -173,6 +195,12 @@
       <DependentUpon>TaskDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="OperationTypeAttribute.cs">
+      <DependentUpon>TaskDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PerformanceCounter.cs">
+      <DependentUpon>TaskDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PerformanceCounterDictionary.cs">
       <DependentUpon>TaskDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -228,6 +256,9 @@
       <DependentUpon>TaskDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ShopComputer.cs">
+      <DependentUpon>TaskDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ShopComputersAdd.cs">
       <DependentUpon>TaskDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="sp_helpdiagramdefinition_Result.cs">
