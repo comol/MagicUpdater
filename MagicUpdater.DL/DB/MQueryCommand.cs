@@ -36,7 +36,7 @@ namespace MagicUpdater.DL.DB
 		public int ReturnedId { get; private set; }
 	}
 
-	public class MQueryCommand
+	public static class MQueryCommand
 	{
 		private static object lockTryInsertShedulerHistory = new object();
 		private static object lockTryUpdateLastStartTime = new object();
@@ -56,6 +56,13 @@ namespace MagicUpdater.DL.DB
 		private static object lockSelectShedulerStep = new object();
 		private static object lockTryUpdateStep = new object();
 		private static object lockTryInsertNewOperationByShedulerStep = new object();
+
+		private static CommonGlobalSettings _commonGlobalSettings = new CommonGlobalSettings();
+
+		static MQueryCommand()
+		{
+			_commonGlobalSettings.LoadCommonGlobalSettings();
+		}
 
 		#region Commands
 		public static TrySQLCommand TryUpdatePcCounts(int monitorCount, int agentCount)
@@ -2462,7 +2469,17 @@ namespace MagicUpdater.DL.DB
 
 #if DEMO
 				return await queryComputersGrid.Take(10).ToArrayAsync(); 
-#else
+#endif
+#if LIC
+				//int licAgentsCount;
+				//if (!int.TryParse(_commonGlobalSettings.LicAgentsCount, out licAgentsCount))
+				//{
+				//	licAgentsCount = 0;
+				//}
+				//return await queryComputersGrid.Take(licAgentsCount).ToArrayAsync();
+				return await queryComputersGrid.ToArrayAsync();
+#endif
+#if !DEMO && !LIC
 				return await queryComputersGrid.ToArrayAsync();
 #endif
 			}
@@ -2638,6 +2655,6 @@ namespace MagicUpdater.DL.DB
 				return await queryShopsGrid.ToArrayAsync();
 			}
 		}
-		#endregion Queries
+#endregion Queries
 	}
 }
