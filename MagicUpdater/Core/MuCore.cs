@@ -5,6 +5,7 @@ using MagicUpdaterCommon.Data;
 using MagicUpdaterCommon.Helpers;
 using MagicUpdaterCommon.SettingsTools;
 using System;
+using System.Data;
 using System.Data.SqlClient;
 using System.IO;
 using System.Threading;
@@ -16,6 +17,7 @@ namespace MagicUpdater.Core
 	{
 		private bool _isPluginDebugMode;
 		private static readonly string _checkQuery = $"select count(*) as cnt from [dbo].[ShopComputers]";
+		public static string HwId { get; private set; }
 
 		public MuCore(bool isPluginDebugMode = false)
 		{
@@ -130,6 +132,15 @@ namespace MagicUpdater.Core
 			//Если не режим отладки плагинов
 			if (!_isPluginDebugMode)
 			{
+#if LIC
+				HwId = HWID.Value();
+				SqlWorks.ExecProc("InsertUpdateAgetHwid", MainSettings.MainSqlSettings.ComputerId, HwId);
+				DataSet ds = SqlWorks.ExecSql($"select LicId from LicAgent where ComputerId = {MainSettings.MainSqlSettings.ComputerId}");
+				if (ds != null)
+				{
+
+				}
+#endif
 				SqlWorks.ExecProc("UpdateVersion", MainSettings.MainSqlSettings.ComputerId, Extensions.GetApplicationVersion());
 				TaskerReporter.Start();
 				RestartTaskerReporter.Start();

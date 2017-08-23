@@ -187,6 +187,30 @@ namespace MagicUpdaterCommon.Data
 			return CheckSQL_Connection(_connectionString, out msg);
 		}
 
+		public static DataSet ExecSql(string query)
+		{
+			using (SqlConnection conn = new SqlConnection(MainSettings.JsonSettings.ConnectionString))
+			{
+				conn.Open();
+				using (SqlCommand command = new SqlCommand(query, conn))
+				{
+					using (SqlDataAdapter da = new SqlDataAdapter())
+					{
+						da.SelectCommand = command;
+						DataSet ds = new DataSet();
+						da.Fill(ds);
+						if (ds != null && ds.Tables.Count > 0)
+							foreach (DataTable t in ds.Tables)
+							{
+								if (t.Rows != null && t.Rows.Count > 0)
+									return ds;
+							}
+						return null;
+					}
+				}
+			}
+		}
+
 		public static TrySaveLocalSqlSettingsToBase SaveLocalSqlSettingsToBase(SqlLocalSettings sqlLocalSettings)
 		{
 			var props = sqlLocalSettings.GetType().GetProperties();
