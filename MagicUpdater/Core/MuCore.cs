@@ -126,20 +126,16 @@ namespace MagicUpdater.Core
 			//Запуск TaskerReporter
 			if (!MainSettings.MainSqlSettings.IsMainCashbox)
 			{
-				NetworkForActions.StartServer(10085);
+				//Отрубил отправку действий по локалке
+				//NetworkForActions.StartServer(10085);
 			}
-
+			
 			//Если не режим отладки плагинов
 			if (!_isPluginDebugMode)
 			{
 #if LIC
 				HwId = HWID.Value();
 				SqlWorks.ExecProc("InsertUpdateAgetHwid", MainSettings.MainSqlSettings.ComputerId, HwId);
-				DataSet ds = SqlWorks.ExecSql($"select LicId from LicAgent where ComputerId = {MainSettings.MainSqlSettings.ComputerId}");
-				if (ds != null)
-				{
-
-				}
 #endif
 				SqlWorks.ExecProc("UpdateVersion", MainSettings.MainSqlSettings.ComputerId, Extensions.GetApplicationVersion());
 				TaskerReporter.Start();

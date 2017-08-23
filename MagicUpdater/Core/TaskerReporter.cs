@@ -25,6 +25,8 @@ namespace MagicUpdater.Core
 			public string FileMD5 { get; private set; }
 		}
 
+		protected bool _isLicOk = false;
+
 		private static TaskerReporter self = null;
 
 		private readonly List<Operation> OperationList = new List<Operation>();
@@ -119,31 +121,49 @@ namespace MagicUpdater.Core
 		{
 			try
 			{
-				try
+#if LIC
+				if (!_isLicOk)
 				{
-
-					isTaskerAlive_Internal = true;
-					GetOperations();
-					foreach (Operation op in OperationList)
+					int licAgentCount;
+					if (!int.TryParse(MainSettings.GlobalSettings.LicAgentsCount, out licAgentCount))
 					{
-#if DEBUG
-						//MessageBox.Show(string.Format("Будет выполнена операция {0}", op.OperationType.ToString()));
-#endif
-						if (op.IsOnlyMainCashbox)
-							if (!MainSettings.MainSqlSettings.IsMainCashbox)
-							{
-								op.SendOperationReport("Данная операция предназначена для выполнения только на главной кассе", false);
-								continue;
-							}
-
-						op.Run();
+						licAgentCount = 0;
 					}
-					OperationList.Clear();
+
+					_isLicOk = SqlWorks.CheckAgentLic(MuCore.HwId, licAgentCount);
 				}
-				catch (Exception ex)
+
+				if (_isLicOk)
 				{
-					NLogger.LogErrorToBaseOrHdd(MainSettings.MainSqlSettings.ComputerId, ex.ToString());
+#endif
+					try
+					{
+
+						isTaskerAlive_Internal = true;
+						GetOperations();
+						foreach (Operation op in OperationList)
+						{
+#if DEBUG
+							//MessageBox.Show(string.Format("Будет выполнена операция {0}", op.OperationType.ToString()));
+#endif
+							if (op.IsOnlyMainCashbox)
+								if (!MainSettings.MainSqlSettings.IsMainCashbox)
+								{
+									op.SendOperationReport("Данная операция предназначена для выполнения только на главной кассе", false);
+									continue;
+								}
+
+							op.Run();
+						}
+						OperationList.Clear();
+					}
+					catch (Exception ex)
+					{
+						NLogger.LogErrorToBaseOrHdd(MainSettings.MainSqlSettings.ComputerId, ex.ToString());
+					}
+#if LIC
 				}
+#endif
 			}
 			finally
 			{

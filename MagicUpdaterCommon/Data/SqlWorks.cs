@@ -18,6 +18,8 @@ namespace MagicUpdaterCommon.Data
 
 	public static class SqlWorks
 	{
+		private static object CheckAgentLicLock = new object();
+
 		private static readonly Dictionary<SqlDbType, Type> SqlDbTypeToType
 		= new Dictionary<SqlDbType, Type>
 			  {
@@ -189,25 +191,52 @@ namespace MagicUpdaterCommon.Data
 
 		public static DataSet ExecSql(string query)
 		{
-			using (SqlConnection conn = new SqlConnection(MainSettings.JsonSettings.ConnectionString))
+			try
 			{
-				conn.Open();
-				using (SqlCommand command = new SqlCommand(query, conn))
+				using (SqlConnection conn = new SqlConnection(MainSettings.JsonSettings.ConnectionString))
 				{
-					using (SqlDataAdapter da = new SqlDataAdapter())
+					conn.Open();
+					using (SqlCommand command = new SqlCommand(query, conn))
 					{
-						da.SelectCommand = command;
-						DataSet ds = new DataSet();
-						da.Fill(ds);
-						if (ds != null && ds.Tables.Count > 0)
-							foreach (DataTable t in ds.Tables)
-							{
-								if (t.Rows != null && t.Rows.Count > 0)
-									return ds;
-							}
-						return null;
+						using (SqlDataAdapter da = new SqlDataAdapter())
+						{
+							da.SelectCommand = command;
+							DataSet ds = new DataSet();
+							da.Fill(ds);
+							if (ds != null && ds.Tables.Count > 0)
+								foreach (DataTable t in ds.Tables)
+								{
+									if (t.Rows != null && t.Rows.Count > 0)
+										return ds;
+								}
+							return null;
+						}
 					}
 				}
+			}
+			catch (Exception ex)
+			{
+				NLogger.LogErrorToHdd(ex.Message.ToString());
+				return null;
+			}
+		}
+
+		public static bool CheckAgentLic(string hwId, int licAgentCount)
+		{
+			lock (CheckAgentLicLock)
+			{
+				DataSet ds = SqlWorks.ExecSql($"select LicId from LicAgent where ComputerId = {MainSettings.MainSqlSettings.ComputerId}");
+				if (ds != null
+					&& ds.Tables != null
+					&& ds.Tables.Count == 1
+					&& ds.Tables[0].Rows != null
+					&& ds.Tables[0].Rows.Count == 1)
+				{
+					string licRequest = LicRequest.GetRequest(hwId, licAgentCount);
+					return licRequest == Convert.ToString(ds.Tables[0].Rows[0]["LicId"]);
+				}
+
+				return false; 
 			}
 		}
 

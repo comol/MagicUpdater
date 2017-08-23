@@ -69,7 +69,7 @@ namespace MagicUpdaterCommon.Abstract
 			bool result = true;
 			try
 			{
-				if (viaNetwork)
+				if (viaNetwork && NetworkForActions.IsServerStarted)
 				{
 					var tasks = new List<Task>();
 					if (isWaitForResponse)
@@ -144,11 +144,11 @@ namespace MagicUpdaterCommon.Abstract
 	public static class NetworkForActions
 	{
 		private static IScsServer server;
-		private static bool isServerStarted = false;
+		public static bool IsServerStarted { get; private set; } = false;
 
 		public static void StartServer(int listeningPort)
 		{
-			if (!isServerStarted)
+			if (!IsServerStarted)
 			{
 				// Создаем сервер, слушаем порт
 				server = ScsServerFactory.CreateServer(new ScsTcpEndPoint(listeningPort));
@@ -156,7 +156,7 @@ namespace MagicUpdaterCommon.Abstract
 				server.ClientConnected += Server_ClientConnected;
 				server.ClientDisconnected += Server_ClientDisconnected;
 				server?.Start(); //Start the server
-				isServerStarted = true;
+				IsServerStarted = true;
 			}
 		}
 
@@ -233,10 +233,10 @@ namespace MagicUpdaterCommon.Abstract
 
 		public static void StopServer()
 		{
-			if (isServerStarted)
+			if (IsServerStarted)
 			{
 				server?.Stop(); //Stop the server
-				isServerStarted = false;
+				IsServerStarted = false;
 			}
 		}
 		/// <summary>
