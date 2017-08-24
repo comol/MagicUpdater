@@ -233,7 +233,17 @@ namespace MagicUpdaterCommon.Data
 					&& ds.Tables[0].Rows.Count == 1)
 				{
 					string licRequest = LicRequest.GetRequest(hwId, licAgentCount);
-					return licRequest == Convert.ToString(ds.Tables[0].Rows[0]["LicId"]);
+					bool checkResult = licRequest == Convert.ToString(ds.Tables[0].Rows[0]["LicId"]);
+					if (checkResult)
+					{
+						SqlWorks.ExecSql($"update LicAgent set LicStatus = 0 where ComputerId = {MainSettings.MainSqlSettings.ComputerId}");
+					}
+					else
+					{
+						SqlWorks.ExecSql($"update LicAgent set LicStatus = -1 where ComputerId = {MainSettings.MainSqlSettings.ComputerId}");
+					}
+
+					return checkResult;
 				}
 
 				return false; 
