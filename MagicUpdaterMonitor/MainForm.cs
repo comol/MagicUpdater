@@ -88,7 +88,7 @@ namespace MagicUpdaterMonitor
 		public MainForm()
 		{
 #if LIC
-			_checkLicTimer = new System.Threading.Timer(CheckLicTimerCallback, null, 5000, System.Threading.Timeout.Infinite);
+			_checkLicTimer = new System.Threading.Timer(CheckLicTimerCallback, null, 300000, System.Threading.Timeout.Infinite);
 #endif
 			InitializeComponent();
 
@@ -146,7 +146,7 @@ namespace MagicUpdaterMonitor
 			}
 			finally
 			{
-				_checkLicTimer.Change(5000, System.Threading.Timeout.Infinite);
+				_checkLicTimer.Change(300000, System.Threading.Timeout.Infinite);
 			}
 		}
 

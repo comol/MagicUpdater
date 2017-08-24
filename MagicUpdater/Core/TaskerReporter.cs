@@ -27,6 +27,8 @@ namespace MagicUpdater.Core
 
 		protected bool _isLicOk = false;
 
+		protected bool _isLicErrorMessgeSended = false;
+
 		private static TaskerReporter self = null;
 
 		private readonly List<Operation> OperationList = new List<Operation>();
@@ -124,13 +126,27 @@ namespace MagicUpdater.Core
 #if LIC
 				//if (!_isLicOk)
 				//{
-					int licAgentCount;
-					if (!int.TryParse(MainSettings.GlobalSettings.LicAgentsCount, out licAgentCount))
-					{
-						licAgentCount = 0;
-					}
+				//int licAgentCount;
+				//if (!int.TryParse(MainSettings.GlobalSettings.LicAgentsCount, out licAgentCount))
+				//{
+				//	licAgentCount = 0;
+				//}
 
-					_isLicOk = SqlWorks.CheckAgentLic(MuCore.HwId, licAgentCount);
+				int licAgentRealCount = SqlWorks.GetLicAgentRealCount();
+				int licAgentCountFromGlobalSettings = SqlWorks.GetLicAgentCountFromGlobalSettings();
+				if (licAgentRealCount <= licAgentCountFromGlobalSettings)
+				{
+					_isLicOk = SqlWorks.CheckAgentLic(MuCore.HwId, licAgentCountFromGlobalSettings);
+				}
+				else
+				{
+					_isLicOk = false;
+					SqlWorks.ExecSql($"update LicAgent set LicStatus = -1 where ComputerId = {MainSettings.MainSqlSettings.ComputerId}");
+					if (!_isLicErrorMessgeSended)
+					{
+						NLogger.LogErrorToBaseAndHdd(MainSettings.MainSqlSettings.ComputerId, "Количество зарегистрированных агентов в таблице лицензий превышает количество возможных лицензий");
+					}
+				}
 				//}
 
 				if (_isLicOk)

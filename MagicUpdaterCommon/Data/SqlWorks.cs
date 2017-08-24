@@ -19,6 +19,8 @@ namespace MagicUpdaterCommon.Data
 	public static class SqlWorks
 	{
 		private static object CheckAgentLicLock = new object();
+		private static object GetLicAgentCountFromGlobalSettingsLock = new object();
+		private static object GetLicAgentRealCountLock = new object();
 
 		private static readonly Dictionary<SqlDbType, Type> SqlDbTypeToType
 		= new Dictionary<SqlDbType, Type>
@@ -221,6 +223,56 @@ namespace MagicUpdaterCommon.Data
 			}
 		}
 
+		public static int GetLicAgentCountFromGlobalSettings()
+		{
+			lock (GetLicAgentCountFromGlobalSettingsLock)
+			{
+				DataSet ds = SqlWorks.ExecSql("select Value from CommonGlobalSettings where Name = 'LicAgentsCount'");
+				if (ds != null
+					&& ds.Tables != null
+					&& ds.Tables.Count == 1
+					&& ds.Tables[0].Rows != null
+					&& ds.Tables[0].Rows.Count == 1)
+				{
+					string valStr = Convert.ToString(ds.Tables[0].Rows[0]["Value"]);
+					int valInt;
+					if (!int.TryParse(valStr, out valInt))
+					{
+						valInt = 0;
+					}
+
+					return valInt;
+				}
+
+				return 0;
+			}
+		}
+
+		public static int GetLicAgentRealCount()
+		{
+			lock (GetLicAgentRealCountLock)
+			{
+				DataSet ds = SqlWorks.ExecSql("select count(*) as ccc from LicAgent");
+				if (ds != null
+					&& ds.Tables != null
+					&& ds.Tables.Count == 1
+					&& ds.Tables[0].Rows != null
+					&& ds.Tables[0].Rows.Count == 1)
+				{
+					string valStr = Convert.ToString(ds.Tables[0].Rows[0]["ccc"]);
+					int valInt;
+					if (!int.TryParse(valStr, out valInt))
+					{
+						valInt = 0;
+					}
+
+					return valInt;
+				}
+
+				return 0;
+			}
+		}
+
 		public static bool CheckAgentLic(string hwId, int licAgentCount)
 		{
 			lock (CheckAgentLicLock)
@@ -246,7 +298,7 @@ namespace MagicUpdaterCommon.Data
 					return checkResult;
 				}
 
-				return false; 
+				return false;
 			}
 		}
 
@@ -259,7 +311,7 @@ namespace MagicUpdaterCommon.Data
 				{
 					string propValue = prop.GetValue(sqlLocalSettings, null).ToString();
 					string exceptionText;
-					ExecProcExt(MainSettings.JsonSettings.ConnectionString, "SetLocalSettingsForComputer", out exceptionText, MainSettings.MainSqlSettings.ComputerId , prop.Name, propValue);
+					ExecProcExt(MainSettings.JsonSettings.ConnectionString, "SetLocalSettingsForComputer", out exceptionText, MainSettings.MainSqlSettings.ComputerId, prop.Name, propValue);
 					if (!string.IsNullOrEmpty(exceptionText))
 					{
 						return new TrySaveLocalSqlSettingsToBase(false, exceptionText);

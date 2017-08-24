@@ -1,5 +1,6 @@
 ﻿using MagicUpdater.DL.DB;
 using MagicUpdater.DL.Models;
+using MagicUpdaterCommon.Data;
 using MagicUpdaterCommon.Helpers;
 using MagicUpdaterCommon.SettingsTools;
 using MagicUpdaterMonitor.Base;
@@ -9,6 +10,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -18,6 +20,15 @@ namespace MagicUpdaterMonitor.Forms
 {
 	public partial class AgentLicForm : BaseForm
 	{
+		[DllImport("user32")]
+		static extern IntPtr GetSystemMenu(IntPtr hWnd, bool bRevert);
+		[DllImport("user32")]
+		static extern bool EnableMenuItem(IntPtr hMenu, uint uIDEnableItem, uint uEnable);
+
+		const int MF_BYCOMMAND = 0;
+		const int MF_DISABLED = 2;
+		const int SC_CLOSE = 0xF060;
+
 		public class AgentLicFormModel
 		{
 			public string ShopName { get; set; }
@@ -54,6 +65,8 @@ namespace MagicUpdaterMonitor.Forms
 			rgvLicAgent.KeyField = "ComputerId";
 			rgvLicAgent.dataGridView.RowHeadersVisible = false;
 			rgvLicAgent.MappingColumns = LicAgentGridColMap;
+			var sm = GetSystemMenu(this.Handle, false);
+			EnableMenuItem(sm, SC_CLOSE, MF_BYCOMMAND | MF_DISABLED);
 		}
 
 		private async void AgentLicForm_Shown(object sender, EventArgs e)
@@ -105,6 +118,13 @@ namespace MagicUpdaterMonitor.Forms
 
 									//MessageBox.Show(resUpdateAgentLic.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
 									break;
+								}
+
+								_commonGlobalSettings.LicAgentsCount = webAgentCount.ToString();
+								if (!SqlWorks.SaveCommonGlobalSettingsToBase(_commonGlobalSettings))
+								{
+									MessageBox.Show("Ошибка сохранения CommonGlobalSettings", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+									return;
 								}
 
 								_agentLicFormModelList.Add(new AgentLicFormModel

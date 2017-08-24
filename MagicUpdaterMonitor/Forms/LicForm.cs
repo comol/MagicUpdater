@@ -57,23 +57,41 @@ namespace MagicUpdaterMonitor.Forms
 			{
 				switch (this.DialogResult)
 				{
+
 					case DialogResult.OK:
 						string login = tbLogin.Text;
+						string pass;
 
-						MD5 sec = new MD5CryptoServiceProvider();
-						byte[] bt = Encoding.ASCII.GetBytes(tbPassword.Text);
-						byte[] hash = sec.ComputeHash(bt);
-						StringBuilder sb = new StringBuilder();
-						for (int i = 0; i < hash.Length; i++)
+						if (_commonGlobalSettings.LicPassword != tbPassword.Text)
 						{
-							sb.Append(hash[i].ToString("X2"));
+							MD5 sec = new MD5CryptoServiceProvider();
+							byte[] bt = Encoding.ASCII.GetBytes(tbPassword.Text);
+							byte[] hash = sec.ComputeHash(bt);
+							StringBuilder sb = new StringBuilder();
+							for (int i = 0; i < hash.Length; i++)
+							{
+								sb.Append(hash[i].ToString("X2"));
+							}
+
+							pass = sb.ToString();
+						}
+						else
+						{
+							pass = _commonGlobalSettings.LicPassword;
 						}
 
-						string pass = sb.ToString();
 						string link = tbLicLink.Text;
 						if (!string.IsNullOrEmpty(link) && link.Length > 0 && link.Last() != '/')
 						{
 							link = $"{link}/";
+						}
+
+						_commonGlobalSettings.LicLink = tbLicLink.Text;
+						_commonGlobalSettings.LicLogin = login;
+						_commonGlobalSettings.LicPassword = pass;
+						if (!SqlWorks.SaveCommonGlobalSettingsToBase(_commonGlobalSettings))
+						{
+							MessageBox.Show("Ошибка сохранения CommonGlobalSettings", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
 						}
 
 						var resMonitorCount = LicGetter.GetLicFromWeb($"{link}{COUNT_LINK_PATTERN.Replace(LOGIN, login).Replace(PASS, pass).Replace(LICTYPE, "1")}");
@@ -98,7 +116,14 @@ namespace MagicUpdaterMonitor.Forms
 									MessageBox.Show(resMonitorCount.Result.Status.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
 									break;
 							}
-							
+
+							e.Cancel = true;
+							return;
+						}
+
+						if (MQueryCommand.GetMonitorUsersRealCount() > resMonitorCount.Result.PcCount)
+						{
+							MessageBox.Show("Количество пользователей монитора в базе превышает количество лицензий", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
 							e.Cancel = true;
 							return;
 						}
@@ -126,6 +151,13 @@ namespace MagicUpdaterMonitor.Forms
 									break;
 							}
 
+							e.Cancel = true;
+							return;
+						}
+
+						if (MQueryCommand.GetAgentUsersRealCount() > resAgentCount.Result.PcCount)
+						{
+							MessageBox.Show("Количество агентов в базе превышает количество лицензий", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
 							e.Cancel = true;
 							return;
 						}
@@ -160,10 +192,7 @@ namespace MagicUpdaterMonitor.Forms
 										e.Cancel = true;
 										return;
 									}
-
-									_commonGlobalSettings.LicLink = tbLicLink.Text;
-									_commonGlobalSettings.LicLogin = login;
-									_commonGlobalSettings.LicPassword = pass;
+									
 									_commonGlobalSettings.LicMonitorCount = resMonitorCount.Result.PcCount.ToString();
 									_commonGlobalSettings.LicAgentsCount = resAgentCount.Result.PcCount.ToString();
 
@@ -198,7 +227,7 @@ namespace MagicUpdaterMonitor.Forms
 									break;
 							}
 
-							
+
 						}
 						else
 						{

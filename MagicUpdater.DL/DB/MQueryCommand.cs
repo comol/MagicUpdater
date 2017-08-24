@@ -56,6 +56,8 @@ namespace MagicUpdater.DL.DB
 		private static object lockSelectShedulerStep = new object();
 		private static object lockTryUpdateStep = new object();
 		private static object lockTryInsertNewOperationByShedulerStep = new object();
+		private static object lockGetMonitorUsersRealCount = new object();
+		private static object lockGetAgentUsersRealCount = new object();
 
 		private static CommonGlobalSettings _commonGlobalSettings = new CommonGlobalSettings();
 
@@ -1900,6 +1902,28 @@ namespace MagicUpdater.DL.DB
 		#endregion Commands
 
 		#region Queries
+		public static int GetMonitorUsersRealCount()
+		{
+			lock (lockGetMonitorUsersRealCount)
+			{
+				using (EntityDb context = new EntityDb())
+				{
+					return context.Users.Count();
+				}
+			}
+		}
+
+		public static int GetAgentUsersRealCount()
+		{
+			lock (lockGetAgentUsersRealCount)
+			{
+				using (EntityDb context = new EntityDb())
+				{
+					return context.LicAgents.Count();
+				}
+			}
+		}
+
 		public static bool CheckMonitorLic(int userId, string hwId)
 		{
 			CommonGlobalSettings commonGlobalSettings = new CommonGlobalSettings();
@@ -1909,6 +1933,12 @@ namespace MagicUpdater.DL.DB
 			{
 				return false;
 			}
+
+			if (GetMonitorUsersRealCount() > licMonitorCount)
+			{
+				return false;
+			}
+
 			using (EntityDb context = new EntityDb())
 			{
 				string licId = LicRequest.GetRequest(hwId, licMonitorCount);
@@ -2667,6 +2697,6 @@ namespace MagicUpdater.DL.DB
 				return await queryShopsGrid.ToArrayAsync();
 			}
 		}
-#endregion Queries
+		#endregion Queries
 	}
 }
