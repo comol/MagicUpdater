@@ -31,6 +31,15 @@
     <Property Name="ErrorMessage" Type="nvarchar(max)" />
     <Property Name="ErrorDate" Type="datetime" Nullable="false" />
   </EntityType>
+  <EntityType Name="LicAgent">
+    <Key>
+      <PropertyRef Name="ComputerId" />
+    </Key>
+    <Property Name="ComputerId" Type="int" Nullable="false" />
+    <Property Name="HwId" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="LicId" Type="nvarchar" MaxLength="500" />
+    <Property Name="LicStatus" Type="int" Nullable="false" />
+  </EntityType>
   <EntityType Name="LocalSettings">
     <Key>
       <PropertyRef Name="ComputerId" />
@@ -134,6 +143,28 @@
     <Property Name="Description" Type="nvarchar(max)" />
     <Property Name="GUID" Type="uniqueidentifier" />
     <Property Name="Visible" Type="bit" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'MagicUpdater.dbo.PerformanceCounter' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="PerformanceCounter">
+    <Key>
+      <PropertyRef Name="ComputerId" />
+      <PropertyRef Name="DateTimeUtc" />
+      <PropertyRef Name="ParameterId" />
+      <PropertyRef Name="ParameterValue" />
+    </Key>
+    <Property Name="ComputerId" Type="int" Nullable="false" />
+    <Property Name="DateTimeUtc" Type="datetime" Nullable="false" />
+    <Property Name="ParameterId" Type="int" Nullable="false" />
+    <Property Name="ParameterValue" Type="float" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PerformanceCounterDictionary">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="1000" />
   </EntityType>
   <EntityType Name="ShedulerPluginTasks">
     <Key>
@@ -302,6 +333,16 @@
     <Property Name="LastError" Type="nvarchar(max)" />
     <Property Name="IsAgentSettingsReaded" Type="bit" />
   </EntityType>
+  <EntityType Name="ShopComputersAdd">
+    <Key>
+      <PropertyRef Name="ComputerId" />
+    </Key>
+    <Property Name="ComputerId" Type="int" Nullable="false" />
+    <Property Name="AvgPerformanceCounterValuesDateTimeUtc" Type="datetime" />
+    <Property Name="AvgCpuTime" Type="float" />
+    <Property Name="AvgRamAvailableMBytes" Type="float" />
+    <Property Name="AvgDiskQueueLength" Type="float" />
+  </EntityType>
   <EntityType Name="Shops">
     <Key>
       <PropertyRef Name="ShopId" />
@@ -335,6 +376,8 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="UserLogin" Type="nvarchar" MaxLength="400" Nullable="false" />
     <Property Name="UserName" Type="nvarchar" MaxLength="400" />
+    <Property Name="HwId" Type="nvarchar" MaxLength="500" />
+    <Property Name="LicId" Type="nvarchar" MaxLength="500" />
   </EntityType>
   <!--Errors Found During Generation:
 warning 6002: The table/view 'MagicUpdater.dbo.ComputerErrorsLogView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -699,6 +742,9 @@ warning 6002: The table/view 'MagicUpdater.dbo.ViewShopComputersServer' does not
     <Property Name="AvgCpuTime" Type="float" />
     <Property Name="AvgRamAvailableMBytes" Type="float" />
     <Property Name="AvgDiskQueueLength" Type="float" />
+    <Property Name="HwId" Type="nvarchar" MaxLength="500" />
+    <Property Name="LicId" Type="nvarchar" MaxLength="500" />
+    <Property Name="LicStatus" Type="int" />
   </EntityType>
   <!--Errors Found During Generation:
 warning 6002: The table/view 'MagicUpdater.dbo.ViewShopComputersServerFull' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -778,6 +824,18 @@ warning 6002: The table/view 'MagicUpdater.dbo.ViewShopComputersServerFull' does
         <PropertyRef Name="ComputerId" />
       </Principal>
       <Dependent Role="ComputerErrorsLog">
+        <PropertyRef Name="ComputerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LicAgent_ShopComputers">
+    <End Role="ShopComputers" Type="Self.ShopComputers" Multiplicity="1" />
+    <End Role="LicAgent" Type="Self.LicAgent" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="ShopComputers">
+        <PropertyRef Name="ComputerId" />
+      </Principal>
+      <Dependent Role="LicAgent">
         <PropertyRef Name="ComputerId" />
       </Dependent>
     </ReferentialConstraint>
@@ -920,6 +978,30 @@ warning 6002: The table/view 'MagicUpdater.dbo.ViewShopComputersServerFull' does
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_PerformanceCounter_PerformanceCounterDictionary">
+    <End Role="PerformanceCounterDictionary" Type="Self.PerformanceCounterDictionary" Multiplicity="1" />
+    <End Role="PerformanceCounter" Type="Self.PerformanceCounter" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PerformanceCounterDictionary">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PerformanceCounter">
+        <PropertyRef Name="ParameterId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PerformanceCounter_ShopComputers">
+    <End Role="ShopComputers" Type="Self.ShopComputers" Multiplicity="1" />
+    <End Role="PerformanceCounter" Type="Self.PerformanceCounter" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ShopComputers">
+        <PropertyRef Name="ComputerId" />
+      </Principal>
+      <Dependent Role="PerformanceCounter">
+        <PropertyRef Name="ComputerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_ShedulerPluginTasks_ShedulerStatuses">
     <End Role="ShedulerStatuses" Type="Self.ShedulerStatuses" Multiplicity="1" />
     <End Role="ShedulerPluginTasks" Type="Self.ShedulerPluginTasks" Multiplicity="*" />
@@ -1041,6 +1123,18 @@ warning 6002: The table/view 'MagicUpdater.dbo.ViewShopComputersServerFull' does
       </Principal>
       <Dependent Role="ShopComputers">
         <PropertyRef Name="ShopId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ShopComputersAdd_ShopComputers">
+    <End Role="ShopComputers" Type="Self.ShopComputers" Multiplicity="1" />
+    <End Role="ShopComputersAdd" Type="Self.ShopComputersAdd" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="ShopComputers">
+        <PropertyRef Name="ComputerId" />
+      </Principal>
+      <Dependent Role="ShopComputersAdd">
+        <PropertyRef Name="ComputerId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1192,6 +1286,7 @@ warning 6002: The table/view 'MagicUpdater.dbo.ViewShopComputersServerFull' does
     <EntitySet Name="ActionsReports" EntityType="Self.ActionsReports" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CommonGlobalSettings" EntityType="Self.CommonGlobalSettings" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ComputerErrorsLog" EntityType="Self.ComputerErrorsLog" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LicAgent" EntityType="Self.LicAgent" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="LocalSettings" EntityType="Self.LocalSettings" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="LocalSettingsDictionary" EntityType="Self.LocalSettingsDictionary" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Logs1C" EntityType="Self.Logs1C" Schema="dbo" store:Type="Tables" />
@@ -1202,6 +1297,7 @@ warning 6002: The table/view 'MagicUpdater.dbo.ViewShopComputersServerFull' does
     <EntitySet Name="OperationStatesVoc" EntityType="Self.OperationStatesVoc" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="OperationTypeAttributes" EntityType="Self.OperationTypeAttributes" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="OperationTypes" EntityType="Self.OperationTypes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PerformanceCounterDictionary" EntityType="Self.PerformanceCounterDictionary" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ShedulerPluginTasks" EntityType="Self.ShedulerPluginTasks" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ShedulerPluginTasksUserHistory" EntityType="Self.ShedulerPluginTasksUserHistory" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ShedulerStatuses" EntityType="Self.ShedulerStatuses" Schema="dbo" store:Type="Tables" />
@@ -1213,9 +1309,18 @@ warning 6002: The table/view 'MagicUpdater.dbo.ViewShopComputersServerFull' does
     <EntitySet Name="ShedulerTasksComputersList" EntityType="Self.ShedulerTasksComputersList" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ShedulerTasksUserHistory" EntityType="Self.ShedulerTasksUserHistory" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ShopComputers" EntityType="Self.ShopComputers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ShopComputersAdd" EntityType="Self.ShopComputersAdd" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Shops" EntityType="Self.Shops" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PerformanceCounter" EntityType="Self.PerformanceCounter" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [PerformanceCounter].[ComputerId] AS [ComputerId], 
+    [PerformanceCounter].[DateTimeUtc] AS [DateTimeUtc], 
+    [PerformanceCounter].[ParameterId] AS [ParameterId], 
+    [PerformanceCounter].[ParameterValue] AS [ParameterValue]
+    FROM [dbo].[PerformanceCounter] AS [PerformanceCounter]</DefiningQuery>
+    </EntitySet>
     <EntitySet Name="ComputerErrorsLogView" EntityType="Self.ComputerErrorsLogView" store:Type="Views" store:Schema="dbo">
       <DefiningQuery>SELECT 
     [ComputerErrorsLogView].[ErrorId] AS [ErrorId], 
@@ -1461,7 +1566,10 @@ warning 6002: The table/view 'MagicUpdater.dbo.ViewShopComputersServerFull' does
     [ViewShopComputersServer].[AvgPerformanceCounterValuesDateTimeUtc] AS [AvgPerformanceCounterValuesDateTimeUtc], 
     [ViewShopComputersServer].[AvgCpuTime] AS [AvgCpuTime], 
     [ViewShopComputersServer].[AvgRamAvailableMBytes] AS [AvgRamAvailableMBytes], 
-    [ViewShopComputersServer].[AvgDiskQueueLength] AS [AvgDiskQueueLength]
+    [ViewShopComputersServer].[AvgDiskQueueLength] AS [AvgDiskQueueLength], 
+    [ViewShopComputersServer].[HwId] AS [HwId], 
+    [ViewShopComputersServer].[LicId] AS [LicId], 
+    [ViewShopComputersServer].[LicStatus] AS [LicStatus]
     FROM [dbo].[ViewShopComputersServer] AS [ViewShopComputersServer]</DefiningQuery>
     </EntitySet>
     <EntitySet Name="ViewShopComputersServerFull" EntityType="Self.ViewShopComputersServerFull" store:Type="Views" store:Schema="dbo">
@@ -1505,6 +1613,10 @@ warning 6002: The table/view 'MagicUpdater.dbo.ViewShopComputersServerFull' does
     <AssociationSet Name="FK_ComputerErrorsLog_ShopComputers" Association="Self.FK_ComputerErrorsLog_ShopComputers">
       <End Role="ShopComputers" EntitySet="ShopComputers" />
       <End Role="ComputerErrorsLog" EntitySet="ComputerErrorsLog" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LicAgent_ShopComputers" Association="Self.FK_LicAgent_ShopComputers">
+      <End Role="ShopComputers" EntitySet="ShopComputers" />
+      <End Role="LicAgent" EntitySet="LicAgent" />
     </AssociationSet>
     <AssociationSet Name="FK_LocalSettings_LocalSettingsDictionary" Association="Self.FK_LocalSettings_LocalSettingsDictionary">
       <End Role="LocalSettingsDictionary" EntitySet="LocalSettingsDictionary" />
@@ -1550,6 +1662,14 @@ warning 6002: The table/view 'MagicUpdater.dbo.ViewShopComputersServerFull' does
       <End Role="OperationGroups" EntitySet="OperationGroups" />
       <End Role="OperationTypes" EntitySet="OperationTypes" />
     </AssociationSet>
+    <AssociationSet Name="FK_PerformanceCounter_PerformanceCounterDictionary" Association="Self.FK_PerformanceCounter_PerformanceCounterDictionary">
+      <End Role="PerformanceCounterDictionary" EntitySet="PerformanceCounterDictionary" />
+      <End Role="PerformanceCounter" EntitySet="PerformanceCounter" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PerformanceCounter_ShopComputers" Association="Self.FK_PerformanceCounter_ShopComputers">
+      <End Role="ShopComputers" EntitySet="ShopComputers" />
+      <End Role="PerformanceCounter" EntitySet="PerformanceCounter" />
+    </AssociationSet>
     <AssociationSet Name="FK_ShedulerPluginTasks_ShedulerStatuses" Association="Self.FK_ShedulerPluginTasks_ShedulerStatuses">
       <End Role="ShedulerStatuses" EntitySet="ShedulerStatuses" />
       <End Role="ShedulerPluginTasks" EntitySet="ShedulerPluginTasks" />
@@ -1589,6 +1709,10 @@ warning 6002: The table/view 'MagicUpdater.dbo.ViewShopComputersServerFull' does
     <AssociationSet Name="FK_ShopComputers_Shops" Association="Self.FK_ShopComputers_Shops">
       <End Role="Shops" EntitySet="Shops" />
       <End Role="ShopComputers" EntitySet="ShopComputers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ShopComputersAdd_ShopComputers" Association="Self.FK_ShopComputersAdd_ShopComputers">
+      <End Role="ShopComputers" EntitySet="ShopComputers" />
+      <End Role="ShopComputersAdd" EntitySet="ShopComputersAdd" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

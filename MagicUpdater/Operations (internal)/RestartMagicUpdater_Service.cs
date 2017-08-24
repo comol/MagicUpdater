@@ -3,6 +3,7 @@ using MagicUpdater.Core;
 using MagicUpdaterCommon.Abstract;
 using MagicUpdaterCommon.Common;
 using SmartAssembly.Attributes;
+using System;
 using System.ComponentModel;
 
 namespace MagicUpdater.Operations
@@ -73,7 +74,15 @@ namespace MagicUpdater.Operations
 			//MuCore.ConnectionToSettings?.DisposeAsyncServer();
 
 			//Запускаем MagicUpdaterRestart с ключем перезапуска
-			Tools.SelfRestart(Id);
+			try
+			{
+				Tools.SelfRestart(Id);
+			}
+			catch (System.Exception ex)
+			{
+				IsSendLogAndStatusAfterExecution = true;
+				throw new System.Exception($"Скорее всего отсутствует приложение MagicUpdaterRestart.{Environment.NewLine}{Environment.NewLine}Original: {ex.ToString()}");
+			}
 		}
 	}
 }

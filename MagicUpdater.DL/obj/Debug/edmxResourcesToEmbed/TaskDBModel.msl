@@ -450,6 +450,8 @@
     <EntitySetMapping Name="Users">
       <EntityTypeMapping TypeName="MagicUpdaterModel.User">
         <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="LicId" ColumnName="LicId" />
+          <ScalarProperty Name="HwId" ColumnName="HwId" />
           <ScalarProperty Name="UserName" ColumnName="UserName" />
           <ScalarProperty Name="UserLogin" ColumnName="UserLogin" />
           <ScalarProperty Name="Id" ColumnName="Id" />
@@ -667,6 +669,9 @@
     <EntitySetMapping Name="ViewShopComputersServers">
       <EntityTypeMapping TypeName="MagicUpdaterModel.ViewShopComputersServer">
         <MappingFragment StoreEntitySet="ViewShopComputersServer">
+          <ScalarProperty Name="LicStatus" ColumnName="LicStatus" />
+          <ScalarProperty Name="LicId" ColumnName="LicId" />
+          <ScalarProperty Name="HwId" ColumnName="HwId" />
           <ScalarProperty Name="AvgDiskQueueLength" ColumnName="AvgDiskQueueLength" />
           <ScalarProperty Name="AvgRamAvailableMBytes" ColumnName="AvgRamAvailableMBytes" />
           <ScalarProperty Name="AvgCpuTime" ColumnName="AvgCpuTime" />
@@ -797,6 +802,46 @@
           <ScalarProperty Name="Enabled" ColumnName="Enabled" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LicAgents">
+      <EntityTypeMapping TypeName="MagicUpdaterModel.LicAgent">
+        <MappingFragment StoreEntitySet="LicAgent">
+          <ScalarProperty Name="LicStatus" ColumnName="LicStatus" />
+          <ScalarProperty Name="LicId" ColumnName="LicId" />
+          <ScalarProperty Name="HwId" ColumnName="HwId" />
+          <ScalarProperty Name="ComputerId" ColumnName="ComputerId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PerformanceCounterDictionaries">
+      <EntityTypeMapping TypeName="MagicUpdaterModel.PerformanceCounterDictionary">
+        <MappingFragment StoreEntitySet="PerformanceCounterDictionary">
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ShopComputersAdds">
+      <EntityTypeMapping TypeName="MagicUpdaterModel.ShopComputersAdd">
+        <MappingFragment StoreEntitySet="ShopComputersAdd">
+          <ScalarProperty Name="AvgDiskQueueLength" ColumnName="AvgDiskQueueLength" />
+          <ScalarProperty Name="AvgRamAvailableMBytes" ColumnName="AvgRamAvailableMBytes" />
+          <ScalarProperty Name="AvgCpuTime" ColumnName="AvgCpuTime" />
+          <ScalarProperty Name="AvgPerformanceCounterValuesDateTimeUtc" ColumnName="AvgPerformanceCounterValuesDateTimeUtc" />
+          <ScalarProperty Name="ComputerId" ColumnName="ComputerId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PerformanceCounters">
+      <EntityTypeMapping TypeName="MagicUpdaterModel.PerformanceCounter">
+        <MappingFragment StoreEntitySet="PerformanceCounter">
+          <ScalarProperty Name="ParameterValue" ColumnName="ParameterValue" />
+          <ScalarProperty Name="ParameterId" ColumnName="ParameterId" />
+          <ScalarProperty Name="DateTimeUtc" ColumnName="DateTimeUtc" />
+          <ScalarProperty Name="ComputerId" ColumnName="ComputerId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

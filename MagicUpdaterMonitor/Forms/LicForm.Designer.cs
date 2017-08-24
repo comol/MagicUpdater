@@ -51,7 +51,7 @@
 			this.tlpMain.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
 			this.tlpMain.ColumnCount = 2;
 			this.tlpMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 182F));
-			this.tlpMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 508F));
+			this.tlpMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 510F));
 			this.tlpMain.Controls.Add(this.label1, 0, 1);
 			this.tlpMain.Controls.Add(this.label2, 0, 2);
 			this.tlpMain.Controls.Add(this.tbLogin, 1, 1);
@@ -93,7 +93,7 @@
 			this.tbLogin.Dock = System.Windows.Forms.DockStyle.Top;
 			this.tbLogin.Location = new System.Drawing.Point(187, 30);
 			this.tbLogin.Name = "tbLogin";
-			this.tbLogin.Size = new System.Drawing.Size(502, 20);
+			this.tbLogin.Size = new System.Drawing.Size(504, 20);
 			this.tbLogin.TabIndex = 1;
 			this.tbLogin.TextChanged += new System.EventHandler(this.TbAll_TextChanged);
 			// 
@@ -103,7 +103,7 @@
 			this.tbPassword.Location = new System.Drawing.Point(187, 56);
 			this.tbPassword.Name = "tbPassword";
 			this.tbPassword.PasswordChar = '*';
-			this.tbPassword.Size = new System.Drawing.Size(502, 20);
+			this.tbPassword.Size = new System.Drawing.Size(504, 20);
 			this.tbPassword.TabIndex = 1;
 			this.tbPassword.TextChanged += new System.EventHandler(this.TbAll_TextChanged);
 			// 
@@ -122,7 +122,7 @@
 			this.tbLicLink.Dock = System.Windows.Forms.DockStyle.Top;
 			this.tbLicLink.Location = new System.Drawing.Point(187, 4);
 			this.tbLicLink.Name = "tbLicLink";
-			this.tbLicLink.Size = new System.Drawing.Size(502, 20);
+			this.tbLicLink.Size = new System.Drawing.Size(504, 20);
 			this.tbLicLink.TabIndex = 1;
 			this.tbLicLink.TextChanged += new System.EventHandler(this.TbAll_TextChanged);
 			// 
@@ -194,7 +194,6 @@
 			this.MinimizeBox = false;
 			this.Name = "LicForm";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-			this.Text = "LicForm";
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.LicForm_FormClosing);
 			this.tlpMain.ResumeLayout(false);
 			this.tlpMain.PerformLayout();

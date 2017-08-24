@@ -2464,7 +2464,10 @@ namespace MagicUpdater.DL.DB
 											  AvgPerformanceCounterValuesDateTimeUtc = Computers.AvgPerformanceCounterValuesDateTimeUtc,
 											  AvgCpuTime = Computers.AvgCpuTime,
 											  AvgRamAvailableMBytes = Computers.AvgRamAvailableMBytes,
-											  AvgDiskQueueLength = Computers.AvgDiskQueueLength
+											  AvgDiskQueueLength = Computers.AvgDiskQueueLength,
+											  HwId = Computers.HwId,
+											  LicId = Computers.LicId,
+											  LicStatus = Computers.LicStatus
 										  });
 
 #if DEMO
@@ -2513,7 +2516,16 @@ namespace MagicUpdater.DL.DB
 											 OperState = Computers.OperState,
 											 MagicUpdaterVersion = Computers.MagicUpdaterVersion,
 											 IsOn = (Computers.IsON == 1) ? true : false,
-											 Email = Computers.Email
+											 Email = Computers.Email,
+											 LastErrorDate = Computers.LastErrorDate,
+											 LastError = Computers.LastError,
+											 AvgPerformanceCounterValuesDateTimeUtc = Computers.AvgPerformanceCounterValuesDateTimeUtc,
+											 AvgCpuTime = Computers.AvgCpuTime,
+											 AvgRamAvailableMBytes = Computers.AvgRamAvailableMBytes,
+											 AvgDiskQueueLength = Computers.AvgDiskQueueLength,
+											 HwId = Computers.HwId,
+											 LicId = Computers.LicId,
+											 LicStatus = Computers.LicStatus
 										 };
 
 

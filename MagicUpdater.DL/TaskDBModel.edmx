@@ -43,6 +43,7 @@
           <Property Name="ComputerId" Type="int" Nullable="false" />
           <Property Name="HwId" Type="nvarchar" MaxLength="500" Nullable="false" />
           <Property Name="LicId" Type="nvarchar" MaxLength="500" />
+          <Property Name="LicStatus" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="LocalSettings">
           <Key>
@@ -746,6 +747,9 @@ warning 6002: The table/view 'MagicUpdater.dbo.ViewShopComputersServer' does not
           <Property Name="AvgCpuTime" Type="float" />
           <Property Name="AvgRamAvailableMBytes" Type="float" />
           <Property Name="AvgDiskQueueLength" Type="float" />
+          <Property Name="HwId" Type="nvarchar" MaxLength="500" />
+          <Property Name="LicId" Type="nvarchar" MaxLength="500" />
+          <Property Name="LicStatus" Type="int" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'MagicUpdater.dbo.ViewShopComputersServerFull' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -1567,7 +1571,10 @@ warning 6002: The table/view 'MagicUpdater.dbo.ViewShopComputersServerFull' does
     [ViewShopComputersServer].[AvgPerformanceCounterValuesDateTimeUtc] AS [AvgPerformanceCounterValuesDateTimeUtc], 
     [ViewShopComputersServer].[AvgCpuTime] AS [AvgCpuTime], 
     [ViewShopComputersServer].[AvgRamAvailableMBytes] AS [AvgRamAvailableMBytes], 
-    [ViewShopComputersServer].[AvgDiskQueueLength] AS [AvgDiskQueueLength]
+    [ViewShopComputersServer].[AvgDiskQueueLength] AS [AvgDiskQueueLength], 
+    [ViewShopComputersServer].[HwId] AS [HwId], 
+    [ViewShopComputersServer].[LicId] AS [LicId], 
+    [ViewShopComputersServer].[LicStatus] AS [LicStatus]
     FROM [dbo].[ViewShopComputersServer] AS [ViewShopComputersServer]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="ViewShopComputersServerFull" EntityType="Self.ViewShopComputersServerFull" store:Type="Views" store:Schema="dbo">
@@ -2740,6 +2747,9 @@ warning 6002: The table/view 'MagicUpdater.dbo.ViewShopComputersServerFull' does
           <Property Name="AvgCpuTime" Type="Double" />
           <Property Name="AvgRamAvailableMBytes" Type="Double" />
           <Property Name="AvgDiskQueueLength" Type="Double" />
+          <Property Name="HwId" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="LicId" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="LicStatus" Type="Int32" />
         </EntityType>
         <EntityType Name="ViewShopComputersServerFull">
           <Key>
@@ -3165,6 +3175,7 @@ warning 6002: The table/view 'MagicUpdater.dbo.ViewShopComputersServerFull' does
           <Property Name="HwId" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="LicId" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="ShopComputer" Relationship="MagicUpdaterModel.FK_LicAgent_ShopComputers" FromRole="LicAgent" ToRole="ShopComputer" />
+          <Property Name="LicStatus" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="PerformanceCounterDictionary">
           <Key>
@@ -3922,6 +3933,9 @@ warning 6002: The table/view 'MagicUpdater.dbo.ViewShopComputersServerFull' does
           <EntitySetMapping Name="ViewShopComputersServers">
             <EntityTypeMapping TypeName="MagicUpdaterModel.ViewShopComputersServer">
               <MappingFragment StoreEntitySet="ViewShopComputersServer">
+                <ScalarProperty Name="LicStatus" ColumnName="LicStatus" />
+                <ScalarProperty Name="LicId" ColumnName="LicId" />
+                <ScalarProperty Name="HwId" ColumnName="HwId" />
                 <ScalarProperty Name="AvgDiskQueueLength" ColumnName="AvgDiskQueueLength" />
                 <ScalarProperty Name="AvgRamAvailableMBytes" ColumnName="AvgRamAvailableMBytes" />
                 <ScalarProperty Name="AvgCpuTime" ColumnName="AvgCpuTime" />
@@ -4058,6 +4072,7 @@ warning 6002: The table/view 'MagicUpdater.dbo.ViewShopComputersServerFull' does
           <EntitySetMapping Name="LicAgents">
             <EntityTypeMapping TypeName="MagicUpdaterModel.LicAgent">
               <MappingFragment StoreEntitySet="LicAgent">
+                <ScalarProperty Name="LicStatus" ColumnName="LicStatus" />
                 <ScalarProperty Name="LicId" ColumnName="LicId" />
                 <ScalarProperty Name="HwId" ColumnName="HwId" />
                 <ScalarProperty Name="ComputerId" ColumnName="ComputerId" />

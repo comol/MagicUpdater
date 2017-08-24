@@ -86,7 +86,19 @@ namespace MagicUpdaterMonitor.Forms
 
 						if (resMonitorCount.Result.Status != LicResponceStatus.LicIdOk)
 						{
-							MessageBox.Show(resMonitorCount.Result.Status.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+							switch (resMonitorCount.Result.Status)
+							{
+								case LicResponceStatus.LicLimitOver:
+									MessageBox.Show("Лимит лицензий исчерпан", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+									break;
+								case LicResponceStatus.ErrorAuth:
+									MessageBox.Show("Ошибка авторизации", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+									break;
+								default:
+									MessageBox.Show(resMonitorCount.Result.Status.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+									break;
+							}
+							
 							e.Cancel = true;
 							return;
 						}
@@ -101,7 +113,19 @@ namespace MagicUpdaterMonitor.Forms
 
 						if (resAgentCount.Result.Status != LicResponceStatus.LicIdOk)
 						{
-							MessageBox.Show(resAgentCount.Result.Status.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+							switch (resAgentCount.Result.Status)
+							{
+								case LicResponceStatus.LicLimitOver:
+									MessageBox.Show("Лимит лицензий исчерпан", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+									break;
+								case LicResponceStatus.ErrorAuth:
+									MessageBox.Show("Ошибка авторизации", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+									break;
+								default:
+									MessageBox.Show(resMonitorCount.Result.Status.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+									break;
+							}
+
 							e.Cancel = true;
 							return;
 						}
@@ -126,24 +150,55 @@ namespace MagicUpdaterMonitor.Forms
 						var resLic = LicGetter.GetLicFromWeb($"{link}{LIC_LINK_PATTERN.Replace(LOGIN, login).Replace(PASS, pass).Replace(HWID, MainForm.HwId).Replace(PCCOUNT, commonGlobalSettings.LicMonitorCount).Replace(LICTYPE, "1")}");
 						if (resLic.IsComplete)
 						{
-							var resUpdateMonitorLic = MQueryCommand.TryUpdateMonitorLic(MainForm.UserId, resLic.Result);
-							if (!resUpdateMonitorLic.IsComplete)
+							switch (resLic.Result.Status)
 							{
-								MessageBox.Show(resUpdateMonitorLic.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
-								e.Cancel = true;
-								return;
+								case LicResponceStatus.LicIdOk:
+									var resUpdateMonitorLic = MQueryCommand.TryUpdateMonitorLic(MainForm.UserId, resLic.Result);
+									if (!resUpdateMonitorLic.IsComplete)
+									{
+										MessageBox.Show(resUpdateMonitorLic.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+										e.Cancel = true;
+										return;
+									}
+
+									_commonGlobalSettings.LicLink = tbLicLink.Text;
+									_commonGlobalSettings.LicLogin = login;
+									_commonGlobalSettings.LicPassword = pass;
+									_commonGlobalSettings.LicMonitorCount = resMonitorCount.Result.PcCount.ToString();
+									_commonGlobalSettings.LicAgentsCount = resAgentCount.Result.PcCount.ToString();
+
+									if (!SqlWorks.SaveCommonGlobalSettingsToBase(_commonGlobalSettings))
+									{
+										MessageBox.Show("Ошибка сохранения CommonGlobalSettings", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+									}
+
+									MessageBox.Show("Успешное получение лицензии", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
+									break;
+								case LicResponceStatus.LicDeletingOk:
+									break;
+								case LicResponceStatus.LicLimitOver:
+									MessageBox.Show("Лимит лицензий исчерпан", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+									break;
+								case LicResponceStatus.ErrorAuth:
+									MessageBox.Show("Ошибка авторизации", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+									break;
+								case LicResponceStatus.ErrorLicDeleting:
+									break;
+								case LicResponceStatus.ErrorLicIdCreation:
+									break;
+								case LicResponceStatus.ErrorLicParameters:
+									break;
+								case LicResponceStatus.ErrorHwId:
+									break;
+								case LicResponceStatus.ErrorPcCount:
+									break;
+								case LicResponceStatus.ErrorLicType:
+									break;
+								default:
+									break;
 							}
 
-							_commonGlobalSettings.LicLink = tbLicLink.Text;
-							_commonGlobalSettings.LicLogin = tbLogin.Text;
-							_commonGlobalSettings.LicPassword = tbPassword.Text;
-
-							if (!SqlWorks.SaveCommonGlobalSettingsToBase(_commonGlobalSettings))
-							{
-								MessageBox.Show("Ошибка сохранения CommonGlobalSettings", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
-							}
-
-							MessageBox.Show("Успешное получение лицензии", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
+							
 						}
 						else
 						{

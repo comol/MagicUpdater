@@ -45,5 +45,8 @@ namespace MagicUpdater.DL
         public Nullable<double> AvgCpuTime { get; set; }
         public Nullable<double> AvgRamAvailableMBytes { get; set; }
         public Nullable<double> AvgDiskQueueLength { get; set; }
+        public string HwId { get; set; }
+        public string LicId { get; set; }
+        public Nullable<int> LicStatus { get; set; }
     }
 }

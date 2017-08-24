@@ -355,6 +355,10 @@
     <None Include="Resources\disconnected32.png" />
     <None Include="Resources\accept16.png" />
     <None Include="Resources\delete16.png" />
+    <None Include="Resources\AgentLicError.png" />
+    <None Include="Resources\AgentLicOk.png" />
+    <None Include="Resources\AgentLicError16.png" />
+    <None Include="Resources\AgentLicOk16.png" />
     <Content Include="TaskDBModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>TaskDBModel.edmx</DependentUpon>

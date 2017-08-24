@@ -17,6 +17,7 @@ namespace MagicUpdater.DL
         public int ComputerId { get; set; }
         public string HwId { get; set; }
         public string LicId { get; set; }
+        public int LicStatus { get; set; }
     
         public virtual ShopComputer ShopComputer { get; set; }
     }

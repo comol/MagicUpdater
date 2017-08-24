@@ -122,8 +122,8 @@ namespace MagicUpdater.Core
 			try
 			{
 #if LIC
-				if (!_isLicOk)
-				{
+				//if (!_isLicOk)
+				//{
 					int licAgentCount;
 					if (!int.TryParse(MainSettings.GlobalSettings.LicAgentsCount, out licAgentCount))
 					{
@@ -131,7 +131,7 @@ namespace MagicUpdater.Core
 					}
 
 					_isLicOk = SqlWorks.CheckAgentLic(MuCore.HwId, licAgentCount);
-				}
+				//}
 
 				if (_isLicOk)
 				{

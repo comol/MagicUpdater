@@ -236,6 +236,12 @@
     <Compile Include="Forms\AboutForm.Designer.cs">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\AgentLicForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AgentLicForm.Designer.cs">
+      <DependentUpon>AgentLicForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\AgentSettingsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -368,6 +374,9 @@
       <DependentUpon>Images.resx</DependentUpon>
     </Compile>
     <Compile Include="Settings.cs" />
+    <EmbeddedResource Include="Forms\AgentLicForm.resx">
+      <DependentUpon>AgentLicForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\CreateOrEditOperationGroupForm.resx">
       <DependentUpon>CreateOrEditOperationGroupForm.cs</DependentUpon>
     </EmbeddedResource>

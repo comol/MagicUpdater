@@ -121,6 +121,9 @@ namespace MagicUpdaterMonitor
 			this.miErrors1C = new System.Windows.Forms.ToolStripMenuItem();
 			this.miEmty1CLog = new System.Windows.Forms.ToolStripMenuItem();
 			this.miCompletedWithEmptyLog = new System.Windows.Forms.ToolStripMenuItem();
+			this.tsddbLic = new System.Windows.Forms.ToolStripDropDownButton();
+			this.miGetLicForAllAgents = new System.Windows.Forms.ToolStripMenuItem();
+			this.miGetLicForSelectedAgents = new System.Windows.Forms.ToolStripMenuItem();
 			this.tsbAbout = new System.Windows.Forms.ToolStripButton();
 			this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
 			this.sbStatus = new System.Windows.Forms.StatusStrip();
@@ -1083,6 +1086,7 @@ namespace MagicUpdaterMonitor
             this.tsbScheduler,
             this.tsbSettings,
             this.tsddbSpecialSendOpers,
+            this.tsddbLic,
             this.tsbAbout});
 			this.mainToolStrip.Location = new System.Drawing.Point(0, 0);
 			this.mainToolStrip.Name = "mainToolStrip";
@@ -1222,6 +1226,35 @@ namespace MagicUpdaterMonitor
 			this.miCompletedWithEmptyLog.Text = "Выполненные с пустым логом";
 			this.miCompletedWithEmptyLog.Click += new System.EventHandler(this.miCompletedWithEmptyLog_Click);
 			// 
+			// tsddbLic
+			// 
+			this.tsddbLic.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+			this.tsddbLic.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.miGetLicForAllAgents,
+            this.miGetLicForSelectedAgents});
+			this.tsddbLic.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+			this.tsddbLic.Image = ((System.Drawing.Image)(resources.GetObject("tsddbLic.Image")));
+			this.tsddbLic.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.tsddbLic.Name = "tsddbLic";
+			this.tsddbLic.Size = new System.Drawing.Size(169, 22);
+			this.tsddbLic.Text = "Лицензирование агентов";
+			// 
+			// miGetLicForAllAgents
+			// 
+			this.miGetLicForAllAgents.Font = new System.Drawing.Font("Segoe UI", 9F);
+			this.miGetLicForAllAgents.Name = "miGetLicForAllAgents";
+			this.miGetLicForAllAgents.Size = new System.Drawing.Size(320, 22);
+			this.miGetLicForAllAgents.Text = "Получить лицензию для всех агентов";
+			this.miGetLicForAllAgents.Click += new System.EventHandler(this.miGetLicForAllAgents_Click);
+			// 
+			// miGetLicForSelectedAgents
+			// 
+			this.miGetLicForSelectedAgents.Font = new System.Drawing.Font("Segoe UI", 9F);
+			this.miGetLicForSelectedAgents.Name = "miGetLicForSelectedAgents";
+			this.miGetLicForSelectedAgents.Size = new System.Drawing.Size(320, 22);
+			this.miGetLicForSelectedAgents.Text = "Получить лицензию для выбранных агентов";
+			this.miGetLicForSelectedAgents.Click += new System.EventHandler(this.miGetLicForSelectedAgents_Click);
+			// 
 			// tsbAbout
 			// 
 			this.tsbAbout.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
@@ -1298,7 +1331,6 @@ namespace MagicUpdaterMonitor
 			this.KeyPreview = true;
 			this.Name = "MainForm";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-			this.Text = "Монитор обновления 1С";
 			this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
 			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
@@ -1456,6 +1488,9 @@ namespace MagicUpdaterMonitor
 		private System.Windows.Forms.ToolStripDropDownButton tsbScheduler;
 		private System.Windows.Forms.ToolStripMenuItem miShedulerForAgents;
 		private System.Windows.Forms.ToolStripMenuItem miShedulerFOrServer;
+		private System.Windows.Forms.ToolStripDropDownButton tsddbLic;
+		private System.Windows.Forms.ToolStripMenuItem miGetLicForAllAgents;
+		private System.Windows.Forms.ToolStripMenuItem miGetLicForSelectedAgents;
 	}
 }
 

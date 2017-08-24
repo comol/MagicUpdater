@@ -73,6 +73,26 @@ namespace MagicUpdater.DL {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap AgentLicError16 {
+            get {
+                object obj = ResourceManager.GetObject("AgentLicError16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap AgentLicOk16 {
+            get {
+                object obj = ResourceManager.GetObject("AgentLicOk16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap connected16 {
             get {
                 object obj = ResourceManager.GetObject("connected16", resourceCulture);

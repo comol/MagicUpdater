@@ -281,6 +281,26 @@
       <End Role="ShedulerTaskMode" EntitySet="ShedulerTaskModes" />
       <End Role="ShedulerTask" EntitySet="ShedulerTasks" />
     </AssociationSet>
+    <EntitySet Name="LicAgents" EntityType="MagicUpdaterModel.LicAgent" />
+    <EntitySet Name="PerformanceCounterDictionaries" EntityType="MagicUpdaterModel.PerformanceCounterDictionary" />
+    <EntitySet Name="ShopComputersAdds" EntityType="MagicUpdaterModel.ShopComputersAdd" />
+    <EntitySet Name="PerformanceCounters" EntityType="MagicUpdaterModel.PerformanceCounter" />
+    <AssociationSet Name="FK_LicAgent_ShopComputers" Association="MagicUpdaterModel.FK_LicAgent_ShopComputers">
+      <End Role="ShopComputer" EntitySet="ShopComputers" />
+      <End Role="LicAgent" EntitySet="LicAgents" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PerformanceCounter_PerformanceCounterDictionary" Association="MagicUpdaterModel.FK_PerformanceCounter_PerformanceCounterDictionary">
+      <End Role="PerformanceCounterDictionary" EntitySet="PerformanceCounterDictionaries" />
+      <End Role="PerformanceCounter" EntitySet="PerformanceCounters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PerformanceCounter_ShopComputers" Association="MagicUpdaterModel.FK_PerformanceCounter_ShopComputers">
+      <End Role="ShopComputer" EntitySet="ShopComputers" />
+      <End Role="PerformanceCounter" EntitySet="PerformanceCounters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ShopComputersAdd_ShopComputers" Association="MagicUpdaterModel.FK_ShopComputersAdd_ShopComputers">
+      <End Role="ShopComputer" EntitySet="ShopComputers" />
+      <End Role="ShopComputersAdd" EntitySet="ShopComputersAdds" />
+    </AssociationSet>
   </EntityContainer>
   <ComplexType Name="GetComputerSettings_Result">
     <Property Type="Int32" Name="Computerid" Nullable="false" />
@@ -659,6 +679,9 @@
     <NavigationProperty Name="Operations" Relationship="MagicUpdaterModel.FK_Operations_ShopComputers" FromRole="ShopComputer" ToRole="Operation" />
     <NavigationProperty Name="Shop" Relationship="MagicUpdaterModel.FK_ShopComputers_Shops" FromRole="ShopComputer" ToRole="Shop" />
     <Property Name="LastErrorDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="LicAgent" Relationship="MagicUpdaterModel.FK_LicAgent_ShopComputers" FromRole="ShopComputer" ToRole="LicAgent" />
+    <NavigationProperty Name="PerformanceCounters" Relationship="MagicUpdaterModel.FK_PerformanceCounter_ShopComputers" FromRole="ShopComputer" ToRole="PerformanceCounter" />
+    <NavigationProperty Name="ShopComputersAdd" Relationship="MagicUpdaterModel.FK_ShopComputersAdd_ShopComputers" FromRole="ShopComputer" ToRole="ShopComputersAdd" />
   </EntityType>
   <EntityType Name="Shop">
     <Key>
@@ -695,6 +718,8 @@
     <Property Name="UserLogin" Type="String" Nullable="false" MaxLength="400" FixedLength="false" Unicode="true" />
     <Property Name="UserName" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="OperationTypeAttributes" Relationship="MagicUpdaterModel.FK_OperationTypeAttributes_Users" FromRole="User" ToRole="OperationTypeAttribute" />
+    <Property Name="HwId" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="LicId" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="ComputerErrorsLogView">
     <Key>
@@ -998,6 +1023,9 @@
     <Property Name="AvgCpuTime" Type="Double" />
     <Property Name="AvgRamAvailableMBytes" Type="Double" />
     <Property Name="AvgDiskQueueLength" Type="Double" />
+    <Property Name="HwId" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="LicId" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="LicStatus" Type="Int32" />
   </EntityType>
   <EntityType Name="ViewShopComputersServerFull">
     <Key>
@@ -1412,6 +1440,98 @@
       </Principal>
       <Dependent Role="ShedulerTask">
         <PropertyRef Name="Mode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="LicAgent">
+    <Key>
+      <PropertyRef Name="ComputerId" />
+    </Key>
+    <Property Name="ComputerId" Type="Int32" Nullable="false" />
+    <Property Name="HwId" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="LicId" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="ShopComputer" Relationship="MagicUpdaterModel.FK_LicAgent_ShopComputers" FromRole="LicAgent" ToRole="ShopComputer" />
+    <Property Name="LicStatus" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PerformanceCounterDictionary">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="PerformanceCounters" Relationship="MagicUpdaterModel.FK_PerformanceCounter_PerformanceCounterDictionary" FromRole="PerformanceCounterDictionary" ToRole="PerformanceCounter" />
+  </EntityType>
+  <EntityType Name="ShopComputersAdd">
+    <Key>
+      <PropertyRef Name="ComputerId" />
+    </Key>
+    <Property Name="ComputerId" Type="Int32" Nullable="false" />
+    <Property Name="AvgPerformanceCounterValuesDateTimeUtc" Type="DateTime" Precision="3" />
+    <Property Name="AvgCpuTime" Type="Double" />
+    <Property Name="AvgRamAvailableMBytes" Type="Double" />
+    <Property Name="AvgDiskQueueLength" Type="Double" />
+    <NavigationProperty Name="ShopComputer" Relationship="MagicUpdaterModel.FK_ShopComputersAdd_ShopComputers" FromRole="ShopComputersAdd" ToRole="ShopComputer" />
+  </EntityType>
+  <EntityType Name="PerformanceCounter">
+    <Key>
+      <PropertyRef Name="ComputerId" />
+      <PropertyRef Name="DateTimeUtc" />
+      <PropertyRef Name="ParameterId" />
+      <PropertyRef Name="ParameterValue" />
+    </Key>
+    <Property Name="ComputerId" Type="Int32" Nullable="false" />
+    <Property Name="DateTimeUtc" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ParameterId" Type="Int32" Nullable="false" />
+    <Property Name="ParameterValue" Type="Double" Nullable="false" />
+    <NavigationProperty Name="PerformanceCounterDictionary" Relationship="MagicUpdaterModel.FK_PerformanceCounter_PerformanceCounterDictionary" FromRole="PerformanceCounter" ToRole="PerformanceCounterDictionary" />
+    <NavigationProperty Name="ShopComputer" Relationship="MagicUpdaterModel.FK_PerformanceCounter_ShopComputers" FromRole="PerformanceCounter" ToRole="ShopComputer" />
+  </EntityType>
+  <Association Name="FK_LicAgent_ShopComputers">
+    <End Type="MagicUpdaterModel.ShopComputer" Role="ShopComputer" Multiplicity="1" />
+    <End Type="MagicUpdaterModel.LicAgent" Role="LicAgent" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="ShopComputer">
+        <PropertyRef Name="ComputerId" />
+      </Principal>
+      <Dependent Role="LicAgent">
+        <PropertyRef Name="ComputerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PerformanceCounter_PerformanceCounterDictionary">
+    <End Type="MagicUpdaterModel.PerformanceCounterDictionary" Role="PerformanceCounterDictionary" Multiplicity="1" />
+    <End Type="MagicUpdaterModel.PerformanceCounter" Role="PerformanceCounter" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PerformanceCounterDictionary">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PerformanceCounter">
+        <PropertyRef Name="ParameterId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PerformanceCounter_ShopComputers">
+    <End Type="MagicUpdaterModel.ShopComputer" Role="ShopComputer" Multiplicity="1" />
+    <End Type="MagicUpdaterModel.PerformanceCounter" Role="PerformanceCounter" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ShopComputer">
+        <PropertyRef Name="ComputerId" />
+      </Principal>
+      <Dependent Role="PerformanceCounter">
+        <PropertyRef Name="ComputerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ShopComputersAdd_ShopComputers">
+    <End Type="MagicUpdaterModel.ShopComputer" Role="ShopComputer" Multiplicity="1" />
+    <End Type="MagicUpdaterModel.ShopComputersAdd" Role="ShopComputersAdd" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="ShopComputer">
+        <PropertyRef Name="ComputerId" />
+      </Principal>
+      <Dependent Role="ShopComputersAdd">
+        <PropertyRef Name="ComputerId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

@@ -85,6 +85,33 @@ namespace MagicUpdater.DL.Models
 		public string MagicUpdaterVersion { get; set; }
 
 		[NotMapRefreshingGridView]
+		public string HwId { get; set; }
+
+		[NotMapRefreshingGridView]
+		public string LicId { get; set; }
+
+		[NotMapRefreshingGridView]
+		public int? LicStatus { get; set; }
+
+#if !LIC
+		[NotMapRefreshingGridView]
+#endif
+		public Bitmap LicStatusBitmap
+		{
+			get
+			{
+				if ((LicStatus ?? -1) == 0)
+				{
+					return Images.accept16;
+				}
+				else
+				{
+					return Images.delete16;
+				}
+			}
+		}
+
+		[NotMapRefreshingGridView]
 		public string AddressToConnect { get; set; }
 
 		[NotMapRefreshingGridView]

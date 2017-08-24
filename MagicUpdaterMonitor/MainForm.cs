@@ -92,6 +92,12 @@ namespace MagicUpdaterMonitor
 #endif
 			InitializeComponent();
 
+#if LIC
+			tsddbLic.Visible = true;
+#else
+			tsddbLic.Visible = false;
+#endif
+
 			FilterByAgentTimer = new System.Threading.Timer(FilterByAgentTimerCallback, null, Timeout.Infinite, Timeout.Infinite);
 			operationAttributes1.OnValueChanged += OperationAttributes1_OnValueChanged;
 
@@ -1222,6 +1228,7 @@ namespace MagicUpdaterMonitor
 				cf.rgvInfo.DataSource = await MQueryCommand.SelectShopComputersServerViewGridAsync();
 				cf.OperationTypeName = OperationTools.TryGetOperationNameRuByEn("SelfUpdate");
 				cf.rgvInfo.Filter = $"MagicUpdaterVersion <> '{LastVersionChecker.GetLatestVersion()}' and IsON = 1";
+				cf.rgvInfo.HideColumns("LicStatusBitmap");
 				if (cf.ShowDialog() == DialogResult.OK)
 				{
 					lastOperationDateUtc = DateTime.UtcNow;
@@ -1400,6 +1407,7 @@ namespace MagicUpdaterMonitor
 				cf.rgvInfo.DataSource = await MQueryCommand.SelectComputersGridAsync();
 				cf.OperationTypeName = OperationTools.TryGetOperationNameRuById(Convert.ToInt32(rgvSendOpers.SelectedValue));
 				cf.rgvInfo.Filter = $"ComputerId in ({string.Join(",", rgvComputers.SelectedValues.ToArray())})";
+				cf.rgvInfo.HideColumns("LicStatusBitmap");
 
 				if (cf.ShowDialog() == DialogResult.OK)
 				{
@@ -1495,6 +1503,7 @@ namespace MagicUpdaterMonitor
 			cf.rgvInfo.DataSource = await MQueryCommand.SelectComputersGridAsync();
 			cf.OperationTypeName = OperationTools.TryGetOperationNameRuById(Convert.ToInt32(rgvSendOpers.SelectedValue));
 			cf.rgvInfo.Filter = $"IsMainCashbox = 1 and IsON = 1";
+			cf.rgvInfo.HideColumns("LicStatusBitmap");
 
 			if (cf.ShowDialog() == DialogResult.OK)
 			{
@@ -1516,6 +1525,7 @@ namespace MagicUpdaterMonitor
 			cf.rgvInfo.DataSource = await MQueryCommand.SelectComputersGridAsync();
 			cf.OperationTypeName = OperationTools.TryGetOperationNameRuById(Convert.ToInt32(rgvSendOpers.SelectedValue));
 			cf.rgvInfo.Filter = $"Is1CServer = 1 and IsON = 1";
+			cf.rgvInfo.HideColumns("LicStatusBitmap");
 			if (cf.ShowDialog() == DialogResult.OK)
 			{
 				lastOperationDateUtc = DateTime.UtcNow;
@@ -1542,6 +1552,7 @@ namespace MagicUpdaterMonitor
 			cf.rgvInfo.DataSource = await MQueryCommand.SelectComputersGridAsync();
 			cf.OperationTypeName = OperationTools.TryGetOperationNameRuById(Convert.ToInt32(rgvSendOpers.SelectedValue));
 			cf.rgvInfo.Filter = $"ComputerId in ({string.Join(",", rgvComputers.SelectedValues.ToArray())})";
+			cf.rgvInfo.HideColumns("LicStatusBitmap");
 
 			if (cf.ShowDialog() == DialogResult.OK)
 			{
@@ -1575,6 +1586,7 @@ namespace MagicUpdaterMonitor
 				selVals[i] = $"'{selVals[i]}'";
 			}
 			cf.rgvInfo.Filter = $"ShopId in ({string.Join(",", selVals)})";
+			cf.rgvInfo.HideColumns("LicStatusBitmap");
 
 			if (cf.ShowDialog() == DialogResult.OK)
 			{
@@ -2023,6 +2035,7 @@ namespace MagicUpdaterMonitor
 				cf.rgvInfo.DataSource = await MQueryCommand.SelectShopComputersServerViewGridAsync();
 				cf.OperationTypeName = OperationTools.TryGetOperationNameRuByEn("SelfUpdate");
 				cf.rgvInfo.Filter = $"MagicUpdaterVersion <> '{LastVersionChecker.GetLatestVersion()}' and IsON = 1";
+				cf.rgvInfo.HideColumns("LicStatusBitmap");
 				if (cf.ShowDialog() == DialogResult.OK)
 				{
 					lastOperationDateUtc = DateTime.UtcNow;
@@ -2072,6 +2085,27 @@ namespace MagicUpdaterMonitor
 			{
 				tsbScheduler.Enabled = true;
 			}
+		}
+
+		private void miGetLicForAllAgents_Click(object sender, EventArgs e)
+		{
+			var agents = MQueryCommand.SelectShopComputersServerViewGrid().Where(w => (w.LicStatus ?? -1) == -1 && w.ComputerId > 0 && w.IsClosed == false).ToArray();
+			AgentLicForm agentLicForm = new AgentLicForm(agents);
+			agentLicForm.ShowDialog();
+		}
+
+		private void miGetLicForSelectedAgents_Click(object sender, EventArgs e)
+		{
+			var selectedAgentsIds = rgvComputers.SelectedValues.Select(s => Convert.ToInt32(s)).ToArray();
+
+			var agents = MQueryCommand.SelectShopComputersServerViewGrid().Where(w => /*(w.LicStatus ?? -1) == -1 &&*/ w.ComputerId > 0 && w.IsClosed == false && selectedAgentsIds.Contains(w.ComputerId)).ToArray();
+			if (agents.Length == 0)
+			{
+				MessageBox.Show("Агенты не выбраны", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
+				return;
+			}
+			AgentLicForm agentLicForm = new AgentLicForm(agents);
+			agentLicForm.ShowDialog();
 		}
 	}
 }

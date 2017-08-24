@@ -47,7 +47,8 @@ namespace MagicUpdaterMonitor.Helpers
 			{"AvgPerformanceCounterValuesDateTimeUtc","Дата записи данных производительности"},
 			{"AvgCpuTimeVis","ЦП"},
 			{"AvgRamAvailableMBytesVis","Доступно ОЗУ"},
-			{"AvgDiskQueueLengthVis","Жесткий диск"}
+			{"AvgDiskQueueLengthVis","Жесткий диск"},
+			{"LicStatusBitmap","Лицензия"}
 		};
 
 		public static Dictionary<string, string> StepsGridMapping = new Dictionary<string, string>
