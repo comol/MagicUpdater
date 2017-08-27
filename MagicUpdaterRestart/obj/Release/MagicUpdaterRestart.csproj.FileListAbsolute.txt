@@ -23,3 +23,10 @@ C:\Users\oleg.filippov.SELA\Source\Repos\MagicUpdater\MagicUpdater\bin\Release\r
 C:\Users\oleg.filippov.SELA\Source\Repos\MagicUpdater\MagicUpdaterRestart\obj\Release\MagicUpdaterRestart.csprojResolveAssemblyReference.cache
 C:\Users\oleg.filippov.SELA\Source\Repos\MagicUpdater\MagicUpdaterRestart\obj\Release\MagicUpdaterRestart.exe
 C:\Users\oleg.filippov.SELA\Source\Repos\MagicUpdater\MagicUpdaterRestart\obj\Release\MagicUpdaterRestart.pdb
+D:\GitProjects\MagicUpdater_ms\MagicUpdater\bin\Release\restart\NLog.config
+D:\GitProjects\MagicUpdater_ms\MagicUpdater\bin\Release\restart\MagicUpdaterRestart.exe.config
+D:\GitProjects\MagicUpdater_ms\MagicUpdater\bin\Release\restart\MagicUpdaterRestart.exe
+D:\GitProjects\MagicUpdater_ms\MagicUpdater\bin\Release\restart\MagicUpdaterRestart.pdb
+D:\GitProjects\MagicUpdater_ms\MagicUpdaterRestart\obj\Release\MagicUpdaterRestart.csprojResolveAssemblyReference.cache
+D:\GitProjects\MagicUpdater_ms\MagicUpdaterRestart\obj\Release\MagicUpdaterRestart.exe
+D:\GitProjects\MagicUpdater_ms\MagicUpdaterRestart\obj\Release\MagicUpdaterRestart.pdb

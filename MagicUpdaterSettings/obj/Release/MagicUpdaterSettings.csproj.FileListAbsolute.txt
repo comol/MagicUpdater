@@ -28,3 +28,13 @@ C:\Users\oleg.filippov.SELA\Source\Repos\MagicUpdater\MagicUpdaterSettings\obj\R
 C:\Users\oleg.filippov.SELA\Source\Repos\MagicUpdater\MagicUpdaterSettings\obj\Release\MagicUpdaterSettings.csproj.GenerateResource.Cache
 C:\Users\oleg.filippov.SELA\Source\Repos\MagicUpdater\MagicUpdaterSettings\obj\Release\MagicUpdaterSettings.exe
 C:\Users\oleg.filippov.SELA\Source\Repos\MagicUpdater\MagicUpdaterSettings\obj\Release\MagicUpdaterSettings.pdb
+D:\GitProjects\MagicUpdater_ms\MagicUpdater\bin\Release\NLog.config
+D:\GitProjects\MagicUpdater_ms\MagicUpdater\bin\Release\MagicUpdaterSettings.exe.config
+D:\GitProjects\MagicUpdater_ms\MagicUpdater\bin\Release\MagicUpdaterSettings.exe
+D:\GitProjects\MagicUpdater_ms\MagicUpdater\bin\Release\MagicUpdaterSettings.pdb
+D:\GitProjects\MagicUpdater_ms\MagicUpdaterSettings\obj\Release\MagicUpdaterSettings.csprojResolveAssemblyReference.cache
+D:\GitProjects\MagicUpdater_ms\MagicUpdaterSettings\obj\Release\MagicUpdaterSettings.Properties.Resources.resources
+D:\GitProjects\MagicUpdater_ms\MagicUpdaterSettings\obj\Release\MagicUpdaterInstaller.SettingsForm.resources
+D:\GitProjects\MagicUpdater_ms\MagicUpdaterSettings\obj\Release\MagicUpdaterSettings.csproj.GenerateResource.Cache
+D:\GitProjects\MagicUpdater_ms\MagicUpdaterSettings\obj\Release\MagicUpdaterSettings.exe
+D:\GitProjects\MagicUpdater_ms\MagicUpdaterSettings\obj\Release\MagicUpdaterSettings.pdb

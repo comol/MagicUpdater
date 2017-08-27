@@ -19,4 +19,3 @@ D:\Repos\MagicUpdater_ms\Communications\bin\Release\Communications.dll
 D:\Repos\MagicUpdater_ms\Communications\bin\Release\Communications.pdb
 D:\Repos\MagicUpdater_ms\Communications\obj\Release\Communications.dll
 D:\Repos\MagicUpdater_ms\Communications\obj\Release\Communications.pdb
-D:\GitProjects\MagicUpdater_ms\Communications\obj\Release\Communications.csprojResolveAssemblyReference.cache

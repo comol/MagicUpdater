@@ -42,11 +42,12 @@
 			this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
 			this.gbOutput = new System.Windows.Forms.GroupBox();
 			this.label3 = new System.Windows.Forms.Label();
-			this.button1 = new System.Windows.Forms.Button();
+			this.btnChooseSaveFolder = new System.Windows.Forms.Button();
 			this.tbSaveFolder = new System.Windows.Forms.TextBox();
 			this.btnBuild = new System.Windows.Forms.Button();
 			this.btnCancel = new System.Windows.Forms.Button();
 			this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+			this.rtbLog = new System.Windows.Forms.RichTextBox();
 			this.gbProjects.SuspendLayout();
 			this.gbSolution.SuspendLayout();
 			this.gbOutput.SuspendLayout();
@@ -162,6 +163,7 @@
 			this.tbSolutionFile.Name = "tbSolutionFile";
 			this.tbSolutionFile.Size = new System.Drawing.Size(297, 20);
 			this.tbSolutionFile.TabIndex = 1;
+			this.tbSolutionFile.Leave += new System.EventHandler(this.tbSolutionFile_Leave);
 			// 
 			// cbConfiguration
 			// 
@@ -174,13 +176,12 @@
 			// 
 			// openFileDialog1
 			// 
-			this.openFileDialog1.FileName = "openFileDialog1";
 			this.openFileDialog1.Filter = "VSSolutionFiles(*.sln)|*.sln";
 			// 
 			// gbOutput
 			// 
 			this.gbOutput.Controls.Add(this.label3);
-			this.gbOutput.Controls.Add(this.button1);
+			this.gbOutput.Controls.Add(this.btnChooseSaveFolder);
 			this.gbOutput.Controls.Add(this.tbSaveFolder);
 			this.gbOutput.Location = new System.Drawing.Point(7, 127);
 			this.gbOutput.Name = "gbOutput";
@@ -198,15 +199,15 @@
 			this.label3.TabIndex = 5;
 			this.label3.Text = "Папка для сохранения:";
 			// 
-			// button1
+			// btnChooseSaveFolder
 			// 
-			this.button1.Location = new System.Drawing.Point(484, 41);
-			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(26, 22);
-			this.button1.TabIndex = 4;
-			this.button1.Text = "...";
-			this.button1.UseVisualStyleBackColor = true;
-			this.button1.Click += new System.EventHandler(this.button1_Click);
+			this.btnChooseSaveFolder.Location = new System.Drawing.Point(484, 41);
+			this.btnChooseSaveFolder.Name = "btnChooseSaveFolder";
+			this.btnChooseSaveFolder.Size = new System.Drawing.Size(26, 22);
+			this.btnChooseSaveFolder.TabIndex = 4;
+			this.btnChooseSaveFolder.Text = "...";
+			this.btnChooseSaveFolder.UseVisualStyleBackColor = true;
+			this.btnChooseSaveFolder.Click += new System.EventHandler(this.button1_Click);
 			// 
 			// tbSaveFolder
 			// 
@@ -217,7 +218,7 @@
 			// 
 			// btnBuild
 			// 
-			this.btnBuild.Location = new System.Drawing.Point(7, 211);
+			this.btnBuild.Location = new System.Drawing.Point(7, 379);
 			this.btnBuild.Name = "btnBuild";
 			this.btnBuild.Size = new System.Drawing.Size(112, 48);
 			this.btnBuild.TabIndex = 3;
@@ -227,7 +228,7 @@
 			// 
 			// btnCancel
 			// 
-			this.btnCancel.Location = new System.Drawing.Point(411, 211);
+			this.btnCancel.Location = new System.Drawing.Point(411, 379);
 			this.btnCancel.Name = "btnCancel";
 			this.btnCancel.Size = new System.Drawing.Size(112, 48);
 			this.btnCancel.TabIndex = 4;
@@ -235,17 +236,31 @@
 			this.btnCancel.UseVisualStyleBackColor = true;
 			this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
 			// 
+			// rtbLog
+			// 
+			this.rtbLog.Location = new System.Drawing.Point(7, 211);
+			this.rtbLog.Name = "rtbLog";
+			this.rtbLog.ReadOnly = true;
+			this.rtbLog.Size = new System.Drawing.Size(516, 162);
+			this.rtbLog.TabIndex = 5;
+			this.rtbLog.Text = "";
+			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(530, 265);
+			this.ClientSize = new System.Drawing.Size(530, 434);
+			this.Controls.Add(this.rtbLog);
 			this.Controls.Add(this.btnCancel);
 			this.Controls.Add(this.btnBuild);
 			this.Controls.Add(this.gbOutput);
 			this.Controls.Add(this.gbSolution);
 			this.Controls.Add(this.gbProjects);
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+			this.MaximizeBox = false;
+			this.MinimizeBox = false;
 			this.Name = "MainForm";
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "MagicUpdateObfuscationBuilder";
 			this.gbProjects.ResumeLayout(false);
 			this.gbProjects.PerformLayout();
@@ -273,11 +288,12 @@
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.GroupBox gbOutput;
 		private System.Windows.Forms.Label label3;
-		private System.Windows.Forms.Button button1;
+		private System.Windows.Forms.Button btnChooseSaveFolder;
 		private System.Windows.Forms.TextBox tbSaveFolder;
 		private System.Windows.Forms.Button btnBuild;
 		private System.Windows.Forms.Button btnCancel;
 		private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
+		private System.Windows.Forms.RichTextBox rtbLog;
 	}
 }
 

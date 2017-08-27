@@ -25,6 +25,12 @@ namespace MagicUpdateObfuscationBuilder
 		private const string MAGIC_UPDATER_SHEDULER = "MagicUpdaterSheduler";
 		private const string MAGIC_UPDATER_RESTART = "MagicUpdaterRestart";
 
+		//Названия папок сборки
+		private const string AGENT = "Agent";
+		private const string AGENT_INSTALLER = "AgentInstaller";
+		private const string MONITOR = "Monitor";
+		private const string SCHEDULER = "Scheduler";
+
 		//Параметры проекта SmartAssembly
 		private static string[] _arguments =
 		{
@@ -76,21 +82,32 @@ namespace MagicUpdateObfuscationBuilder
 					return;
 				}
 
-				string solutionFileText = File.ReadAllText(tbSolutionFile.Text);
-				string startMarker = "GlobalSection(SolutionConfigurationPlatforms) = preSolution";
-				string globalSection = solutionFileText.Substring(solutionFileText.IndexOf(startMarker) + startMarker.Length, solutionFileText.IndexOf("EndGlobalSection") - solutionFileText.IndexOf(startMarker) - startMarker.Length).Trim();
-				globalSection = globalSection.Replace("|Any CPU", "").Replace("\r\n\t\t", "|");
-				string[] configurations = globalSection.Split(new char[] { '|' }, StringSplitOptions.RemoveEmptyEntries);
-				for (int i = 0; i < configurations.Length; i++)
-				{
-					configurations[i] = configurations[i].Substring(0, configurations[i].IndexOf("=") - 1).Trim();
-				}
+				LoadConfigurations();
+			}
+		}
 
-				cbConfiguration.Items.AddRange(configurations);
-				if (cbConfiguration.Items.Count > 0)
-				{
-					cbConfiguration.SelectedIndex = 0;
-				}
+		private void tbSolutionFile_Leave(object sender, EventArgs e)
+		{
+			LoadConfigurations();
+		}
+
+		private void LoadConfigurations()
+		{
+			string solutionFileText = File.ReadAllText(tbSolutionFile.Text);
+			string startMarker = "GlobalSection(SolutionConfigurationPlatforms) = preSolution";
+			string globalSection = solutionFileText.Substring(solutionFileText.IndexOf(startMarker) + startMarker.Length, solutionFileText.IndexOf("EndGlobalSection") - solutionFileText.IndexOf(startMarker) - startMarker.Length).Trim();
+			globalSection = globalSection.Replace("|Any CPU", "").Replace("\r\n\t\t", "|");
+			string[] configurations = globalSection.Split(new char[] { '|' }, StringSplitOptions.RemoveEmptyEntries);
+			for (int i = 0; i < configurations.Length; i++)
+			{
+				configurations[i] = configurations[i].Substring(0, configurations[i].IndexOf("=") - 1).Trim();
+			}
+
+			cbConfiguration.Items.Clear();
+			cbConfiguration.Items.AddRange(configurations);
+			if (cbConfiguration.Items.Count > 0)
+			{
+				cbConfiguration.SelectedIndex = 0;
 			}
 		}
 
@@ -109,62 +126,181 @@ namespace MagicUpdateObfuscationBuilder
 
 		private void btnBuild_Click(object sender, EventArgs e)
 		{
-			#region Checks
-			if (string.IsNullOrEmpty(tbSolutionFile.Text))
+			chbAgent.Enabled =
+			chbAgentInstaller.Enabled =
+			chbMonitor.Enabled =
+			chbScheduler.Enabled =
+			tbSaveFolder.Enabled =
+			tbSolutionFile.Enabled =
+			cbConfiguration.Enabled =
+			btnBuild.Enabled =
+			btnCancel.Enabled =
+			btnOpenSolutionFile.Enabled =
+			btnChooseSaveFolder.Enabled = false;
+			try
 			{
-				MessageBox.Show("Пустое имя файла решения");
-				return;
-			}
-			if (string.IsNullOrEmpty(tbSaveFolder.Text))
-			{
-				MessageBox.Show("Не указана папка сохранения");
-				return;
-			}
-			if (Path.GetExtension(tbSolutionFile.Text) != ".sln")
-			{
-				MessageBox.Show("Неверный фал решения. Файл должен иметь расширение (.sln)");
-				return;
-			}
-			#endregion
+				if (string.IsNullOrEmpty(tbSolutionFile.Text))
+				{
+					MessageBox.Show("Пустое имя файла решения");
+					return;
+				}
 
-			string solutionPath = Path.GetDirectoryName(tbSolutionFile.Text);
-
-			if (chbAgent.Checked)
-			{
+				string solutionPath = Path.GetDirectoryName(tbSolutionFile.Text);
 				string assemblyAgentDir = Path.Combine(solutionPath, MAGIC_UPDATER, "bin", cbConfiguration.Text);
-				string[] filesAgent = Directory.GetFiles(assemblyAgentDir);
-				string destinationAgentDir = Path.Combine(tbSaveFolder.Text, "Agent");
-				if (!Directory.Exists(destinationAgentDir))
-				{
-					Directory.CreateDirectory(destinationAgentDir);
-				}
-				CopyNotObfuscatedFilesFiles(filesAgent, destinationAgentDir);
-				BuildSmartAssembly(filesAgent, destinationAgentDir);
-
 				string assemblyRestartDir = Path.Combine(solutionPath, MAGIC_UPDATER_RESTART, "bin", cbConfiguration.Text);
-				string[] filesRestart = Directory.GetFiles(assemblyRestartDir);
-				string destinationRestartDir = Path.Combine(destinationAgentDir, "restart");
-				if (!Directory.Exists(destinationRestartDir))
+				string assemblyAgentInstallerDir = Path.Combine(solutionPath, MAGIC_UPDATER_INSTALLER, "bin", cbConfiguration.Text);
+				string assemblyMonitorDir = Path.Combine(solutionPath, MAGIC_UPDATER_MONITOR, "bin", cbConfiguration.Text);
+				string assemblySchedulerDir = Path.Combine(solutionPath, MAGIC_UPDATER_SHEDULER, "bin", cbConfiguration.Text);
+
+				#region Checks
+
+				if (string.IsNullOrEmpty(tbSaveFolder.Text))
 				{
-					Directory.CreateDirectory(destinationRestartDir);
+					MessageBox.Show("Не указана папка сохранения");
+					return;
 				}
-				CopyNotObfuscatedFilesFiles(filesRestart, destinationRestartDir);
-				BuildSmartAssembly(filesRestart, destinationRestartDir);
+				if (Path.GetExtension(tbSolutionFile.Text) != ".sln")
+				{
+					MessageBox.Show("Неверный фал решения. Файл должен иметь расширение (.sln)");
+					return;
+				}
+				if (!Directory.Exists(assemblyAgentDir))
+				{
+					MessageBox.Show($"Отсутствует сборка конфигурации по пути: {assemblyAgentDir}");
+					return;
+				}
+				if (!Directory.Exists(assemblyRestartDir))
+				{
+					MessageBox.Show($"Отсутствует сборка конфигурации по пути: {assemblyRestartDir}");
+					return;
+				}
+				if (!Directory.Exists(assemblyAgentInstallerDir))
+				{
+					MessageBox.Show($"Отсутствует сборка конфигурации по пути: {assemblyAgentInstallerDir}");
+					return;
+				}
+				if (!Directory.Exists(assemblyMonitorDir))
+				{
+					MessageBox.Show($"Отсутствует сборка конфигурации по пути: {assemblyMonitorDir}");
+					return;
+				}
+				if (!Directory.Exists(assemblySchedulerDir))
+				{
+					MessageBox.Show($"Отсутствует сборка конфигурации по пути: {assemblySchedulerDir}");
+					return;
+				}
+				#endregion
+
+				if (chbAgent.Checked)
+				{
+					string[] filesAgent = Directory.GetFiles(assemblyAgentDir);
+					string destinationAgentDir = Path.Combine(tbSaveFolder.Text, AGENT);
+					if (!Directory.Exists(destinationAgentDir))
+					{
+						Directory.CreateDirectory(destinationAgentDir);
+					}
+					PrintLog("Agent. Копирование файлов без обфускации...");
+					CopyNotObfuscatedFilesFiles(filesAgent, destinationAgentDir);
+					PrintLog("Agent. Копирование файлов с обфускацией:");
+					var resAgent = BuildSmartAssembly(filesAgent, destinationAgentDir);
+					if (!resAgent.IsComplete)
+					{
+						PrintLog($"Ошибка: {resAgent.Message}");
+						return;
+					}
+					PrintLine();
+
+					string[] filesRestart = Directory.GetFiles(assemblyRestartDir);
+					string destinationRestartDir = Path.Combine(destinationAgentDir, "restart");
+					if (!Directory.Exists(destinationRestartDir))
+					{
+						Directory.CreateDirectory(destinationRestartDir);
+					}
+					PrintLog("Restart for Agent. Копирование файлов без обфускации...");
+					CopyNotObfuscatedFilesFiles(filesRestart, destinationRestartDir);
+					PrintLog("Restart for Agent. Копирование файлов с обфускацией:");
+					var resRestart = BuildSmartAssembly(filesRestart, destinationRestartDir);
+					if (!resRestart.IsComplete)
+					{
+						PrintLog($"Ошибка: {resRestart.Message}");
+						return;
+					}
+					PrintLine();
+				}
+
+				if (chbAgentInstaller.Checked)
+				{
+					string[] filesAgentInstaller = Directory.GetFiles(assemblyAgentInstallerDir);
+					string destinationAgentInstallerDir = Path.Combine(tbSaveFolder.Text, AGENT_INSTALLER);
+					if (!Directory.Exists(destinationAgentInstallerDir))
+					{
+						Directory.CreateDirectory(destinationAgentInstallerDir);
+					}
+					PrintLog("AgentInstaller. Копирование файлов без обфускации...");
+					CopyNotObfuscatedFilesFiles(filesAgentInstaller, destinationAgentInstallerDir);
+					PrintLog("AgentInstaller. Копирование файлов с обфускацией:");
+					var res = BuildSmartAssembly(filesAgentInstaller, destinationAgentInstallerDir);
+					if (!res.IsComplete)
+					{
+						PrintLog($"Ошибка: {res.Message}");
+						return;
+					}
+					PrintLine();
+				}
+
+				if (chbMonitor.Checked)
+				{
+					string[] filesMonitor = Directory.GetFiles(assemblyMonitorDir);
+					string destinationMonitorDir = Path.Combine(tbSaveFolder.Text, MONITOR);
+					if (!Directory.Exists(destinationMonitorDir))
+					{
+						Directory.CreateDirectory(destinationMonitorDir);
+					}
+					PrintLog("Monitor. Копирование файлов без обфускации...");
+					CopyNotObfuscatedFilesFiles(filesMonitor, destinationMonitorDir);
+					PrintLog("Monitor. Копирование файлов с обфускацией:");
+					var res = BuildSmartAssembly(filesMonitor, destinationMonitorDir);
+					if (!res.IsComplete)
+					{
+						PrintLog($"Ошибка: {res.Message}");
+						return;
+					}
+					PrintLine();
+				}
+
+				if (chbScheduler.Checked)
+				{
+					string[] filesScheduler = Directory.GetFiles(assemblySchedulerDir);
+					string destinationSchedulerDir = Path.Combine(tbSaveFolder.Text, SCHEDULER);
+					if (!Directory.Exists(destinationSchedulerDir))
+					{
+						Directory.CreateDirectory(destinationSchedulerDir);
+					}
+					PrintLog("Scheduler. Копирование файлов без обфускации...");
+					CopyNotObfuscatedFilesFiles(filesScheduler, destinationSchedulerDir);
+					PrintLog("Scheduler. Копирование файлов с обфускацией:");
+					var res = BuildSmartAssembly(filesScheduler, destinationSchedulerDir);
+					if (!res.IsComplete)
+					{
+						PrintLog($"Ошибка: {res.Message}");
+						return;
+					}
+					PrintLine();
+				}
 			}
-
-			if (chbAgentInstaller.Checked)
+			finally
 			{
-
-			}
-
-			if (chbMonitor.Checked)
-			{
-
-			}
-
-			if (chbScheduler.Checked)
-			{
-
+				chbAgent.Enabled =
+				chbAgentInstaller.Enabled =
+				chbMonitor.Enabled =
+				chbScheduler.Enabled =
+				tbSaveFolder.Enabled =
+				tbSolutionFile.Enabled =
+				cbConfiguration.Enabled =
+				btnBuild.Enabled =
+				btnCancel.Enabled =
+				btnOpenSolutionFile.Enabled =
+				btnChooseSaveFolder.Enabled = true;
 			}
 		}
 
@@ -176,7 +312,7 @@ namespace MagicUpdateObfuscationBuilder
 				{
 					if (!_filesForObfuscation.Contains(Path.GetFileName(filePath)))
 					{
-						File.Copy(filePath, Path.Combine(destinationDir, Path.GetFileName(filePath)), true); 
+						File.Copy(filePath, Path.Combine(destinationDir, Path.GetFileName(filePath)), true);
 					}
 				}
 			}
@@ -203,12 +339,26 @@ namespace MagicUpdateObfuscationBuilder
 		{
 			try
 			{
-				Process processCreate = Process.Start(SMART_ASSEMBLY_PATH, string.Join(" ", smartAssemblyParams));
+				Process processCreate = new Process();
+				ProcessStartInfo processCreateStartInfo = new ProcessStartInfo(SMART_ASSEMBLY_PATH, string.Join(" ", smartAssemblyParams));
+				processCreateStartInfo.CreateNoWindow = true;
+				processCreateStartInfo.RedirectStandardOutput = true;
+				processCreateStartInfo.RedirectStandardError = true;
+				processCreateStartInfo.UseShellExecute = false;
+				processCreate.StartInfo = processCreateStartInfo;
+				processCreate.Start();
 				processCreate.WaitForExit();
 				Thread.Sleep(1000);
 				if (File.Exists(SMART_ASSEMBLY_PROJECT))
 				{
-					Process processBuild = Process.Start(SMART_ASSEMBLY_PATH, $"/build {SMART_ASSEMBLY_PROJECT}");
+					Process processBuild = new Process();
+					ProcessStartInfo processBuildStartInfo = new ProcessStartInfo(SMART_ASSEMBLY_PATH, $"/build {SMART_ASSEMBLY_PROJECT}");
+					processBuildStartInfo.CreateNoWindow = true;
+					processBuildStartInfo.RedirectStandardOutput = true;
+					processBuildStartInfo.RedirectStandardError = true;
+					processBuildStartInfo.UseShellExecute = false;
+					processBuild.StartInfo = processBuildStartInfo;
+					processBuild.Start();
 					processBuild.WaitForExit();
 				}
 			}
@@ -231,11 +381,33 @@ namespace MagicUpdateObfuscationBuilder
 					{
 						return new TryBuildSmartAssembly(false, res.Message);
 					}
+					PrintLog($"Копирование файлоа с обфускацией [{Path.GetFileName(filePath)}]");
 				}
 			}
 
 			return new TryBuildSmartAssembly();
 		}
+
+		private void PrintLog(string message)
+		{
+			DateTime dt = DateTime.Now;
+			rtbLog.AppendText($"{dt.ToString("HH:mm:ss")}: {message}{Environment.NewLine}");
+			// set the current caret position to the end
+			rtbLog.SelectionStart = rtbLog.Text.Length;
+			// scroll it automatically
+			rtbLog.ScrollToCaret();
+		}
+
+		private void PrintLine()
+		{
+			rtbLog.AppendText(Environment.NewLine);
+			// set the current caret position to the end
+			rtbLog.SelectionStart = rtbLog.Text.Length;
+			// scroll it automatically
+			rtbLog.ScrollToCaret();
+		}
+
+
 	}
 
 	public class TryBuildSmartAssembly : TryResult
