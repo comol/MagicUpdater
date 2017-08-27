@@ -128,18 +128,19 @@ namespace MagicUpdaterMonitor
 		{
 			try
 			{
-				if (!MQueryCommand.CheckMonitorLic(MainForm.UserId, MainForm.HwId))
+				var res = MQueryCommand.CheckMonitorLic(MainForm.UserId, MainForm.HwId);
+				if (!res.IsComplete)
 				{
 					if (this.InvokeRequired)
 					{
 						this.Invoke(new MethodInvoker(() =>
 						{
-							MessageBox.Show(this, "Ошибка лицензии, приложение завершает работу!", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+							MessageBox.Show(this, $"Ошибка лицензии, приложение завершает работу!{Environment.NewLine}{res.Message}", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
 						}));
 					}
 					else
 					{
-						MessageBox.Show(this, "Ошибка лицензии, приложение завершает работу!", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+						MessageBox.Show(this, $"Ошибка лицензии, приложение завершает работу!{Environment.NewLine}{res.Message}", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
 					}
 					Environment.Exit(0);
 				}

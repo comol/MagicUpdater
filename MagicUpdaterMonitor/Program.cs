@@ -91,7 +91,8 @@ namespace MagicUpdaterMonitor
 			Application.SetCompatibleTextRenderingDefault(false);
 
 #if LIC
-			if (!MQueryCommand.CheckMonitorLic(MainForm.UserId, MainForm.HwId))
+			var res1 = MQueryCommand.CheckMonitorLic(MainForm.UserId, MainForm.HwId);
+			if (!res1.IsComplete)
 			{
 				LicForm licForm = new LicForm();
 				licForm.ShowDialog();
@@ -101,9 +102,10 @@ namespace MagicUpdaterMonitor
 				}
 			}
 
-			if (!MQueryCommand.CheckMonitorLic(MainForm.UserId, MainForm.HwId))
+			var res2 = MQueryCommand.CheckMonitorLic(MainForm.UserId, MainForm.HwId);
+			if (!res2.IsComplete)
 			{
-				MessageBox.Show($"Ошибка проверки лицензии", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+				MessageBox.Show($"Ошибка проверки лицензии{Environment.NewLine}{res2.Message}", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
 				Environment.Exit(0);
 			}
 #endif

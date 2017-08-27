@@ -36,6 +36,13 @@ namespace MagicUpdater.DL.DB
 		public int ReturnedId { get; private set; }
 	}
 
+	public class TrySQLQuery : TryResult
+	{
+		public TrySQLQuery(bool isComplete = true, string message = "") : base(isComplete, message)
+		{
+		}
+	}
+
 	public static class MQueryCommand
 	{
 		private static object lockTryInsertShedulerHistory = new object();
@@ -1902,6 +1909,8 @@ namespace MagicUpdater.DL.DB
 		#endregion Commands
 
 		#region Queries
+
+
 		public static int GetMonitorUsersRealCount()
 		{
 			lock (lockGetMonitorUsersRealCount)
@@ -1924,25 +1933,33 @@ namespace MagicUpdater.DL.DB
 			}
 		}
 
-		public static bool CheckMonitorLic(int userId, string hwId)
+		public static TrySQLQuery CheckMonitorLic(int userId, string hwId)
 		{
 			CommonGlobalSettings commonGlobalSettings = new CommonGlobalSettings();
 			commonGlobalSettings.LoadCommonGlobalSettings();
 			int licMonitorCount;
 			if (!int.TryParse(commonGlobalSettings.LicMonitorCount, out licMonitorCount))
 			{
-				return false;
+				return new TrySQLQuery(false, "Ошибка опции [LicMonitorCount]");
 			}
 
 			if (GetMonitorUsersRealCount() > licMonitorCount)
 			{
-				return false;
+				return new TrySQLQuery(false, "Количество пользователей монитора больше чем допустимо по лицензии");
 			}
 
 			using (EntityDb context = new EntityDb())
 			{
 				string licId = LicRequest.GetRequest(hwId, licMonitorCount);
-				return context.Users.FirstOrDefault(f => f.Id == userId && f.HwId == hwId && f.LicId == licId) != null;
+				var licResult = context.Users.FirstOrDefault(f => f.Id == userId && f.HwId == hwId && f.LicId == licId);
+				if (licResult != null)
+				{
+					return new TrySQLQuery();
+				}
+				else
+				{
+					return new TrySQLQuery(false, "Ошибка проверки лицензии");
+				}
 			}
 		}
 
