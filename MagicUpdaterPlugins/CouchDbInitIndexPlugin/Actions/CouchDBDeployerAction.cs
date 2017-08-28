@@ -29,7 +29,22 @@ namespace MagicUpdater.Actions
 			{
 				text = sr.ReadToEnd();
 			}
+			response.Close();
 			return text;
+		}
+
+		public void SendGetNoReturn(string uri, string login, string password)
+		{
+			var request = WebRequest.Create(uri);
+			string authInfo = login + ":" + password;
+			authInfo = Convert.ToBase64String(Encoding.Default.GetBytes(authInfo));
+
+			request.Headers["Authorization"] = "Basic " + authInfo;
+			request.ContentType = "application/json; charset=utf-8";
+			request.Timeout = 1000 * 60 * 60;
+
+			var response = (HttpWebResponse)request.GetResponse();
+			response.Close();
 		}
 
 

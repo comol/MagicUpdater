@@ -10,9 +10,12 @@ namespace MagicUpdater.Actions
 {
 	class CouchDBConfiguratorAction : OperAction
 	{
+		private StringBuilder _logText { get; set; }
 		public CouchDBConfiguratorAction(int? _operationId) : base(_operationId) { }
 
-		private StringBuilder _logText { get; set; }
+		public bool IsComplete { get; private set; } = true;
+		public string MsgForoperation { get; private set; } = "";
+
 		private void Log(string text)
 		{
 			this._logText.Append($"{text}{Environment.NewLine}");
@@ -56,14 +59,16 @@ namespace MagicUpdater.Actions
 
 			const string MARK_FILENAME = @"C:\SystemUtils\CouchDB_Marker_Replication_Retry_Count_INDEX ";
 
+			this._logText = new StringBuilder();
+
 			if (File.Exists(MARK_FILENAME))
 			{
 				Log($"Marker file was: {MARK_FILENAME} was found.");
 				SendReportToDB($"{this._logText.ToString()}{Environment.NewLine}CouchDB Retry Count was already CONFIGURED on this computer.", true);
+				MsgForoperation = $"{this._logText.ToString()}{Environment.NewLine}CouchDB Retry Count was already CONFIGURED on this computer.";
 				return;
 			}
-
-			this._logText = new StringBuilder();
+			
 			//var request = new Requests();
 
 			#region Change document example
@@ -158,11 +163,11 @@ namespace MagicUpdater.Actions
 				Log("Start making indexes");
 
 				Log(@"by_code...");
-				request.SendGet(@"http://localhost:5984/dk_0_remote/_design/doc/_view/by_code", ADMIN_LOGIN, ADMIN_PASSWORD);
+				request.SendGetNoReturn(@"http://localhost:5984/dk_0_remote/_design/doc/_view/by_code", ADMIN_LOGIN, ADMIN_PASSWORD);
 				Log(@"by_phone...");
-				request.SendGet(@"http://localhost:5984/dk_0_remote/_design/doc/_view/by_phone", ADMIN_LOGIN, ADMIN_PASSWORD);
+				request.SendGetNoReturn(@"http://localhost:5984/dk_0_remote/_design/doc/_view/by_phone", ADMIN_LOGIN, ADMIN_PASSWORD);
 				Log(@"by_owner...");
-				request.SendGet(@"http://localhost:5984/dk_0_remote/_design/doc/_view/by_owner", ADMIN_LOGIN, ADMIN_PASSWORD);
+				request.SendGetNoReturn(@"http://localhost:5984/dk_0_remote/_design/doc/_view/by_owner", ADMIN_LOGIN, ADMIN_PASSWORD);
 				Log("Finished");
 
 			}
@@ -171,6 +176,8 @@ namespace MagicUpdater.Actions
 				SendReportToDB($"Ошибка при создании индексов:{Environment.NewLine}{ex.ToString()}{Environment.NewLine}{"Лог: "}{this._logText.ToString()}");
 				Operation.SendOperationReport(operationId, ex.Message, false);
 				Operation.AddOperState(operationId, OperStates.End);
+				IsComplete = false;
+				MsgForoperation = $"Ошибка при создании индексов:{Environment.NewLine}{ex.ToString()}{Environment.NewLine}{"Лог: "}{this._logText.ToString()}";
 				return;
 			}
 
@@ -195,11 +202,14 @@ namespace MagicUpdater.Actions
 			catch (Exception ex)
 			{
 				SendReportToDB($"Ошибка при создании маркера успешной настройкии репликации:{Environment.NewLine}{ex.ToString()}{Environment.NewLine}{"Лог: "}{this._logText.ToString()}");
+				IsComplete = false;
+				MsgForoperation = $"Ошибка при создании маркера успешной настройкии репликации:{Environment.NewLine}{ex.ToString()}{Environment.NewLine}{"Лог: "}{this._logText.ToString()}";
 				return;
 			}
 
 
 			SendReportToDB($"{this._logText.ToString()}{Environment.NewLine}CouchDB INDEXES were successfully CONFIGURED.", true);
+			MsgForoperation = $"{this._logText.ToString()}{Environment.NewLine}CouchDB INDEXES were successfully CONFIGURED.";
 
 		}
 	}

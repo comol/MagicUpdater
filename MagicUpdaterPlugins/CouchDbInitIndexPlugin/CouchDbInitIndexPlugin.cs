@@ -17,7 +17,10 @@ namespace CouchDbInitIndexPlugin
 
 		protected override void Execution(object sender = null, DoWorkEventArgs e = null)
 		{
-			new CouchDBConfiguratorAction(Id).ActRun();
+			var couchDBConfiguratorAction = new CouchDBConfiguratorAction(Id);
+			couchDBConfiguratorAction.ActRun();
+			IsSendLogAndStatusAfterExecution = couchDBConfiguratorAction.IsComplete;
+			SendOperationReport(couchDBConfiguratorAction.MsgForoperation, couchDBConfiguratorAction.IsComplete);
 		}
 	}
 
