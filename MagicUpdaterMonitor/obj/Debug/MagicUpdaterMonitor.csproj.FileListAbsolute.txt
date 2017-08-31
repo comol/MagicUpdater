@@ -114,3 +114,4 @@ D:\Repos\MagicUpdater_ms\MagicUpdaterMonitor\obj\Debug\MagicUpdaterMonitor.exe
 D:\Repos\MagicUpdater_ms\MagicUpdaterMonitor\obj\Debug\MagicUpdaterMonitor.pdb
 D:\GitProjects\MagicUpdater_ms\MagicUpdaterMonitor\obj\Debug\MagicUpdaterMonitor.Forms.AgentLicForm.resources
 D:\GitProjects\MagicUpdater_ms\MagicUpdaterMonitor\obj\Debug\MagicUpdaterMonitor.Forms.LicForm.resources
+D:\GitProjects\MagicUpdater_ms\MagicUpdaterMonitor\obj\Debug\MagicUpdaterMonitor.Forms.CheckUpdatesForm.resources

@@ -12,13 +12,13 @@ namespace MagicUpdaterMonitor.Helpers
 		Subsequent = 1,
 		BaseVersionNotFound = -2
 	}
-	public class LastVersionChecker
+	public class LastAgentVersionChecker
 	{
 		private Timer timerCheck;
 		private static bool isAutoRefresh = false;
 		private static Version version = null;
 		public event EventHandler<VersionRefreshEventArgs> VersionRefresh;
-		public LastVersionChecker(bool _isAutoRefresh)
+		public LastAgentVersionChecker(bool _isAutoRefresh)
 		{
 			timerCheck = new Timer();
 			timerCheck.Interval = 60000;

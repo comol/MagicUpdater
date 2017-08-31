@@ -302,9 +302,9 @@ namespace MagicUpdaterMonitor
 			this.Show();
 			const string errMessage = "Ошибка получения версии";
 
-			string version = LastVersionChecker.GetLatestVersion() != null ? LastVersionChecker.GetLatestVersion().ToString() : errMessage;
+			string version = LastAgentVersionChecker.GetLatestVersion() != null ? LastAgentVersionChecker.GetLatestVersion().ToString() : errMessage;
 
-			new LastVersionChecker(true).VersionRefresh += Form1_VersionRefresh;
+			new LastAgentVersionChecker(true).VersionRefresh += Form1_VersionRefresh;
 			tslLastVersion.Text = $"Последняя версия агента на сервере: {version}";
 
 			UpdateUnregistredFilesListControl();
@@ -982,17 +982,17 @@ namespace MagicUpdaterMonitor
 					}
 				}
 
-				if (LastVersionChecker.CompareVersions(Convert.ToString(dr.Cells["MagicUpdaterVersion"].Value)) == VersionCompareResult.Before)
+				if (LastAgentVersionChecker.CompareVersions(Convert.ToString(dr.Cells["MagicUpdaterVersion"].Value)) == VersionCompareResult.Before)
 				{
 					dr.Cells["MagicUpdaterVersion"].Style.BackColor = Color.Pink;
 				}
 
-				if (LastVersionChecker.CompareVersions(Convert.ToString(dr.Cells["MagicUpdaterVersion"].Value)) == VersionCompareResult.Equal)
+				if (LastAgentVersionChecker.CompareVersions(Convert.ToString(dr.Cells["MagicUpdaterVersion"].Value)) == VersionCompareResult.Equal)
 				{
 					dr.Cells["MagicUpdaterVersion"].Style.BackColor = Color.LightGreen;
 				}
 
-				if (LastVersionChecker.CompareVersions(Convert.ToString(dr.Cells["MagicUpdaterVersion"].Value)) == VersionCompareResult.Subsequent)
+				if (LastAgentVersionChecker.CompareVersions(Convert.ToString(dr.Cells["MagicUpdaterVersion"].Value)) == VersionCompareResult.Subsequent)
 				{
 					dr.Cells["MagicUpdaterVersion"].Style.BackColor = Color.DeepSkyBlue;
 				}
@@ -1074,7 +1074,7 @@ namespace MagicUpdaterMonitor
 				}
 			}
 
-			if (rgvComputers.dataGridView.Rows.OfType<DataGridViewRow>().Any(dr => Convert.ToBoolean(dr.Cells["IsOn"].Value) && LastVersionChecker.CompareVersions(Convert.ToString(dr.Cells["MagicUpdaterVersion"].Value)) == VersionCompareResult.Before))
+			if (rgvComputers.dataGridView.Rows.OfType<DataGridViewRow>().Any(dr => Convert.ToBoolean(dr.Cells["IsOn"].Value) && LastAgentVersionChecker.CompareVersions(Convert.ToString(dr.Cells["MagicUpdaterVersion"].Value)) == VersionCompareResult.Before))
 			{
 				if (sbStatus.InvokeRequired)
 				{
@@ -1228,7 +1228,7 @@ namespace MagicUpdaterMonitor
 				cf.rgvInfo.MappingColumns = Mapping.ComputersGridColMap;
 				cf.rgvInfo.DataSource = await MQueryCommand.SelectShopComputersServerViewGridAsync();
 				cf.OperationTypeName = OperationTools.TryGetOperationNameRuByEn("SelfUpdate");
-				cf.rgvInfo.Filter = $"MagicUpdaterVersion <> '{LastVersionChecker.GetLatestVersion()}' and IsON = 1";
+				cf.rgvInfo.Filter = $"MagicUpdaterVersion <> '{LastAgentVersionChecker.GetLatestVersion()}' and IsON = 1";
 				cf.rgvInfo.HideColumns("LicStatusBitmap");
 				if (cf.ShowDialog() == DialogResult.OK)
 				{
@@ -1803,11 +1803,6 @@ namespace MagicUpdaterMonitor
 		}
 		#endregion NotUsed
 
-		private void tsbAbout_Click(object sender, EventArgs e)
-		{
-			new AboutForm().ShowDialog();
-		}
-
 		private void tsbRefresh_Click(object sender, EventArgs e)
 		{
 			UpdateUnregistredFilesListControl();
@@ -2035,7 +2030,7 @@ namespace MagicUpdaterMonitor
 				cf.rgvInfo.MappingColumns = Mapping.ComputersGridColMap;
 				cf.rgvInfo.DataSource = await MQueryCommand.SelectShopComputersServerViewGridAsync();
 				cf.OperationTypeName = OperationTools.TryGetOperationNameRuByEn("SelfUpdate");
-				cf.rgvInfo.Filter = $"MagicUpdaterVersion <> '{LastVersionChecker.GetLatestVersion()}' and IsON = 1";
+				cf.rgvInfo.Filter = $"MagicUpdaterVersion <> '{LastAgentVersionChecker.GetLatestVersion()}' and IsON = 1";
 				cf.rgvInfo.HideColumns("LicStatusBitmap");
 				if (cf.ShowDialog() == DialogResult.OK)
 				{
@@ -2107,6 +2102,16 @@ namespace MagicUpdaterMonitor
 			}
 			AgentLicForm agentLicForm = new AgentLicForm(agents);
 			agentLicForm.ShowDialog();
+		}
+
+		private void miAbout_Click(object sender, EventArgs e)
+		{
+			new AboutForm().ShowDialog();
+		}
+
+		private void miCheckUpdates_Click(object sender, EventArgs e)
+		{
+			new CheckUpdatesForm().ShowDialog();
 		}
 	}
 }

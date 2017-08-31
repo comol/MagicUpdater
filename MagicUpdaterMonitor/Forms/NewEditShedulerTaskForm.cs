@@ -172,17 +172,17 @@ namespace MagicUpdaterMonitor.Forms
 				DataGridViewRow[] rows = sender.Rows.OfType<DataGridViewRow>().ToArray();
 				foreach (DataGridViewRow dr in rows)
 				{
-					if (LastVersionChecker.CompareVersions(Convert.ToString(dr.Cells["MagicUpdaterVersion"].Value)) == VersionCompareResult.Before)
+					if (LastAgentVersionChecker.CompareVersions(Convert.ToString(dr.Cells["MagicUpdaterVersion"].Value)) == VersionCompareResult.Before)
 					{
 						dr.Cells["MagicUpdaterVersion"].Style.BackColor = Color.Pink;
 					}
 
-					if (LastVersionChecker.CompareVersions(Convert.ToString(dr.Cells["MagicUpdaterVersion"].Value)) == VersionCompareResult.Equal)
+					if (LastAgentVersionChecker.CompareVersions(Convert.ToString(dr.Cells["MagicUpdaterVersion"].Value)) == VersionCompareResult.Equal)
 					{
 						dr.Cells["MagicUpdaterVersion"].Style.BackColor = Color.LightGreen;
 					}
 
-					if (LastVersionChecker.CompareVersions(Convert.ToString(dr.Cells["MagicUpdaterVersion"].Value)) == VersionCompareResult.Subsequent)
+					if (LastAgentVersionChecker.CompareVersions(Convert.ToString(dr.Cells["MagicUpdaterVersion"].Value)) == VersionCompareResult.Subsequent)
 					{
 						dr.Cells["MagicUpdaterVersion"].Style.BackColor = Color.DeepSkyBlue;
 					}

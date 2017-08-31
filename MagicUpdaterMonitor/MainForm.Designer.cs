@@ -124,12 +124,14 @@ namespace MagicUpdaterMonitor
 			this.tsddbLic = new System.Windows.Forms.ToolStripDropDownButton();
 			this.miGetLicForAllAgents = new System.Windows.Forms.ToolStripMenuItem();
 			this.miGetLicForSelectedAgents = new System.Windows.Forms.ToolStripMenuItem();
-			this.tsbAbout = new System.Windows.Forms.ToolStripButton();
 			this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
 			this.sbStatus = new System.Windows.Forms.StatusStrip();
 			this.tslLastVersion = new System.Windows.Forms.ToolStripStatusLabel();
 			this.tsbUpdateMU = new System.Windows.Forms.ToolStripDropDownButton();
 			this.shopComputerBindingSource = new System.Windows.Forms.BindingSource(this.components);
+			this.tbsHelp = new System.Windows.Forms.ToolStripDropDownButton();
+			this.miAbout = new System.Windows.Forms.ToolStripMenuItem();
+			this.miCheckUpdates = new System.Windows.Forms.ToolStripMenuItem();
 			this.tabControl1.SuspendLayout();
 			this.tabPageShops.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.scMain)).BeginInit();
@@ -1087,7 +1089,7 @@ namespace MagicUpdaterMonitor
             this.tsbSettings,
             this.tsddbSpecialSendOpers,
             this.tsddbLic,
-            this.tsbAbout});
+            this.tbsHelp});
 			this.mainToolStrip.Location = new System.Drawing.Point(0, 0);
 			this.mainToolStrip.Name = "mainToolStrip";
 			this.mainToolStrip.Size = new System.Drawing.Size(1511, 25);
@@ -1255,15 +1257,6 @@ namespace MagicUpdaterMonitor
 			this.miGetLicForSelectedAgents.Text = "Получить лицензию для выбранных агентов";
 			this.miGetLicForSelectedAgents.Click += new System.EventHandler(this.miGetLicForSelectedAgents_Click);
 			// 
-			// tsbAbout
-			// 
-			this.tsbAbout.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-			this.tsbAbout.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.tsbAbout.Name = "tsbAbout";
-			this.tsbAbout.Size = new System.Drawing.Size(86, 22);
-			this.tsbAbout.Text = "О программе";
-			this.tsbAbout.Click += new System.EventHandler(this.tsbAbout_Click);
-			// 
 			// toolStripContainer1
 			// 
 			this.toolStripContainer1.BottomToolStripPanelVisible = false;
@@ -1315,6 +1308,32 @@ namespace MagicUpdaterMonitor
 			// shopComputerBindingSource
 			// 
 			this.shopComputerBindingSource.DataSource = typeof(MagicUpdater.DL.ShopComputer);
+			// 
+			// tbsHelp
+			// 
+			this.tbsHelp.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+			this.tbsHelp.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.miAbout,
+            this.miCheckUpdates});
+			this.tbsHelp.Image = ((System.Drawing.Image)(resources.GetObject("tbsHelp.Image")));
+			this.tbsHelp.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.tbsHelp.Name = "tbsHelp";
+			this.tbsHelp.Size = new System.Drawing.Size(69, 22);
+			this.tbsHelp.Text = "Помощь";
+			// 
+			// miAbout
+			// 
+			this.miAbout.Name = "miAbout";
+			this.miAbout.Size = new System.Drawing.Size(255, 22);
+			this.miAbout.Text = "О программе";
+			this.miAbout.Click += new System.EventHandler(this.miAbout_Click);
+			// 
+			// miCheckUpdates
+			// 
+			this.miCheckUpdates.Name = "miCheckUpdates";
+			this.miCheckUpdates.Size = new System.Drawing.Size(255, 22);
+			this.miCheckUpdates.Text = "Проверить наличие обновлений";
+			this.miCheckUpdates.Click += new System.EventHandler(this.miCheckUpdates_Click);
 			// 
 			// MainForm
 			// 
@@ -1466,7 +1485,6 @@ namespace MagicUpdaterMonitor
 		private System.Windows.Forms.ToolStripDropDownButton Exchange;
 		private System.Windows.Forms.ToolStripMenuItem вЦентреToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem вУзлеToolStripMenuItem;
-		private System.Windows.Forms.ToolStripButton tsbAbout;
 		private System.Windows.Forms.ComboBox cbPoolDate;
 		private System.Windows.Forms.RadioButton rbPoolDate;
 		private System.Windows.Forms.ToolStripMenuItem miCompletedWithEmptyLog;
@@ -1491,6 +1509,9 @@ namespace MagicUpdaterMonitor
 		private System.Windows.Forms.ToolStripDropDownButton tsddbLic;
 		private System.Windows.Forms.ToolStripMenuItem miGetLicForAllAgents;
 		private System.Windows.Forms.ToolStripMenuItem miGetLicForSelectedAgents;
+		private System.Windows.Forms.ToolStripDropDownButton tbsHelp;
+		private System.Windows.Forms.ToolStripMenuItem miAbout;
+		private System.Windows.Forms.ToolStripMenuItem miCheckUpdates;
 	}
 }
 

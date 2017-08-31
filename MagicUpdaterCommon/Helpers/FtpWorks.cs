@@ -2,6 +2,7 @@
 using MagicUpdaterCommon.SettingsTools;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -47,6 +48,30 @@ namespace MagicUpdaterCommon.Helpers
 		}
 
 		public string Value { get; private set; }
+	}
+
+	public class TryGetFtpFileVersion : TryResult
+	{
+		public TryGetFtpFileVersion(bool isComplete = true, string message = "", Version ver = null) : base(isComplete, message)
+		{
+			Ver = ver;
+		}
+
+		public Version Ver { get; private set; }
+	}
+
+	public class TryUploadFilesFromFolderToFtp : TryResult
+	{
+		public TryUploadFilesFromFolderToFtp(bool isComplete = true, string message = "") : base(isComplete, message)
+		{
+		}
+	}
+
+	public class TryUploadFileToFtp : TryResult
+	{
+		public TryUploadFileToFtp(bool isComplete = true, string message = "") : base(isComplete, message)
+		{
+		}
 	}
 
 	public static class FtpWorks
@@ -228,6 +253,104 @@ namespace MagicUpdaterCommon.Helpers
 		//private const string FTP_FOLDER_SIGN = "drwxrwxrwx";
 		//private const string FTP_FILE_SIGN = "-rw-rw-rw-";
 		private const string FTP_PREFIX = "ftp://";
+
+		public static TryUploadFilesFromFolderToFtp UploadFilesFromFolderToFtp(string server,
+														string login,
+														string password,
+														string ftpFolder,
+														string localFolder,
+														params string[] searchPattern)
+		{
+			try
+			{
+				if (!server.Contains(FTP_PREFIX))
+				{
+					server = $"{FTP_PREFIX}{server}";
+				}
+
+				if (searchPattern.Length == 0 || searchPattern.Contains("*"))
+				{
+					try
+					{
+						using (WebClient request = new WebClient())
+						{
+							foreach (string filePath in Directory.GetFiles(localFolder))
+							{
+								string ftpFilePath = Path.Combine(server, ftpFolder, Path.GetFileName(filePath));
+								ftpFilePath = ftpFilePath.Replace("\\", "/");
+								request.Credentials = new NetworkCredential(login, password);
+
+								request.UploadFile(ftpFilePath, Path.Combine(localFolder, filePath));
+							}
+						}
+					}
+					catch (Exception ex)
+					{
+						return new TryUploadFilesFromFolderToFtp(false, ex.ToString());
+					}
+				}
+				else
+				{
+					try
+					{
+						using (WebClient request = new WebClient())
+						{
+							foreach (string filePath in Directory.GetFiles(localFolder))
+							{
+								if (searchPattern.Contains(Path.GetExtension(filePath)))
+								{
+									string ftpFilePath = Path.Combine(server, ftpFolder, Path.GetFileName(filePath));
+									ftpFilePath = ftpFilePath.Replace("\\", "/");
+									request.Credentials = new NetworkCredential(login, password);
+
+									request.UploadFile(ftpFilePath, Path.Combine(localFolder, filePath));
+								}
+							}
+						}
+					}
+					catch (Exception ex)
+					{
+						return new TryUploadFilesFromFolderToFtp(false, ex.ToString());
+					}
+				}
+			}
+			catch (Exception ex)
+			{
+				return new TryUploadFilesFromFolderToFtp(false, ex.ToString());
+			}
+
+			return new TryUploadFilesFromFolderToFtp();
+		}
+
+		public static TryUploadFileToFtp UploadFileToFtp(string localDirectory,
+											string server,
+											string login,
+											string password,
+											string ftpFolder,
+											string fileName)
+		{
+			try
+			{
+				if (!server.Contains(FTP_PREFIX))
+				{
+					server = $"{FTP_PREFIX}{server}";
+				}
+				string ftpFilePath = Path.Combine(server, ftpFolder, fileName);
+				ftpFilePath = ftpFilePath.Replace("\\", "/");
+
+				using (WebClient request = new WebClient())
+				{
+					request.Credentials = new NetworkCredential(login, password);
+
+					request.UploadFile(ftpFilePath, Path.Combine(localDirectory, fileName));
+				}
+				return new TryUploadFileToFtp();
+			}
+			catch (Exception ex)
+			{
+				return new TryUploadFileToFtp(false, ex.Message.ToString());
+			}
+		}
 
 		public static TryDownloadFilesFromFtpFolder DownloadFilesFromFtpFolder(string server,
 																				string login,
@@ -462,6 +585,49 @@ namespace MagicUpdaterCommon.Helpers
 			catch (Exception ex)
 			{
 				return new TryGetFtpFileMd5(false, "", ex.Message.ToString());
+			}
+		}
+
+		public static TryGetFtpFileVersion GetFtpFileVersion(string server,
+															string login,
+															string password,
+															string ftpFolder,
+															string fileName)
+		{
+			try
+			{
+				if (!server.Contains(FTP_PREFIX))
+				{
+					server = $"{FTP_PREFIX}{server}";
+				}
+				string ftpFilePath = Path.Combine(server, ftpFolder, fileName);
+				ftpFilePath = ftpFilePath.Replace("\\", "/");
+				Version ver;
+				using (WebClient request = new WebClient())
+				{
+					request.Credentials = new NetworkCredential(login, password);
+
+					byte[] fileData = request.DownloadData(ftpFilePath);
+
+					string filePath = Path.Combine(Path.GetTempPath(), fileName);
+
+					using (FileStream file = File.Create(filePath))
+					{
+						file.Write(fileData, 0, fileData.Length);
+						file.Close();
+					}
+
+					if (!Version.TryParse(FileVersionInfo.GetVersionInfo(filePath).FileVersion, out ver))
+						ver = null;
+
+					File.Delete(filePath);
+				}
+
+				return new TryGetFtpFileVersion(true, "", ver);
+			}
+			catch (Exception ex)
+			{
+				return new TryGetFtpFileVersion(false, ex.Message.ToString());
 			}
 		}
 

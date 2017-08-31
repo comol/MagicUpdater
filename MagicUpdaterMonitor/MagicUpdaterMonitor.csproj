@@ -254,6 +254,12 @@
     <Compile Include="Forms\ApplicationLoadingForm.Designer.cs">
       <DependentUpon>ApplicationLoadingForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\CheckUpdatesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CheckUpdatesForm.Designer.cs">
+      <DependentUpon>CheckUpdatesForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\ConfirmationWithTableForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -376,6 +382,9 @@
     <Compile Include="Settings.cs" />
     <EmbeddedResource Include="Forms\AgentLicForm.resx">
       <DependentUpon>AgentLicForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CheckUpdatesForm.resx">
+      <DependentUpon>CheckUpdatesForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\CreateOrEditOperationGroupForm.resx">
       <DependentUpon>CreateOrEditOperationGroupForm.cs</DependentUpon>
