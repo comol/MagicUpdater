@@ -21,14 +21,32 @@ namespace MagicUpdaterMonitor.Forms
 
 		private void btnCheckUpdates_Click(object sender, EventArgs e)
 		{
+			var localVersionRes = FtpWorks.GetFtpFileVersion("mskftp.sela.ru", "cis_obmen", "cisobmen836", "MagicUpdaterTest", "MagicUpdater.exe");
+			if (!localVersionRes.IsComplete)
+			{
 
+			}
 			//FtpWorks.DeleteFileFromFtp("mskftp.sela.ru", "cis_obmen", "cisobmen836", "MagicUpdaterTest/Test", "MagicUpdater.exe");
 			FtpWorks.DeleteFilesFromFtpFolder("mskftp.sela.ru", "cis_obmen", "cisobmen836", "MagicUpdaterTest/Test");
 
-			//FtpWorks.GetFtpFileVersion("mskftp.sela.ru", "cis_obmen", "cisobmen836", "MagicUpdaterTest", "MagicUpdater.exe");
+			var remoteVersionRes = FtpWorks.GetFtpFileVersion("sartre.timeweb.ru", "dublerin_mulic", "8CFeyXB3", "Agent", "MagicUpdater.exe");
+			if (!remoteVersionRes.IsComplete)
+			{
 
+			}
 			//FtpWorks.GetFtpFileVersion("sartre.timeweb.ru", "dublerin_mulic", "8CFeyXB3", "Agent", "MagicUpdater.exe");
 
+			switch(remoteVersionRes.Ver.CompareTo(localVersionRes.Ver))
+			{
+				case 0:
+					//обновлений нет
+					break;
+				case 1:
+					//обновления есть
+					break;
+				case -1:
+					break;
+			}
 			//FtpWorks.UploadFileToFtp(@"D:\", "mskftp.sela.ru", "cis_obmen", "cisobmen836", "MagicUpdaterTest", "Services-50.png");
 
 			///FtpWorks.UploadFilesFromFolderToFtp("mskftp.sela.ru", "cis_obmen", "cisobmen836", "MagicUpdaterTest", @"D:\111");
