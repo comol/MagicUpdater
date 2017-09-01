@@ -37,6 +37,7 @@ namespace MagicUpdaterCommon.SettingsTools
 			public const string SETTINGS_APPLICATION_EXE_NAME = "MagicUpdaterSettings.exe";
 			public const string MAGIC_UPDATER = "MagicUpdater";
 			public const string MAGIC_UPDATER_EXE = "MagicUpdater.exe";
+			public const string MAGIC_UPDATER_MONITOR_EXE = "MagicUpdaterMonitor.exe";
 			public const string MAGIC_UPDATER_SETTINGS = "MagicUpdaterSettings";
 			public const string SERVICE_NAME = "MagicUpdater";
 			public const string MAGIC_UPDATER_RESTART = "MagicUpdaterRestart";

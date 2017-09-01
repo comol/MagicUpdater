@@ -114,6 +114,15 @@ namespace MagicUpdaterCommon.SettingsTools
 						case "LicPassword":
 							LicPassword = Convert.ToString(drv["Value"]);
 							break;
+						case "UpdateVersionRemoteServer":
+							UpdateVersionRemoteServer = Convert.ToString(drv["Value"]);
+							break;
+						case "UpdateVersionRemoteLogin":
+							UpdateVersionRemoteLogin = Convert.ToString(drv["Value"]);
+							break;
+						case "UpdateVersionRemotePassword":
+							UpdateVersionRemotePassword = Convert.ToString(drv["Value"]);
+							break;
 					}
 				}
 
@@ -149,5 +158,9 @@ namespace MagicUpdaterCommon.SettingsTools
 		public string LicLink { get; set; }
 		public string LicLogin { get; set; }
 		public string LicPassword { get; set; }
+
+		public string UpdateVersionRemoteServer { get; set; }
+		public string UpdateVersionRemoteLogin { get; set; }
+		public string UpdateVersionRemotePassword { get; set; }
 	}
 }

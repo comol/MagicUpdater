@@ -60,6 +60,18 @@ namespace MagicUpdaterCommon.Helpers
 		public Version Ver { get; private set; }
 	}
 
+	public class TryCheckFtpFileExists : TryResult
+	{
+		public TryCheckFtpFileExists(bool isComplete = true, string message = "", FtpStatusCode statusCode = FtpStatusCode.CommandOK, bool isFileExists = true) : base(isComplete, message)
+		{
+			StatusCode = statusCode;
+			IsFileExists = isFileExists;
+		}
+
+		public FtpStatusCode StatusCode { get; private set; }
+		public bool IsFileExists { get; private set; }
+	}
+
 	public class TryUploadFilesFromFolderToFtp : TryResult
 	{
 		public TryUploadFilesFromFolderToFtp(bool isComplete = true, string message = "") : base(isComplete, message)
@@ -84,6 +96,19 @@ namespace MagicUpdaterCommon.Helpers
 	public class TryDeleteFilesFromFtpFolder : TryResult
 	{
 		public TryDeleteFilesFromFtpFolder(bool isComplete = true, string message = "") : base(isComplete, message)
+		{
+		}
+	}
+
+	public class TryCreateFtpFolder : TryResult
+	{
+		public TryCreateFtpFolder(bool isComplete = true, string message = "") : base(isComplete, message)
+		{
+		}
+	}
+	public class TryDeleteFtpFolder : TryResult
+	{
+		public TryDeleteFtpFolder(bool isComplete = true, string message = "") : base(isComplete, message)
 		{
 		}
 	}
@@ -334,6 +359,73 @@ namespace MagicUpdaterCommon.Helpers
 			}
 
 			return new TryUploadFilesFromFolderToFtp();
+		}
+
+		public static TryCreateFtpFolder CreateFtpFolder(string server,
+										string login,
+										string password,
+										string ftpFolder)
+		{
+			try
+			{
+				if (!server.Contains(FTP_PREFIX))
+				{
+					server = $"{FTP_PREFIX}{server}";
+				}
+
+				string path = Path.Combine(server, ftpFolder).Replace("\\", "/");
+				WebRequest request = WebRequest.Create(path);
+				request.Method = WebRequestMethods.Ftp.MakeDirectory;
+				request.Credentials = new NetworkCredential(login, password);
+				var resp = (FtpWebResponse)request.GetResponse();
+				resp.Close();
+				return new TryCreateFtpFolder();
+			}
+			catch (WebException ex)
+			{
+				FtpWebResponse ftpWebResponse = (FtpWebResponse)ex.Response;
+				FtpStatusCode ftpStatusCode = ftpWebResponse.StatusCode;
+				ftpWebResponse.Close();
+				if (ftpStatusCode == FtpStatusCode.ActionNotTakenFileUnavailable)
+				{
+					return new TryCreateFtpFolder();
+				}
+
+				return new TryCreateFtpFolder(false, ex.ToString());
+			}
+		}
+
+		public static TryDeleteFtpFolder DeleteFtpFolder(string server,
+										string login,
+										string password,
+										string ftpFolder)
+		{
+			try
+			{
+				if (!server.Contains(FTP_PREFIX))
+				{
+					server = $"{FTP_PREFIX}{server}";
+				}
+				string path = Path.Combine(server, ftpFolder).Replace("\\", "/");
+				WebRequest request = WebRequest.Create(path);
+				request.Method = WebRequestMethods.Ftp.RemoveDirectory;
+				request.Credentials = new NetworkCredential(login, password);
+				var resp = (FtpWebResponse)request.GetResponse();
+				resp.Close();
+				return new TryDeleteFtpFolder();
+			}
+			catch (WebException ex)
+			{
+				FtpWebResponse ftpWebResponse = (FtpWebResponse)ex.Response;
+				FtpStatusCode ftpStatusCode = ftpWebResponse.StatusCode;
+				ftpWebResponse.Close();
+				if (ftpStatusCode == FtpStatusCode.ActionNotTakenFileUnavailable)
+				{
+					return new TryDeleteFtpFolder();
+				}
+
+				return new TryDeleteFtpFolder(false, ex.ToString());
+			}
 		}
 
 		public static TryUploadFileToFtp UploadFileToFtp(string localDirectory,
@@ -612,7 +704,7 @@ namespace MagicUpdaterCommon.Helpers
 					request.Credentials = new NetworkCredential(login, password);
 					request.Method = WebRequestMethods.Ftp.DeleteFile;
 					FtpWebResponse response = (FtpWebResponse)request.GetResponse();
-					response.Close(); 
+					response.Close();
 				}
 
 				return new TryDeleteFilesFromFtpFolder();
@@ -664,6 +756,43 @@ namespace MagicUpdaterCommon.Helpers
 				return new TryGetFtpFileMd5(false, "", ex.Message.ToString());
 			}
 		}
+
+		public static TryCheckFtpFileExists CheckFtpFileExists(string server,
+															string login,
+															string password,
+															string ftpFolder,
+															string fileName)
+		{
+			try
+			{
+				if (!server.Contains(FTP_PREFIX))
+				{
+					server = $"{FTP_PREFIX}{server}";
+				}
+				string ftpFilePath = Path.Combine(server, ftpFolder, fileName);
+				ftpFilePath = ftpFilePath.Replace("\\", "/");
+
+				var ftpWebRequest = (FtpWebRequest)WebRequest.Create(ftpFilePath);
+				ftpWebRequest.Credentials = new NetworkCredential(login, password);
+				ftpWebRequest.Method = WebRequestMethods.Ftp.GetFileSize;
+				FtpWebResponse ftpWebResponse = (FtpWebResponse)ftpWebRequest.GetResponse();
+				ftpWebResponse.Close();
+				return new TryCheckFtpFileExists();
+			}
+			catch (WebException ex)
+			{
+				FtpWebResponse ftpWebResponse = (FtpWebResponse)ex.Response;
+				FtpStatusCode ftpStatusCode = ftpWebResponse.StatusCode;
+				ftpWebResponse.Close();
+				if (ftpStatusCode == FtpStatusCode.ActionNotTakenFileUnavailable)
+				{
+					return new TryCheckFtpFileExists(true, "", ftpStatusCode, false);
+				}
+
+				return new TryCheckFtpFileExists(false, ex.ToString(), ftpStatusCode, false);
+			}
+		}
+
 
 		public static TryGetFtpFileVersion GetFtpFileVersion(string server,
 															string login,
@@ -920,7 +1049,7 @@ namespace MagicUpdaterCommon.Helpers
 				{
 					listDirectoryDetails.Add(line);
 				}
-				
+
 				line = streamReader.ReadLine();
 			}
 

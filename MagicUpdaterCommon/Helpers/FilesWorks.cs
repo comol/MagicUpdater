@@ -2,6 +2,7 @@
 using MagicUpdaterCommon.Common;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -38,10 +39,36 @@ namespace MagicUpdaterCommon.Helpers
 		{
 		}
 	}
+
+	public class TryGetFileVersion : TryResult
+	{
+		public TryGetFileVersion(bool isComplete = true, string message = "", Version ver = null) : base(isComplete, message)
+		{
+			Ver = ver;
+		}
+
+		public Version Ver { get; private set; }
+	}
 	#endregion TryResult
 
 	public static class FilesWorks
 	{
+		public static TryGetFileVersion GetFileVersion(string filePath)
+		{
+			try
+			{
+				Version ver;
+				if (!Version.TryParse(FileVersionInfo.GetVersionInfo(filePath).FileVersion, out ver))
+					ver = null;
+
+				return new TryGetFileVersion(true, "", ver);
+			}
+			catch (Exception ex)
+			{
+				return new TryGetFileVersion(false, ex.ToString());
+			}
+		}
+
 		public static string[] GetFilesPaths(string path, string[] searchPatterns, SearchOption searchOption)
 		{
 			List<string> files = new List<string>();
