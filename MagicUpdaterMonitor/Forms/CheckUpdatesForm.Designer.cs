@@ -34,7 +34,7 @@
 			// 
 			// btnCheckUpdates
 			// 
-			this.btnCheckUpdates.Location = new System.Drawing.Point(21, 28);
+			this.btnCheckUpdates.Location = new System.Drawing.Point(12, 12);
 			this.btnCheckUpdates.Name = "btnCheckUpdates";
 			this.btnCheckUpdates.Size = new System.Drawing.Size(138, 54);
 			this.btnCheckUpdates.TabIndex = 0;

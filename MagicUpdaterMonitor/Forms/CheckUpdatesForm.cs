@@ -22,10 +22,12 @@ namespace MagicUpdaterMonitor.Forms
 		private void btnCheckUpdates_Click(object sender, EventArgs e)
 		{
 
+			//FtpWorks.DeleteFileFromFtp("mskftp.sela.ru", "cis_obmen", "cisobmen836", "MagicUpdaterTest/Test", "MagicUpdater.exe");
+			FtpWorks.DeleteFilesFromFtpFolder("mskftp.sela.ru", "cis_obmen", "cisobmen836", "MagicUpdaterTest/Test");
 
 			//FtpWorks.GetFtpFileVersion("mskftp.sela.ru", "cis_obmen", "cisobmen836", "MagicUpdaterTest", "MagicUpdater.exe");
 
-			FtpWorks.GetFtpFileVersion("sartre.timeweb.ru", "dublerin_mulic", "8CFeyXB3", "Agent", "MagicUpdater.exe");
+			//FtpWorks.GetFtpFileVersion("sartre.timeweb.ru", "dublerin_mulic", "8CFeyXB3", "Agent", "MagicUpdater.exe");
 
 			//FtpWorks.UploadFileToFtp(@"D:\", "mskftp.sela.ru", "cis_obmen", "cisobmen836", "MagicUpdaterTest", "Services-50.png");
 

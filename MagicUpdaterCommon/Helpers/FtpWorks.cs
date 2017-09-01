@@ -74,6 +74,20 @@ namespace MagicUpdaterCommon.Helpers
 		}
 	}
 
+	public class TryDeleteFileFromFtp : TryResult
+	{
+		public TryDeleteFileFromFtp(bool isComplete = true, string message = "") : base(isComplete, message)
+		{
+		}
+	}
+
+	public class TryDeleteFilesFromFtpFolder : TryResult
+	{
+		public TryDeleteFilesFromFtpFolder(bool isComplete = true, string message = "") : base(isComplete, message)
+		{
+		}
+	}
+
 	public static class FtpWorks
 	{
 		#region fileExtensionsList
@@ -543,6 +557,69 @@ namespace MagicUpdaterCommon.Helpers
 			catch (Exception ex)
 			{
 				return new Helpers.TryDownloadFtp(false, ex.ToString());
+			}
+		}
+
+		public static TryDeleteFileFromFtp DeleteFileFromFtp(string server,
+												string login,
+												string password,
+												string ftpFolder,
+												string fileName)
+		{
+			try
+			{
+				if (!server.Contains(FTP_PREFIX))
+				{
+					server = $"{FTP_PREFIX}{server}";
+				}
+				string ftpFilePath = Path.Combine(server, ftpFolder, fileName);
+				ftpFilePath = ftpFilePath.Replace("\\", "/");
+
+				FtpWebRequest request = (FtpWebRequest)WebRequest.Create(ftpFilePath);
+
+				request.Credentials = new NetworkCredential(login, password);
+
+				request.Method = WebRequestMethods.Ftp.DeleteFile;
+				FtpWebResponse response = (FtpWebResponse)request.GetResponse();
+				response.Close();
+
+				return new TryDeleteFileFromFtp();
+			}
+			catch (Exception ex)
+			{
+				return new TryDeleteFileFromFtp(false, ex.ToString());
+			}
+		}
+
+		public static TryDeleteFilesFromFtpFolder DeleteFilesFromFtpFolder(string server,
+																		string login,
+																		string password,
+																		string ftpFolder,
+																		params string[] searchPattern)
+		{
+			try
+			{
+				foreach (var fileName in GetFilesList(server, login, password, ftpFolder, searchPattern))
+				{
+					if (!server.Contains(FTP_PREFIX))
+					{
+						server = $"{FTP_PREFIX}{server}";
+					}
+					string ftpFilePath = Path.Combine(server, ftpFolder, fileName);
+					ftpFilePath = ftpFilePath.Replace("\\", "/");
+
+					FtpWebRequest request = (FtpWebRequest)WebRequest.Create(ftpFilePath);
+					request.Credentials = new NetworkCredential(login, password);
+					request.Method = WebRequestMethods.Ftp.DeleteFile;
+					FtpWebResponse response = (FtpWebResponse)request.GetResponse();
+					response.Close(); 
+				}
+
+				return new TryDeleteFilesFromFtpFolder();
+			}
+			catch (Exception ex)
+			{
+				return new TryDeleteFilesFromFtpFolder(false, ex.ToString());
 			}
 		}
 
