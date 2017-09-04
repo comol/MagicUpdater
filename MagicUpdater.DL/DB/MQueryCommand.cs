@@ -778,7 +778,8 @@ namespace MagicUpdater.DL.DB
 					User user = new User
 					{
 						UserLogin = userLogin,
-						UserName = userName
+						UserName = userName,
+						HwId = hwId
 					};
 
 					context.Users.Add(user);

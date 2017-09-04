@@ -359,6 +359,7 @@
     <Compile Include="Helpers\Extensions.cs" />
     <Compile Include="Helpers\ExtTools.cs" />
     <Compile Include="Helpers\FilesWorks.cs" />
+    <Compile Include="Helpers\LastVersionChecker.cs" />
     <Compile Include="Helpers\Mapping.cs" />
     <Compile Include="Helpers\SelfUpdate.cs" />
     <Compile Include="MainForm.cs">
@@ -367,7 +368,6 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Helpers\LastVersionChecker.cs" />
     <Compile Include="Helpers\SortableBindingList.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

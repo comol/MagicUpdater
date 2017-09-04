@@ -260,9 +260,9 @@ namespace MagicUpdaterMonitor
 				this.Show();
 				const string errMessage = "Ошибка получения версии";
 
-				string version = LastVersionChecker.GetLatestVersion() != null ? LastVersionChecker.GetLatestVersion().ToString() : errMessage;
+				string version = LastAgentVersionChecker.GetLatestVersion() != null ? LastAgentVersionChecker.GetLatestVersion().ToString() : errMessage;
 
-				new LastVersionChecker(true).VersionRefresh += Form1_VersionRefresh;
+				new LastAgentVersionChecker(true).VersionRefresh += Form1_VersionRefresh;
 				tslLastVersion.Text = $"Последняя версия агента на сервере: {version}";
 
 				UpdateUnregistredFilesListControl();
