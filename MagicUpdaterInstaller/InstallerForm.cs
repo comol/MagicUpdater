@@ -267,7 +267,7 @@ namespace MagicUpdaterInstaller
 				//tbSelfUpdateFtpUser.Clear();
 				//tbSelfUpdateFtpPassword.Clear();
 
-#if !DEMO
+#if !DEMO && !LIC
 				txtServerTask.Text = _serverTaskDefault;
 				txtBaseTask.Text = _baseTaskDefault;
 				txtUserTask.Text = _userTaskDefault;
