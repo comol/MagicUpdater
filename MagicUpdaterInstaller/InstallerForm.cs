@@ -476,7 +476,7 @@ namespace MagicUpdaterInstaller
 
 						cbShopID.DisplayMember = "ShopId";
 						cbShopID.ValueMember = "ShopId";
-						cbShopID.DataSource = SqlWorks.ExecProc("SelectShopsList").Tables[0];
+						cbShopID.DataSource = SqlWorks.ExecProc("SelectShopsList")?.Tables[0];
 
 						LogString("Поиск настроек агента в Sql базе заданий.");
 						var loadSettingsResult = MainSettings.LoadSettings();
