@@ -85,6 +85,10 @@ namespace MagicUpdaterInstaller
 
 			//ConnectionToService = new ApplicationConnector();
 			//ConnectionToService.AsyncConnect(MainSettings.Constants.MAGIC_UPDATER_PIPE_NAME);
+
+			string version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
+
+			this.Text = $"MagicUpdaterInstaller - {version}";
 		}
 
 		private bool CheckServiceIsRunning()
@@ -358,48 +362,57 @@ namespace MagicUpdaterInstaller
 
 		private void btnCheckConnection1C_Click(object sender, EventArgs e)
 		{
-			var res = MainSettings.GetExePath1C(txtVersion1C.Text);
-			if (!res.IsComplete)
+			try
 			{
-				MessageBox.Show(this, res.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
-				return;
+				var res = MainSettings.GetExePath1C(txtVersion1C.Text);
+				if (!res.IsComplete)
+				{
+					MessageBox.Show(this, res.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+					return;
+				}
+
+				var resLogPath = MainSettings.GetLogPath1C();
+				if (!resLogPath.IsComplete)
+				{
+					MessageBox.Show(this, resLogPath.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+					return;
+				}
+
+				if (!Check1CInstallationWithMessage())
+					return;
+				string exceptionMsg;
+
+				CmdParams cmdParams = new CmdParams();
+
+
+				//TODO: Добавить файловую базу
+
+				bool check1C = false;
+				if (_is1CBaseOnServer)
+				{
+					check1C = Checks1C.Check1C_Connection(cmdParams.GetConnectionstring1CServerBase(tbServerOrPath1C.Text, tbBase1C.Text, txtUser1C.Text, txtPass1C.Text), out exceptionMsg);
+				}
+				else
+				{
+					check1C = Checks1C.Check1C_Connection(cmdParams.GetConnectionstring1CFileBase(tbServerOrPath1C.Text, txtUser1C.Text, txtPass1C.Text), out exceptionMsg);
+				}
+
+				if (check1C)
+					MessageBox.Show(this, "Успешное подключение к базе 1С", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
+				else
+				{
+					string msg = "Ошибка подключения к базе 1С";
+					if (!string.IsNullOrEmpty(exceptionMsg))
+						msg = $"{msg}\r\nПричина: {exceptionMsg}";
+
+					MessageBox.Show(this, msg, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+				}
 			}
-
-			var resLogPath = MainSettings.GetLogPath1C();
-			if (!resLogPath.IsComplete)
+			catch (Exception ex)
 			{
-				MessageBox.Show(this, resLogPath.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
-				return;
-			}
-
-			if (!Check1CInstallationWithMessage())
-				return;
-			string exceptionMsg;
-
-			CmdParams cmdParams = new CmdParams();
-
-
-			//TODO: Добавить файловую базу
-
-			bool check1C = false;
-			if (_is1CBaseOnServer)
-			{
-				check1C = Checks1C.Check1C_Connection(cmdParams.GetConnectionstring1CServerBase(tbServerOrPath1C.Text, tbBase1C.Text, txtUser1C.Text, txtPass1C.Text), out exceptionMsg);
-			}
-			else
-			{
-				check1C = Checks1C.Check1C_Connection(cmdParams.GetConnectionstring1CFileBase(tbServerOrPath1C.Text, txtUser1C.Text, txtPass1C.Text), out exceptionMsg);
-			}
-
-			if (check1C)
-				MessageBox.Show(this, "Успешное подключение к базе 1С", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
-			else
-			{
-				string msg = "Ошибка подключения к базе 1С";
-				if (!string.IsNullOrEmpty(exceptionMsg))
-					msg = $"{msg}\r\nПричина: {exceptionMsg}";
-
-				MessageBox.Show(this, msg, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+				LogString(ex.ToString());
+				MessageBox.Show(this, $"Не удалось проверить подключение к 1С. Флаг \"Проверка установки 1С при старте будет снят\".{Environment.NewLine}Причина: {ex.Message}", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+				cbIsCheck1C.Checked = false;
 			}
 		}
 
