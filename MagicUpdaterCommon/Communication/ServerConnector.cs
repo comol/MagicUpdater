@@ -102,11 +102,6 @@ namespace MagicUpdaterCommon.Communication
 
 		public void SendAsyncMessage(CommunicationObject communicationObject)
 		{
-			//var res = StartSettingsApplication();
-			//if (!res.IsComplete)
-			//{
-			//	NLogger.LogErrorToHdd(res.Message, MainSettings.Constants.MAGIC_UPDATER);
-			//}
 			CreateAsyncServerBase();
 			_pipesAsyncServer.SendMessage(communicationObject);
 		}
@@ -183,33 +178,6 @@ namespace MagicUpdaterCommon.Communication
 		private TryToStartSettingsApplication StartSettingsApplication()
 		{
 			return new TryToStartSettingsApplication();
-			//if (_settingsApplicationProcess != null && !_settingsApplicationProcess.HasExited)
-			//{
-			//	if (_settingsApplicationProcess.Responding)
-			//	{
-			//		return new TryToStartSettingsApplication();
-			//	}
-			//	else
-			//	{
-			//		_settingsApplicationProcess.Kill();
-			//	}
-			//}
-
-			//Process[] processes = Process.GetProcessesByName(MainSettings.Constants.MAGIC_UPDATER_SETTINGS);
-			//foreach(var proc in processes)
-			//{
-			//	proc.Kill();
-			//}
-
-			//_settingsApplicationProcess = Process.Start(MainSettings.Constants.PathToSettingsApplication);
-			//if (_settingsApplicationProcess != null && !_settingsApplicationProcess.HasExited && _settingsApplicationProcess.Responding)
-			//{
-			//	return new TryToStartSettingsApplication();
-			//}
-			//else
-			//{
-			//	return new TryToStartSettingsApplication(false, "Не удалось запустить приложение \"MagicUpdaterSettings\"");
-			//}
 		}
 
 		private TryAsyncPipesAction AsyncPipesAction(CommunicationObject communicationObject)

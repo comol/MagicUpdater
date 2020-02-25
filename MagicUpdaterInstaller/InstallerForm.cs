@@ -26,15 +26,15 @@ namespace MagicUpdaterInstaller
 		private bool _isServiceInstalling = false;
 		private bool _isShowVersion1cToolTip = false;
 
-		private static readonly string _serverTaskDefault = "mu.sela.ru";
-		private static readonly string _baseTaskDefault = "MagicUpdater";
-		private static readonly string _userTaskDefault = "Sela";
-		private static readonly string _passwordTaskDefault = "Kizombo1313";
-		private static readonly string _user1CDefault = "Программист";
-		private static readonly string _pass1CDefault = "Sela700";
-		private static readonly string _selfUpdateFtpServerDefault = "mskftp.sela.ru";
-		private static readonly string _selfUpdateFtpUserDefault = "cis_obmen";
-		private static readonly string _selfUpdateFtpPasswordDefault = "cisobmen836";
+		private static readonly string _serverTaskDefault = "";
+		private static readonly string _baseTaskDefault = "";
+		private static readonly string _userTaskDefault = "";
+		private static readonly string _passwordTaskDefault = "";
+		private static readonly string _user1CDefault = "";
+		private static readonly string _pass1CDefault = "";
+		private static readonly string _selfUpdateFtpServerDefault = "";
+		private static readonly string _selfUpdateFtpUserDefault = "";
+		private static readonly string _selfUpdateFtpPasswordDefault = "";
 
 		private static readonly string _checkQuery = $"select count(*) as cnt from [dbo].[ShopComputers]";
 		private static readonly string _checkMessage = "В пробной версии разрешается не более 5 агентов!";
@@ -77,15 +77,10 @@ namespace MagicUpdaterInstaller
 			if (tabControlSettings.SelectedTab == tabPageConnectionString)
 			{
 				btnPrevousStep.Visible = false;
-				//btnNextStep.Left = btnPrevousStep.Left;
 			}
 
 			lbServiceStatus.Text = "";
 			btnRestartService.Text = "";
-
-			//ConnectionToService = new ApplicationConnector();
-			//ConnectionToService.AsyncConnect(MainSettings.Constants.MAGIC_UPDATER_PIPE_NAME);
-
 			string version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
 
 			this.Text = $"MagicUpdaterInstaller - {version}";
@@ -244,34 +239,12 @@ namespace MagicUpdaterInstaller
 
 			ActivateSettingsPage(tabPageConnectionString);
 
-			//if (MainSettings.JsonSettings != null
-			//	&& !string.IsNullOrEmpty(MainSettings.JsonSettings.ConnectionString)
-			//	&& SqlWorks.CheckSQL_Connection(MainSettings.JsonSettings.ConnectionString))
-			//{
-			//	ActivateSettingsPage(tabPageSettings);
-			//}
-			//else
-			//{
-			//	ActivateSettingsPage(tabPageConnectionString);
-			//}
 		}
 
 		private void SettingsForm_Load(object sender, EventArgs e)
 		{
 			try
 			{
-				//Чистим контролы, чтоб чисто было
-				//txtServerTask.Clear();
-				//txtBaseTask.Clear();
-				//txtUserTask.Clear();
-				//txtPasswordTask.Clear();
-				//txtUser1C.Clear();
-				//txtPass1C.Clear();
-				//tbSelfUpdateFtpServer.Clear();
-				//tbSelfUpdateFtpUser.Clear();
-				//tbSelfUpdateFtpPassword.Clear();
-
-#if !DEMO && !LIC
 				txtServerTask.Text = _serverTaskDefault;
 				txtBaseTask.Text = _baseTaskDefault;
 				txtUserTask.Text = _userTaskDefault;
@@ -281,18 +254,14 @@ namespace MagicUpdaterInstaller
 				tbSelfUpdateFtpServer.Text = _selfUpdateFtpServerDefault;
 				tbSelfUpdateFtpUser.Text = _selfUpdateFtpUserDefault;
 				tbSelfUpdateFtpPassword.Text = _selfUpdateFtpPasswordDefault;
-#endif
 
 				var loadFromJsonResult = MainSettings.LoadFromJson();
 
 				if (!loadFromJsonResult.IsComplete)
 				{
-					//NLogger.LogErrorToHdd(res.Message, MainSettings.Constants.MAGIC_UPDATER_SETTINGS);
-					//MessageBox.Show(res.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
 					return;
 				}
 
-				//JsonSettings
 				txtServerTask.Text = MainSettings.JsonSettings.ServerTask;
 				txtBaseTask.Text = MainSettings.JsonSettings.BaseTask;
 				txtUserTask.Text = MainSettings.JsonSettings.UserTask;
@@ -339,12 +308,7 @@ namespace MagicUpdaterInstaller
 			{
 				Version ver = null;
 				Version.TryParse(txtVersion1C.Text.Trim(), out ver);
-
-				//Определение пути по службе 1С работает, но закоменчено, чтобы не было путаницы
-				//if (!MainSettings.Get1CPathByService())
-				//{
 				MainSettings.Load1CPathByVersion(ver);
-				//}
 
 				if (string.IsNullOrEmpty(MainSettings.ExePath1C))
 				{
@@ -384,8 +348,6 @@ namespace MagicUpdaterInstaller
 
 				CmdParams cmdParams = new CmdParams();
 
-
-				//TODO: Добавить файловую базу
 
 				bool check1C = false;
 				if (_is1CBaseOnServer)
@@ -568,37 +530,6 @@ namespace MagicUpdaterInstaller
 											|| !MainSettings.MainSqlSettings.ComputerId.HasValue
 											|| MainSettings.MainSqlSettings.ComputerId.Value == 0)
 					{
-#if DEMO
-						try
-						{
-							string query = _checkQuery;
-							using (SqlConnection conn = new SqlConnection(MainSettings.JsonSettings.ConnectionString))
-							{
-								conn.Open();
-								using (SqlCommand command = new SqlCommand(query, conn))
-								{
-									using (SqlDataReader reader = command.ExecuteReader())
-									{
-										reader.Read();
-										int count = reader.GetInt32(0);
-
-										if (count > 10)
-										{
-											MessageBox.Show(_checkMessage, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
-											Thread thread = new Thread(Terminate);
-											thread.Start();
-											return;
-										}
-									}
-								}
-							}
-						}
-						catch (Exception ex)
-						{
-							NLogger.LogErrorToHdd(ex.ToString());
-							throw;
-						} 
-#endif
 
 						LogString("Компьютер не зарегистрирован... Производится регистрация компьютера.");
 						var res = MainSettings.RegisterComputerId(ConvertSafe.ToString(cbShopID.SelectedValue));
@@ -716,50 +647,6 @@ namespace MagicUpdaterInstaller
 
 					LogString("Помечаем магазин как открытый.");
 					SqlWorks.ExecProc("SetShopToOpen", ConvertSafe.ToString(cbShopID.SelectedValue));
-
-					#region Check1C (disabled)
-					//if (cbIsCheck1C.Checked)
-					//{
-					//	LogString("Проверка установки 1С.");
-
-					//	var resExePath = MainSettings.GetExePath1C();
-					//	if (!resExePath.IsComplete)
-					//	{
-					//		LogString(resExePath.Message);
-					//		return;
-					//	}
-
-					//	var resLogPath = MainSettings.GetLogPath1C();
-					//	if (!resLogPath.IsComplete)
-					//	{
-					//		LogString(resLogPath.Message);
-					//		return;
-					//	}
-
-					//	if (!Check1CInstallationWithMessage())
-					//	{
-					//		LogString("Ошибка проверки установки 1С.");
-					//		return;
-					//	}
-					//	string exceptionMsg;
-
-					//	CmdParams cmdParams = new CmdParams();
-
-					//	if (Checks1C.Check1C_Connection(cmdParams.GetConnectionstring1C(MainSettings.LocalSqlSettings.Server1C, MainSettings.LocalSqlSettings.Base1C, MainSettings.LocalSqlSettings.User1C, MainSettings.LocalSqlSettings.Pass1C), out exceptionMsg))
-					//		MessageBox.Show(this, "Успешное подключение к базе 1С", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
-					//	else
-					//	{
-					//		string msg = "Ошибка подключения к базе 1С";
-					//		if (!string.IsNullOrEmpty(exceptionMsg))
-					//			msg = $"{msg}\r\nПричина: {exceptionMsg}";
-
-					//		LogString(msg);
-					//		MessageBox.Show(this, msg, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
-					//		return;
-					//	}
-					//	LogString("Успешная проверка установки 1С.");
-					//}
-					#endregion
 					break;
 				case Pages.InstallService:
 					ActivateSettingsPage(tabControlTest);
@@ -831,7 +718,6 @@ namespace MagicUpdaterInstaller
 			{
 				tabControlSettings.SelectedTab = tabPageConnectionString;
 				btnPrevousStep.Visible = false;
-				//btnNextStep.Left = btnPrevousStep.Left;
 				btnNextStep.Text = "Сохранить и перейти к настройкам 1С >";
 				btnNextStep.Tag = Pages.JsonSettings;
 			}
@@ -840,7 +726,6 @@ namespace MagicUpdaterInstaller
 			{
 				tabControlSettings.SelectedTab = tabPageSettings;
 				btnPrevousStep.Visible = true;
-				//btnNextStep.Left = 318;
 				btnNextStep.Text = "Установка службы >";
 				btnNextStep.Tag = Pages.MainAndLocalSqlSettings;
 				if (_isShowVersion1cToolTip)
@@ -959,12 +844,6 @@ namespace MagicUpdaterInstaller
 
 		private void button1_Click(object sender, EventArgs e)
 		{
-			//ServiceConnector.SendSyncMessage(new Communications.Common.CommunicationObject
-			//{
-			//	ActionType = Communications.Common.CommunicationActionType.ShowMessage,
-			//	Data = "kjhkjih"
-			//});
-
 			ConnectionToService.SendAsyncMessage(new Communications.Common.CommunicationObject
 			{
 				ActionType = Communications.Common.CommunicationActionType.ShowMessage,

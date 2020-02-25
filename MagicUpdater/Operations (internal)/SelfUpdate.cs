@@ -55,24 +55,8 @@ namespace MagicUpdater.Operations
 
 			if (!CompareFileVersion(currentVersion, updateVersion))
 			{
-				#region UpdateAndExecute old disabled
-				//if (UpdateAndExecute(appCurrentPath, appUpdatePath))
-				//{
-				//	//SendOperationReport("", true);
-				//	//Extensions.ExitApplication();
 
-				//	//Тормозим шедулер и ждем смерти
-				//	//TaskerReporter.Stop();
-				//}
-				//Добавляем OperState тут, т.к. выходим из приложения
-				//AddErrorMessage(_logMessage);
-				#endregion UpdateAndExecute old disabled
-
-				if (UpdateMyself())
-				{
-					//SendOperationReport("", true);
-				}
-				else
+				if (!UpdateMyself())
 				{
 					AddErrorMessage(_logMessage);
 				}
@@ -177,38 +161,9 @@ namespace MagicUpdater.Operations
 			}
 			#endregion RestartApplicationUpdate
 
-			//Посылаем команду запуска MagicUpdaterRestart для MagicUpdaterSettings
-			//new StartSettingsAferUpdate(Id).ActRun();
-
-			//if (Tools.GetProcessesCount(MainSettings.Constants.MAGIC_UPDATER_SETTINGS) > 0)
-			//{
-			//	var res = MuCore.ConnectionToSettings.SendAsyncMessageAndWaitForResponse(new CommunicationObject
-			//	{
-			//		ActionType = CommunicationActionType.StartMagicUpdaterRestartForSettings,
-			//		Data = Id
-			//	}, 10000);
-
-			//	if (!res.IsComplete)
-			//	{
-			//		this.AddErrorMessage(res.Message);
-			//	}
-
-			//	Thread.Sleep(2000);
-
-			//	//Останавливаем MagicUpdaterSettings
-			//	Tools.KillAllProcessByname(MainSettings.Constants.MAGIC_UPDATER_SETTINGS, true);
-			//}
-			//else
-			//{
-
-			//}
 
 			IsSendLogAndStatusAfterExecution = false;
 
-			//Отрубаем пайпы
-			//MuCore.ConnectionToSettings?.DisposeAsyncServer();
-
-			//Запускаем MagicUpdaterRestart с ключем обновления
 			Tools.SelfUpdateAndRestart(Id);
 
 			return true;

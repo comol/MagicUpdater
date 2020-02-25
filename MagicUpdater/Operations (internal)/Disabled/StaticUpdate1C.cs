@@ -29,31 +29,10 @@ namespace MagicUpdater.Operations
 			}
 
 			AddOperState(OperStates.WaitingForUserConfirmation);
-
-			//TODO: Сделать связь с приложением
-			//if (MessageForm.ShowDialogOkCancel("Необходимо выполнить обновление системы. От 2 до 15 минут 1С будет не доступна.", "Предупреждение", "Выполнить", "Позже") == DialogResult.OK)
-			//{
-			//	AddOperState(OperStates.ConfirmedByUser);
-			//	return base.BeforeExecution();
-			//}
-			//else
-			//{
-			//	//if (isTimerClick)
-			//	//	AddOperState(OperStates.CancelledByTimer);
-			//	//else
-			//	AddOperState(OperStates.CancelledByUser);
-
-			//	return false;
-			//}
-
 			AddOperState(OperStates.ConfirmedByUser);
 			return base.BeforeExecution();
 		}
 
-		//private void TimerClick()
-		//{
-		//	isTimerClick = true;
-		//}
 
 		protected override void Execution(object sender, DoWorkEventArgs e)
 		{
@@ -70,7 +49,6 @@ namespace MagicUpdater.Operations
 						worker.ReportProgress(0, "Закрытие 1С на всех компьютерах");
 						//Грохаем все «1cv8c.exe» на всех компах в сети
 						KillProcess1C ActionKill = new KillProcess1C(Id);
-						//ActionKill.RunAtAll = true;
 						ActionKill.ActRun(true, false, 7000);
 						Thread.Sleep(3000);
 
@@ -118,14 +96,9 @@ namespace MagicUpdater.Operations
 
 		protected override void AfterExecution()
 		{
-			//TODO: Сделать связь с приложением
-			//MessageForm.ShowDialogNoButtonsAsync("Ожидание ответа от компьютеров в магазине...", "Информация");
-			// Открываем вики и показываем уведомление что можно работать
 			OpenVikiAndShowDialogForStaticUpdate act = new OpenVikiAndShowDialogForStaticUpdate(Id);
 			act.ShowMessage = false;
 			act.ActRun(true, true);
-			//MessageForm.CloseAsync();
-			//MessageForm.ShowDialogOk("Можно продолжать работу", "Уведомление");
 		}
 	}
 }

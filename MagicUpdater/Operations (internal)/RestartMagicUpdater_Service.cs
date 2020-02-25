@@ -19,59 +19,8 @@ namespace MagicUpdater.Operations
 
 		protected override void Execution(object sender = null, DoWorkEventArgs e = null)
 		{
-			//string curExeName = System.Reflection.Assembly.GetExecutingAssembly().Location;
-			//bool isProcessCreated = false;
-			//for (int i = 3; i >= 0; i--)
-			//{
-			//	Process process = null;
-			//	if (!isProcessCreated)
-			//		process = Process.Start(curExeName, $"force {Id}");
-			//	Thread.Sleep(2000);
-			//	isProcessCreated = process != null && !process.HasExited;
-			//	if (isProcessCreated)
-			//		break;
-			//}
-
-			//if (!isProcessCreated)
-			//	AddErrorMessage("не удалось перезапустить MagicUpdater");
-
-			//var pass = new SecureString();
-			//pass.AppendChar('n');
-			//pass.AppendChar('i');
-			//pass.AppendChar('k');
-			//pass.AppendChar('i');
-			//pass.AppendChar('t');
-			//pass.AppendChar('o');
-			//pass.AppendChar('s');
-			//pass.AppendChar('s');
-			//pass.AppendChar('&');
-			//pass.AppendChar('1');
-			//pass.AppendChar('9');
-			//pass.AppendChar('4');
-			//pass.AppendChar('1');
-			//pass.AppendChar('3');
-
-			//var psi = new ProcessStartInfo
-			//{
-			//	FileName = restartServiceApplication,
-			//	UserName = "Администратор",
-			//	Domain = "",
-			//	Password = pass,
-			//	UseShellExecute = false,
-			//	RedirectStandardOutput = true,
-			//	RedirectStandardError = true,
-			//	Arguments = $"{PARAMETER_CODE_NAME} {Id}"
-			//};
-
-			//Process.Start(psi);
 
 			IsSendLogAndStatusAfterExecution = false;
-
-			//Посылаем команду запуска MagicUpdaterRestart для MagicUpdaterSettings
-			//new StartSettingsAferUpdate(Id).ActRun();
-
-			//Отрубаем пайпы
-			//MuCore.ConnectionToSettings?.DisposeAsyncServer();
 
 			//Запускаем MagicUpdaterRestart с ключем перезапуска
 			try

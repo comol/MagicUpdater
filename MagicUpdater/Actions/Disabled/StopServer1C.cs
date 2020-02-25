@@ -13,8 +13,6 @@ namespace MagicUpdater.Actions
 			controller.MachineName = ".";
 			controller.ServiceName = "1C:Enterprise 8.3 Server Agent";
 			controller.Stop();
-			
-			//Process.Start("net stop \"1C:Enterprise 8.3 Server Agent\"");
 		}
 	}
 }

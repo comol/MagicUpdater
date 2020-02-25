@@ -36,36 +36,11 @@ namespace MagicUpdaterMonitor
 		private const int GRIDS_REFRESH_TIMEOUT = 5000;
 		private const int FILITER_BY_AGENT_REFRESH_TIMEOUT = 700;
 
-		private static readonly string _blockedUser1 = @"SELA\service.msk";
-		private static readonly string _otrsLink = "http://help.sela.ru/otrs/index.pl?Action=AgentTicketStatusView;Filter=Open;View=;SortBy=Age;OrderBy=Down;ColumnFilterCustomerID";
 
-		private readonly List<string> _blockedUsers = new List<string>
-		{
-			_blockedUser1
-		};
+		private static readonly string _otrsLink = "https://otrs.com/";
+
 
 		private static System.Threading.Timer _checkLicTimer;
-
-		/*
-		 if (AppSettings.IsServiceMode)
-				{
-					await rgvComputers.RefreshDataSourceAsync(await MQueryCommand.SelectShopComputersServerViewGridFullAsync());
-				}
-				else
-				{
-					await rgvComputers.RefreshDataSourceAsync(await MQueryCommand.SelectShopComputersServerViewGridAsync());
-				}
-
-				var operationTypeModel = await MQueryCommand.GetOperationTypesAsync();
-				OperationTools.Update(operationTypeModel);
-				await rgvSendOpers.RefreshDataSourceAsync(operationTypeModel);
-				await rgvOperations.RefreshDataSourceAsync(await MQueryCommand.SelectOperationsGridAsync());
-				await rgvShops.RefreshDataSourceAsync(await MQueryCommand.SelectShopsGridAsync());
-				await rgvComputerErrorsLog.RefreshDataSourceAsync(await MQueryCommand.SelectComputerErrorsLogsAsync());
-			 */
-
-
-
 		private System.Threading.Timer RefreshComputersTimer;
 		private System.Threading.Timer RefreshSendOpersTimer;
 		private System.Threading.Timer RefreshOperationsTimer;
@@ -87,22 +62,15 @@ namespace MagicUpdaterMonitor
 
 		public MainForm()
 		{
-#if LIC
-			_checkLicTimer = new System.Threading.Timer(CheckLicTimerCallback, null, 300000, System.Threading.Timeout.Infinite);
-#endif
+
 			InitializeComponent();
 
-#if LIC
-			tsddbLic.Visible = true;
-#else
-			tsddbLic.Visible = false;
-#endif
+
 
 			FilterByAgentTimer = new System.Threading.Timer(FilterByAgentTimerCallback, null, Timeout.Infinite, Timeout.Infinite);
 			operationAttributes1.OnValueChanged += OperationAttributes1_OnValueChanged;
 
 			//Создаем пользователя для шедулера
-			//MQueryCommand.CreateUser(MainSettings.Constants.MU_SHEDULER_USER_LOGIN_GUID, MainSettings.Constants.MU_SHEDULER_USER_NAME);
 
 			MonitorCommonGlobalSettings = new CommonGlobalSettings();
 			var loadCommonGlobalSettingsRes = MonitorCommonGlobalSettings.LoadCommonGlobalSettings();
@@ -113,42 +81,6 @@ namespace MagicUpdaterMonitor
 			}
 
 			tabControl1.TabPages.Remove(tabPage2);
-#if !DEBUG
-			
-			//tabControl1.TabPages.Remove(tabPage3);
-#endif
-			//tsddbSpecialSendOpers.Visible = AppSettings.IsServiceMode;
-			//LoadUserSettings();
-#if DEMO
-			ShowOtrs.Visible = false; 
-#endif
-		}
-
-		private void CheckLicTimerCallback(object state)
-		{
-			try
-			{
-				var res = MQueryCommand.CheckMonitorLic(MainForm.UserId, MainForm.HwId);
-				if (!res.IsComplete)
-				{
-					if (this.InvokeRequired)
-					{
-						this.Invoke(new MethodInvoker(() =>
-						{
-							MessageBox.Show(this, $"Ошибка лицензии, приложение завершает работу!{Environment.NewLine}{res.Message}", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
-						}));
-					}
-					else
-					{
-						MessageBox.Show(this, $"Ошибка лицензии, приложение завершает работу!{Environment.NewLine}{res.Message}", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
-					}
-					Environment.Exit(0);
-				}
-			}
-			finally
-			{
-				_checkLicTimer.Change(300000, System.Threading.Timeout.Infinite);
-			}
 		}
 
 		//Пользовательские настройки
@@ -1387,13 +1319,6 @@ namespace MagicUpdaterMonitor
 			tsb.Enabled = false;
 			try
 			{
-				int blockedUserIndex = _blockedUsers.IndexOf(System.Security.Principal.WindowsIdentity.GetCurrent().Name);
-				if (blockedUserIndex >= 0)
-				{
-					string blockedUser = _blockedUsers[blockedUserIndex];
-					MessageBox.Show($"Пользователю {blockedUser} запрещено отправлять операции", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
-					return;
-				}
 
 				if (rgvComputers.SelectedValues.Count == 0)
 				{
@@ -2083,35 +2008,10 @@ namespace MagicUpdaterMonitor
 			}
 		}
 
-		private void miGetLicForAllAgents_Click(object sender, EventArgs e)
-		{
-			var agents = MQueryCommand.SelectShopComputersServerViewGrid().Where(w => (w.LicStatus ?? -1) == -1 && w.ComputerId > 0 && w.IsClosed == false).ToArray();
-			AgentLicForm agentLicForm = new AgentLicForm(agents);
-			agentLicForm.ShowDialog();
-		}
-
-		private void miGetLicForSelectedAgents_Click(object sender, EventArgs e)
-		{
-			var selectedAgentsIds = rgvComputers.SelectedValues.Select(s => Convert.ToInt32(s)).ToArray();
-
-			var agents = MQueryCommand.SelectShopComputersServerViewGrid().Where(w => /*(w.LicStatus ?? -1) == -1 &&*/ w.ComputerId > 0 && w.IsClosed == false && selectedAgentsIds.Contains(w.ComputerId)).ToArray();
-			if (agents.Length == 0)
-			{
-				MessageBox.Show("Агенты не выбраны", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
-				return;
-			}
-			AgentLicForm agentLicForm = new AgentLicForm(agents);
-			agentLicForm.ShowDialog();
-		}
-
 		private void miAbout_Click(object sender, EventArgs e)
 		{
 			new AboutForm().ShowDialog();
 		}
 
-		private void miCheckUpdates_Click(object sender, EventArgs e)
-		{
-			new CheckUpdatesForm().ShowDialog();
-		}
 	}
 }

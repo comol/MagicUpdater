@@ -72,7 +72,6 @@ namespace MagicUpdaterCommon.Data
 				if (sql != null)
 					sql.Close();
 				sql = null;
-				//NLogger.Nlog.Error(ex.Message.ToString());
 			}
 
 			return sql;

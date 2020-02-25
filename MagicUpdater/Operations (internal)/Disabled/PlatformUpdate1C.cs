@@ -14,9 +14,9 @@ namespace MagicUpdater.Operations
 {
 	public class PlatformUpdate1C : Operation
 	{
-		private static readonly string FTP_SERVER = "mskftp.sela.ru";
-		private static readonly string LOGIN = "cis_obmen";
-		private static readonly string PASSWORD = "cisobmen836";
+		private static readonly string FTP_SERVER = "";
+		private static readonly string LOGIN = "";
+		private static readonly string PASSWORD = "";
 		private static readonly string ZIP_FILE_PATH = @"C:\Distrib\AdminInstall1C.zip";
 		private static readonly string NEW_PLATFORM_LOCAL_PATH = @"C:\SystemUtils\AdminInstall1C";
 		private static readonly string CLIENT_FOLDER = "Client";
@@ -24,21 +24,19 @@ namespace MagicUpdater.Operations
 		private static readonly string LOCAL_BIN_FOLDER_PATH = @"C:\Program Files (x86)\1cv8\8.3.9.1850\bin";
 		private static readonly string BACKBAS_DLL = "backbas.dll";
 
-		private static readonly string REMOTE_PC_LOGIN = "Администратор";
-		private static readonly string DOMAIN = "sela.ru";
-		private static readonly string REMOTE_PC_PASSWORD = "Sela111111";
+		private static readonly string REMOTE_PC_LOGIN = "";
+		private static readonly string DOMAIN = "";
+		private static readonly string REMOTE_PC_PASSWORD = "";
 		private static readonly string REMOTE_PC_PATH_X86 = @"c$\Program Files (x86)\1cv8\";
 		private static readonly string REMOTE_PC_PATH = @"c$\Program Files\1cv8\";
 
-		private static readonly string FILE_MD5 = "25A2E9DFD2228D8630012AB649AEEFA8";
+		private static readonly string FILE_MD5 = "";
 		private static readonly string FILE_PATH = @"C:\Distrib\AdminInstall1C.zip";
 
-		private static readonly string OLD_PLATFORM = "8.3.7.1970";
-		private static readonly string NEW_PLATFORM = "8.3.9.1850";
+		private static readonly string OLD_PLATFORM = "8.3.7.1970"; //Как пример
+		private static readonly string NEW_PLATFORM = "8.3.9.1850"; //Как пример
 
 		string WindowsStartFolderPath => Path.Combine(Environment.GetFolderPath(System.Environment.SpecialFolder.CommonApplicationData), @"Application Data\1C\1CEStart");
-
-		//string WindowsStartFolderPath => @"C:\ProgramData\Application Data\1C\1CEStart";
 
 		string NewPlatformSetupFilePath => Path.Combine(NEW_PLATFORM_LOCAL_PATH, NEW_PLATFORM, "setup.exe");
 
@@ -48,11 +46,7 @@ namespace MagicUpdater.Operations
 
 		protected override void Execution(object sender = null, DoWorkEventArgs e = null)
 		{
-			//var res = FtpWorks.DownloadFilesFromFtpFolder(FTP_SERVER, LOGIN, PASSWORD, NEW_PLATFORM_FTP_FOLDER, NEW_PLATFORM_LOCAL_PATH);
-			//if(!res.IsComplete)
-			//{
-			//	throw new Exception(res.Message);
-			//}
+
 
 			using (var md5 = MD5.Create())
 			{
@@ -76,16 +70,10 @@ namespace MagicUpdater.Operations
 				throw new Exception($"Папка пустая {NEW_PLATFORM_LOCAL_PATH}");
 			}
 
-			//AddErrorMessage("1");
-
 			File.Delete(Path.Combine(WindowsStartFolderPath, START_FILE_NAME));
 			File.Copy(Path.Combine(NEW_PLATFORM_LOCAL_PATH, START_FILE_NAME), Path.Combine(WindowsStartFolderPath, START_FILE_NAME), true);
 
-			//AddErrorMessage("2");
-			//AddErrorMessage(NewPlatformSetupFilePath);
 			Process process = Process.Start($"{NewPlatformSetupFilePath}", "/S");
-
-			//AddErrorMessage("3");
 
 			if (!process.HasExited)
 				process.WaitForExit(60000 * 15);
@@ -93,16 +81,10 @@ namespace MagicUpdater.Operations
 			if (!process.HasExited)
 				throw new Exception("Процесс установки платформы не завершился после 15 минут ожидания. Обновление платформы не выполнено.");
 
-			if (new StopServer1C(this.Id).ActRun())
-			{
-				//throw new Exception("Ошибка остановки сервера 1С");
-			}
-
 			Thread.Sleep(30000);
 
 			if (new KillProcess1C(this.Id).ActRun())
 			{
-				//throw new Exception("Ошибка завершения процессов 1С");
 			}
 
 			RegistryKey myKey = Registry.LocalMachine.OpenSubKey("SYSTEM\\ControlSet001\\services\\1C:Enterprise 8.3 Server Agent", true);
@@ -114,13 +96,7 @@ namespace MagicUpdater.Operations
 			}
 			myKey.Close();
 
-			//AddErrorMessage("4");
 			File.Copy(Path.Combine(NEW_PLATFORM_LOCAL_PATH, BACKBAS_DLL), Path.Combine(LOCAL_BIN_FOLDER_PATH, BACKBAS_DLL), true);
-
-			if (new StartServer1C(this.Id).ActRun())
-			{
-				//throw new Exception("Ошибка запуска сервера 1С");
-			}
 
 			var computersList = NetWork.GetNetworkComputerNames();
 			foreach (var computer in computersList)

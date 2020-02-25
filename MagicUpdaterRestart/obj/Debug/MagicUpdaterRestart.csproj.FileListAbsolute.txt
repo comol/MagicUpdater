@@ -39,3 +39,12 @@ D:\GitProjects\MagicUpdater_ms\MagicUpdater\bin\Debug\restart\MagicUpdaterRestar
 D:\GitProjects\MagicUpdater_ms\MagicUpdaterRestart\obj\Debug\MagicUpdaterRestart.csprojResolveAssemblyReference.cache
 D:\GitProjects\MagicUpdater_ms\MagicUpdaterRestart\obj\Debug\MagicUpdaterRestart.exe
 D:\GitProjects\MagicUpdater_ms\MagicUpdaterRestart\obj\Debug\MagicUpdaterRestart.pdb
+C:\Users\Admin\Source\Repos\MagicUpdater.Public\MagicUpdater\bin\Debug\restart\NLog.config
+C:\Users\Admin\Source\Repos\MagicUpdater.Public\MagicUpdater\bin\Debug\restart\MagicUpdaterRestart.exe.config
+C:\Users\Admin\Source\Repos\MagicUpdater.Public\MagicUpdater\bin\Debug\restart\MagicUpdaterRestart.exe
+C:\Users\Admin\Source\Repos\MagicUpdater.Public\MagicUpdater\bin\Debug\restart\MagicUpdaterRestart.pdb
+C:\Users\Admin\Source\Repos\MagicUpdater.Public\MagicUpdaterRestart\obj\Debug\MagicUpdaterRestart.csprojAssemblyReference.cache
+C:\Users\Admin\Source\Repos\MagicUpdater.Public\MagicUpdaterRestart\obj\Debug\MagicUpdaterRestart.csproj.CoreCompileInputs.cache
+C:\Users\Admin\Source\Repos\MagicUpdater.Public\MagicUpdaterRestart\obj\Debug\MagicUpdaterRestart.csproj.CopyComplete
+C:\Users\Admin\Source\Repos\MagicUpdater.Public\MagicUpdaterRestart\obj\Debug\MagicUpdaterRestart.exe
+C:\Users\Admin\Source\Repos\MagicUpdater.Public\MagicUpdaterRestart\obj\Debug\MagicUpdaterRestart.pdb

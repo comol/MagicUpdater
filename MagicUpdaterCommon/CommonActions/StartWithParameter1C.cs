@@ -14,8 +14,6 @@ namespace MagicUpdaterCommon.CommonActions
 
 		private string parameters = string.Empty;
 
-		//public StartWithParameter1C(int? _operationId) : base(_operationId) { }
-
 		public StartWithParameter1C(int? _operationId, string _parameters) : base(_operationId)
 		{
 			parameters = _parameters;

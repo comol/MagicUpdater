@@ -77,3 +77,15 @@ D:\GitProjects\MagicUpdater_ms\MagicUpdaterSettings\obj\Debug\MagicUpdaterInstal
 D:\GitProjects\MagicUpdater_ms\MagicUpdaterSettings\obj\Debug\MagicUpdaterSettings.csproj.GenerateResource.Cache
 D:\GitProjects\MagicUpdater_ms\MagicUpdaterSettings\obj\Debug\MagicUpdaterSettings.exe
 D:\GitProjects\MagicUpdater_ms\MagicUpdaterSettings\obj\Debug\MagicUpdaterSettings.pdb
+C:\Users\Admin\Source\Repos\MagicUpdater.Public\MagicUpdater\bin\Debug\NLog.config
+C:\Users\Admin\Source\Repos\MagicUpdater.Public\MagicUpdater\bin\Debug\MagicUpdaterSettings.exe.config
+C:\Users\Admin\Source\Repos\MagicUpdater.Public\MagicUpdater\bin\Debug\MagicUpdaterSettings.exe
+C:\Users\Admin\Source\Repos\MagicUpdater.Public\MagicUpdater\bin\Debug\MagicUpdaterSettings.pdb
+C:\Users\Admin\Source\Repos\MagicUpdater.Public\MagicUpdaterSettings\obj\Debug\MagicUpdaterSettings.csprojAssemblyReference.cache
+C:\Users\Admin\Source\Repos\MagicUpdater.Public\MagicUpdaterSettings\obj\Debug\MagicUpdaterSettings.Properties.Resources.resources
+C:\Users\Admin\Source\Repos\MagicUpdater.Public\MagicUpdaterSettings\obj\Debug\MagicUpdaterInstaller.SettingsForm.resources
+C:\Users\Admin\Source\Repos\MagicUpdater.Public\MagicUpdaterSettings\obj\Debug\MagicUpdaterSettings.csproj.GenerateResource.cache
+C:\Users\Admin\Source\Repos\MagicUpdater.Public\MagicUpdaterSettings\obj\Debug\MagicUpdaterSettings.csproj.CoreCompileInputs.cache
+C:\Users\Admin\Source\Repos\MagicUpdater.Public\MagicUpdaterSettings\obj\Debug\MagicUpdaterSettings.csproj.CopyComplete
+C:\Users\Admin\Source\Repos\MagicUpdater.Public\MagicUpdaterSettings\obj\Debug\MagicUpdaterSettings.exe
+C:\Users\Admin\Source\Repos\MagicUpdater.Public\MagicUpdaterSettings\obj\Debug\MagicUpdaterSettings.pdb

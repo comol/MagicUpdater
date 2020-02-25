@@ -44,7 +44,6 @@ namespace MagicUpdaterCommon.SettingsTools
 			public const string PIPES_LOGGER_NAME = "MagicUpdaterPipes";
 			public const string OPERATION_PLUGIN_DIRECTORY_NAME = "OperationPlugin";
 			public const string MU_RESTART_FOLDER_NAME = "restart";
-			//public const string MU_SHEDULER_USER_LOGIN_GUID = "D19A247DADD04DF3A9077B6DC9C9110C";
 			public const string MU_SHEDULER_USER_NAME = "Sheduler";
 
 			public static string PathToSettingsApplication => GetPathToSettingsApplication();
@@ -217,10 +216,7 @@ namespace MagicUpdaterCommon.SettingsTools
 			}
 
 			//Определение пути по службе 1С работает, но закоменчено, чтобы не было путаницы
-			//if (!Get1CPathByService())
-			//{
 			Load1CPathByVersion(ver);
-			//}
 
 			if (string.IsNullOrEmpty(ExePath1C))
 			{
@@ -482,9 +478,6 @@ namespace MagicUpdaterCommon.SettingsTools
 		}
 
 		public static int StartOperationId { get; set; } = 0;
-
-		//public static string JsonSettingsFileFullPath => Path.Combine(Path.GetDirectoryName(GetPathOfMagicUpdaterProcess()), Settings.Default.SettingsFileName);
-
 		public static string JsonSettingsFileFullPath => GetJsonSettingsFileFullPath();
 		public static List<CompInfo> ComputersList { get; private set; } = new List<CompInfo>();
 		public static SqlMainSettings MainSqlSettings { get; private set; }

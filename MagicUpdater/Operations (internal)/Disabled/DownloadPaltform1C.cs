@@ -11,11 +11,11 @@ namespace MagicUpdater.Operations
 	{
 		private static readonly string WGET = @"wget";
 		private static readonly string WGET_EXE = @"wget.exe";
-		private static readonly string DISTRIB_PATH = @"C:\Distrib";
-		private static readonly string LOGIN = "cis_obmen";
-		private static readonly string PASSWORD = "cisobmen836";
-		private static readonly string FTP_PATH = @"ftp://mskftp.sela.ru/AdminInstallZip1C/";
-		private static readonly string FTP_PATH_PART = @"mskftp.sela.ru/AdminInstallZip1C/AdminInstall1C.zip";
+		private static readonly string DISTRIB_PATH = @"C:\Distrib"; //Default
+		private static readonly string LOGIN = "";
+		private static readonly string PASSWORD = "";
+		private static readonly string FTP_PATH = "";
+		private static readonly string FTP_PATH_PART = "";
 		private static readonly string ZIP_FILE_NAME = "AdminInstall1C.zip";
 
 		public DownloadPaltform1C(int? operationId) : base(operationId)

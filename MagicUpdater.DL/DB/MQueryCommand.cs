@@ -188,7 +188,6 @@ namespace MagicUpdater.DL.DB
 								editTask.NextStartTime = task.NextStartTime;
 								editTask.RepeatValue = task.RepeatValue;
 								editTask.FirstStepId = null;
-								//editTask.ShedulerTasksComputersLists = task.ShedulerTasksComputersLists;
 								editTask.StartTime = task.StartTime;
 								editTask.Status = task.Status;
 								editTask.Description = task.Description;
@@ -217,9 +216,6 @@ namespace MagicUpdater.DL.DB
 									computersToAdd.Add(item);
 								}
 							}
-
-							//var computersToRemove = computersListSql.Where(w => !task.ShedulerTasksComputersLists.Select(s => s.ComputerId).Contains(w.ComputerId));
-							//var computersToAdd = task.ShedulerTasksComputersLists.Where(w => !computersListSql.Select(s => s.ComputerId).Contains(w.ComputerId));
 
 							context.ShedulerTasksComputersLists.RemoveRange(computersToRemove);
 							context.ShedulerTasksComputersLists.AddRange(computersToAdd);
@@ -318,17 +314,6 @@ namespace MagicUpdater.DL.DB
 							return new TrySQLCommand(false, ex.ToString());
 						}
 					}
-
-
-
-					//var stepsGridList = rgvSteps.DataSource.OfType<ViewShedulerStepModel>().ToList();
-					//var stepsForDelete = stepsSql.Where(w => !stepsGridList.Select(s => s.Id).Contains(w.Id));
-
-					//var tryDeleteStepsRes = MQueryCommand.TryDeleteSteps(stepsForDelete.Select(s => s.Id));
-					//if (!tryDeleteStepsRes.IsComplete)
-					//{
-					//	MessageBox.Show(tryDeleteStepsRes.Message);
-					//}
 				}
 			}
 			catch (Exception ex)
@@ -393,16 +378,6 @@ namespace MagicUpdater.DL.DB
 						}
 					}
 
-
-
-					//var stepsGridList = rgvSteps.DataSource.OfType<ViewShedulerStepModel>().ToList();
-					//var stepsForDelete = stepsSql.Where(w => !stepsGridList.Select(s => s.Id).Contains(w.Id));
-
-					//var tryDeleteStepsRes = MQueryCommand.TryDeleteSteps(stepsForDelete.Select(s => s.Id));
-					//if (!tryDeleteStepsRes.IsComplete)
-					//{
-					//	MessageBox.Show(tryDeleteStepsRes.Message);
-					//}
 				}
 			}
 			catch (Exception ex)
@@ -417,7 +392,6 @@ namespace MagicUpdater.DL.DB
 			try
 			{
 				string computersList = string.Join(",", shedulerTask.ShedulerTasksComputersLists.Select(s => s.ComputerId));
-				//string computersList = string.Join(",", computersListId);
 
 				if (db == null)
 				{
@@ -761,7 +735,6 @@ namespace MagicUpdater.DL.DB
 			{
 				using (EntityDb context = new EntityDb())
 				{
-					//Заплатка для проставления HwId
 					if (context.Users.Any(a => a.UserLogin == userLogin && string.IsNullOrEmpty(a.HwId)))
 					{
 						User exUser = context.Users.First(f => f.UserLogin == userLogin);
@@ -929,7 +902,6 @@ namespace MagicUpdater.DL.DB
 			{
 				try
 				{
-					//OperationType operationType = context.OperationTypes.FirstOrDefault(w => w.Id == operTypeId);
 					OperationTypeAttribute operationTypeAttribute = context.OperationTypeAttributes.FirstOrDefault(w => w.OperationTypeId == operTypeId && w.UserId == userId);
 					if (operationTypeAttribute == null)
 					{
@@ -941,7 +913,6 @@ namespace MagicUpdater.DL.DB
 						};
 
 						context.OperationTypeAttributes.Add(operationTypeAttribute);
-						//return new TrySQLCommand(false, "Невозможно атрибут для операции в таблице \"OperationTypeAttributes\"");
 					}
 					else
 					{
@@ -1294,7 +1265,6 @@ namespace MagicUpdater.DL.DB
 				{
 					ShedulerTask sqlTask = context.ShedulerTasks.First(x => x.Id == taskId);
 
-					//sqlTask.ShedulerTasksComputersLists.Clear();//311311
 					sqlTask.FirstStepId = firstStepId;
 					context.SaveChanges();
 
@@ -1492,20 +1462,6 @@ namespace MagicUpdater.DL.DB
 				}
 			}
 		}
-
-
-		/*
-        public List<ShedulerStep> GetAllStepsParentChild(int taskId)
-        {
-            using (EntityDb context = new EntityDb())
-            {
-                context.ViewShedulerSteps.Join(x)
-                var steps = context.ViewShedulerSteps.Where(x => x.taskId == taskId);
-                //return steps.ToDictionary(mc => mc.ParentId,
-                //                 mc => mc.ChildId);
-            }
-        }
-        */
 
 		public static List<ShedulerStep> GetAllSteps(int taskId)
 		{
@@ -2081,11 +2037,6 @@ namespace MagicUpdater.DL.DB
 				try
 				{
 					OperationType operationType = context.OperationTypes.FirstOrDefault(w => w.Id == operTypeId);
-					if (operationType == null)
-					{
-						//return new TrySQLCommand(false, "Невозможно найти тип операции в таблице \"OperationTypes\"");
-					}
-
 					return NewtonJson.GetModelFromJson(operationType.SavedAttributes);
 				}
 				catch (Exception ex)
@@ -2101,7 +2052,6 @@ namespace MagicUpdater.DL.DB
 			{
 				try
 				{
-					//OperationType operationType = context.OperationTypes.FirstOrDefault(w => w.Id == operTypeId);;
 					OperationTypeAttribute operationTypeAttribute = context.OperationTypeAttributes.FirstOrDefault(w => w.OperationTypeId == operTypeId && w.UserId == userId);
 					string attributes = null;
 					if (operationTypeAttribute != null && !string.IsNullOrEmpty(operationTypeAttribute.Attributes))
@@ -2517,22 +2467,7 @@ namespace MagicUpdater.DL.DB
 											  LicId = Computers.LicId,
 											  LicStatus = Computers.LicStatus
 										  });
-
-#if DEMO
-				return await queryComputersGrid.Take(10).ToArrayAsync(); 
-#endif
-#if LIC
-				//int licAgentsCount;
-				//if (!int.TryParse(_commonGlobalSettings.LicAgentsCount, out licAgentsCount))
-				//{
-				//	licAgentsCount = 0;
-				//}
-				//return await queryComputersGrid.Take(licAgentsCount).ToArrayAsync();
 				return await queryComputersGrid.ToArrayAsync();
-#endif
-#if !DEMO && !LIC
-				return await queryComputersGrid.ToArrayAsync();
-#endif
 			}
 		}
 

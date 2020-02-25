@@ -83,9 +83,7 @@ namespace MagicUpdaterCommon.SettingsTools
 
 		public string GetConnectionstring1C()
 		{
-			//return "/F \"D:\\TestBase1C\\\"";
-			//return $"/S\"{Path.Combine("mskrtl2.sela.ru", "1cretailempty")}\" /N\"Программист\" /P\"Sela700\"";
-			// return $"/S\"{Path.Combine(server1C, base1C)}\" /N\"Программист\" /P\"Sela700\"";
+
 			return "";
 		}
 	}

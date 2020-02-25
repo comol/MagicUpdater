@@ -12,12 +12,6 @@ namespace MagicUpdater.Operations
 
 		protected override bool BeforeExecution()
 		{
-			//TODO: Сделать связь с приложением
-			//По нажатию «ок» продолжаем месить! И не забыть пульнуть другим компам через сокеты о предстоящем замесе.
-			//if (MessageForm.ShowDialogOk("Необходимо выполнить очистку кэша", "Предупреждение", "Выполнить") == DialogResult.OK)
-			//	return base.BeforeExecution();
-			//else
-			//	return false;
 			return base.BeforeExecution();
 		}
 
@@ -29,8 +23,7 @@ namespace MagicUpdater.Operations
 
 		protected override void AfterExecution()
 		{
-			//TODO: Сделать связь с приложением
-			//MessageForm.ShowDialogOk("Можно продолжать работу", "Уведомление");
+
 		}
 	}
 }

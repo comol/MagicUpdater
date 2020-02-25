@@ -14,10 +14,10 @@ namespace MagicUpdater.Operations
 	public class ExecProcessing1C : Operation
 	{
 		private static readonly string FILE_NAME = "NodesRegistrationRulesUpdate.epf";
-		private static readonly string FTP_FILE_PATH = @"ftp://mskftp.sela.ru/MagicUpdater";
-		private static readonly string FTP_LOGIN = "cis_obmen";
-		private static readonly string FTP_PASSWORD = "cisobmen836";
-		private static readonly string LOCAL_FILE_PATH = @"C:\SystemUtils\MagicUpdaterNewVer";
+		private static readonly string FTP_FILE_PATH = "";
+		private static readonly string FTP_LOGIN = "";
+		private static readonly string FTP_PASSWORD = "";
+		private static readonly string LOCAL_FILE_PATH = @"C:\SystemUtils\MagicUpdaterNewVer"; //Default
 
 		public ExecProcessing1C(int? operationId) : base(operationId)
 		{

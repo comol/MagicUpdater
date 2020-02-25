@@ -13,9 +13,6 @@ namespace MagicUpdater.Actions
 			if (!MainSettings.MainSqlSettings.Is1CServer || MainSettings.MainSqlSettings.IsMainCashbox)
 			{
 				NetWork.OpenViki();
-				//TODO: Сделать связь с приложением
-				//if (ShowMessage)
-				//	MessageForm.ShowDialogOk("Можно продолжать работу", "Уведомление");
 			}
 		}
 	}

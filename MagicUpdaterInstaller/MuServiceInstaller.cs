@@ -20,7 +20,8 @@ namespace MagicUpdaterInstaller
 	public class MuServiceInstaller
 	{
 		#region Constants
-		//const string SERVICE_PATH = @"C:\SystemUtils\MagicUpdater\MagicUpdater.exe";
+		// Каталоги сервиса по умолчанию
+		const string SERVICE_PATH = @"C:\SystemUtils\MagicUpdater\MagicUpdater.exe";
 		const string SERVICE_DISPLAY_NAME = "MagicUpdater";
 		const string SERVICE_EXE_NAME = "MagicUpdater.exe";
 		const string SERVICE_NAME = "MagicUpdater";
@@ -86,13 +87,11 @@ namespace MagicUpdaterInstaller
 				service.WaitForStatus(ServiceControllerStatus.Stopped, timeout);
 				AddMessage($"Старая служба {SERVICE_NAME} - остановлена");
 				Program.MainForm?.LogInstallServiceString($"Старая служба {SERVICE_NAME} - остановлена");
-				//NLogger.LogDebugToHdd($"Старая служба {SERVICE_NAME} - остановлена");
 				Program.MainForm?.LogInstallServiceString("Старая служба остановлена");
 			}
 			catch (Exception ex)
 			{
 				AddMessage(ex.Message);
-				//NLogger.LogDebugToHdd(ex.Message);
 				Program.MainForm?.LogInstallServiceString(ex);
 			}
 
@@ -108,17 +107,14 @@ namespace MagicUpdaterInstaller
 					ServiceInstallerObj.Uninstall(null);
 				}
 
-				//UnInstallService(SERVICE_NAME);
 				Thread.Sleep(3000);
 
-				//NLogger.LogDebugToHdd($"Старая служба {SERVICE_NAME} - удалена");
 				AddMessage($"Старая служба {SERVICE_NAME} - удалена");
 				Program.MainForm?.LogInstallServiceString($"Старая служба {SERVICE_NAME} - удалена");
 			}
 			catch (Exception ex)
 			{
 				AddMessage(ex.Message);
-				//NLogger.LogDebugToHdd(ex.Message);
 				Program.MainForm?.LogInstallServiceString(ex);
 			}
 
@@ -130,7 +126,6 @@ namespace MagicUpdaterInstaller
 				proc.Kill();
 			}
 			Thread.Sleep(3000);
-			//NLogger.LogDebugToHdd($"Все процессы {SERVICE_NAME} - убиты");
 			AddMessage($"Все процессы {SERVICE_NAME} - убиты");
 			Program.MainForm?.LogInstallServiceString("Все процессы MagicUpdater завершены");
 
@@ -143,7 +138,6 @@ namespace MagicUpdaterInstaller
 				if (key == null)
 				{
 					Program.MainForm?.LogInstallServiceString($"CurrentUser: Отсутствует путь в реестре {keyName}");
-					//NLogger.LogErrorToHdd($"CurrentUser: Отсутствует путь в реестре {keyName}");
 					AddMessage($"CurrentUser: Отсутствует путь в реестре {keyName}");
 				}
 				else
@@ -152,13 +146,11 @@ namespace MagicUpdaterInstaller
 					{
 						key.DeleteValue(SERVICE_NAME);
 						Program.MainForm?.LogInstallServiceString($"CurrentUser: Значение реестра - {SERVICE_NAME} удалено");
-						//NLogger.LogDebugToHdd($"CurrentUser: Значение реестра - {SERVICE_NAME} удалено");
 						AddMessage($"CurrentUser: Значение реестра - {SERVICE_NAME} удалено");
 					}
 					catch (Exception ex)
 					{
 						NLogger.LogDebugToHdd($"CurrentUser: {ex.Message}");
-						//Program.MainForm?.LogInstallServiceString($"CurrentUser: {ex.Message}");
 						AddMessage($"CurrentUser: {ex.Message}");
 					}
 
@@ -178,13 +170,11 @@ namespace MagicUpdaterInstaller
 					{
 						key.DeleteValue(SERVICE_NAME);
 						Program.MainForm?.LogInstallServiceString($"LocalMachine: Значение реестра - {SERVICE_NAME} удалено");
-						//NLogger.LogDebugToHdd($"LocalMachine: Значение реестра - {SERVICE_NAME} удалено");
 						AddMessage($"LocalMachine: Значение реестра - {SERVICE_NAME} удалено");
 					}
 					catch (Exception ex)
 					{
 						Program.MainForm?.LogInstallServiceString($"LocalMachine: {ex.Message}");
-						//NLogger.LogDebugToHdd($"LocalMachine: {ex.Message}");
 						AddMessage($"LocalMachine: {ex.Message}");
 					}
 				}
@@ -210,13 +200,11 @@ namespace MagicUpdaterInstaller
 					dir.Delete(true);
 				}
 				Program.MainForm?.LogInstallServiceString($"Путь {_magicUpdaterPath} - очищен");
-				//NLogger.LogDebugToHdd($"Путь {_magic_updater_path} - очищен");
 				AddMessage($"Путь {_magicUpdaterPath} - очищен");
 			}
 			catch (Exception ex)
 			{
 				Program.MainForm?.LogInstallServiceString(ex.Message);
-				//NLogger.LogErrorToHdd(ex.ToString());
 				AddMessage(ex.Message);
 			}
 
@@ -233,13 +221,11 @@ namespace MagicUpdaterInstaller
 					dir.Delete(true);
 				}
 				Program.MainForm?.LogInstallServiceString($"Путь {MAGIC_UPDATER_NEW_VER_PATH} - очищен");
-				//NLogger.LogDebugToHdd($"Путь {MAGIC_UPDATER_NEW_VER_PATH} - очищен");
 				AddMessage($"Путь {MAGIC_UPDATER_NEW_VER_PATH} - очищен");
 			}
 			catch (Exception ex)
 			{
 				Program.MainForm?.LogInstallServiceString(ex.Message);
-				//NLogger.LogErrorToHdd(ex.ToString());
 				AddMessage(ex.Message);
 			}
 			#endregion Удаляем все из папок MagicUpdater и MagicUpdaterNewVer
@@ -304,7 +290,6 @@ namespace MagicUpdaterInstaller
 			else
 			{
 				Program.MainForm?.LogInstallServiceString($"Закачка нового {MainSettings.Constants.MAGIC_UPDATER_RESTART} - завешена");
-				//NLogger.LogDebugToHdd($"Закачка нового {SERVICE_NAME} - завешена");
 				AddMessage($"Закачка нового {MainSettings.Constants.MAGIC_UPDATER_RESTART} - завешена");
 			}
 
@@ -319,15 +304,11 @@ namespace MagicUpdaterInstaller
 
 			if (!resAgent.IsComplete)
 			{
-				//Program.MainForm?.LogInstallServiceString(res.Message);
-				//AddMessage(res.Message);
-				//return;
 				throw new Exception(resAgent.Message);
 			}
 			else
 			{
 				Program.MainForm?.LogInstallServiceString($"Закачка нового {SERVICE_NAME} - завешена");
-				//NLogger.LogDebugToHdd($"Закачка нового {SERVICE_NAME} - завешена");
 				AddMessage($"Закачка нового {SERVICE_NAME} - завешена");
 			}
 			#endregion Копируем новый MagicUpdater целиком!
@@ -355,8 +336,6 @@ namespace MagicUpdaterInstaller
 			}
 			catch (Exception ex)
 			{
-				//Program.MainForm?.LogInstallServiceString(ex);
-				//AddMessage(ex.Message);
 				throw;
 			}
 		}
@@ -377,7 +356,6 @@ namespace MagicUpdaterInstaller
 				return false;
 			}
 
-			//Console.Read();
 		}
 
 		public void RestartService()
@@ -418,12 +396,6 @@ namespace MagicUpdaterInstaller
 				InstallService(_servicePath, SERVICE_NAME, SERVICE_DISPLAY_NAME);
 				NLogger.LogDebugToHdd($"Новая служба {SERVICE_NAME} - установлена и запущена");
 				AddMessage($"Новая служба {SERVICE_NAME} - установлена и запущена");
-
-				//serviceInstaller.UnInstallService(SERVICE_NAME);
-
-				//SendMessagesToOperation(true);
-				//DeleteSchedule(SERVICE_NAME);
-				//для отложенного запуска
 
 				Thread.Sleep(3000);
 				//Меняем режим запуска на отложенный
@@ -563,7 +535,6 @@ namespace MagicUpdaterInstaller
 			#region Constants declaration.
 			int SC_MANAGER_CREATE_SERVICE = 0x0002;
 			int SERVICE_WIN32_OWN_PROCESS = 0x00000010;
-			//int SERVICE_DEMAND_START = 0x00000003;
 			int SERVICE_ERROR_NORMAL = 0x00000001;
 			int STANDARD_RIGHTS_REQUIRED = 0xF0000;
 			int SERVICE_QUERY_CONFIG = 0x0001;
@@ -606,16 +577,13 @@ namespace MagicUpdaterInstaller
 						// note: error may arise if the service is already running or some other problem.
 						if (i == 0)
 						{
-							//Console.WriteLine("Couldnt start service");
 							return false;
 						}
-						//Console.WriteLine("Success");
 						CloseServiceHandle(sc_handle);
 						return true;
 					}
 				}
 				else
-					//Console.WriteLine("SCM not opened successfully");
 					return false;
 			}
 			catch (Exception e)
@@ -635,7 +603,6 @@ namespace MagicUpdaterInstaller
 			{
 				int DELETE = 0x10000;
 				IntPtr svc_hndl = OpenService(sc_hndl, svcName, DELETE);
-				//Console.WriteLine(svc_hndl.ToInt32());
 				if (svc_hndl.ToInt32() != 0)
 				{
 					int i = DeleteService(svc_hndl);

@@ -20,7 +20,6 @@ namespace MagicUpdaterCommon.Communication
 		public void AsyncConnect(string pipeName)
 		{
 			_pipeName = pipeName;
-			//StartService();
 			AsyncConnectBase();
 			NLogger.LogDebugToHdd($"Client: Async client created. Pipe name: \"{_pipeName}\"", MainSettings.Constants.PIPES_LOGGER_NAME);
 		}
@@ -96,11 +95,6 @@ namespace MagicUpdaterCommon.Communication
 
 		public void SendAsyncMessage(CommunicationObject communicationObject)
 		{
-			//var res = StartService();
-			//if (!res.IsComplete)
-			//{
-			//	NLogger.LogErrorToHdd(res.Message, MainSettings.Constants.MAGIC_UPDATER_SETTINGS);
-			//}
 			AsyncConnectBase();
 			_asyncClient.SendMessage(communicationObject);
 		}
@@ -113,11 +107,6 @@ namespace MagicUpdaterCommon.Communication
 		/// <returns></returns>
 		public TrySendMessageAndWaitForResponse SendAsyncMessageAndWaitForResponse(CommunicationObject communicationObject, int timeout = 60000)
 		{
-			//var res = StartService();
-			//if (!res.IsComplete)
-			//{
-			//	NLogger.LogErrorToHdd(res.Message, MainSettings.Constants.MAGIC_UPDATER_SETTINGS);
-			//}
 
 			AsyncConnectBase();
 			communicationObject.Tag = true;

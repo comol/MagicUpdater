@@ -275,8 +275,6 @@ namespace MagicUpdaterMonitor.Helpers
 			{				
 				if (File.Exists(updateExePath))
 				{
-					//rename existed file
-					//File.Delete(curExeName + "_");
 					string currentPath = Path.GetDirectoryName(currentExePath);
 					string updatingPath = Path.GetDirectoryName(updateExePath);
 
@@ -360,7 +358,6 @@ namespace MagicUpdaterMonitor.Helpers
 						Process process = null;
 						if (!isProcessCreated)
 						{
-							//process = Process.Start(currentExePath, $"force");
 							process = Process.Start(currentExePath);
 						}
 						Thread.Sleep(2000);

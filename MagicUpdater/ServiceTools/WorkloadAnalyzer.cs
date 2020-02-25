@@ -43,7 +43,6 @@ namespace MagicUpdater.ServiceTools
 	public delegate void WorkloadCpuSaveDelegate(Dictionary<DateTime, double> workloadInfoCpuList);
 	public delegate void WorkloadRamSaveDelegate(Dictionary<DateTime, double> workloadInfoRamList);
 	public delegate void WorkloadDiskSaveDelegate(Dictionary<DateTime, double> workloadInfoDiskList);
-	//public delegate void WorkloadAllSaveDelegate(Dictionary<DateTime, double> workloadInfoCpuList, Dictionary<DateTime, double> workloadInfoRamList, Dictionary<DateTime, double> workloadInfoDiskList);
 	public delegate void WorkloadAllSaveDelegate(WorkloadInfo workloadInfo);
 
 	public class WorkloadAnalyzer
@@ -81,33 +80,6 @@ namespace MagicUpdater.ServiceTools
 
 		public event WorkloadAllSaveDelegate OnWorkloadAllSave;
 
-		/*
-		 PerformanceCounter("Processor", "% Processor Time", "_Total");
-		 PerformanceCounter("Processor", "% Privileged Time", "_Total");
-		 PerformanceCounter("Processor", "% Interrupt Time", "_Total");
-		 PerformanceCounter("Processor", "% DPC Time", "_Total");
-		 PerformanceCounter("Memory", "Available MBytes", null);
-		 PerformanceCounter("Memory", "Committed Bytes", null);
-		 PerformanceCounter("Memory", "Commit Limit", null);
-		 PerformanceCounter("Memory", "% Committed Bytes In Use", null);
-		 PerformanceCounter("Memory", "Pool Paged Bytes", null);
-		 PerformanceCounter("Memory", "Pool Nonpaged Bytes", null);
-		 PerformanceCounter("Memory", "Cache Bytes", null);
-		 PerformanceCounter("Paging File", "% Usage", "_Total");
-		 PerformanceCounter("PhysicalDisk", "Avg. Disk Queue Length", "_Total");
-		 PerformanceCounter("PhysicalDisk", "Disk Read Bytes/sec", "_Total");
-		 PerformanceCounter("PhysicalDisk", "Disk Write Bytes/sec", "_Total");
-		 PerformanceCounter("PhysicalDisk", "Avg. Disk sec/Read", "_Total");
-		 PerformanceCounter("PhysicalDisk", "Avg. Disk sec/Write", "_Total");
-		 PerformanceCounter("PhysicalDisk", "% Disk Time", "_Total");
-		 PerformanceCounter("PhysicalDisk", "Current Disk Queue Length", "_Total");
-		 PerformanceCounter("Process", "Handle Count", "_Total");
-		 PerformanceCounter("Process", "Thread Count", "_Total");
-		 PerformanceCounter("System", "Context Switches/sec", null);
-		 PerformanceCounter("System", "System Calls/sec", null);
-		 PerformanceCounter("System", "Processor Queue Length", null);
-		*/
-
 		public WorkloadAnalyzer(double cpuDelta = 30, double ramDelta = 500, double diskDelta = 4, int savingToDbIntervalMs = 300000)
 		{
 			_cpuDelta = cpuDelta;
@@ -130,7 +102,6 @@ namespace MagicUpdater.ServiceTools
 			_stopTimerSaveToDbRunning = false;
 			_cpuCounter = new PerformanceCounter("Processor", "% Processor Time", "_Total");
 			_ramCounter = new PerformanceCounter("Memory", "Available MBytes");
-			//_diskCounter = new PerformanceCounter("PhysicalDisk", "% Disk Time", "_Total");
 			_diskCounter = new PerformanceCounter("PhysicalDisk", "Current Disk Queue Length", "_Total");
 			_timerScan = new System.Threading.Timer(TimerAllCallback, null, SCAN_INTERVAL, System.Threading.Timeout.Infinite);
 			_timerSaveToDb = new System.Threading.Timer(TimerSaveToDbCallback, null, _savingToDbIntervalMs, System.Threading.Timeout.Infinite);

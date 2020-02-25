@@ -46,29 +46,6 @@ namespace MagicUpdaterCommon.SettingsTools
 				Is1CServer = false;
 				IsMainCashbox = false;
 				return new TryLoadSettingsFromSql(false, "Компьтер не зарегистрирован.");
-
-				//if (RegisterComputerId().IsComplete)
-				//{
-				//	return new TryLoadSettingsFromSql(false, "Ошибка регистрации компьютера. Не получен ComputerId");
-				//}
-
-				//ds = SqlWorks.ExecProcExt(MainSettings.JsonSettings.ConnectionString, "GetComputerSettingsViaMac", HardwareInfo.GetMacAddress());
-				//if (ds != null)
-				//{
-				//	ComputerId = ConvertSafe.ToInt32(ds.Tables[0].Rows[0]["ComputerId"]);
-				//	ShopID = ConvertSafe.ToString(ds.Tables[0].Rows[0]["ShopId"]);
-				//	Is1CServer = ConvertSafe.ToBoolean(ds.Tables[0].Rows[0]["Is1CServer"]);
-				//	IsMainCashbox = ConvertSafe.ToBoolean(ds.Tables[0].Rows[0]["IsMainCashbox"]);
-				//	return new TryLoadSettingsFromSql();
-				//}
-				//else
-				//{
-				//	ComputerId = 0;
-				//	ShopID = string.Empty;
-				//	Is1CServer = false;
-				//	IsMainCashbox = false;
-				//	return new TryLoadSettingsFromSql(false, "Компьтер не зарегистрирован.");
-				//}
 			}
 		}
 

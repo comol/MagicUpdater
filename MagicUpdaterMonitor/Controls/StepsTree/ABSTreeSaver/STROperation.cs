@@ -8,9 +8,7 @@ namespace ABSTreeSaver
 {
     public class STROperation
     {
-        /// <summary>
-        /// This function prepares an StreeNode Similar to the treeView
-        /// </summary>
+
         public static STreeNode fnPrepareToWrite(TreeView treeView)
         {
             try
@@ -29,11 +27,7 @@ namespace ABSTreeSaver
             }
         }
         #region Allied functions for writing purpose
-        /// <summary>
-        /// One of the two recursives.
-        /// </summary>
-        /// <param name="tr"></param>
-        /// <returns></returns>
+
         private static List<STreeNode> fnPrepareChildNode(TreeNode tr)
         {
             List<STreeNode> retSTreeNode = new List<STreeNode>();
@@ -45,11 +39,7 @@ namespace ABSTreeSaver
             }
             return retSTreeNode;
         }
-        /// <summary>
-        /// One of the two recursives
-        /// </summary>
-        /// <param name="tr"></param>
-        /// <returns></returns>
+
         private static STreeNode fnPrepareTreeNode(TreeNode tr)
         {
             STreeNode strRet = new STreeNode();
@@ -66,10 +56,7 @@ namespace ABSTreeSaver
             return strRet;
         }
         #endregion
-        /// <summary>
-        /// This functions returns the treeView for which it has been written
-        /// </summary>
-        /// <returns></returns>
+
         public static TreeNode fnPrepareToRead(STreeNode sTreeNode)
         {
             try

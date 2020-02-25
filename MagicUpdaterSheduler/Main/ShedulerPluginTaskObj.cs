@@ -87,12 +87,7 @@ namespace MagicUpdaterSheduler.Main
 
 					settingsJson = File.ReadAllText(pluginSettingsJsonFileFullPath);
 
-					//operation = (MagicUpdaterCommon.Abstract.Operation)Activator.CreateInstance(pluginOperationType, 0, settingsJson);
 				}
-				//else
-				//{
-				//	operation = (MagicUpdaterCommon.Abstract.Operation)Activator.CreateInstance(pluginOperationType, 0);
-				//}
 
 				if (pluginOperationType.GetConstructors()[0].GetParameters().Length == 2)
 				{

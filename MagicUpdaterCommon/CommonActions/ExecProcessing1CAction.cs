@@ -27,7 +27,6 @@ namespace MagicUpdaterCommon.CommonActions
 			_name = $"{_name.Replace(EXTENSION_1C_PROCESSING, "")}{EXTENSION_1C_PROCESSING}";
 
 			var res = FtpWorks.DownloadFileFromFtp(MainSettings.Constants.PluginOperationDllDirectoryPath, MainSettings.GlobalSettings.TempFilesFtpPath, _name);
-			//var res = FtpWorks.DownloadFileFromFtpOld(localFilePath, ftpFilePath, FTP_LOGIN, FTP_PASSWORD);
 
 			if (!res.IsComplete)
 				throw new Exception(res.Message);

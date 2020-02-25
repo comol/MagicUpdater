@@ -10,9 +10,6 @@ namespace MagicUpdater.Operations
 		protected override void Execution(object sender, DoWorkEventArgs e)
 		{
 
-			//Демонстрация передачи атрибутов из базы
-			//MessageBox.Show("Execution!!!");
-			//MessageBox.Show(Attributes.Timeout.ToString());
 		}
 	}
 

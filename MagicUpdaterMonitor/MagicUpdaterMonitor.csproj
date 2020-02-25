@@ -236,12 +236,6 @@
     <Compile Include="Forms\AboutForm.Designer.cs">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\AgentLicForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\AgentLicForm.Designer.cs">
-      <DependentUpon>AgentLicForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\AgentSettingsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -253,12 +247,6 @@
     </Compile>
     <Compile Include="Forms\ApplicationLoadingForm.Designer.cs">
       <DependentUpon>ApplicationLoadingForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\CheckUpdatesForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\CheckUpdatesForm.Designer.cs">
-      <DependentUpon>CheckUpdatesForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\ConfirmationWithTableForm.cs">
       <SubType>Form</SubType>
@@ -283,12 +271,6 @@
     </Compile>
     <Compile Include="Forms\DialogTimerForm.Designer.cs">
       <DependentUpon>DialogTimerForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\LicForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\LicForm.Designer.cs">
-      <DependentUpon>LicForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\MoveToOperationGroupForm.cs">
       <SubType>Form</SubType>
@@ -380,20 +362,11 @@
       <DependentUpon>Images.resx</DependentUpon>
     </Compile>
     <Compile Include="Settings.cs" />
-    <EmbeddedResource Include="Forms\AgentLicForm.resx">
-      <DependentUpon>AgentLicForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\CheckUpdatesForm.resx">
-      <DependentUpon>CheckUpdatesForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\CreateOrEditOperationGroupForm.resx">
       <DependentUpon>CreateOrEditOperationGroupForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DialogTimerForm.resx">
       <DependentUpon>DialogTimerForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\LicForm.resx">
-      <DependentUpon>LicForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MoveToOperationGroupForm.resx">
       <DependentUpon>MoveToOperationGroupForm.cs</DependentUpon>
@@ -474,6 +447,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ApplicationLoadingForm.resx">
       <DependentUpon>ApplicationLoadingForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ConfirmationWithTableForm.resx">
       <DependentUpon>ConfirmationWithTableForm.cs</DependentUpon>

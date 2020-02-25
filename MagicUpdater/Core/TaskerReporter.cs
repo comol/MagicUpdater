@@ -57,14 +57,6 @@ namespace MagicUpdater.Core
 			{
 				_selfCheckThreadTimer = new System.Threading.Timer(SelfCheckThreadTimerTick, null, System.Threading.Timeout.Infinite, System.Threading.Timeout.Infinite);
 			}
-
-			//taskTimer = new System.Timers.Timer(MainSettings.SqlSettings.OperationsListCheckTimeout);
-			//taskTimer.Elapsed += Timer_Elapsed;
-			//if (EnableSelfCheck)
-			//{
-			//	selfCheckTimer = new System.Timers.Timer(MainSettings.SqlSettings.OperationsListCheckTimeout);
-			//	selfCheckTimer.Elapsed += SelfCheckTimer_Elapsed;
-			//}
 		}
 
 		protected void StartTaskThreadTimer()
@@ -123,35 +115,6 @@ namespace MagicUpdater.Core
 		{
 			try
 			{
-#if LIC
-				//if (!_isLicOk)
-				//{
-				//int licAgentCount;
-				//if (!int.TryParse(MainSettings.GlobalSettings.LicAgentsCount, out licAgentCount))
-				//{
-				//	licAgentCount = 0;
-				//}
-
-				int licAgentRealCount = SqlWorks.GetLicAgentRealCount();
-				int licAgentCountFromGlobalSettings = SqlWorks.GetLicAgentCountFromGlobalSettings();
-				if (licAgentRealCount <= licAgentCountFromGlobalSettings)
-				{
-					_isLicOk = SqlWorks.CheckAgentLic(MuCore.HwId, licAgentCountFromGlobalSettings);
-				}
-				else
-				{
-					_isLicOk = false;
-					SqlWorks.ExecSql($"update LicAgent set LicStatus = -1 where ComputerId = {MainSettings.MainSqlSettings.ComputerId}");
-					if (!_isLicErrorMessgeSended)
-					{
-						NLogger.LogErrorToBaseAndHdd(MainSettings.MainSqlSettings.ComputerId, "Количество зарегистрированных агентов в таблице лицензий превышает количество возможных лицензий");
-					}
-				}
-				//}
-
-				if (_isLicOk)
-				{
-#endif
 					try
 					{
 
@@ -159,9 +122,6 @@ namespace MagicUpdater.Core
 						GetOperations();
 						foreach (Operation op in OperationList)
 						{
-#if DEBUG
-							//MessageBox.Show(string.Format("Будет выполнена операция {0}", op.OperationType.ToString()));
-#endif
 							if (op.IsOnlyMainCashbox)
 								if (!MainSettings.MainSqlSettings.IsMainCashbox)
 								{
@@ -177,9 +137,7 @@ namespace MagicUpdater.Core
 					{
 						NLogger.LogErrorToBaseOrHdd(MainSettings.MainSqlSettings.ComputerId, ex.ToString());
 					}
-#if LIC
-				}
-#endif
+
 			}
 			finally
 			{
@@ -230,8 +188,6 @@ namespace MagicUpdater.Core
 			self.isStarted = true;
 			self.StartTaskThreadTimer();
 			self.StartSelfCheckThreadTimer();
-			//self.taskTimer.Start();
-			//self.selfCheckTimer?.Start();
 		}
 
 		public static void Stop()
@@ -245,8 +201,6 @@ namespace MagicUpdater.Core
 			self.isStarted = false;
 			self.StopTaskThreadTimer();
 			self.StopSelfCheckThreadTimer();
-			//self.taskTimer.Stop();
-			//self.selfCheckTimer?.Stop();
 		}
 
 		private void ComputerResponse()
@@ -322,8 +276,6 @@ namespace MagicUpdater.Core
 					string fileName = operationSqlDto.FileName;
 					string fileMD5 = operationSqlDto.FileMD5;
 
-					//OperationsType ot = (OperationsType)Convert.ToInt32(dr["OperationType"]);
-
 					Type t = null;
 
 					//Если имя файла не пустое - это плагин операция (dll)
@@ -341,15 +293,6 @@ namespace MagicUpdater.Core
 						try
 						{
 							Operation operation;
-
-							//if (!string.IsNullOrEmpty(attrsJson))
-							//{
-							//	operation = (Operation)Activator.CreateInstance(t, id, attrsJson);
-							//}
-							//else
-							//{
-							//	operation = (Operation)Activator.CreateInstance(t, id);
-							//}
 
 							if (t.GetConstructors()[0].GetParameters().Length == 2)
 							{
@@ -403,7 +346,6 @@ namespace MagicUpdater.Core
 				return;
 			self.isStarted = true;
 			self.StartTaskThreadTimer();
-			//self.taskTimer.Start();
 		}
 
 		public static new void Stop()
@@ -416,7 +358,6 @@ namespace MagicUpdater.Core
 
 			self.isStarted = false;
 			self.StopTaskThreadTimer();
-			//self.taskTimer.Stop();
 		}
 
 		public static new void DisposeTasker()

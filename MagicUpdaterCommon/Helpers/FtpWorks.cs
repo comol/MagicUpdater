@@ -564,39 +564,6 @@ namespace MagicUpdaterCommon.Helpers
 		}
 
 
-		//public static TryDownloadFtp DownloadFilesFromFtpFolderOld(string server,
-		//														string login,
-		//														string password,
-		//														string ftpFolder,
-		//														string localFolder)
-		//{
-		//	using (Ftp ftp = new Ftp())
-		//	{
-		//		try
-		//		{
-		//			ftp.Connect(server);
-		//			ftp.Login(login, password);
-		//			try
-		//			{
-		//				Directory.CreateDirectory(localFolder);
-		//				ftp.DownloadFiles(ftpFolder, localFolder,
-		//					new RemoteSearchOptions("*", true));
-		//			}
-		//			finally
-		//			{
-		//				if (ftp.Connected)
-		//					ftp.Close();
-		//			}
-
-		//			return new TryDownloadFtp();
-		//		}
-		//		catch (Exception ex)
-		//		{
-		//			return new TryDownloadFtp(false, ex.Message.ToString());
-		//		}
-		//	}
-		//}
-
 		public static TryDownloadFtp DownloadFileFromFtp(string localDirectory,
 															string server,
 															string login,

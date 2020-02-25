@@ -93,9 +93,9 @@ namespace MagicUpdater.DL.Models
 		[NotMapRefreshingGridView]
 		public int? LicStatus { get; set; }
 
-#if !LIC
+
 		[NotMapRefreshingGridView]
-#endif
+
 		public Bitmap LicStatusBitmap
 		{
 			get

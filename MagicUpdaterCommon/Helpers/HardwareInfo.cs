@@ -437,8 +437,6 @@ namespace MagicUpdaterCommon.Helpers
 				name = name.Replace("(TM)", "™").Replace("(tm)", "™").Replace("(R)", "®").Replace("(r)", "®").Replace("(C)", "©").Replace("(c)", "©").Replace("    ", " ").Replace("  ", " ");
 
 				info = name + ", " + (string)mo["Caption"] + ", " + (string)mo["SocketDesignation"];
-				//mo.Properties["Name"].Value.ToString();
-				//break;
 			}
 			return info;
 		}
@@ -454,8 +452,7 @@ namespace MagicUpdaterCommon.Helpers
 			foreach (ManagementObject mo in moc)
 			{
 				info = (string)mo["Name"];
-				//mo.Properties["Name"].Value.ToString();
-				//break;
+
 			}
 			return info;
 		}

@@ -231,12 +231,6 @@ namespace MagicUpdaterCommon.Helpers
 					{
 						return new TryGetOrUpdateFileFromFtp(false, res.Message);
 					}
-
-					//FtpWorks.DownloadFileFromFtpOld(
-					//	Path.Combine(MainSettings.Constants.PluginOperationDllDirectoryPath, fileName),
-					//	Path.Combine(MainSettings.GlobalSettings.SelfUpdateFtpServer, MainSettings.GlobalSettings.SelfUpdateFtpPath, MainSettings.Constants.OPERATION_PLUGIN_DIRECTORY_NAME, fileName),
-					//	MainSettings.GlobalSettings.SelfUpdateFtpUser,
-					//	MainSettings.GlobalSettings.SelfUpdateFtpPassword);
 				}
 
 				if (!File.Exists(Path.Combine(MainSettings.Constants.PluginOperationDllDirectoryPath, fileName)))
@@ -434,11 +428,6 @@ namespace MagicUpdaterCommon.Helpers
 				string dllFullPath = Path.Combine(MainSettings.GlobalSettings.SelfUpdateFtpPath
 																, MainSettings.Constants.OPERATION_PLUGIN_DIRECTORY_NAME
 																, fileName);
-
-				//var ftpFileMd5Result = FtpWorks.GetFileMD5(MainSettings.GlobalSettings.SelfUpdateFtpServer
-				//								   , MainSettings.GlobalSettings.SelfUpdateFtpUser
-				//								   , MainSettings.GlobalSettings.SelfUpdateFtpPassword
-				//								   , dllFullPath);
 
 				var ftpFileMd5Result = FtpWorks.GetFtpFileMd5(MainSettings.GlobalSettings.SelfUpdateFtpServer
 												   , MainSettings.GlobalSettings.SelfUpdateFtpUser

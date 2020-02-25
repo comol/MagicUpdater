@@ -45,7 +45,6 @@ namespace MagicUpdaterCommon.SettingsTools
 			}
 			else
 			{
-				//ds = SqlWorks.ExecProcExt(Settings.Default.ConnectionString, "GetCommonGlobalSettings");
 				return new TryLoadCommonGlobalSettings(false, "Ошибка загрузки общих параметров из таблицы CommonGlobalSettings");
 			}
 			if (ds != null)

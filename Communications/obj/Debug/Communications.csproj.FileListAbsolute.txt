@@ -27,3 +27,9 @@ D:\GitProjects\MagicUpdater_ms\Communications\bin\Debug\Communications.pdb
 D:\GitProjects\MagicUpdater_ms\Communications\obj\Debug\Communications.dll
 D:\GitProjects\MagicUpdater_ms\Communications\obj\Debug\Communications.pdb
 D:\GitProjects\MagicUpdater_ms\Communications\obj\Debug\Communications.csprojResolveAssemblyReference.cache
+C:\Users\Admin\Source\Repos\MagicUpdater.Public\Communications\bin\Debug\Communications.dll
+C:\Users\Admin\Source\Repos\MagicUpdater.Public\Communications\bin\Debug\Communications.pdb
+C:\Users\Admin\Source\Repos\MagicUpdater.Public\Communications\obj\Debug\Communications.csproj.CoreCompileInputs.cache
+C:\Users\Admin\Source\Repos\MagicUpdater.Public\Communications\obj\Debug\Communications.dll
+C:\Users\Admin\Source\Repos\MagicUpdater.Public\Communications\obj\Debug\Communications.pdb
+C:\Users\Admin\Source\Repos\MagicUpdater.Public\Communications\obj\Debug\Communications.csprojAssemblyReference.cache

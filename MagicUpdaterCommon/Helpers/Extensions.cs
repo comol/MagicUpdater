@@ -50,10 +50,7 @@ namespace MagicUpdaterCommon.Helpers
 
 		public static void ExitApplication()
 		{
-			//NetWork.StopServer();
-			//TaskerReporter.Stop();
-			//Program.MainForm.Invoke(new MethodInvoker(() => Program.MainForm.Dispose()));
-			//Application.Exit();
+
 		}
 
 		public static string GetServiceInstallPath(string serviceName)

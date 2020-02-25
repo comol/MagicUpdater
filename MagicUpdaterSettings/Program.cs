@@ -46,7 +46,6 @@ namespace MagicUpdaterInstaller
 
 		private static void CurrentDomain_FirstChanceException(object sender, System.Runtime.ExceptionServices.FirstChanceExceptionEventArgs e)
 		{
-			//throw new NotImplementedException();
 		}
 
 		public static SettingsForm MainForm { get; private set; }

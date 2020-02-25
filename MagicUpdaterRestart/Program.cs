@@ -322,51 +322,5 @@ namespace MagicUpdaterRestart
 			}
 		}
 
-		//private static bool StartSettingsViaPipe(int timeOut = 20000)
-		//{
-		//	bool result = true;
-
-		//	try
-		//	{
-		//		if (Tools.GetProcessesCount(MainSettings.Constants.MAGIC_UPDATER_RESTART) == 1)
-		//		{
-		//			bool restartSettingsConnected = false;
-		//			Task.Factory.StartNew(() =>
-		//			{
-		//				_pipeClient = new PipeClient();
-		//				_pipeClient.SendSyncMessage(new CommunicationObject
-		//				{
-		//					ActionType = CommunicationActionType.StartMagicUpdaterSettings
-		//				});
-		//				restartSettingsConnected = true;
-		//			});
-
-		//			while (!restartSettingsConnected)
-		//			{
-		//				Thread.Sleep(1);
-		//				timeOut--;
-		//				if (timeOut <= 0)
-		//				{
-		//					result = false;
-		//					break;
-		//				}
-		//			}
-		//		}
-		//		else
-		//		{
-		//			Operation.SendOperationReport(_operationId, $"Отсутствует процесс \"{MainSettings.Constants.MAGIC_UPDATER_RESTART}\" для \"{MainSettings.Constants.MAGIC_UPDATER_SETTINGS}\".{Environment.NewLine}Приложение \"{MainSettings.Constants.MAGIC_UPDATER_SETTINGS}\" не запущено.", true);
-		//		}
-		//	}
-		//	catch (Exception ex)
-		//	{
-		//		if (_operationId > 0)
-		//		{
-		//			Operation.SendOperationReport(_operationId, $"Не удалось перезапустить MagicUpdaterSettings. Original: {ex.ToString()}", false);
-		//		}
-		//		NLogger.LogErrorToHdd($"Не удалось перезапустить MagicUpdaterSettings. Original: {ex.ToString()}", MainSettings.Constants.MAGIC_UPDATER_RESTART);
-		//	}
-		//	return result;
-		//}
-
 	}
 }

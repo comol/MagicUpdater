@@ -46,8 +46,6 @@ namespace MagicUpdater.Operations
 			else
 			{
 				result = false;
-
-				//MessageBox.Show("Не удалось получить ID компьютера", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
 			return result;
 		}

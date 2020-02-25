@@ -45,3 +45,11 @@ D:\GitProjects\MagicUpdater_ms\MagicUpdater\bin\Debug\MagicUpdaterDebugConsole.p
 D:\GitProjects\MagicUpdater_ms\MagicUpdaterDebugConsole\obj\Debug\MagicUpdaterDebugConsole.csprojResolveAssemblyReference.cache
 D:\GitProjects\MagicUpdater_ms\MagicUpdaterDebugConsole\obj\Debug\MagicUpdaterDebugConsole.exe
 D:\GitProjects\MagicUpdater_ms\MagicUpdaterDebugConsole\obj\Debug\MagicUpdaterDebugConsole.pdb
+C:\Users\Admin\Source\Repos\MagicUpdater.Public\MagicUpdater\bin\Debug\NLog.config
+C:\Users\Admin\Source\Repos\MagicUpdater.Public\MagicUpdater\bin\Debug\MagicUpdaterDebugConsole.exe
+C:\Users\Admin\Source\Repos\MagicUpdater.Public\MagicUpdater\bin\Debug\MagicUpdaterDebugConsole.pdb
+C:\Users\Admin\Source\Repos\MagicUpdater.Public\MagicUpdaterDebugConsole\obj\Debug\MagicUpdaterDebugConsole.csprojAssemblyReference.cache
+C:\Users\Admin\Source\Repos\MagicUpdater.Public\MagicUpdaterDebugConsole\obj\Debug\MagicUpdaterDebugConsole.csproj.CoreCompileInputs.cache
+C:\Users\Admin\Source\Repos\MagicUpdater.Public\MagicUpdaterDebugConsole\obj\Debug\MagicUpdaterDebugConsole.csproj.CopyComplete
+C:\Users\Admin\Source\Repos\MagicUpdater.Public\MagicUpdaterDebugConsole\obj\Debug\MagicUpdaterDebugConsole.exe
+C:\Users\Admin\Source\Repos\MagicUpdater.Public\MagicUpdaterDebugConsole\obj\Debug\MagicUpdaterDebugConsole.pdb

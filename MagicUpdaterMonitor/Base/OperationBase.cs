@@ -7,22 +7,6 @@ using System;
 
 namespace MagicUpdaterMonitor.Abstract
 {
-	//public enum OperationsType
-	//{
-	//	SetOperationsListCheckTimeout = 0,
-	//	SelfUpdate = 1,
-	//	DynamicUpdate1C = 2,
-	//	StaticUpdate1C = 3,
-	//	CacheClear1C = 4,
-	//	ServerRestart1C = 5,
-	//	ForceStaticUpdate1C = 6,
-
-	//	//Сервисные операции
-	//	SetLanMacToDB_Service = 1000,
-	//	RegisterViaMac_Service = 1001,
-	//	SetExternalIp_Service = 1002,
-	//	RestartMagicUpdater_Service = 1003
-	//}
 
 	public class OperationBase
 	{
@@ -38,7 +22,6 @@ namespace MagicUpdaterMonitor.Abstract
 
 		private async void SendOperToDb(int computerId, DateTime? poolDate)
 		{
-			//await MQueryCommand.TryInsertNewOperationAsync(computerId, _operationType, poolDate);
 			await MQueryCommand.TryInsertNewOperationByUserAsync(computerId, _operationType, MainForm.UserId, poolDate);
 		}
 
@@ -58,7 +41,6 @@ namespace MagicUpdaterMonitor.Abstract
 
 		public void SaveAttributes(object model, int userId = 0)
 		{
-			//var res = MQueryCommand.TrySaveOperationAttributes(_operationType, model);
 			if(userId == 0)
 			{
 				userId = MainForm.UserId;
@@ -72,27 +54,7 @@ namespace MagicUpdaterMonitor.Abstract
 
 		public object GetSavedAttributes()
 		{
-			//return MQueryCommand.GetSavedOperationAttributes(_operationType);
 			return MQueryCommand.GetSavedOperationAttributesByUser(_operationType, MainForm.UserId);
 		}
-
-		//public void SendForAllComputers()
-		//{
-		//	if (IsOnlyMainCashbox)
-		//	{
-		//		foreach (ShopComputer sc in AppSettings.ShopComputers)
-		//		{
-		//			if (sc.IsMainCashbox)
-		//				SendForComputer(sc.ComputerId);
-		//		}
-		//	}
-		//	else
-		//	{
-		//		foreach (ShopComputer sc in AppSettings.ShopComputers)
-		//		{
-		//			SendForComputer(sc.ComputerId);
-		//		}
-		//	}
-		//}
 	}
 }

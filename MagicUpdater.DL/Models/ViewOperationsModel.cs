@@ -11,7 +11,6 @@ namespace MagicUpdater.DL.Models
 
 		[NotMapRefreshingGridView]
 		public int OperationTypeId { get; set; }
-		//public string OperationType => OperationTypeId.GetOperationName();
 		[NotMapRefreshingGridView]
 		public string OperationTypeEn { get; set; }
 		public string OperationTypeRu { get; set; }
@@ -20,7 +19,6 @@ namespace MagicUpdater.DL.Models
 		public int ComputerId { get; set; }
 		public string ComputerName { get; set; }
 		public string ShopId { get; set; }
-		//public string Attributes { get; set; }
 		[NotMapRefreshingGridView]
 		public Nullable<bool> IsRead { get; set; }
 
